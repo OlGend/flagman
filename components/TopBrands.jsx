@@ -4,12 +4,7 @@ import { useState, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-import { useTopBrandsFilter } from "@/components/useBrands";
-import {
-  extractReviewBonus,
-  extractReviewImage,
-  extractLink,
-} from "./brandUtils";
+
 import Loader from "@/components/Loader";
 import useSWR from "swr";
 import { shuffle } from "lodash";
@@ -22,9 +17,10 @@ import imgrandom from "@/public/coins_banner2.jpg";
 
 import { getBrands } from "@/components/getBrands/getBrands";
 
-
+import i18n from "@/components/i18n";
 
 export default function TopBrands() {
+
   ////////////////////NEW CODE/////////////////////
 
   // Получаем текущий URL
@@ -50,9 +46,6 @@ export default function TopBrands() {
   const [newUrl, setNewUrl] = useState("");
   const [source, setSource] = useState("");
 
-  const [selectedBrand, setSelectedBrand] = useState(null);
-
-  
 
 
   useEffect(() => {
@@ -122,25 +115,11 @@ export default function TopBrands() {
     }
   }, []);
 
-
-
   ///////////////NEW CODE//////////////////////////////
 
   const [loading, setLoading] = useState(true);
 
-  const { data: languageDetails, error: detailsError } = useSWR(
-    "languageDetails",
-    null,
-    {
-      fallbackData: selectedBrand
-        ? {
-            flag: selectedBrand.icon,
-            brand: selectedBrand.brand,
-            topBrand: selectedBrand.topCurrentCategories,
-          }
-        : { flag: "🌍", brand: 221, topBrand: 223 },
-    }
-  );
+
 
   if (typeof window !== "undefined") {
     const newSource = localStorage.getItem("source");
@@ -156,32 +135,22 @@ export default function TopBrands() {
     br = localStorage.getItem("brands");
   }
 
-
   const { t } = useTranslation();
 
-
-
-
   const [brands, setBrands] = useState([]);
-  // const [selectedBrand, setSelectedBrand] = useState(null);
 
-  const defLng = localStorage.getItem("country");
-
+  
   const categoryBrands = { key1: "Segment2", key2: "Premium" };
   useEffect(() => {
     const fetchBrands = async () => {
-      const brandsData = await getBrands(categoryBrands, defLng);
-      console.log("BRANDS", brandsData);
-      setBrands(brandsData);
-      // Установка первого бренда как активного при первом рендере
-      // if (brandsData && brandsData.length > 0) {
-      //   setSelectedBrand(brandsData[0]);
-      //   setGlobalSelectedBrand(brandsData[0]);
-      // }
+      if (typeof window !== "undefined") {
+        const brandsData = await getBrands(categoryBrands, i18n.language);
+        setBrands(brandsData);
+      }
     };
 
     fetchBrands();
-  }, [defLng]);
+  }, [i18n.language]);
 
   useEffect(() => {
     if (brands.length === 0) {
@@ -195,10 +164,10 @@ export default function TopBrands() {
   // Перемешиваем массив filteredBrands случайным образом
   const shuffledBrands = shuffle(brands);
   // Берем первые 6 элементов из перемешанного массива
-  const randomBrands = shuffledBrands.slice(0, 6);
-  console.log("!!", randomBrands)
+  const randomBrands = shuffledBrands;
+  console.log("!!", randomBrands);
   // Преобразуем эти объекты в карточки
-  cards2 = randomBrands.map((brand) => ({
+  cards2 = randomBrands.slice(0, 6).map((brand) => ({
     key: uuidv4(),
     content: (
       <Card
@@ -213,12 +182,12 @@ export default function TopBrands() {
     <>
       <div className="topbr">
         <div className="main__container">
-          {loading ? ( // Показываем индикатор загрузки, если данные загружаются
+          {loading ? ( 
             <Loader />
           ) : (
-            // Показываем карусель, когда данные загружены
+ 
             cards2 && (
-              // <h2>yes</h2>
+ 
               <Carousel
                 className="carmob"
                 cards={cards2}
@@ -236,11 +205,10 @@ export default function TopBrands() {
         <div className="main__container flex items-center">
           <div className="flex flex-col">
             <h1 className="">
-              {/* Claim Your <span className="text-lime-400">Fantasy Bonuses</span>{" "}
-              Before the Monsters{" "} */}
-
-              Feeling lucky today? <span className="text-blued">Click now to play</span> and see if <span className="text-blued"> luck is on your side!</span>
-        
+ 
+              Feeling lucky today?{" "}
+              <span className="text-blued">Click now to play</span> and see if{" "}
+              <span className="text-blued"> luck is on your side!</span>
             </h1>
             {randomBrands.slice(0, 1).map((item) => (
               <Link

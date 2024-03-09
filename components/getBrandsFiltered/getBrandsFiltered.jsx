@@ -1,38 +1,42 @@
 // Это больше не компонент React, а асинхронная функция для получения данных брендов.
-export const getBrands = async (categoryBrands, lng) => {
+export const getBrandsFiltered = async (filtered, lng) => {
   const apiOld = "https://pickbonus.myawardwallet.com/api/brandsNew/read.php";
   const apiNew = "https://pickbonus.myawardwallet.com/api/brandsNew/read.php";
 
-  
   const source = localStorage.getItem("source");
   // const geo = localStorage.getItem("country");
 
+  console.log("TTTTTTT", filtered, lng);
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
     const res = await fetch(url);
+    console.log("RES", res);
 
     if (res.ok) {
       const responseData = await res.json();
       let filteredData = [];
-      console.log("responseData", responseData.brandsNew);
- 
+      console.log("responseData", responseData);
+      console.log("GEO2", lng);
       if (lng) {
         const geoLng = lng.toUpperCase();
-    
-        
-        console.log("wwwww", categoryBrands)
-        filteredData = responseData.brandsNew.filter(
-          (rowData) =>
+        console.log("СУЩЕСТВУЕТ2", `"${filtered}"`);
+
+        filteredData = responseData.brandsNew.filter((rowData) => {
+          const categoriesArray = rowData["categories"]
+            .split(",")
+            .map((category) => category.trim());
+          return (
             rowData.GEO === geoLng &&
             rowData["CurrentStatus"] === "Ongoing" &&
-            rowData["CasinoBrand"] !== "Mirax (FS)" &&
-            rowData["CasinoBrand"] !== "Katsubet (FS)" &&
-            rowData["CasinoBrand"] !== "7Bit (FS)" &&
-            rowData[categoryBrands.key1] === categoryBrands.key2
-        );
+            !["Mirax (FS)", "Katsubet (FS)", "7Bit (FS)"].includes(
+              rowData["CasinoBrand"]
+            ) &&
+            categoriesArray.includes(filtered)
+          );
+        });
       }
-      console.log("FUNCTIONDATA", filteredData)
+      console.log("ДАТА ПРИ СМЕНЕ ЯЗЫКА", filteredData);
       return filteredData; // Возвращаем отфильтрованные данные
     } else {
       console.error("Failed to fetch data:", res.status);
@@ -43,3 +47,5 @@ export const getBrands = async (categoryBrands, lng) => {
     return []; // Возвращаем пустой массив в случае ошибки
   }
 };
+
+

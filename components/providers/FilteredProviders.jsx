@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { DotsThreeCircle } from "phosphor-react";
-import AllPayments from "./AllProviders";
+import AllProviders from "./AllProviders";
 import Image from "next/image";
 import Bgaming from "@/public/providers/BGaming.png";
 import Boongo from "@/public/providers/Booongo.png";
@@ -18,13 +18,11 @@ import Nolimitcity from "@/public/providers/nolimitcity.png";
 import Pragmatic from "@/public/providers/pragmaticplay.png";
 import Evolution from "@/public/providers/Evolution.png";
 import AllPaymentsImg from "@/public/payments/allpaymentmethods.png";
-import useSWR from "swr";
-
+import i18n from "@/components/i18n";
 
 const FilteredProviders = () => {
   const { t } = useTranslation();
   const [isLoader, setIsLoader] = useState(false);
-
 
   const [currentTab, setCurrentTab] = useState(1);
   const navigateBrands = [
@@ -217,15 +215,6 @@ const FilteredProviders = () => {
     },
   ];
 
-  useEffect(() => {
-    const pathSegments = window.location.pathname.split("/game-providers/");
-    const slugFromUrl = pathSegments[1];
-    const foundTab = navigateBrands.find((item) => item.slug === slugFromUrl);
-    if (foundTab) {
-      setCurrentTab(foundTab.currentTab);
-    }
-  }, []);
-
   const handleTabChange = (tabNumber) => {
     setCurrentTab(tabNumber);
     setIsLoader(true);
@@ -234,95 +223,19 @@ const FilteredProviders = () => {
     }, 500);
   };
 
-  const [selectedBrand, setSelectedBrand] = useState(null);
-  useEffect(() =>{
-    const defLng = localStorage.getItem("country");
-    // setSelectedBrand(defLng);
-    if (defLng) {
-      const foundBrand = navigateBrands2.find((brand) => brand.slug === defLng.toLowerCase());
-      if (foundBrand) {
-        setSelectedBrand(foundBrand);
-      } else {
-        // Если локаль не найдена, устанавливаем "all"
-        const allBrand = navigateBrands2.find((brand) => brand.slug === "all");
-        setSelectedBrand(allBrand);
-      }
-    }
-  }, []);
-  const navigateBrands2 = [
-    {
-      currentCategories: 138,
-      topCurrentCategories: 213,
-      icon: "🌍",
-      slug: "all",
-    },
-    {
-      currentCategories: 143,
-      topCurrentCategories: 184,
-      icon: "🇦🇺",
-      slug: "au",
-    },
-    {
-      currentCategories: 119,
-      topCurrentCategories: 84,
-      icon: "🇧🇷",
-      slug: "br",
-    },
-    {
-      currentCategories: 120,
-      topCurrentCategories: 46,
-      icon: "🇨🇦",
-      slug: "ca",
-    },
-    {
-      currentCategories: 121,
-      topCurrentCategories: 43,
-      icon: "🇫🇮",
-      slug: "fi",
-    },
-    {
-      currentCategories: 122,
-      topCurrentCategories: 45,
-      icon: "🇩🇪",
-      slug: "de",
-    },
-    {
-      currentCategories: 123,
-      topCurrentCategories: 47,
-      icon: "🇳🇿",
-      slug: "nz",
-    },
-    {
-      currentCategories: 124,
-      topCurrentCategories: 44,
-      icon: "🇳🇴",
-      slug: "no",
-    },
-    {
-      currentCategories: 125,
-      topCurrentCategories: 48,
-      icon: "🇵🇱",
-      slug: "pl",
-    },
-  ];
-  const { data: languageDetails, error: detailsError } = useSWR(
-    "languageDetails",
-    null,
-    {
-      fallbackData: selectedBrand
-        ? { flag: selectedBrand.icon, allBrand: selectedBrand.currentCategories, topBrand: selectedBrand.topCurrentCategories }
-        : { flag: "🌍", allBrand: 138, topBrand: 213 }
-    }
-  );
-
   return (
     <div className="main pt-10 pb-10 custom-bonuses filtered-providers">
       <div className="main__container filter-brands">
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
-            <h2 className="text-white">Comprehensive 2024 Directory for Online Casinos Sorted by Game Providers</h2>
+            <h2 className="text-white">
+              Comprehensive 2024 Directory for Online Casinos Sorted by Game
+              Providers
+            </h2>
             <p className="text-white mt-5">
-            Interested in locating online casinos featuring games from particular providers? Browse our up-to-date list of diverse casino options to find your perfect match.
+              Interested in locating online casinos featuring games from
+              particular providers? Browse our up-to-date list of diverse casino
+              options to find your perfect match.
             </p>
           </div>
         </div>
@@ -337,7 +250,6 @@ const FilteredProviders = () => {
             >
               <div className="flex items-center">
                 {item.icon}
-                {/* {t(item.currentText)} */}
               </div>
             </button>
           ))}
@@ -347,10 +259,9 @@ const FilteredProviders = () => {
           {navigateBrands.map((item) => {
             return (
               currentTab === item.currentTab && (
-                <AllPayments
-                  key={item.currentTab}
-                  choose={item.currentCategories}
-                  filtered={languageDetails}
+                <AllProviders
+                  key={`${item.currentTab}-${i18n.language}`}
+                  filtered={item.currentText}
                   isLoader={isLoader}
                 />
               )

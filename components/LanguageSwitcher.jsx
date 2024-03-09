@@ -4,6 +4,7 @@ import useSWR, { mutate } from "swr";
 import { useTranslation } from "react-i18next";
 import Loader from "@/components/Loader";
 
+
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const { data: selectedLanguage, error } = useSWR(
@@ -15,13 +16,6 @@ const LanguageSwitcher = () => {
     defLng = localStorage.getItem("country");
   }
 
-  const { data: languageDetails, error: detailsError } = useSWR(
-    "languageDetails",
-    null,
-    {
-      fallbackData: { flag: "🌍", brand: 221, topBrand: 213 }, // Задаем начальное значение
-    }
-  );
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,13 +49,10 @@ const LanguageSwitcher = () => {
     }
   }, []);
 
-  // Если данные еще не загрузились, показываем индикатор загрузки
-  if (!selectedLanguage || !languageDetails) {
-    return <Loader />;
-  }
+
 
   // Обработка ошибок для selectedLanguage и languageDetails
-  if (error || detailsError) {
+  if (error) {
     return <div>Failed to load</div>;
   }
 
@@ -69,16 +60,17 @@ const LanguageSwitcher = () => {
     setIsLoading(true);
 
     localStorage.setItem("country", lng);
+      // setIsLoading(false);
+    try {
+      mutate("selectedLanguage", lng, false);
+      await i18n.changeLanguage(lng);
+      // Не вызываем i18n.changeLanguage(lng);
+      // mutate("languageDetails", { brand, topBrand }, true); // Обновляем дополнительные данные
+    } catch (error) {
+      console.error("Ошибка при смене языка:", error);
+    } finally {
       setIsLoading(false);
-    // try {
-    //   mutate("selectedLanguage", lng, false);
-    //   // Не вызываем i18n.changeLanguage(lng);
-    //   mutate("languageDetails", { brand, topBrand }, true); // Обновляем дополнительные данные
-    // } catch (error) {
-    //   console.error("Ошибка при смене языка:", error);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    }
   };
 
   const availableLanguages = [
@@ -93,6 +85,11 @@ const LanguageSwitcher = () => {
       code: "nz",
       label: "New Zealand",
       flag: "🇳🇿"
+    },
+    {
+      code: "pl",
+      label: "Poland",
+      flag: "🇨🇦"
     }
   ];
   const availableLanguagesPartners = [
@@ -107,6 +104,12 @@ const LanguageSwitcher = () => {
       label: "New Zealand",
       flag: "🇳🇿",
     },
+    ,
+    {
+      code: "pl",
+      label: "Poland",
+      flag: "🇨🇦"
+    }
   ];
   let item;
   if (typeof window !== "undefined") {
@@ -116,7 +119,7 @@ const LanguageSwitcher = () => {
     item === "partner1039" ? availableLanguagesPartners : availableLanguages;
 
   // Обработка ошибок для selectedLanguage и languageDetails
-  if (error || detailsError) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load</div>;
 
   return (
     <div className={`language-switcher ml-3 flex flex-col`}>

@@ -3,7 +3,7 @@ import Styles from "./Card.module.css";
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import Image from "next/image";
-import { track } from '@vercel/analytics';
+// import { track } from '@vercel/analytics';
 import Link from "next/link";
 // import Button from "./Button";
 
@@ -27,7 +27,7 @@ function Card({ imagen, link, bonus }) {
     }
   
   }, []);
-  track('Home page>First block');
+
   return (
     <animated.div
       className={Styles.card}
@@ -45,9 +45,7 @@ function Card({ imagen, link, bonus }) {
           className="btn btn-primary"
           href={`${link}/${newUrl}`}
           target="_blank"
-          onClick={() => {
-            track('Home page>First block');
-          }}
+    
         >
           Play now
         </Link>

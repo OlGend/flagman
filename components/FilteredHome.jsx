@@ -1,7 +1,7 @@
 // TopBrands.jsx (Клієнтський компонент)
 "use client";
 import React, { useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import AllBrands from "./AllBrands";
 import {
   Medal,
@@ -10,15 +10,13 @@ import {
   CurrencyBtc,
   SquareLogo,
 } from "phosphor-react";
-import useSWR from "swr";
-
+import i18n from "@/components/i18n";
 
 const FilteredHome = () => {
   const { t } = useTranslation();
   const [isLoader, setIsLoader] = useState(false);
 
   const [currentTab, setCurrentTab] = useState(1);
-
 
   const navigateBrands = [
     {
@@ -61,29 +59,20 @@ const FilteredHome = () => {
     }, 500);
   };
 
-  // В начале компонента FilteredBonuses
-  const { data: languageDetails, error: detailsError } = useSWR(
-    "languageDetails",
-    null,
-    {
-      fallbackData: { flag: "🌍", brand: 25, topBrand: 223 }, // Задаем начальное значение
-    }
-  );
-
-
   return (
     <div className="main pt-10 pb-10 other-custom-bonuses">
       <div className="main__container filter-brands">
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
             <h2 className="">
-            Catalog of all 2024 Online Casino Bonuses Offered
+              Catalog of all 2024 Online Casino Bonuses Offered
             </h2>
             <p className="mt-3 pb-4">
-            Seeking online casino bonuses and promotions? Explore our current database featuring numerous casino bonus offers for your selection.
+              Seeking online casino bonuses and promotions? Explore our current
+              database featuring numerous casino bonus offers for your
+              selection.
             </p>
           </div>
-   
         </div>
         <div className="flex navigate-filter">
           {navigateBrands.map((item) => (
@@ -105,9 +94,8 @@ const FilteredHome = () => {
             return (
               currentTab === item.currentTab && (
                 <AllBrands
-                  key={item.currentTab}
-                  choose={item.currentCategories}
-                  filtered={languageDetails}
+                  key={`${item.currentTab}-${i18n.language}`}
+                  filtered={item.currentText}
                   isLoader={isLoader}
                 />
               )

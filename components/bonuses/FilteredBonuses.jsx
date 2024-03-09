@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import AllBonuses from "./AllBonuses";
 import { Gift, Coins, Crown, Handshake, RadioButton } from "phosphor-react";
-import useSWR from "swr";
+import i18n from "@/components/i18n";
 
 const FilteredBonuses = () => {
   const { t } = useTranslation();
@@ -49,14 +49,7 @@ const FilteredBonuses = () => {
     },
   ];
 
-  useEffect(() => {
-    const pathSegments = window.location.pathname.split("/");
-    const slugFromUrl = pathSegments[1]; // Используйте [1] для первого сегмента после "/"
-    const foundTab = navigateBrands.find((item) => item.slug === slugFromUrl);
-    if (foundTab) {
-      setCurrentTab(foundTab.currentTab);
-    }
-  }, []);
+
 
   const handleTabChange = (tabNumber) => {
     setCurrentTab(tabNumber);
@@ -65,18 +58,7 @@ const FilteredBonuses = () => {
       setIsLoader(false);
     }, 500);
   };
-  //////////////////new
 
-
-    // В начале компонента FilteredBonuses
-    const { data: languageDetails, error: detailsError } = useSWR(
-      "languageDetails",
-      null,
-      {
-        fallbackData: { flag: "🌍", brand: 25, topBrand: 213 }, // Задаем начальное значение
-      }
-    );
-  ///////////////////
 
   return (
     <div className="main pt-10 pb-10 custom-bonuses">
@@ -107,10 +89,9 @@ const FilteredBonuses = () => {
             return (
               currentTab === item.currentTab && (
                 <AllBonuses
-                  key={item.currentTab}
-                  choose={item.currentCategories}
-                  filtered={languageDetails}
-                  isLoader={isLoader}
+                key={`${item.currentTab}-${i18n.language}`}
+                filtered={item.currentText}
+                isLoader={isLoader}
                 />
               )
             );

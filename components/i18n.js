@@ -20,10 +20,10 @@ async function initializeI18n() {
     defLng = "au"; // Установка значения по умолчанию в случае ошибки
   }
 
-  const languages = ['au', 'ca', 'nz'];
+  const languages = ["au", "ca", "nz", "pl"];
 
   // Используем метод map для сопоставления значений массива languages с defLng
-  const matchedLanguages = languages.map(language => {
+  const matchedLanguages = languages.map((language) => {
     if (language === defLng) {
       return language;
     }
@@ -31,7 +31,9 @@ async function initializeI18n() {
   });
 
   // Фильтруем совпадающие значения
-  const matchedLanguage = matchedLanguages.find(language => language !== null);
+  const matchedLanguage = matchedLanguages.find(
+    (language) => language !== null
+  );
 
   console.log("Выбранный язык:", matchedLanguage);
 
@@ -40,7 +42,7 @@ async function initializeI18n() {
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-      lng: matchedLanguage || 'au', // Используем matchedLanguage, если есть совпадение, иначе 'au'
+      lng: matchedLanguage || "au", // Используем matchedLanguage, если есть совпадение, иначе 'au'
       interpolation: {
         escapeValue: false,
       },

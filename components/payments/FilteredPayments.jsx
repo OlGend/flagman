@@ -21,7 +21,7 @@ import Pix from "@/public/payments/Pix.png";
 import Revolut from "@/public/payments/Revolut.png";
 import Mobile from "@/public/payments/mobilepayments.png";
 import AllPaymentsImg from "@/public/payments/allpaymentmethods.png";
-import useSWR from "swr";
+import i18n from "@/components/i18n";
 
 const FilteredPayments = () => {
   const { t } = useTranslation();
@@ -288,15 +288,6 @@ const FilteredPayments = () => {
     },
   ];
 
-  useEffect(() => {
-    const pathSegments = window.location.pathname.split("/payments/");
-    const slugFromUrl = pathSegments[1];
-    const foundTab = navigateBrands.find((item) => item.slug === slugFromUrl);
-    if (foundTab) {
-      setCurrentTab(foundTab.currentTab);
-    }
-  }, []);
-
   const handleTabChange = (tabNumber) => {
     setCurrentTab(tabNumber);
     setIsLoader(true);
@@ -304,97 +295,19 @@ const FilteredPayments = () => {
       setIsLoader(false);
     }, 500);
   };
-  ////////////////////////new
-
-  const [selectedBrand, setSelectedBrand] = useState(null);
-  useEffect(() =>{
-    const defLng = localStorage.getItem("country");
-    // setSelectedBrand(defLng);
-    if (defLng) {
-      const foundBrand = navigateBrands2.find((brand) => brand.slug === defLng.toLowerCase());
-      if (foundBrand) {
-        setSelectedBrand(foundBrand);
-      } else {
-        // Если локаль не найдена, устанавливаем "all"
-        const allBrand = navigateBrands2.find((brand) => brand.slug === "all");
-        setSelectedBrand(allBrand);
-      }
-    }
-  }, []);
-  const navigateBrands2 = [
-    {
-      currentCategories: 138,
-      topCurrentCategories: 213,
-      icon: "🌍",
-      slug: "all",
-    },
-    {
-      currentCategories: 143,
-      topCurrentCategories: 184,
-      icon: "🇦🇺",
-      slug: "au",
-    },
-    {
-      currentCategories: 119,
-      topCurrentCategories: 84,
-      icon: "🇧🇷",
-      slug: "br",
-    },
-    {
-      currentCategories: 120,
-      topCurrentCategories: 46,
-      icon: "🇨🇦",
-      slug: "ca",
-    },
-    {
-      currentCategories: 121,
-      topCurrentCategories: 43,
-      icon: "🇫🇮",
-      slug: "fi",
-    },
-    {
-      currentCategories: 122,
-      topCurrentCategories: 45,
-      icon: "🇩🇪",
-      slug: "de",
-    },
-    {
-      currentCategories: 123,
-      topCurrentCategories: 47,
-      icon: "🇳🇿",
-      slug: "nz",
-    },
-    {
-      currentCategories: 124,
-      topCurrentCategories: 44,
-      icon: "🇳🇴",
-      slug: "no",
-    },
-    {
-      currentCategories: 125,
-      topCurrentCategories: 48,
-      icon: "🇵🇱",
-      slug: "pl",
-    },
-  ];
-  const { data: languageDetails, error: detailsError } = useSWR(
-    "languageDetails",
-    null,
-    {
-      fallbackData: selectedBrand
-        ? { flag: selectedBrand.icon, allBrand: selectedBrand.currentCategories, topBrand: selectedBrand.topCurrentCategories }
-        : { flag: "🌍", allBrand: 138, topBrand: 213 }
-    }
-  );
-
-  //////////////////
   return (
     <div className="main pt-10 pb-10 custom-bonuses filtered-payments">
       <div className="main__container filter-brands">
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
-            <h2 className="">Catalog of all offered Online Casinos by Payment Methods in 2024</h2>
-            <p className="mt-3 pb-4">Looking for online casinos with specific payment methods? Explore our current database of numerous casino offers for you to choose from.</p>
+            <h2 className="">
+              Catalog of all offered Online Casinos by Payment Methods in 2024
+            </h2>
+            <p className="mt-3 pb-4">
+              Looking for online casinos with specific payment methods? Explore
+              our current database of numerous casino offers for you to choose
+              from.
+            </p>
           </div>
         </div>
         <div className="flex navigate-filter flex-wrap">
@@ -419,9 +332,8 @@ const FilteredPayments = () => {
             return (
               currentTab === item.currentTab && (
                 <AllPayments
-                  key={item.currentTab}
-                  choose={item.currentCategories}
-                  filtered={languageDetails}
+                  key={`${item.currentTab}-${i18n.language}`}
+                  filtered={item.currentText}
                   isLoader={isLoader}
                 />
               )

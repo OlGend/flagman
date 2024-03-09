@@ -6,7 +6,7 @@ import { Navigation } from "./Navigation";
 import { Gift, PokerChip, Wallet, GameController } from "phosphor-react";
 import Image from "next/image";
 import Img from "@/public/logo3.png";
-import SearchComponent from "@/components/SearchComponent";
+// import SearchComponent from "@/components/SearchComponent";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
@@ -230,7 +230,7 @@ const TheHeader = () => {
             )
           )}
           <div className="search-container flex items-end justify-center ml-auto">
-            <SearchComponent />
+            {/* <SearchComponent /> */}
           </div>
 
           <I18nextProvider i18n={i18n}>

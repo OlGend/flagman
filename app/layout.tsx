@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 import { TheHeader } from "@/components/TheHeader";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body>
    
         {/* <RandomWindow /> */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB" strategy="afterInteractive" />
+        {/* <Script src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB" strategy="afterInteractive" />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -36,8 +36,8 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', 'G-R5MZ7TVJRB');
           `}
-        </Script>
-        <Script id="hotjar">
+        </Script> */}
+        {/* <Script id="hotjar">
           {`
             (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -48,14 +48,14 @@ export default function RootLayout({
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
           `}
-        </Script>
+        </Script> */}
         <TheHeader />
    
         <main>
 
 
           {children}
-          <Analytics />
+          {/* <Analytics /> */}
         </main>
         <TheFooter />
       </body>

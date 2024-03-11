@@ -75,22 +75,41 @@ const LanguageSwitcher = () => {
 
   const availableLanguages = [
 
-    {
-      code: "au",
-      label: "Australia",
-      flag: "🇦🇺"
-    }, 
-    { code: "ca", label: "Canada", flag: "🇨🇦" },
-    {
-      code: "nz",
-      label: "New Zealand",
-      flag: "🇳🇿"
-    },
-    {
-      code: "pl",
-      label: "Poland",
-      flag: "🇨🇦"
-    }
+    // {
+    //   code: "au",
+    //   label: "Australia",
+    //   flag: "🇦🇺"
+    // }, 
+    // { code: "ca", label: "Canada", flag: "🇨🇦" },
+    // {
+    //   code: "nz",
+    //   label: "New Zealand",
+    //   flag: "🇳🇿"
+    // },
+    // {
+    //   code: "pl",
+    //   label: "Poland",
+    //   flag: "🇨🇦"
+    // },
+    { code: "all", label: "🌍 English" },
+    { code: "be", label: "🇧🇪 Belgian" },
+    { code: "bg", label: "🇧🇬 Bulgarian" },
+    { code: "cz", label: "🇨🇿 Czech" },
+    { code: "de", label: "🇩🇪 German" },
+    { code: "dk", label: "🇩🇰 Danish" },
+    { code: "es", label: "🇪🇸 Spanish" },
+    { code: "fi", label: "🇫🇮 Finnish" },
+    { code: "fr", label: "🇫🇷 French" },
+    { code: "gr", label: "🇬🇷 Greek" },
+    { code: "hu", label: "🇭🇺 Hungarian" },
+    { code: "it", label: "🇮🇹 Italian" },
+    { code: "nl", label: "🇳🇱 Dutch" },
+    { code: "no", label: "🇳🇴 Norwegian" },
+    { code: "pl", label: "🇵🇱 Polish" },
+    { code: "pt", label: "🇵🇹 Portuguese" },
+    { code: "se", label: "🇸🇪 Swedish" },
+    { code: "sk", label: "🇸🇰 Slovak" },
+    { code: "tr", label: "🇹🇷 Turkey" },
   ];
   const availableLanguagesPartners = [
     {

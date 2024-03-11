@@ -266,7 +266,7 @@ export default function AllProviders({ choose, filtered, isLoader }) {
                                 <Image
                                   width={60}
                                   height={38}
-                                  src={`/${deposit.deposit}.png`}
+                                  src={`/payments/${deposit.deposit}.png`}
                                   alt={`${deposit.deposit}`}
                                   loading="lazy"
                                 />
@@ -296,7 +296,7 @@ export default function AllProviders({ choose, filtered, isLoader }) {
                                 <Image
                                   width={60}
                                   height={38}
-                                  src={`/${withdrawal.withdrawal}.png`}
+                                  src={`/providers/${withdrawal.withdrawal}.png`}
                                   alt={`${withdrawal.withdrawal}`}
                                   loading="lazy"
                                 />

@@ -10355,3 +10355,8 @@ input.error {
   width: 70px;
   height: 45px;
 }
+
+
+.withdrawal .withdrawal.flex.mt-2 {
+  flex-wrap: wrap;
+}

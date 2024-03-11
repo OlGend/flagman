@@ -15,7 +15,7 @@ import {
   Gift,
   ShieldPlus,
   CaretDown,
-  Bank,
+  GameController,
   CurrencyCircleDollar,
   Play,
   Eye,
@@ -280,8 +280,8 @@ export default function AllBonuses({ filtered, isLoader }) {
                         className="withdrawal custom-list-item mb-1"
                       >
                         <div className="title flex items-center">
-                          <Bank size={24} />
-                          <span className="mt-1 ml-2">Withdrawal Methods</span>
+                          <GameController size={24} />
+                          <span className="mt-1 ml-2">Game Providers</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isWithdrawalOpen && (

@@ -261,7 +261,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                           <div className="withdrawal flex mt-2">
                             {deposits.map((deposit, index) => (
                               <div
-                                className="depimg flex items-center justify-center mr-1 mb-1"
+                                className="depimg flex items-center justify-center mr-1 mb-1 flex-wrap"
                                 key={index}
                               >
                                 <Image
@@ -291,7 +291,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                           <div className="withdrawal flex mt-2">
                             {withdrawals.map((withdrawal, index) => (
                               <div
-                                className="depimg flex items-center justify-center mr-1 mb-1"
+                                className="depimg flex items-center justify-center mr-1 mb-1 flex-wrap"
                                 key={index}
                               >
                                 <Image

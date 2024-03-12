@@ -1,7 +1,7 @@
 // Это больше не компонент React, а асинхронная функция для получения данных брендов.
 export const getBrands = async (categoryBrands, lng) => {
-  const apiOld = "https://pickbonus.myawardwallet.com/api/brandsNew/read.php";
-  const apiNew = "https://pickbonus.myawardwallet.com/api/brandsNew/read.php";
+  const apiOld = "api/brands";
+  const apiNew = "api/brands";
 
   
   const source = localStorage.getItem("source");
@@ -10,19 +10,19 @@ export const getBrands = async (categoryBrands, lng) => {
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
-    const res = await fetch(url);
+    const res = await fetch("api/brands");
 
     if (res.ok) {
       const responseData = await res.json();
       let filteredData = [];
-      console.log("responseData", responseData.brandsNew);
+      console.log("responseData", responseData);
  
       if (lng) {
         const geoLng = lng.toUpperCase();
     
         
         console.log("wwwww", categoryBrands)
-        filteredData = responseData.brandsNew.filter(
+        filteredData = responseData.filter(
           (rowData) =>
             rowData.GEO === geoLng &&
             rowData["CurrentStatus"] === "Ongoing" &&

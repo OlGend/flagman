@@ -1,8 +1,8 @@
 // // app/api/brands.ts
 
-
-import { NextResponse } from "next/server";
-import pool from "@/app/libs/mysql";
+import { NextResponse } from 'next/server';
+import pool from '@/app/libs/mysql';
+import { RowDataPacket } from 'mysql2';
 
 export async function GET() {
     let db;
@@ -11,8 +11,11 @@ export async function GET() {
         const query = 'SELECT * FROM brands_generation';
         const [rows] = await db.execute(query);
 
+        // Утверждение, что rows является массивом RowDataPacket[]
+        const dataRows = rows as RowDataPacket[];
+
         // Преобразование результатов запроса
-        const transformedRows = rows.map(row => ({
+        const transformedRows = dataRows.map(row => ({
             Tech: row.Tech, 
             CasinoBrand: row["Casino Brand"],
             CurrentStatus: row["Current Status"],
@@ -45,17 +48,15 @@ export async function GET() {
             WithdrawalMethods: row["WithdrawalMethods"],
             RestrictedCountries: row["RestrictedCountries"]
         }))
-
         return NextResponse.json(transformedRows);
-    } catch (error) {
-        return NextResponse.json({ error: error.message || 'Ошибка при получении данных' }, { status: 500 });
-    } finally {
-        if (db) {
-            db.release(); // Убедитесь, что соединение освобождается после выполнения запроса или при возникновении ошибки
-        }
-    }
-}
-
+      } catch (error) {
+          return NextResponse.json({ error: error.message || 'Ошибка при получении данных' }, { status: 500 });
+      } finally {
+          if (db) {
+              db.release();
+          }
+      }
+  }
 
 
 //         const transformedRows = rows.map(row => ({

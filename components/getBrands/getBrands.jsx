@@ -10,7 +10,7 @@ export const getBrands = async (categoryBrands, lng) => {
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
-    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read.php");
+    const res = await fetch("api/brands");
 
     if (res.ok) {
       const responseData = await res.json();
@@ -22,7 +22,7 @@ export const getBrands = async (categoryBrands, lng) => {
     
         
         console.log("wwwww", categoryBrands)
-        filteredData = responseData.brandsNew.filter(
+        filteredData = responseData.filter(
           (rowData) =>
             rowData.GEO === geoLng &&
             rowData["CurrentStatus"] === "Ongoing" &&

@@ -21,17 +21,10 @@ export async function GET() {
             CurrentStatus: row["Current Status"],
             Sandbox: row["Sandbox"],
             GEO: row["GEO"],
-           
-   
             OurOfferContent: row["Our offer content"],
-      
-
             GoBig: row["gobig"],
             Weight: row["вес"],
-         
             LinkImg: row["Link img"],
-        
-           
             Segment2: row["Segment2"],
             FirstPriority: row["Первый приоритет"],
             Trendsetting: row["Trendsetting"],

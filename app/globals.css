@@ -6233,7 +6233,7 @@ h1 {
 @media (min-width: 1260px) and (max-width: 5000px) {
   .background-block,
   .custom-bonuses {
-    background-size: cover !important;
+    /* background-size: cover !important; */
   }
   .header {
     position: relative;

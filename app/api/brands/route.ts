@@ -50,7 +50,8 @@ export async function GET() {
         }))
         return NextResponse.json(transformedRows);
       } catch (error) {
-          return NextResponse.json({ error: error.message || 'Ошибка при получении данных' }, { status: 500 });
+        return NextResponse.json({ error: 'Ошибка при получении данных' }, { status: 500 });
+          // return NextResponse.json({ error: error.message || 'Ошибка при получении данных' }, { status: 500 });
       } finally {
           if (db) {
               db.release();

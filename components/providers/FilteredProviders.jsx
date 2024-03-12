@@ -20,6 +20,7 @@ import Evolution from "@/public/evolution.png";
 import AllPaymentsImg from "@/public/allpaymentmethods.png";
 import i18n from "@/components/i18n";
 
+
 const FilteredProviders = () => {
   const { t } = useTranslation();
   const [isLoader, setIsLoader] = useState(false);

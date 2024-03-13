@@ -10360,3 +10360,8 @@ input.error {
 .withdrawal .withdrawal.flex.mt-2 {
   flex-wrap: wrap;
 }
+
+.menu-info .menu-content {
+  display: flex;
+  flex-direction: column;
+}

@@ -14,6 +14,8 @@ export async function GET() {
         // Утверждение, что rows является массивом RowDataPacket[]
         const dataRows = rows as RowDataPacket[];
 
+        
+
         // Преобразование результатов запроса
         const transformedRows = dataRows.map(row => ({
             Tech: row.Tech, 

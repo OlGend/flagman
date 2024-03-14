@@ -10,7 +10,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
-    const res = await fetch("api/brands");
+    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read_sheet.php");
     console.log("RES", res);
 
     if (res.ok) {
@@ -22,7 +22,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
         const geoLng = lng.toUpperCase();
         console.log("СУЩЕСТВУЕТ2", `"${filtered}"`);
 
-        filteredData = responseData.filter((rowData) => {
+        filteredData = responseData.brandsNew.filter((rowData) => {
           const categoriesArray = rowData["categories"]
             .split(",")
             .map((category) => category.trim());

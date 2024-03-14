@@ -196,7 +196,7 @@ export default function Brand({ brand }) {
                       <div className="one-brand-item mt-3">
                         <div className="title flex items-center ">
                           <span className="mt-2 ">
-                          Deposit Methods
+                          Payment Methods
                           </span>
                         </div>
                         <div

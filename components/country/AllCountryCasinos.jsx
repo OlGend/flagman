@@ -209,7 +209,7 @@ export default function AllBonuses({ choose, topchoose, icon }) {
                       >
                         <div className="title flex items-center">
                           <CurrencyCircleDollar size={24} />
-                          <span className="mt-1 ml-2">Deposit Methods</span>
+                          <span className="mt-1 ml-2">Payment Methods</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isDepositsOpen && (

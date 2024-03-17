@@ -4,46 +4,43 @@ import { useState } from 'react';
 export const usePayment = (apiKey, user) => {
   const [errorWallet, setErrorWallet] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [minFee, setMinFee] = useState("");
 
   const validateAddress = async (selectedPaymentMethod, addressPayment) => {
     setLoading(true);
     try {
-        const url = "https://api.nowpayments.io/v1/payout/validate-address";
-        const currency = selectedPaymentMethod;
-        const address = adressPayment;
-  
-        const myHeaders = new Headers();
-        myHeaders.append("x-api-key", apiKey);
-        myHeaders.append("Content-Type", "application/json");
-  
-        const data = {
-          address: address,
-          currency: currency,
-        };
-  
-        const requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: JSON.stringify(data),
-          redirect: "follow",
-        };
-  
-        const response = await fetch(url, requestOptions);
-  
-        if (response.ok) {
-          setErrorWallet(false);
-          handlePayoutRequest();
-        } else {
-          console.error("Failed to validate address:", response.status);
-          const text = await response.text();
-          console.log("Response text:", text);
-          setErrorWallet(true);
-        }
-      } catch (error) {
-        console.error("An error occurred during address validation:", error);
+      const url = "https://api.nowpayments.io/v1/payout/validate-address";
+      const myHeaders = new Headers();
+      myHeaders.append("x-api-key", apiKey);
+      myHeaders.append("Content-Type", "application/json");
+
+      const data = {
+        address: addressPayment,
+        currency: selectedPaymentMethod,
+      };
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(data),
+        redirect: "follow",
+      };
+
+      const response = await fetch(url, requestOptions);
+      setLoading(false);
+      if (!response.ok) {
         setErrorWallet(true);
+        return false; // Неудачная валидация
       }
-    setLoading(false);
+      console.log("Adress validate")
+      setErrorWallet(false);
+      return true; // Удачная валидация
+    } catch (error) {
+      console.error("An error occurred during address validation:", error);
+      setLoading(false);
+      setErrorWallet(true);
+      return false; // В случае ошибки
+    }
   };
 
   const handlePayoutRequest = async (selectedPaymentMethod, addressPayment, estimatedAmount, jwtToken) => {
@@ -128,5 +125,76 @@ export const usePayment = (apiKey, user) => {
     setLoading(false);
   };
 
-  return { validateAddress, handlePayoutRequest, errorWallet, loading };
+  const authenticateUser = async () => {
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({
+        email: "and@karmabs.com",
+        password: "Ytvn3daw!",
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      const authResponse = await fetch(
+        "https://api.nowpayments.io/v1/auth",
+        requestOptions
+      );
+
+      if (authResponse.ok) {
+        const authData = await authResponse.json(); // Извлекаем данные из ответа как объект
+        const authToken = authData.token; // Извлекаем значение токена из объекта
+  
+        return authToken;
+      } else {
+        console.error("Failed to authenticate user:", authResponse.status);
+        // Возможно, здесь стоит бросить ошибку или выполнить другие действия в зависимости от вашего потока управления
+      }
+    } catch (error) {
+      console.error("Error during user authentication:", error);
+      // То же самое - обработайте ошибку в соответствии с вашими потребностями
+    }
+  };
+
+  const fetchFee = async (selectedPaymentMethod, withdrawalRequestValue) => {
+    setLoading(true);
+    try {
+      if (withdrawalRequestValue !== undefined) {
+        const myHeaders = new Headers();
+        myHeaders.append("x-api-key", apiKey);
+
+        const requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow",
+        };
+
+        const response = await fetch(
+          `https://api.nowpayments.io/v1/payout/fee?currency=${selectedPaymentMethod}&amount=${withdrawalRequestValue}`,
+          requestOptions
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        setMinFee(result);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { validateAddress, handlePayoutRequest, errorWallet, loading, authenticateUser, minFee, fetchFee };
 };
+
+

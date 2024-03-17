@@ -163,6 +163,7 @@ const TheHeader = () => {
         const keywordPair = pairs.find((pair) => pair.startsWith("?keyword="));
         if (keywordPair) {
           const keywordValue2 = keywordPair.split("=")[1];
+          localStorage.setItem("user_id", keywordValue2);
           setKeywordValue(userData);
           // setUser(null); // Установка значения null перед загрузкой новых данных
           setIsLoading(true); // Установка isLoading в true перед загрузкой новых данных

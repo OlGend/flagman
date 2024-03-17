@@ -18,10 +18,8 @@ export default function Withdrawal() {
 
   const {
     validateAddress,
-    // handlePayoutRequest,
     errorWallet,
     loading,
-    // authenticateUser,
     minFee,
     fetchFee,
   } = usePayment(apiKey, user);

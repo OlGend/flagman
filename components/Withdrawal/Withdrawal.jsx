@@ -18,10 +18,10 @@ export default function Withdrawal() {
 
   const {
     validateAddress,
-    handlePayoutRequest,
+    // handlePayoutRequest,
     errorWallet,
     loading,
-    authenticateUser,
+    // authenticateUser,
     minFee,
     fetchFee,
   } = usePayment(apiKey, user);
@@ -165,40 +165,9 @@ export default function Withdrawal() {
     }
   };
 
-  ///////////////////////получение статуса транзакции////////////////////////
-
-  // const [paymentStatus, setPaymentStatus] = useState(null);
-
-  // const fetchPaymentStatus = async () => {
-  //   try {
-  //     const response = await fetch("https://api.nowpayments.io/v1/payout/5000839277", {
-  //       headers: {
-  //         "x-api-key": "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC"
-  //       }
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error('Ошибка загрузки статуса платежа');
-  //     }
-  //     const result = await response.json();
-  //     setPaymentStatus(result.status);
-  //   } catch (error) {
-  //     console.error('Произошла ошибка:', error);
-  //   }
-  // };
-  // useEffect(() => {
-
-  //   // fetchPaymentStatus();
-  // }, []);
-  // console.log("AAA", paymentStatus)
-  ///////////////////////////////////////////////
 
   const onConfirmPayout = async () => {
-    // Аутентифицируем пользователя и получаем токен
-    const jwtToken = await authenticateUser();
-    if (!jwtToken) {
-      console.error("Authentication failed.");
-      return; // Прекращаем выполнение, если аутентификация не удалась
-    }
+ 
 
     const isValidAddress = await validateAddress(
       selectedPaymentMethod,
@@ -222,14 +191,13 @@ export default function Withdrawal() {
       paymentMethod: selectedPaymentMethod,
       paymentSumIn: estimated.estimated_amount,
       paymentAddress: addressPayment,
-      token: jwtToken,
       USD: withdrawalRequestValue
     };
 
     const newStatusPayment = JSON.stringify(newStatusPaymentObject);
 
     try {
-      // Обновляем статус оплаты пользователя
+  
       const updateResult = await updateUserStatusPayment(
         userId,
         newStatusPayment,
@@ -237,18 +205,16 @@ export default function Withdrawal() {
       );
       if (!updateResult) {
         console.error("Failed to update payment status.");
-        // Дополнительная обработка ошибки, если обновление статуса не удалось
+     
         return;
       } else {
         console.log("PAYMENT STATUS UPDATED");
       }
-      // Выполняем запрос на выплату
-      // const payoutResult = await handlePayoutRequest(selectedPaymentMethod, addressPayment, estimated.estimated_amount, jwtToken);
-      // Обработка результата выплаты, например, закрытие модального окна или показ сообщения об успехе
-      setModalPayout(false); // Закрываем модальное окно после успешной выплаты
+    
+      setModalPayout(false); 
     } catch (error) {
       console.error("An error occurred:", error);
-      // Обработка любых исключений, возникших во время выполнения операций
+ 
     }
   };
 

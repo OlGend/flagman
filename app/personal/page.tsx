@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Metadata } from "next";
 import { ChangeEvent, useEffect, useState } from "react";
+import { styled } from "@mui/system";
 
 import { FinallyStep } from "@/components/personal/FinallyStep";
 import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
@@ -199,14 +200,7 @@ export default function Personal() {
   return (
     <div className="page-personal">
       <div className="main__container">
-        <div
-          style={{
-            padding: "16px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-          }}
-        >
+        <StyledDiv>
           <Stepper activeStep={step} orientation="vertical">
             {steps.map((step) => (
               <Step key={step.label}>
@@ -218,9 +212,18 @@ export default function Personal() {
               </Step>
             ))}
           </Stepper>
-        </div>
+        </StyledDiv>
         {/* <Withdrawal /> */}
       </div>
     </div>
   );
 }
+
+const StyledDiv = styled("div")(
+  () => `
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 32px;
+  `
+);

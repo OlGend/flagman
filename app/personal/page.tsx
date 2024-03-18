@@ -18,6 +18,8 @@ import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
 
+import Withdrawal from "@/components/Withdrawal/Withdrawal";
+
 // export const metadata: Metadata = {
 //   title: "Personal | Bonus XXXCasinoGuru",
 //   description:
@@ -61,6 +63,7 @@ export default function Personal() {
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [isUserError, setIsUserError] = useState(false);
 
+
   useEffect(() => {
     const getUser = async () => {
       setIsUserLoading(true);
@@ -69,7 +72,7 @@ export default function Personal() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const userId = urlSearchParams.get("keyword");
         const response = await fetch(`${api}/user/read_one.php?id=${userId}`);
-
+          console.log("USER", response)
         if (response.ok) {
           const data: User = await response.json();
           setUser(data);
@@ -220,7 +223,7 @@ export default function Personal() {
             ))}
           </Stepper>
         </StyledDiv>
-        {/* <Withdrawal /> */}
+         <Withdrawal /> 
       </div>
     </div>
   );
@@ -234,3 +237,43 @@ const StyledDiv = styled("div")(
     padding-bottom: 32px;
   `
 );
+
+
+// [
+//   {
+//       "USD": "3",
+//       "sum": "2.992908",
+//       "time": "2024-03-17T21:09:26.438Z",
+//       "method": "USDTTRC20"
+//   },
+//   {
+//       "USD": "3",
+//       "sum": "2.992908",
+//       "time": "2024-03-17T21:09:26.438Z",
+//       "method": "USDTTRC20"
+//   },
+//   {
+//       "USD": "1",
+//       "sum": "0.998731",
+//       "time": "2024-03-17T21:12:23.160Z",
+//       "method": "USDTTRC20"
+//   },
+//   {
+//       "USD": "1",
+//       "sum": "0.997942",
+//       "time": "2024-03-17T21:15:21.108Z",
+//       "method": "USDTTRC20"
+//   },
+//   {
+//       "USD": "1",
+//       "sum": "0.997304",
+//       "time": "2024-03-17T21:20:03.244Z",
+//       "method": "USDTTRC20"
+//   },
+//   {
+//       "USD": "1",
+//       "sum": "0.994053",
+//       "time": "2024-03-18T09:27:19.466Z",
+//       "method": "USDTTRC20"
+//   }
+// ]

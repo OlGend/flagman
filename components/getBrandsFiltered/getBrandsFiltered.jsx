@@ -13,6 +13,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
     const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read.php");
     console.log("RES", res);
 
+   
     if (res.ok) {
       const responseData = await res.json();
       let filteredData = [];

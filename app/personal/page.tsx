@@ -19,7 +19,6 @@ import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
 import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
-
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
 // export const metadata: Metadata = {
@@ -72,7 +71,7 @@ export default function Personal() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const userId = urlSearchParams.get("keyword");
         const response = await fetch(`${api}/user/read_one.php?id=${userId}`);
-        console.log("USER", response);
+
         if (response.ok) {
           const data: User = await response.json();
           setUser(data);
@@ -202,10 +201,10 @@ export default function Personal() {
 
   const steps = getSteps(user);
 
-  const [value, setValue] = useState(0);
+  const [tab, setTab] = useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, nextValue: number) => {
-    setValue(nextValue);
+  const onChangeTab = (event: React.SyntheticEvent, nextValue: number) => {
+    setTab(nextValue);
   };
 
   return (
@@ -221,17 +220,17 @@ export default function Personal() {
         <Tabs
           orientation="vertical"
           variant="scrollable"
-          value={value}
-          onChange={handleChange}
+          value={tab}
+          onChange={onChangeTab}
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />
         </Tabs>
-        <TabPanel value={value} index={0}>
+        <TabPanel value={tab} index={0}>
           <PaymentHistory statusPayment={user?.status_payment} />
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        <TabPanel value={tab} index={1}>
           <Stepper
             activeStep={step}
             orientation="vertical"

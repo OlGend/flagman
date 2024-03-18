@@ -134,6 +134,7 @@ const TheHeader = () => {
   const idUserParam = urlParams.get("keyword");
 
   const userData = keywordValue !== null ? keywordValue : idUserParam;
+  console.log("UUUUUS", userData)
 
   useEffect(() => {
     const api = "https://pickbonus.myawardwallet.com/api";

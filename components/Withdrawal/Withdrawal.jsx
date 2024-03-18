@@ -177,7 +177,7 @@ export default function Withdrawal() {
       return;
     }
 
-    const userId = "test_vk1";
+    const userId = paymentData.id;
     console.log("user", user);
 
     const timestamp = new Date().toISOString();

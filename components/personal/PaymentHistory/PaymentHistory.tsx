@@ -6,6 +6,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
   Toolbar,
@@ -64,25 +65,25 @@ const headCells: readonly HeadCell[] = [
   },
   {
     id: "paymentSumIn",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Amount",
   },
   {
     id: "paymentAddress",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Wallet address",
   },
   {
     id: "timestamp",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Time of request",
   },
   {
     id: "status",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Status",
   },
@@ -144,6 +145,8 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
 
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<keyof PaymentHistory>("timestamp");
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
@@ -154,7 +157,18 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
     setOrderBy(property);
   };
 
-  const sortedRows = paymentHistory.sort(getComparator(order, orderBy));
+  const onChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const sortedRows = paymentHistory
+    .sort(getComparator(order, orderBy))
+    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -186,18 +200,27 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
                 return (
                   <TableRow hover key={idx}>
                     <TableCell>{row.paymentMethod}</TableCell>
-                    <TableCell align="right">{row.paymentSumIn}</TableCell>
-                    <TableCell align="right">{row.paymentAddress}</TableCell>
-                    <TableCell align="right">
-                      {dayjs(row.timestamp).format("MM/DD/YYYY h:mm")}
+                    <TableCell>{row.paymentSumIn}</TableCell>
+                    <TableCell>{row.paymentAddress}</TableCell>
+                    <TableCell>
+                      {dayjs(row.timestamp).format("ddd, DD MMM YYYY hh:mm:ss a")}
                     </TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
+                    <TableCell>{row.status}</TableCell>
                   </TableRow>
                 );
               })}
             </TableBody>
           </Table>
         </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={sortedRows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={onChangePage}
+          onRowsPerPageChange={onChangeRowsPerPage}
+        />
       </Paper>
     </Box>
   );

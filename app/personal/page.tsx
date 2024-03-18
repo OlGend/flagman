@@ -68,9 +68,10 @@ export default function Personal() {
       setIsUserLoading(true);
 
       try {
+        const getId = localStorage.getItem("user_id");
         const urlSearchParams = new URLSearchParams(window.location.search);
         const userId = urlSearchParams.get("keyword");
-        const response = await fetch(`${api}/user/read_one.php?id=${userId}`);
+        const response = await fetch(`${api}/user/read_one.php?id=${getId ? getId : userId}`);
 
         if (response.ok) {
           const data: User = await response.json();
@@ -208,7 +209,7 @@ export default function Personal() {
   };
 
   return (
-    <div className="page-personal">
+    <div className="page-personal main__container pb-10">
       <Box
         sx={{
           flexGrow: 1,
@@ -224,8 +225,8 @@ export default function Personal() {
           onChange={onChangeTab}
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
+          <Tab label="Withdrawal History" />
+          <Tab label="Withdrawal Request" />
         </Tabs>
         <TabPanel value={tab} index={0}>
           <PaymentHistory statusPayment={user?.status_payment} />

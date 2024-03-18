@@ -16,6 +16,7 @@ import { FinallyStep } from "@/components/personal/FinallyStep";
 import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
 import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
+import { PaymentHistory } from "@/components/personal/PaymentHistory";
 
 export const metadata: Metadata = {
   title: "Personal | Bonus XXXCasinoGuru",
@@ -201,7 +202,12 @@ export default function Personal() {
     <div className="page-personal">
       <div className="main__container">
         <StyledDiv>
-          <Stepper activeStep={step} orientation="vertical">
+          <PaymentHistory />
+          <Stepper
+            activeStep={step}
+            orientation="vertical"
+            sx={{ width: "100%" }}
+          >
             {steps.map((step) => (
               <Step key={step.label}>
                 <StepLabel>{step.label}</StepLabel>
@@ -222,8 +228,8 @@ export default function Personal() {
 const StyledDiv = styled("div")(
   () => `
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    align-items: flex-start;
+    gap: 32px;
     padding-bottom: 32px;
   `
 );

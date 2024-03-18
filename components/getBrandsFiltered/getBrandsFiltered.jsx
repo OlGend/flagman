@@ -10,7 +10,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
-    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read_sheet.php");
+    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read.php");
     console.log("RES", res);
 
     if (res.ok) {

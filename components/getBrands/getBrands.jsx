@@ -10,7 +10,7 @@ export const getBrands = async (categoryBrands, lng) => {
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
-    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read_sheet.php");
+    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read.php");
 
     if (res.ok) {
       const responseData = await res.json();

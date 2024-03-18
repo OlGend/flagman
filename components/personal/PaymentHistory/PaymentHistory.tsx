@@ -11,46 +11,18 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useState, MouseEvent, useMemo } from "react";
+import { useState, MouseEvent } from "react";
 import { visuallyHidden } from "@mui/utils";
 import dayjs from "dayjs";
 
-type Data = {
-  id: number;
-  method: string;
-  sum: string;
-  time: string;
+type PaymentHistory = {
+  USD: string;
+  paymentAddress: string;
+  paymentMethod: string;
+  paymentSumIn: string;
+  status: string;
+  timestamp: string;
 };
-
-function createData(
-  id: number,
-  method: string,
-  sum: string,
-  time: string
-): Data {
-  return {
-    id,
-    method,
-    sum,
-    time,
-  };
-}
-
-const rows = [
-  createData(2, "USDTTRC20", "452", "2024-02-22T21:09:26.438Z"),
-  createData(4, "USDTTRC20", "159", "2024-02-24T21:09:26.438Z"),
-  createData(3, "USDTTRC20", "262", "2024-02-23T21:09:26.438Z"),
-  createData(7, "USDTTRC20", "237", "2024-02-27T21:09:26.438Z"),
-  createData(9, "USDTTRC20", "518", "2024-02-29T21:09:26.438Z"),
-  createData(5, "USDTTRC20", "356", "2024-02-25T21:09:26.438Z"),
-  createData(11, "USDTTRC20", "318", "2024-03-02T21:09:26.438Z"),
-  createData(12, "USDTTRC20", "360", "2024-03-03T21:09:26.438Z"),
-  createData(1, "USDTTRC20", "305", "2024-02-21T21:09:26.438Z"),
-  createData(8, "USDTTRC20", "375", "2024-02-28T21:09:26.438Z"),
-  createData(10, "USDTTRC20", "392", "2024-03-01T21:09:26.438Z"),
-  createData(13, "USDTTRC20", "437", "2024-03-04T21:09:26.438Z"),
-  createData(6, "USDTTRC20", "408", "2024-02-26T21:09:26.438Z"),
-];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -76,55 +48,51 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort<T>(
-  array: readonly T[],
-  comparator: (a: T, b: T) => number
-) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 type HeadCell = {
   disablePadding: boolean;
-  id: keyof Data;
+  id: keyof PaymentHistory;
   label: string;
   numeric: boolean;
 };
 
 const headCells: readonly HeadCell[] = [
   {
-    id: "method",
+    id: "paymentMethod",
     numeric: false,
     disablePadding: true,
     label: "Method",
   },
   {
-    id: "sum",
+    id: "paymentSumIn",
     numeric: true,
     disablePadding: false,
-    label: "Sum",
+    label: "Sum In",
   },
   {
-    id: "time",
+    id: "paymentAddress",
+    numeric: true,
+    disablePadding: false,
+    label: "Address",
+  },
+  {
+    id: "timestamp",
     numeric: true,
     disablePadding: false,
     label: "Time",
   },
+  {
+    id: "status",
+    numeric: true,
+    disablePadding: false,
+    label: "Status",
+  },
 ];
 
 type EnhancedTableProps = {
-  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
+  onRequestSort: (
+    event: MouseEvent<unknown>,
+    property: keyof PaymentHistory
+  ) => void;
   order: Order;
   orderBy: string;
 };
@@ -135,7 +103,7 @@ function EnhancedTableHead({
   onRequestSort,
 }: EnhancedTableProps) {
   const createSortHandler =
-    (property: keyof Data) => (event: MouseEvent<unknown>) => {
+    (property: keyof PaymentHistory) => (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -167,47 +135,45 @@ function EnhancedTableHead({
   );
 }
 
-function EnhancedTableToolbar() {
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-      }}
-    >
-      <Typography
-        sx={{ flex: "1 1 100%" }}
-        variant="h6"
-        id="tableTitle"
-        component="div"
-      >
-        Payment History
-      </Typography>
-    </Toolbar>
-  );
-}
-export const PaymentHistory = () => {
+type PaymentHistoryProps = {
+  statusPayment: string | null | undefined;
+};
+
+export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
+  const paymentHistory: PaymentHistory[] = JSON.parse(statusPayment ?? "[]");
+
   const [order, setOrder] = useState<Order>("asc");
-  const [orderBy, setOrderBy] = useState<keyof Data>("time");
+  const [orderBy, setOrderBy] = useState<keyof PaymentHistory>("timestamp");
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof PaymentHistory
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
-  const visibleRows = useMemo(
-    () => stableSort(rows, getComparator(order, orderBy)),
-    [order, orderBy]
-  );
+  const sortedRows = paymentHistory.sort(getComparator(order, orderBy));
 
   return (
-    <Box sx={{ width: "700px" }}>
+    <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%" }}>
-        <EnhancedTableToolbar />
+        <Toolbar
+          sx={{
+            pl: { sm: 2 },
+            pr: { xs: 1, sm: 1 },
+          }}
+        >
+          <Typography
+            sx={{ flex: "1 1 100%" }}
+            variant="h6"
+            id="tableTitle"
+            component="div"
+          >
+            Payment History
+          </Typography>
+        </Toolbar>
         <TableContainer>
           <Table sx={{ width: "100%" }}>
             <EnhancedTableHead
@@ -216,14 +182,16 @@ export const PaymentHistory = () => {
               onRequestSort={handleRequestSort}
             />
             <TableBody>
-              {visibleRows.map((row) => {
+              {sortedRows.map((row, idx) => {
                 return (
-                  <TableRow hover key={row.id}>
-                    <TableCell>{row.method}</TableCell>
-                    <TableCell align="right">{row.sum}</TableCell>
+                  <TableRow hover key={idx}>
+                    <TableCell>{row.paymentMethod}</TableCell>
+                    <TableCell align="right">{row.paymentSumIn}</TableCell>
+                    <TableCell align="right">{row.paymentAddress}</TableCell>
                     <TableCell align="right">
-                      {dayjs(row.time).format("MM/DD/YYYY h:mm")}
+                      {dayjs(row.timestamp).format("MM/DD/YYYY h:mm")}
                     </TableCell>
+                    <TableCell align="right">{row.status}</TableCell>
                   </TableRow>
                 );
               })}

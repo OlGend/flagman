@@ -1,6 +1,6 @@
 // components/ConfirmPayoutModal.js
 "use client";
-import React from "react";
+import { useState } from "react";
 
 const ConfirmPayoutModal = ({
   isOpen,
@@ -8,6 +8,11 @@ const ConfirmPayoutModal = ({
   onConfirm,
   minFee,
   estimated,
+  t,
+  selectedPaymentMethod,
+  errorWallet,
+  addressPayment,
+  onAddressChange,
 }) => {
   if (!isOpen) return null;
 
@@ -15,7 +20,7 @@ const ConfirmPayoutModal = ({
     <div className="modal">
       <div className="modal">
         {/* {loading && <LoaderMini />} */}
-        <div className="close" onClick={() => setModalPayout(!modalPayout)}>
+        <div className="close" onClick={onClose}>
           {" "}
           <svg
             width="32"
@@ -35,7 +40,7 @@ const ConfirmPayoutModal = ({
         <div className="column">
           <p>
             {t("Withdrawal commission:")}{" "}
-            {minFee.fee.toFixed(6).replace(/\.?0+$/, "")}{" "}
+            {minFee ? minFee.fee.toFixed(6).replace(/\.?0+$/, "") : ""}{" "}
             {estimated.currency_to}. <br></br>
             {t("You will receive")}{" "}
             {(estimated.estimated_amount - minFee.fee)
@@ -58,15 +63,16 @@ const ConfirmPayoutModal = ({
             placeholder="Enter wallet address"
             required=""
             className={`column-input ${errorWallet ? "error" : ""}`}
-            onChange={(e) => setAdressPayment(e.target.value)}
+            value={addressPayment} // Используйте пропс для значения
+            onChange={(e) => onAddressChange(e.target.value)}
           />
           {errorWallet && (
             <span className="error-span">{t("Your address is not valid")}</span>
           )}
         </div>
-        <button className="btn btn-primary btn-modal" onClick={validateAddress}>
+        {/* <button className="btn btn-primary btn-modal" onClick={validateAddress}>
           {t("Send Request")}
-        </button>
+        </button> */}
       </div>
       <button onClick={onClose}>Close</button>
       <button onClick={onConfirm}>Confirm</button>

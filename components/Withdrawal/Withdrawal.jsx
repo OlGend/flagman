@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 
 import { useUserData } from "@/hooks/useUserData";
 import { usePayment } from "@/hooks/usePayment";
+import { getUserData } from "@/components/getUser/getUser";
+import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 
 import PaymentMethodSelect from "@/components/Withdrawal/PaymentMethodSelect";
 import ConfirmPayoutModal from "@/components/Withdrawal/ConfirmPayoutModal";
-
+import Phone from "@/components/phone/Phone";
 import { useTranslation } from "react-i18next";
 
 export default function Withdrawal() {
@@ -14,29 +16,45 @@ export default function Withdrawal() {
   const apiKey = "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC";
   const { user, coins } = useUserData(api, apiKey);
 
-  const { validateAddress, handlePayoutRequest, errorWallet, loading } =
-    usePayment(apiKey, user);
+  const {
+    validateAddress,
+    errorWallet,
+    loading,
+    minFee,
+    fetchFee,
+  } = usePayment(apiKey, user);
 
-    // В компоненте Withdrawal
+  const [paymentData, setPaymentData] = useState();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = localStorage.getItem("user_id");
+      if (!userId) {
+        console.log("User ID not found in localStorage", userId);
+        return;
+      }
+  
+      try {
+        const user = await getUserData(userId);
+        if (!user) {
+          console.log("User data not found for ID:", userId);
+        } else {
+          setPaymentData(user);
+          console.log("USERUSER", user);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
-
+  console.log("DAtA", paymentData)
+  
   const { t } = useTranslation();
 
-  const [adressPayment, setAdressPayment] = useState("");
-
-  // const [user, setUser] = useState([]);
-  // const [coins, setCoins] = useState(null);
-  const [token, setToken] = useState(null);
-  const [response, setResponse] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
-  // const [minimumAmount, setMinimumAmount] = useState("");
-  const [minFee, setMinFee] = useState("");
-
-  const [error, setError] = useState(false);
-
-  const [message, setMessage] = useState("");
+  const [addressPayment, setAddressPayment] = useState("");
 
   const handleMenuItemClick = async (menuItem) => {
     setLoading(true);
@@ -45,54 +63,6 @@ export default function Withdrawal() {
     setLoading(false);
   };
 
-  ////////////////////////////////////////////////////////////////////
-
-  const phpScriptUrl =
-    "https://pickbonus.myawardwallet.com/api/payment/payment.php";
-
-  ///////////////////////////////////////////////////////
-
-  ////////////////////ПОЛУЧЕНИЕ ТОКЕНА/////////////
-
-  const authenticateUser = async () => {
-    try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      const raw = JSON.stringify({
-        email: "and@karmabs.com",
-        password: "Ytvn3daw!",
-      });
-
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-
-      const authResponse = await fetch(
-        "https://api.nowpayments.io/v1/auth",
-        requestOptions
-      );
-
-      if (authResponse.ok) {
-        const authData = await authResponse.json(); // Извлекаем данные из ответа как объект
-        const authToken = authData.token; // Извлекаем значение токена из объекта
-        return authToken;
-      } else {
-        console.error("Failed to authenticate user:", authResponse.status);
-        // Возможно, здесь стоит бросить ошибку или выполнить другие действия в зависимости от вашего потока управления
-      }
-    } catch (error) {
-      console.error("Error during user authentication:", error);
-      // То же самое - обработайте ошибку в соответствии с вашими потребностями
-    }
-  };
-
-  
-  ////////////////////////////////////////////////////////
-
   const [withdrawalRequestValue, setWithdrawalRequestValue] = useState("");
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState("USDTTRC20");
@@ -100,10 +70,9 @@ export default function Withdrawal() {
 
   const handlePaymentMethodChange = (event) => {
     setSelectedPaymentMethod(event.target.value);
-    setErrorWallet(false);
+    // setErrorWallet(false);
   };
 
-  console.log("minimum", minimumAmount);
   useEffect(() => {
     handleEstimatedRequest(withdrawalRequestValue); // Используйте текущее значение withdrawalRequestValue
   }, [selectedPaymentMethod, withdrawalRequestValue]);
@@ -163,53 +132,13 @@ export default function Withdrawal() {
 
   ////////////////////////////////////
 
-  ////////////////КОМИССИЯ ЗА ВЫВОД/////////////////////////
-
-  useEffect(() => {
-    const fee = async () => {
-      try {
-        // Проверяем, установлено ли значение withdrawalRequestValue
-        if (withdrawalRequestValue !== undefined) {
-          const myHeaders = new Headers();
-          myHeaders.append("x-api-key", "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC");
-
-          const requestOptions = {
-            method: "GET",
-            headers: myHeaders,
-            redirect: "follow",
-          };
-
-          const response = await fetch(
-            `https://api.nowpayments.io/v1/payout/fee?currency=${selectedPaymentMethod}&amount=${withdrawalRequestValue}`,
-            requestOptions
-          );
-
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-
-          const result = await response.json();
-          console.log(result);
-          setMinFee(result);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fee();
-  }, [selectedPaymentMethod, withdrawalRequestValue]);
-
-  ///////////////////////////////////////////////////////////////
-
-  console.log("minFee", minFee);
-
   const [modalPayout, setModalPayout] = useState(false);
   const [modalError, setModalError] = useState(false);
   const [errorMin, setErrorMin] = useState(true);
 
   const modalPay = async () => {
     handleEstimatedRequest();
+    await fetchFee(selectedPaymentMethod, withdrawalRequestValue);
     setModalPayout(!modalPayout);
   };
 
@@ -220,10 +149,10 @@ export default function Withdrawal() {
 
     setWithdrawalRequestValue(e.target.value);
 
-    if (isNaN(enteredValue) || enteredValue < 4) {
+    if (isNaN(enteredValue) || enteredValue < 1) {
       setErrorMin(true);
       setErrorMessage(
-        t("Withdrawal rejected: Minimum withdrawal amount is 4 USD.")
+        t("Withdrawal rejected: Minimum withdrawal amount is 1 USD.")
       );
     } else if (enteredValue > user.balance) {
       setErrorMin(true);
@@ -234,32 +163,58 @@ export default function Withdrawal() {
     }
   };
 
-  ///////////////////////получение статуса транзакции////////////////////////
 
-  // const [paymentStatus, setPaymentStatus] = useState(null);
+  const onConfirmPayout = async () => {
+ 
 
-  // const fetchPaymentStatus = async () => {
-  //   try {
-  //     const response = await fetch("https://api.nowpayments.io/v1/payout/5000839277", {
-  //       headers: {
-  //         "x-api-key": "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC"
-  //       }
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error('Ошибка загрузки статуса платежа');
-  //     }
-  //     const result = await response.json();
-  //     setPaymentStatus(result.status);
-  //   } catch (error) {
-  //     console.error('Произошла ошибка:', error);
-  //   }
-  // };
-  // useEffect(() => {
+    const isValidAddress = await validateAddress(
+      selectedPaymentMethod,
+      addressPayment
+    );
+    if (!isValidAddress) {
+      console.error("Address validation failed.");
+      // Тут можно обновить состояние, чтобы показать ошибку валидации пользователю
+      return;
+    }
 
-  //   // fetchPaymentStatus();
-  // }, []);
-  // console.log("AAA", paymentStatus)
-  ///////////////////////////////////////////////
+    const userId = "test_vk1";
+    console.log("user", user);
+
+    const timestamp = new Date().toISOString();
+
+    // Добавляем временную метку к статусу оплаты
+    const newStatusPaymentObject = {
+      status: "Waiting",
+      timestamp,
+      paymentMethod: selectedPaymentMethod,
+      paymentSumIn: estimated.estimated_amount,
+      paymentAddress: addressPayment,
+      USD: withdrawalRequestValue
+    };
+
+    const newStatusPayment = JSON.stringify(newStatusPaymentObject);
+
+    try {
+  
+      const updateResult = await updateUserStatusPayment(
+        userId,
+        newStatusPayment,
+        withdrawalRequestValue
+      );
+      if (!updateResult) {
+        console.error("Failed to update payment status.");
+     
+        return;
+      } else {
+        console.log("PAYMENT STATUS UPDATED");
+      }
+    
+      setModalPayout(false); 
+    } catch (error) {
+      console.error("An error occurred:", error);
+ 
+    }
+  };
 
   return (
     <div className="withdrawal">
@@ -332,79 +287,17 @@ export default function Withdrawal() {
 
                 {modalPayout && (
                   <div className="overflow">
-                    {/* <div className="modal">
-                   
-                      <div
-                        className="close"
-                        onClick={() => setModalPayout(!modalPayout)}
-                      >
-                        {" "}
-                        <svg
-                          width="32"
-                          height="32"
-                          viewBox="0 0 32 32"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M8.44487 24L24 8.02771M8 8L23.5551 23.9723"
-                            stroke="#15143D"
-                            strokeWidth="2.8"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </div>
-                      <div className="column">
-                        <p>
-                          {t("Withdrawal commission:")}{" "}
-                          {minFee.fee.toFixed(6).replace(/\.?0+$/, "")}{" "}
-                          {estimated.currency_to}. <br></br>
-                          {t("You will receive")}{" "}
-                          {(estimated.estimated_amount - minFee.fee)
-                            .toFixed(6)
-                            .replace(/\.?0+$/, "")}{" "}
-                          {estimated.currency_to} {t("in your wallet.")}
-                          <br></br>
-                          {t(
-                            "Enter your wallet details and click ‘Withdraw Funds’"
-                          )}
-                        </p>
-                      </div>
-
-                      <div className="column">
-                        <label htmlFor="wallet">
-                          {t("Wallet Address")} {selectedPaymentMethod}
-                        </label>
-                        <input
-                          type="text"
-                          name="wallet"
-                          id="wallet"
-                          placeholder="Enter wallet address"
-                          required=""
-                          className={`column-input ${
-                            errorWallet ? "error" : ""
-                          }`}
-                          onChange={(e) => setAdressPayment(e.target.value)}
-                        />
-                        {errorWallet && (
-                          <span className="error-span">
-                            {t("Your address is not valid")}
-                          </span>
-                        )}
-                      </div>
-                      <button
-                        className="btn btn-primary btn-modal"
-                        onClick={validateAddress}
-                      >
-                        {t("Send Request")}
-                      </button>
-                    </div> */}
                     <ConfirmPayoutModal
                       isOpen={modalPayout}
                       onClose={() => setModalPayout(false)}
-                      onConfirm={handleConfirm}
+                      onConfirm={onConfirmPayout}
                       minFee={minFee}
                       estimated={estimated}
+                      t={t}
+                      selectedPaymentMethod={selectedPaymentMethod}
+                      errorWallet={errorWallet}
+                      addressPayment={addressPayment}
+                      onAddressChange={setAddressPayment}
                     />
                   </div>
                 )}

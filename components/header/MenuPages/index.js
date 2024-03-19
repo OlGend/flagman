@@ -22,13 +22,7 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const userString = localStorage.getItem("userData");
-  if (userString) {
-    const user = JSON.parse(userString);
-    console.log("USUSUSUS", user);
-  } else {
-    console.log("No user data found in localStorage");
-  }
+
 
   return (
     <React.Fragment>
@@ -82,10 +76,13 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> <Link href={`/personal`}>My account</Link>
+          <Avatar /> My account
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Link href={`/fortune`}>Fortune wheel</Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Avatar /> <Link href={`/personal`}>My wallet</Link>
         </MenuItem>
         <Divider />
         {/* <MenuItem onClick={handleClose}>

@@ -59,7 +59,6 @@ const TheHeader = () => {
           const users = await res.json();
           setUser(users);
           setIsLoading(false);
-          localStorage.setItem("userData", JSON.stringify(users));
         } else {
           setIsLoading(false);
           console.error("Failed to fetch data:", res.status);

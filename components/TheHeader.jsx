@@ -14,25 +14,19 @@ import MenuPages from "@/components/header/MenuPages";
 
 import { getUserData } from "@/components/getUser/getUser";
 
-import { navItems } from "@/components/header/NavItems"
-
-import wallet from "@/public/wallet.svg";
-import dollar from "@/public/dollar.svg";
-
-
+import { navItems } from "@/components/header/NavItems";
 
 const TheHeader = () => {
   const { t } = useTranslation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Step 2
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen); // Step 3
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
 
-  /////////////////////////////////
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const urlParams = new URLSearchParams(
@@ -41,38 +35,15 @@ const TheHeader = () => {
 
   const [keywordValue, setKeywordValue] = useState(null);
   const idUserParam = urlParams.get("keyword");
-
   const userData = keywordValue !== null ? keywordValue : idUserParam;
-  // const [userDataStorage, setUserDataStorage] = useState();
-  // if (typeof window !== "undefined") {
-  //   setUserDataStorage(localStorage.getItem("user_id"));
-  // }
-  // const id = userData ? userData : userDataStorage;
-
 
   useEffect(() => {
-    const api = "https://pickbonus.myawardwallet.com/api";
-    const fetchUsers = async (userData) => {
-      try {
-        const res = await fetch(`${api}/user/read_one.php?id=${userData}`);
-        if (res.ok) {
-          const users = await res.json();
-          setUser(users);
-          setIsLoading(false);
-        } else {
-          setIsLoading(false);
-          console.error("Failed to fetch data:", res.status);
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
-      }
-    };
     if (idUserParam !== null) {
-      fetchUsers(idUserParam);
       localStorage.setItem("user_id", idUserParam);
+      setUser(idUserParam);
     } else if (keywordValue !== null) {
-      fetchUsers(keywordValue);
       localStorage.setItem("user_id", idUserParam);
+      setUser(keywordValue);
     } else if (typeof window !== "undefined") {
       const keyword = localStorage.getItem("savedUrl");
       if (keyword) {
@@ -81,17 +52,16 @@ const TheHeader = () => {
         if (keywordPair) {
           const keywordValue2 = keywordPair.split("=")[1];
           localStorage.setItem("user_id", keywordValue2);
+          setUser(keywordValue2);
           setKeywordValue(userData);
-          // setUser(null); // Установка значения null перед загрузкой новых данных
-          setIsLoading(true); // Установка isLoading в true перед загрузкой новых данных
-
-          fetchUsers(keywordValue2); // Вызываем функцию через 2 секунды
+          setIsLoading(true);
         }
       }
     }
   }, []);
 
 
+  console.log("USERS", user);
 
   return (
     <header className="header">
@@ -102,51 +72,7 @@ const TheHeader = () => {
               <Image src={Img} alt="logo" width={130} loading="lazy" />
             </Link>
           </div>
-          {/* {isLoading ? (
-            // Если данные загружаются, отображаем индикатор загрузки или другое сообщение
-            <div></div>
-          ) : (
-            // Если данные загружены, отображаем контент
-            user && (
-              <div className="usernone flex ml-auto">
-                <div className="flex tickets items-end">
-                  <Link
-                    target="_blank"
-                    className="user user-wheel flex items-center"
-                    href={`https://pickbonus.myawardwallet.com/?keyword=${user.id}#/fortunewheel`}
-                  >
-                    <Image
-                      className="mr-1"
-                      src={dollar}
-                      alt={dollar}
-                      width={26}
-                      height={26}
-                      loading="lazy"
-                    />
-                    Wheel of Fortune <span>{user.tickets}</span>
-                  </Link>
-                </div>
 
-                <div className="option flex items-end">
-                  <Link
-                    target="_blank"
-                    className="flex items-center"
-                    href={`https://pickbonus.myawardwallet.com/?keyword=${user.id}#/withdrawal`}
-                  >
-                    <Image
-                      src={wallet}
-                      alt={wallet}
-                      width={25}
-                      height={25}
-                      loading="lazy"
-                      className="mr-1"
-                    />
-                    Withdraw
-                  </Link>
-                </div>
-              </div>
-            )
-          )} */}
           <div className="search-container flex items-end justify-center ml-auto">
             {/* <SearchComponent /> */}
           </div>
@@ -157,7 +83,7 @@ const TheHeader = () => {
             </div>
           </I18nextProvider>
 
-          <MenuPages />
+          <MenuPages userId={user} />
 
           <div className="mobile-none">
             <button
@@ -172,46 +98,6 @@ const TheHeader = () => {
             </button>
             <div className="menu-mobile">
               <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
-                {/* <div className="flex flex-col items-start useryes">
-                  {user && (
-                    <div className="flex tickets items-end">
-                      <Link
-                        target="_blank"
-                        className="user user-wheel flex items-center"
-                        href={`https://pickbonus.myawardwallet.com/?keyword=${user.id}#/fortunewheel`}
-                      >
-                        <Image
-                          className="mr-1"
-                          src={dollar}
-                          alt={dollar}
-                          width={26}
-                          height={26}
-                          loading="lazy"
-                        />
-                        Wheel of Fortune <span>{user.tickets}</span>
-                      </Link>
-                    </div>
-                  )}
-                  {user && (
-                    <div className="option flex items-end">
-                      <Link
-                        target="_blank"
-                        className="flex items-center"
-                        href={`https://pickbonus.myawardwallet.com/?keyword=${user.id}#/withdrawal`}
-                      >
-                        <Image
-                          src={wallet}
-                          alt={wallet}
-                          width={25}
-                          height={25}
-                          loading="lazy"
-                          className="mr-1"
-                        />
-                        Withdraw
-                      </Link>
-                    </div>
-                  )}
-                </div> */}
                 <Navigation
                   navLinks={navItems.map((item) => ({
                     ...item,
@@ -219,11 +105,6 @@ const TheHeader = () => {
                   }))}
                   onLinkClick={closeMobileMenu}
                 />
-
-                {/* 
-                <I18nextProvider i18n={i18n}>
-                  <LanguageSwitcher />{" "}
-                </I18nextProvider> */}
               </div>
             </div>
           </div>

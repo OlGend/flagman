@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -6,14 +7,17 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-import Link from "next/link";
 
-export default function AccountMenu() {
+import Link from "next/link";
+import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import Button from "@mui/material/Button";
+import Badge from "@mui/material/Badge";
+import { getUserData } from "@/components/getUser/getUser";
+import transferSpinsToTickets from "@/components/getUser/transferSpins";
+
+export default function AccountMenu({ userId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,28 +27,48 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
 
-  return (
+  const [userData, setUserData] = useState(null); // Хранение данных пользователя
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUserData(userId); // Асинхронный вызов
+        setUserData(data); // Сохранение полученных данных в состояние
+      } catch (error) {
+        console.error("Ошибка при получении данных пользователя:", error);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
+
+  console.log("++++++", userData);
+
+  return userData ? (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? "account-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-          >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
-        </Tooltip>
+        <Badge badgeContent={userData.spins_waiting} color="secondary">
+          <Tooltip title="Account settings">
+            <IconButton
+              onClick={handleClick}
+              size="small"
+              sx={{ ml: 2 }}
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            >
+              <Avatar sx={{ width: 32, height: 32 }}>
+                {userData.login.charAt(0).toUpperCase()}
+              </Avatar>
+            </IconButton>
+          </Tooltip>
+        </Badge>
       </Box>
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -75,34 +99,50 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+          <Link className="w-full flex items-center" href={`/personal`}>
+            <Avatar />{" "}
+            {userData.login.length > 10
+              ? `${userData.login.substring(0, 10)}...`
+              : userData.login}
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href={`/fortune`}>Fortune wheel</Link>
+          <Badge badgeContent={userData.tickets} color="primary">
+            <Link className="flex items-center w-full" href={`/fortune`}>
+              <ListItemIcon>
+                <CurrencyExchangeOutlinedIcon
+                  sx={{ width: 20, height: 20 }}
+                  className="mr-1"
+                />
+              </ListItemIcon>
+              Fortune wheel
+            </Link>
+          </Badge>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href={`/personal`}>My wallet</Link>
+          <Link className="flex items-center w-full" href={`/personal`}>
+            <ListItemIcon>
+              <AccountBalanceWalletOutlinedIcon
+                sx={{ width: 20, height: 20 }}
+                className="mr-1"
+              />
+            </ListItemIcon>
+            My wallet
+          </Link>
         </MenuItem>
         <Divider />
-        {/* <MenuItem onClick={handleClose}>
+        <MenuItem>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            {userData.spins_waiting}
+            {/* <PersonAdd fontSize="small" /> */}
           </ListItemIcon>
-          Add another account
+          <Button onClick={() => transferSpinsToTickets(userData)}  className="btn-primary" variant="contained">
+            Get spins
+          </Button>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem> */}
       </Menu>
     </React.Fragment>
+  ) : (
+    <div></div>
   );
 }

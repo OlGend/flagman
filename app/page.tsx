@@ -4,8 +4,8 @@ import TopBrands from "@/components/TopBrands";
 import TopBrandsOriginal from "@/components/TopBrandsOriginal";
 
 import NewBrands from "@/components/NewBrands";
-import ReviewBrands from "@/components/ReviewBrands";
-import PreviewHome from "@/components/PreviewHome";
+// import ReviewBrands from "@/components/ReviewBrands";
+// import PreviewHome from "@/components/PreviewHome";
 import FilteredHome from "@/components/FilteredHome";
 // import GuideSlotsHome from "@/components/GuideSlotsHome";
 

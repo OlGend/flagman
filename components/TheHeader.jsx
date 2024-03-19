@@ -100,7 +100,7 @@ const TheHeader = () => {
               <Image src={Img} alt="logo" width={130} loading="lazy" />
             </Link>
           </div>
-          {isLoading ? (
+          {/* {isLoading ? (
             // Если данные загружаются, отображаем индикатор загрузки или другое сообщение
             <div></div>
           ) : (
@@ -144,7 +144,7 @@ const TheHeader = () => {
                 </div>
               </div>
             )
-          )}
+          )} */}
           <div className="search-container flex items-end justify-center ml-auto">
             {/* <SearchComponent /> */}
           </div>
@@ -170,7 +170,7 @@ const TheHeader = () => {
             </button>
             <div className="menu-mobile">
               <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
-                <div className="flex flex-col items-start useryes">
+                {/* <div className="flex flex-col items-start useryes">
                   {user && (
                     <div className="flex tickets items-end">
                       <Link
@@ -209,7 +209,7 @@ const TheHeader = () => {
                       </Link>
                     </div>
                   )}
-                </div>
+                </div> */}
                 <Navigation
                   navLinks={navItems.map((item) => ({
                     ...item,

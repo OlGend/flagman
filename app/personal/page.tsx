@@ -68,6 +68,7 @@ export default function Personal() {
       setIsUserLoading(true);
 
       try {
+        
         const getId = localStorage.getItem("user_id");
         const urlSearchParams = new URLSearchParams(window.location.search);
         const userId = urlSearchParams.get("keyword");

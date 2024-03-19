@@ -56,6 +56,7 @@ export default function TopBrands() {
     searchParams.delete("brand");
 
     const currentKeyword = searchParams.get("keyword");
+    console.log("CURRENT", currentKeyword)
 
     if (currentKeyword !== null && currentKeyword.includes("partner1039")) {
       // Если в строке есть "partner1039" или "partner1041", вырезаем и добавляем в setSource
@@ -165,7 +166,7 @@ export default function TopBrands() {
   const shuffledBrands = shuffle(brands);
   // Берем первые 6 элементов из перемешанного массива
   const randomBrands = shuffledBrands;
-  console.log("!!", randomBrands);
+  
   // Преобразуем эти объекты в карточки
   cards2 = randomBrands.slice(0, 6).map((brand) => ({
     key: uuidv4(),

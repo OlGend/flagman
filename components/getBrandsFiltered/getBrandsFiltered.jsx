@@ -6,22 +6,21 @@ export const getBrandsFiltered = async (filtered, lng) => {
   const source = localStorage.getItem("source");
   // const geo = localStorage.getItem("country");
 
-  console.log("TTTTTTT", filtered, lng);
+
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
     const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read.php");
-    console.log("RES", res);
+
 
    
     if (res.ok) {
       const responseData = await res.json();
       let filteredData = [];
-      console.log("responseData", responseData);
-      console.log("GEO2", lng);
+
       if (lng) {
         const geoLng = lng.toUpperCase();
-        console.log("СУЩЕСТВУЕТ2", `"${filtered}"`);
+     
 
         filteredData = responseData.brandsNew.filter((rowData) => {
           const categoriesArray = rowData["categories"]
@@ -37,7 +36,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
           );
         });
       }
-      console.log("ДАТА ПРИ СМЕНЕ ЯЗЫКА", filteredData);
+
       return filteredData; // Возвращаем отфильтрованные данные
     } else {
       console.error("Failed to fetch data:", res.status);

@@ -235,8 +235,6 @@ export default function TopBrandsOriginal() {
     }
   }, []);
 
-  console.log("FBR", filteredBrands);
-  console.log("CATEG", br, languageDetails.topBrand)
 
 
   return (

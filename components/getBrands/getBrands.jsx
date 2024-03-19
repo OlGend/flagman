@@ -15,13 +15,13 @@ export const getBrands = async (categoryBrands, lng) => {
     if (res.ok) {
       const responseData = await res.json();
       let filteredData = [];
-      console.log("responseData", responseData);
+ 
  
       if (lng) {
         const geoLng = lng.toUpperCase();
     
         
-        console.log("wwwww", categoryBrands)
+ 
         filteredData = responseData.brandsNew.filter(
           (rowData) =>
             rowData.GEO === geoLng &&
@@ -32,7 +32,7 @@ export const getBrands = async (categoryBrands, lng) => {
             rowData[categoryBrands.key1] === categoryBrands.key2
         );
       }
-      console.log("FUNCTIONDATA", filteredData)
+   
       return filteredData; // Возвращаем отфильтрованные данные
     } else {
       console.error("Failed to fetch data:", res.status);

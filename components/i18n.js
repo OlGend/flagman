@@ -35,7 +35,7 @@ async function initializeI18n() {
     (language) => language !== null
   );
 
-  console.log("Выбранный язык:", matchedLanguage);
+ 
 
   // Инициализация i18n
   await i18n

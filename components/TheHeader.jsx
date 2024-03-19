@@ -69,8 +69,10 @@ const TheHeader = () => {
     };
     if (idUserParam !== null) {
       fetchUsers(idUserParam);
+      localStorage.setItem("user_id", idUserParam);
     } else if (keywordValue !== null) {
       fetchUsers(keywordValue);
+      localStorage.setItem("user_id", idUserParam);
     } else if (typeof window !== "undefined") {
       const keyword = localStorage.getItem("savedUrl");
       if (keyword) {

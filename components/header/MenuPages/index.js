@@ -23,7 +23,6 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
 
-
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -82,7 +81,7 @@ export default function AccountMenu() {
           <Link href={`/fortune`}>Fortune wheel</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Avatar /> <Link href={`/personal`}>My wallet</Link>
+          <Link href={`/personal`}>My wallet</Link>
         </MenuItem>
         <Divider />
         {/* <MenuItem onClick={handleClose}>

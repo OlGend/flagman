@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 
-// import TopBrandsOriginal from "@/components/TopBrandsOriginal";
-import NewBrands from "@/components/NewBrands";
+
 import FilteredCasinos from "@/components/casinos/FilteredCasinos";
-import PreviewBonuses from "@/components/PreviewBonuses";
-// import GuideSlotsPage from "@/components/GuideSlotsPage";
+
 
 
 export const metadata: Metadata = {

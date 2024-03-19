@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 
-// import TopBrandsOriginal from "@/components/TopBrandsOriginal";
-import NewBrands from "@/components/NewBrands";
+
 import FilteredBonuses from "@/components/bonuses/FilteredBonuses";
-import PreviewBonuses from "@/components/PreviewBonuses";
-// import GuideSlotsPage from "@/components/GuideSlotsPage";
+
 
 export const metadata: Metadata = {
   title: "Bonuses | Bonus XXXCasinoGuru",

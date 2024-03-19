@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
-import TopBrands from "@/components/TopBrands";
-import NewBrands from "@/components/NewBrands";
+
 import FilteredProviders from "@/components/providers/FilteredProviders";
 // import GuideSlotsPage from "@/components/GuideSlotsPage";
 import Amatic from "@/components/providers/Amatic";

@@ -8,21 +8,21 @@ import { useState } from "react";
 // };
 
 export default function Fortune() {
-  const [iframeWidth, setIframeWidth] = useState(1200);
-  const [iframeHeight, setIframeHeight] = useState(675);
-
+  const [iframeWidth, setIframeWidth] = useState<string>('1200px');
+  const [iframeHeight, setIframeHeight] = useState<string>('675px');
+  
   const updateIframeSize = () => {
     const screenWidth = window.innerWidth;
-
-    // Определите свои собственные условия для изменения размеров iframe
+  
     if (screenWidth <= 767) {
-      setIframeWidth("100%");
-      setIframeHeight("100%");
+      setIframeWidth('100%');
+      setIframeHeight('100%');
     } else {
-      setIframeWidth(1200);
-      setIframeHeight(675);
+      setIframeWidth('1200px');
+      setIframeHeight('675px');
     }
   };
+  
   return (
     <div className="page-fortune main__container">
       <div className="pt-10 pb-10">

@@ -8,7 +8,7 @@ const scriptsInEvents = {
 		const url = window.parent.location.href;
 		const queryString = url.includes('?') ? url.split('?')[1] : '';
 		const urlParams = new URLSearchParams(queryString);
-		const keyword = urlParams.get('keyword');
+		const keyword = localStorage.getItem('user_id');
 		
 		runtime.globalVars.keywordC3 = keyword;
 		

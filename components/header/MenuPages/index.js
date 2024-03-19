@@ -17,6 +17,8 @@ import Badge from "@mui/material/Badge";
 import { getUserData } from "@/components/getUser/getUser";
 import transferSpinsToTickets from "@/components/getUser/transferSpins";
 
+import DisabledSpins from "@/components/header/DisabledSpins";
+
 export default function AccountMenu({ userId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -42,7 +44,17 @@ export default function AccountMenu({ userId }) {
     fetchData();
   }, [userId]);
 
-  console.log("++++++", userData);
+  const handleTransferSpinsToTickets = async () => {
+    try {
+      await transferSpinsToTickets(userData);
+      handleClose();
+      // После успешной отправки запроса, загружаем данные пользователя заново
+      const updatedUserData = await getUserData(userId);
+      setUserData(updatedUserData); // Обновляем состояние userData новыми данными
+    } catch (error) {
+      console.error("Ошибка при передаче spins_waiting в tickets:", error);
+    }
+  };
 
   return userData ? (
     <React.Fragment>
@@ -131,15 +143,24 @@ export default function AccountMenu({ userId }) {
           </Link>
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            {userData.spins_waiting}
-            {/* <PersonAdd fontSize="small" /> */}
-          </ListItemIcon>
-          <Button onClick={() => transferSpinsToTickets(userData)}  className="btn-primary" variant="contained">
-            Get spins
-          </Button>
-        </MenuItem>
+
+        {userData.spins_waiting > 0 && (
+          <MenuItem>
+            <ListItemIcon>{userData.spins_waiting}</ListItemIcon>
+            {userData.tickets === "0" ? (
+              <Button
+                onClick={handleTransferSpinsToTickets}
+                className="btn-primary"
+                variant="contained"
+                disabled={userData.tickets > 0}
+              >
+                Get spins
+              </Button>
+            ) : (
+              <DisabledSpins />
+            )}
+          </MenuItem>
+        )}
       </Menu>
     </React.Fragment>
   ) : (

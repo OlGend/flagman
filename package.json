@@ -31,6 +31,7 @@
     "i18next": "^23.4.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "lodash": "^4.17.21",
+    "material-ui-popup-state": "^5.1.0",
     "mui-tel-input": "^5.1.2",
     "mysql2": "^3.9.2",
     "next": "13.4.12",

@@ -4,23 +4,23 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import AllPayments from "./AllPayments";
 import Image from "next/image";
-import Visa from "@/public/visa.png";
-import Bitcoin from "@/public/bitcoin.png";
-import Ecopayz from "@/public/ecopayz.png";
-import Mastercard from "@/public/master.png";
-import Muchbetter from "@/public/muchbetter.png";
-import Neosurf from "@/public/neosurf.png";
-import Neteller from "@/public/neteller.png";
-import Paysafecard from "@/public/paysafecard.png";
-import Skrill from "@/public/skrill.png";
-import Trustly from "@/public/trustly.png";
-import Applepay from "@/public/applepay.png";
-import Maestro from "@/public/Maestro.png";
-import Paypal from "@/public/PayPal.png";
-import Pix from "@/public/Pix.png";
-import Revolut from "@/public/Revolut.png";
-import Mobile from "@/public/mobilepayments.png";
-import AllPaymentsImg from "@/public/allpaymentmethods.png";
+import Visa from "@/public/payments/visa.png";
+import Bitcoin from "@/public/payments/bitcoin.png";
+import Ecopayz from "@/public/payments/ecopayz.png";
+import Mastercard from "@/public/payments/mastercard.png";
+import Muchbetter from "@/public/payments/muchbetter.png";
+import Neosurf from "@/public/payments/neosurf.png";
+import Neteller from "@/public/payments/neteller.png";
+import Paysafecard from "@/public/payments/paysafecard.png";
+import Skrill from "@/public/payments/skrill.png";
+import Trustly from "@/public/payments/trustly.png";
+import Applepay from "@/public/payments/applepay.png";
+import Maestro from "@/public/payments/maestro.png";
+import Paypal from "@/public/payments/paypal.png";
+import Pix from "@/public/payments/pix.png";
+import Revolut from "@/public/payments/revolut.png";
+// import Mobile from "@/public/payments/mob.png";
+import AllPaymentsImg from "@/public/payments/allpaymentmethods.png";
 import i18n from "@/components/i18n";
 
 const FilteredPayments = () => {
@@ -125,22 +125,22 @@ const FilteredPayments = () => {
       ),
       slug: "mastercard",
     },
-    {
-      currentTab: 7,
-      currentCategories: 209,
-      currentText: "Mobile",
-      icon: (
-        <Image
-          className="mr-1"
-          src={Mobile}
-          alt="mobile"
-          width={60}
-          height={38}
-          loading="lazy"
-        />
-      ),
-      slug: "mobile-payments",
-    },
+    // {
+    //   currentTab: 7,
+    //   currentCategories: 209,
+    //   currentText: "Mobile",
+    //   icon: (
+    //     <Image
+    //       className="mr-1"
+    //       src={Mobile}
+    //       alt="mobile"
+    //       width={60}
+    //       height={38}
+    //       loading="lazy"
+    //     />
+    //   ),
+    //   slug: "mobile-payments",
+    // },
     {
       currentTab: 8,
       currentCategories: 181,

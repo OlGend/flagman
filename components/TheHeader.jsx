@@ -43,14 +43,18 @@ const TheHeader = () => {
   const idUserParam = urlParams.get("keyword");
 
   const userData = keywordValue !== null ? keywordValue : idUserParam;
-  const id = userData ? userData : localStorage.getItem("user_id");
+  // const [userDataStorage, setUserDataStorage] = useState();
+  // if (typeof window !== "undefined") {
+  //   setUserDataStorage(localStorage.getItem("user_id"));
+  // }
+  // const id = userData ? userData : userDataStorage;
 
 
   useEffect(() => {
     const api = "https://pickbonus.myawardwallet.com/api";
-    const fetchUsers = async (id) => {
+    const fetchUsers = async (userData) => {
       try {
-        const res = await fetch(`${api}/user/read_one.php?id=${id}`);
+        const res = await fetch(`${api}/user/read_one.php?id=${userData}`);
         if (res.ok) {
           const users = await res.json();
           setUser(users);

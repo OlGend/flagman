@@ -3,7 +3,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Img from "@/public/allpaymentsrobot.png";
-import Subscribe from "@/components/subscribe/Subscribe";
 
 const Payments = () => {
   const { t } = useTranslation();

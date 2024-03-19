@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Img from "@/public/newest.png";
-import Subscribe from "@/components/subscribe/Subscribe";
+
 
 const NewestCasinos = () => {
   const { t } = useTranslation();

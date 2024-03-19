@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Img from "@/public/depositbonus.png";
-import Subscribe from "../subscribe/Subscribe";
+
 
 const DepositBonuses = () => {
   const { t } = useTranslation();

@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { styled } from "@mui/system";
+import type { User } from "@/app/personal/page";
 
 type WalletAddressStepProps = {
   coin: string;
@@ -10,6 +11,8 @@ type WalletAddressStepProps = {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   onChangeStep: (nextStep: number) => void;
+  onConfirm: () => Promise<void>;
+  user: User | null;
 };
 
 const apiKey = "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC";
@@ -43,6 +46,8 @@ export const WalletAddressStep = ({
   step,
   onChangeWalletAddress,
   onChangeStep,
+  onConfirm,
+  user,
 }: WalletAddressStepProps) => {
   const [isTextFieldError, setIsTextFieldError] = useState(false);
 
@@ -59,7 +64,13 @@ export const WalletAddressStep = ({
     }
 
     setIsTextFieldError(false);
-    onChangeStep(step + 1);
+
+    if (!user?.phone_number) {
+      onChangeStep(step + 1);
+      return;
+    }
+
+    await onConfirm();
   };
 
   const isButtonDisabled = !walletAddress;
@@ -76,6 +87,15 @@ export const WalletAddressStep = ({
       />
 
       <Box>
+        <Button
+          className="btn-primary"
+          variant="contained"
+          onClick={() => {
+            onChangeStep(step - 1);
+          }}
+        >
+          Prev step
+        </Button>
         <Button
           className="btn-primary"
           variant="contained"

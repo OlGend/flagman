@@ -143,7 +143,7 @@ type PaymentHistoryProps = {
 export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
   const paymentHistory: PaymentHistory[] = JSON.parse(statusPayment ?? "[]");
 
-  const [order, setOrder] = useState<Order>("asc");
+  const [order, setOrder] = useState<Order>("desc");
   const [orderBy, setOrderBy] = useState<keyof PaymentHistory>("timestamp");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -203,7 +203,9 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
                     <TableCell>{row.paymentSumIn}</TableCell>
                     <TableCell>{row.paymentAddress}</TableCell>
                     <TableCell>
-                      {dayjs(row.timestamp).format("ddd, DD MMM YYYY hh:mm:ss a")}
+                      {dayjs(row.timestamp).format(
+                        "ddd, DD MMM YYYY hh:mm:ss a"
+                      )}
                     </TableCell>
                     <TableCell>{row.status}</TableCell>
                   </TableRow>
@@ -215,7 +217,7 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={sortedRows.length}
+          count={paymentHistory.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={onChangePage}

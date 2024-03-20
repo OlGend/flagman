@@ -8,9 +8,6 @@ import {
 } from "@mui/material";
 import { ChangeEvent } from "react";
 import { styled } from "@mui/system";
-import Image from "next/image";
-import USDTTRC20 from "@/public/USDTTRC20.png";
-import LTC from "@/public/LTC.png";
 
 import type { User } from "@/app/personal/page";
 
@@ -24,8 +21,7 @@ type PaymentMethodStepProps = {
   onChangeAmount: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onChangeStep: (nextStep: number) => void;
-  // coinImages: { [key: string]: StaticImageData };
+  onChangeStep: (coin: string, amount: string) => Promise<void>;
 };
 
 const MIN_AMOUNT = 4;
@@ -63,23 +59,12 @@ export const PaymentMethodStep = ({
     isLessThanFour,
     isMoreThanUserBalance
   );
-  // const coinImages = {
-  //   USDTTRC20: USDTTRC20,
-  //   LTC: LTC,
-  //   // Добавь здесь другие монеты по аналогии
-  // };
+
   return (
     <StyledDiv>
       <Select value={coin} onChange={onChangeCoin}>
         {coins?.map((coin) => (
           <MenuItem key={coin} value={coin}>
-            {/* <Image
-              className="mb-1 mr-2"
-              width={25}
-              height={25}
-              src={coinImages[coin]}
-              alt={coin}
-            /> */}
             {coin}
           </MenuItem>
         ))}
@@ -98,7 +83,7 @@ export const PaymentMethodStep = ({
           className="btn-primary"
           variant="contained"
           onClick={() => {
-            onChangeStep(step + 1);
+            onChangeStep(coin, amount);
           }}
           disabled={isButtonDisabled}
         >

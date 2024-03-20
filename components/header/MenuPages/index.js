@@ -32,6 +32,7 @@ export default function AccountMenu({ userId }) {
   const [userData, setUserData] = useState(null); // Хранение данных пользователя
 
   useEffect(() => {
+    if (!userId) return;
     const fetchData = async () => {
       try {
         const data = await getUserData(userId); // Асинхронный вызов

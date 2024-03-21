@@ -265,6 +265,7 @@ export default function Withdrawal() {
       <div className="top-block">
         <h2>{t("Withdrawal")}</h2>
       </div>
+      
       <button onClick={sendSms}>SMS</button>
       <input type="text" value={userOtp} onChange={handleOtpChange} />
 

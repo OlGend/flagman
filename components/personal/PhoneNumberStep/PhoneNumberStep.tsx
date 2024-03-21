@@ -101,7 +101,7 @@ export const PhoneNumberStep = ({
         if (status) {
           setPhoneToUser();
         } else {
-          console.log("MODAL ERROR")
+          console.log("MODAL ERROR");
         }
       })
       .catch((error) => console.error("Verification Error:", error));
@@ -152,8 +152,13 @@ export const PhoneNumberStep = ({
         <Button
           className="btn-primary"
           variant="contained"
-          // onClick={setPhoneToUser}
-          onClick={() => verifyOtp(otpId, code)}
+          onClick={() => {
+            if (otpId !== null) {
+              verifyOtp(otpId, code);
+            } else {
+              console.error("OTP ID is null");
+            }
+          }}
           disabled={isButtonDisabled}
         >
           Continue

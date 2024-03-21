@@ -51,9 +51,10 @@ export const PhoneNumberStep = ({
 
   const isButtonDisabled = code.length < oneTimePasswordLength;
 
-  const [otpId, setOtpId] = useState();
-  const [status, setStauts] = useState();
-  const sendSms = (phoneNumber) => {
+  const [otpId, setOtpId] = useState<string | null>(null);
+
+  const [status, setStauts] = useState<string | null>(null);
+  const sendSms = (phoneNumber: string) => {
     fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
       method: "POST",
       headers: {
@@ -80,7 +81,7 @@ export const PhoneNumberStep = ({
       })
       .catch((error) => console.error("Error:", error));
   };
-  const verifyOtp = (otpId, code) => {
+  const verifyOtp = (otpId: string, code: string) => {
     fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
       method: "POST",
       headers: {
@@ -107,9 +108,9 @@ export const PhoneNumberStep = ({
   };
   const [userOtp, setUserOtp] = useState("");
 
-  const handleOtpChange = (e) => {
-    setUserOtp(e.target.value);
-  };
+  // const handleOtpChange = (e) => {
+  //   setUserOtp(e.target.value);
+  // };
 
   return (
     <StyledDiv>

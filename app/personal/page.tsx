@@ -11,7 +11,6 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-// import { Metadata } from "next";
 import { ChangeEvent, useEffect, useState } from "react";
 
 import { FinallyStep } from "@/components/personal/FinallyStep";
@@ -19,13 +18,8 @@ import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
 import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
-import Withdrawal from "@/components/Withdrawal/Withdrawal";
-
-// export const metadata: Metadata = {
-//   title: "Personal | Bonus XXXCasinoGuru",
-//   description:
-//     "Embark on a thrilling journey through the diverse world of online casinos with our all-inclusive guide at Bonus XXXCasinoGuru. From the industry giants to hidden gems, our comprehensive guide reviews the most trustworthy and entertaining casinos in the market. Discover what sets each casino apart in terms of game offerings, customer service, bonuses, and security features. Additionally, navigate our curated list of top-rated online casinos to find the perfect match for your gaming preferences. Whether you're a novice player taking your first steps or a seasoned veteran, our guide equips you with everything you need for an enriching gaming experience.",
-// };
+import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
+// import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
 const defaultCoin = "USDTTRC20";
 const defaultStep = 0;
@@ -37,7 +31,20 @@ type CoinsResponse = {
   selectedCurrencies: string[];
 };
 
+type Fee = {
+  currency: string;
+  fee: number;
+};
+
+type Estimated = {
+  amount_from: number;
+  currency_from: string;
+  currency_to: string;
+  estimated_amount: string;
+};
+
 export type User = {
+  id: string;
   balance: string;
   phone_number: string | null;
   status_payment: string | null;
@@ -45,7 +52,6 @@ export type User = {
   // auth: null;
   // country: "AU";
   // customer: "";
-  // id: "test_max";
   // input: "";
   // login: "test_max";
   // password: "";
@@ -54,45 +60,40 @@ export type User = {
   // winbalance: "";
 };
 
+const getUserId = () => {
+  return (
+    localStorage.getItem("user_id") ??
+    new URLSearchParams(window.location.search).get("keyword")
+  );
+};
+
 export default function Personal() {
   const [coins, setCoins] = useState<string[] | null>(null);
-  const [areCoinsLoading, setAreCoinsLoading] = useState(false);
-  const [areCoinsError, setAreCoinsError] = useState(false);
-
   const [user, setUser] = useState<User | null>(null);
-  const [isUserLoading, setIsUserLoading] = useState(false);
-  const [isUserError, setIsUserError] = useState(false);
+
+  const getUser = async () => {
+    try {
+      const userId = getUserId();
+
+      if (!userId) return;
+
+      const response = await fetch(`${api}/user/read_one.php?id=${userId}`);
+
+      if (response.ok) {
+        const data: User = await response.json();
+        setUser(data);
+
+        return;
+      }
+
+      console.error(`Response - getUser not ok: ${response}`);
+    } catch (e) {
+      console.error(`Error - getUser: ${e}`);
+    }
+  };
 
   useEffect(() => {
-    const getUser = async () => {
-      setIsUserLoading(true);
-
-      try {
-        const getId = localStorage.getItem("user_id");
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const userId = urlSearchParams.get("keyword");
-        const response = await fetch(
-          `${api}/user/read_one.php?id=${getId ? getId : userId}`
-        );
-
-        if (response.ok) {
-          const data: User = await response.json();
-          setUser(data);
-          setIsUserLoading(false);
-          return;
-        }
-
-        setIsUserLoading(false);
-        console.error(`Response - getUser not ok: ${response}`);
-      } catch (e) {
-        setIsUserLoading(false);
-        setIsUserError(true);
-        console.error(`Error - getUser: ${e}`);
-      }
-    };
     const getCoins = async () => {
-      setAreCoinsLoading(true);
-
       try {
         const response = await fetch(
           "https://api.nowpayments.io/v1/merchant/coins",
@@ -106,15 +107,12 @@ export default function Personal() {
         if (response.ok) {
           const data: CoinsResponse = await response.json();
           setCoins(data.selectedCurrencies);
-          setAreCoinsLoading(false);
+
           return;
         }
 
-        setAreCoinsLoading(false);
         console.error(`Response - getCoins not ok: ${response}`);
       } catch (e) {
-        setAreCoinsLoading(false);
-        setAreCoinsError(true);
         console.error(`Error - getCoins: ${e}`);
       }
     };
@@ -126,6 +124,12 @@ export default function Personal() {
   const [coin, setCoin] = useState(defaultCoin);
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
+  const [step, setStep] = useState(defaultStep);
+  const [tab, setTab] = useState(0);
+  const [fee, setFee] = useState<Fee["fee"] | null>(null);
+  const [estimatedAmount, setEstimatedAmount] = useState<
+    Estimated["estimated_amount"] | null
+  >(null);
 
   const onChangeCoin = (e: SelectChangeEvent<string>) => {
     const nextCoin = e.target.value;
@@ -146,10 +150,94 @@ export default function Personal() {
     setWalletAddress(nextWalletAddress);
   };
 
-  const [step, setStep] = useState(defaultStep);
-
   const onChangeStep = (nextStep: number) => {
     setStep(nextStep);
+  };
+
+  const onChangeTab = (event: React.SyntheticEvent, nextValue: number) => {
+    setTab(nextValue);
+  };
+
+  const getFee = async (coin: string, amount: string) => {
+    try {
+      const response = await fetch(
+        `https://api.nowpayments.io/v1/payout/fee?currency=${coin}&amount=${amount}`,
+        {
+          headers: {
+            "x-api-key": apiKey,
+          },
+        }
+      );
+
+      if (!response.ok) return;
+      const data: Fee = await response.json();
+      setFee(data.fee);
+
+      console.log("getFee - response:", response);
+    } catch (e) {
+      console.error("ERROR - getFee:", e);
+    }
+  };
+
+  const getEstimated = async (coin: string, amount: string) => {
+    try {
+      const response = await fetch(
+        `https://pickbonus.myawardwallet.com/api/payment/estimated.php?amount=${amount}&currency_from=usd&currency_to=${coin}`
+      );
+
+      if (!response.ok) return;
+      const data: Estimated = await response.json();
+      setEstimatedAmount(data.estimated_amount);
+
+      console.log("getEstimated - response", response);
+    } catch (e) {
+      console.error("ERROR - getEstimated:", e);
+    }
+  };
+
+  const sendRequest = async (coin: string, amount: string) => {
+    await getFee(coin, amount);
+    await getEstimated(coin, amount);
+    onChangeStep(step + 1);
+  };
+
+  const onConfirm = async () => {
+    if (!user) return;
+
+    const status_payment = JSON.stringify({
+      status: "Waiting",
+      timestamp: new Date().toISOString(),
+      paymentMethod: coin,
+      paymentSumIn: estimatedAmount,
+      paymentAddress: walletAddress,
+      USD: amount,
+    });
+
+    const body = JSON.stringify({
+      id: user.id,
+      status_payment,
+      sumMinus: amount,
+    });
+
+    console.log("body", body);
+
+    try {
+      const response = await updateUserStatusPayment(body);
+      onChangeStep(step + 1);
+      console.log("response", response);
+    } catch (e) {
+      console.error("ERROR - onConfirm:", e);
+    }
+  };
+
+  const onFinish = async () => {
+    await getUser();
+    setCoin(defaultCoin);
+    setAmount("");
+    setWalletAddress("");
+    setStep(defaultStep);
+    setFee(null);
+    setEstimatedAmount(null);
   };
 
   const getSteps = (user: User | null) => {
@@ -166,13 +254,13 @@ export default function Personal() {
             step={step}
             onChangeCoin={onChangeCoin}
             onChangeAmount={onChangeAmount}
-            onChangeStep={onChangeStep}
+            onChangeStep={sendRequest}
           />
         ),
       },
       {
         label: "Wallet Address",
-        description: "Description",
+        description: `Fee: ${fee}, Estimated amount: ${estimatedAmount}`,
         content: (
           <WalletAddressStep
             coin={coin}
@@ -180,6 +268,8 @@ export default function Personal() {
             onChangeWalletAddress={onChangeWalletAddress}
             step={step}
             onChangeStep={onChangeStep}
+            onConfirm={onConfirm}
+            user={user}
           />
         ),
       },
@@ -187,7 +277,7 @@ export default function Personal() {
       {
         label: "Finally Step",
         description: "Description",
-        content: <FinallyStep text="Test text." />,
+        content: <FinallyStep text="Test text." onFinish={onFinish} />,
       },
     ];
 
@@ -195,7 +285,14 @@ export default function Personal() {
       initialSteps.splice(2, 0, {
         label: "Phone Number",
         description: "Description",
-        content: <PhoneNumberStep step={step} onChangeStep={onChangeStep} />,
+        content: (
+          <PhoneNumberStep
+            step={step}
+            onChangeStep={onChangeStep}
+            onConfirm={onConfirm}
+            user={user}
+          />
+        ),
       });
     }
 
@@ -203,12 +300,6 @@ export default function Personal() {
   };
 
   const steps = getSteps(user);
-
-  const [tab, setTab] = useState(0);
-
-  const onChangeTab = (event: React.SyntheticEvent, nextValue: number) => {
-    setTab(nextValue);
-  };
 
   return (
     <div className="page-personal main__container pb-10">
@@ -271,7 +362,6 @@ function TabPanel({ children, value, index, ...props }: TabPanelProps) {
       {...props}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    
     </div>
   );
 }

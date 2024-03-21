@@ -4,10 +4,13 @@ import { useState } from "react";
 import { styled } from "@mui/system";
 
 import { OTP } from "../OTP";
+import { User } from "@/app/personal/page";
 
 type PhoneNumberStepProps = {
   step: number;
   onChangeStep: (nextStep: number) => void;
+  onConfirm: () => Promise<void>;
+  user: User | null;
 };
 
 const oneTimePasswordLength = 5;
@@ -15,6 +18,8 @@ const oneTimePasswordLength = 5;
 export const PhoneNumberStep = ({
   step,
   onChangeStep,
+  onConfirm,
+  user,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -25,6 +30,23 @@ export const PhoneNumberStep = ({
 
   const onChangePhoneNumber = (nextPhoneNumber: string) => {
     setPhoneNumber(nextPhoneNumber);
+  };
+
+  const setPhoneToUser = async () => {
+    if (!user) return;
+
+    await fetch(
+      `https://pickbonus.myawardwallet.com/api/user/update_phone.php`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          id: user.id,
+          phone_number: phoneNumber,
+        }),
+      }
+    );
+
+    await onConfirm();
   };
 
   const isButtonDisabled = otp.length < oneTimePasswordLength;
@@ -63,8 +85,15 @@ export const PhoneNumberStep = ({
           className="btn-primary"
           variant="contained"
           onClick={() => {
-            onChangeStep(step + 1);
+            onChangeStep(step - 1);
           }}
+        >
+          Prev step
+        </Button>
+        <Button
+          className="btn-primary"
+          variant="contained"
+          onClick={setPhoneToUser}
           disabled={isButtonDisabled}
         >
           Continue

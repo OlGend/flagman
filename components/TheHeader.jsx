@@ -60,9 +60,6 @@ const TheHeader = () => {
     }
   }, []);
 
-
-  console.log("USERS", user);
-
   return (
     <header className="header">
       <div className="header__bg">

@@ -51,9 +51,8 @@ export const PhoneNumberStep = ({
 
   const isButtonDisabled = code.length < oneTimePasswordLength;
 
-  const [otpId, setOtpId] = useState<string | null>(null);
-
-  const [status, setStauts] = useState<string | null>(null);
+  const [otpId, setOtpId] = useState<string>("");
+  const [status, setStauts] = useState();
   const sendSms = (phoneNumber: string) => {
     fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
       method: "POST",
@@ -98,7 +97,7 @@ export const PhoneNumberStep = ({
       .then((data) => {
         console.log(data);
         setStauts(data);
-        if (status) {
+        if (data.status === "APPROVED") {
           setPhoneToUser();
         } else {
           console.log("MODAL ERROR");
@@ -106,7 +105,7 @@ export const PhoneNumberStep = ({
       })
       .catch((error) => console.error("Verification Error:", error));
   };
-  const [userOtp, setUserOtp] = useState("");
+  // const [userOtp, setUserOtp] = useState("");
 
   // const handleOtpChange = (e) => {
   //   setUserOtp(e.target.value);
@@ -152,13 +151,8 @@ export const PhoneNumberStep = ({
         <Button
           className="btn-primary"
           variant="contained"
-          onClick={() => {
-            if (otpId !== null) {
-              verifyOtp(otpId, code);
-            } else {
-              console.error("OTP ID is null");
-            }
-          }}
+          // onClick={setPhoneToUser}
+          onClick={() => verifyOtp(otpId, code)}
           disabled={isButtonDisabled}
         >
           Continue

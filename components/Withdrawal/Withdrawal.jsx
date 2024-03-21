@@ -16,13 +16,8 @@ export default function Withdrawal() {
   const apiKey = "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC";
   const { user, coins } = useUserData(api, apiKey);
 
-  const {
-    validateAddress,
-    errorWallet,
-    loading,
-    minFee,
-    fetchFee,
-  } = usePayment(apiKey, user);
+  const { validateAddress, errorWallet, loading, minFee, fetchFee } =
+    usePayment(apiKey, user);
 
   const [paymentData, setPaymentData] = useState();
 
@@ -33,7 +28,7 @@ export default function Withdrawal() {
         console.log("User ID not found in localStorage", userId);
         return;
       }
-  
+
       try {
         const user = await getUserData(userId);
         if (!user) {
@@ -46,12 +41,12 @@ export default function Withdrawal() {
         console.error("Error fetching user data:", error);
       }
     };
-  
+
     fetchData();
   }, []);
 
-  console.log("DAtA", paymentData)
-  
+  console.log("DAtA", paymentData);
+
   const { t } = useTranslation();
 
   const [addressPayment, setAddressPayment] = useState("");
@@ -163,10 +158,7 @@ export default function Withdrawal() {
     }
   };
 
-
   const onConfirmPayout = async () => {
- 
-
     const isValidAddress = await validateAddress(
       selectedPaymentMethod,
       addressPayment
@@ -189,13 +181,12 @@ export default function Withdrawal() {
       paymentMethod: selectedPaymentMethod,
       paymentSumIn: estimated.estimated_amount,
       paymentAddress: addressPayment,
-      USD: withdrawalRequestValue
+      USD: withdrawalRequestValue,
     };
 
     const newStatusPayment = JSON.stringify(newStatusPaymentObject);
 
     try {
-  
       const updateResult = await updateUserStatusPayment(
         userId,
         newStatusPayment,
@@ -203,17 +194,70 @@ export default function Withdrawal() {
       );
       if (!updateResult) {
         console.error("Failed to update payment status.");
-     
+
         return;
       } else {
         console.log("PAYMENT STATUS UPDATED");
       }
-    
-      setModalPayout(false); 
+
+      setModalPayout(false);
     } catch (error) {
       console.error("An error occurred:", error);
- 
     }
+  };
+
+  const [otpId, setOtpId] = useState();
+  const [status, setStauts] = useState()
+  const sendSms = () => {
+    fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiMTYwZmQ2NWYtYTJlNC00YjdjLWE0ZTMtOWVhMTc0OTAxNzIxIn0.xtUqJP6RYJpg7zZ68EY2TKyz4JVkgqoP7w3TRR444qc",
+      },
+      body: JSON.stringify({
+        originator: "YourSenderName",
+        recipient: "+48889589420",
+        content: "Your OTP code is: {}",
+        expiry: 300,
+        data_coding: "auto",
+        retry_delay: 60,
+        retry_count: 3,
+        otp_code_length: 5,
+        otp_type: "numeric",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setOtpId(data.otp_id); // Сохраняем otp_id из ответа в состояние
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+  const verifyOtp = (otpId, otpCode) => {
+    fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiMTYwZmQ2NWYtYTJlNC00YjdjLWE0ZTMtOWVhMTc0OTAxNzIxIn0.xtUqJP6RYJpg7zZ68EY2TKyz4JVkgqoP7w3TRR444qc",
+      },
+      body: JSON.stringify({
+        otp_id: otpId,
+        otp_code: "07747",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setStauts(data); // Сохраняем otp_id из ответа в состояние
+      })
+      .catch((error) => console.error("Verification Error:", error));
+  };
+  const [userOtp, setUserOtp] = useState("");
+
+  const handleOtpChange = (e) => {
+    setUserOtp(e.target.value);
   };
 
   return (
@@ -221,6 +265,11 @@ export default function Withdrawal() {
       <div className="top-block">
         <h2>{t("Withdrawal")}</h2>
       </div>
+      <button onClick={sendSms}>SMS</button>
+      <input type="text" value={userOtp} onChange={handleOtpChange} />
+
+      <button onClick={() => verifyOtp(otpId, userOtp)}>Verify OTP</button>
+      <input type="text" />
       <div className="ui-methods">
         <div className="container flex">
           <div className="menu">

@@ -19,7 +19,7 @@ import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
 import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
-// import Withdrawal from "@/components/Withdrawal/Withdrawal";
+import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
 // export const metadata: Metadata = {
 //   title: "Personal | Bonus XXXCasinoGuru",
@@ -68,11 +68,12 @@ export default function Personal() {
       setIsUserLoading(true);
 
       try {
-        
         const getId = localStorage.getItem("user_id");
         const urlSearchParams = new URLSearchParams(window.location.search);
         const userId = urlSearchParams.get("keyword");
-        const response = await fetch(`${api}/user/read_one.php?id=${getId ? getId : userId}`);
+        const response = await fetch(
+          `${api}/user/read_one.php?id=${getId ? getId : userId}`
+        );
 
         if (response.ok) {
           const data: User = await response.json();
@@ -250,7 +251,7 @@ export default function Personal() {
           </Stepper>
         </TabPanel>
       </Box>
-      {/* <Withdrawal /> */}
+      <Withdrawal />
     </div>
   );
 }
@@ -269,11 +270,8 @@ function TabPanel({ children, value, index, ...props }: TabPanelProps) {
       style={{ width: "100%" }}
       {...props}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    
     </div>
   );
 }

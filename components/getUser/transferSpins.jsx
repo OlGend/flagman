@@ -20,9 +20,7 @@ const transferSpinsToTickets = async (userData) => {
     if (!response.ok) throw new Error("Network response was not ok.");
 
     const result = await response.json();
-    console.log(result.message); // Пример обработки успешного ответа
-
-    // Возможно тебе захочется здесь обновить состояние компонента, чтобы отразить изменения
+    console.log(result.message); 
   } catch (error) {
     console.error("Ошибка при передаче spins_waiting в tickets:", error);
   }

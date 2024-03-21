@@ -26,7 +26,7 @@ export const PhoneNumberStep = ({
     | undefined;
 
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState("");
+  const [code, setCode] = useState("");
 
   const onChangePhoneNumber = (nextPhoneNumber: string) => {
     setPhoneNumber(nextPhoneNumber);
@@ -49,7 +49,67 @@ export const PhoneNumberStep = ({
     await onConfirm();
   };
 
-  const isButtonDisabled = otp.length < oneTimePasswordLength;
+  const isButtonDisabled = code.length < oneTimePasswordLength;
+
+  const [otpId, setOtpId] = useState();
+  const [status, setStauts] = useState();
+  const sendSms = (phoneNumber) => {
+    fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiMTYwZmQ2NWYtYTJlNC00YjdjLWE0ZTMtOWVhMTc0OTAxNzIxIn0.xtUqJP6RYJpg7zZ68EY2TKyz4JVkgqoP7w3TRR444qc",
+      },
+      body: JSON.stringify({
+        originator: "MyAwardWallet",
+        recipient: phoneNumber,
+        content: "Your OTP code is: {}",
+        expiry: 300,
+        data_coding: "auto",
+        retry_delay: 60,
+        retry_count: 3,
+        otp_code_length: 5,
+        otp_type: "numeric",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setOtpId(data.otp_id);
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+  const verifyOtp = (otpId, code) => {
+    fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiMTYwZmQ2NWYtYTJlNC00YjdjLWE0ZTMtOWVhMTc0OTAxNzIxIn0.xtUqJP6RYJpg7zZ68EY2TKyz4JVkgqoP7w3TRR444qc",
+      },
+      body: JSON.stringify({
+        otp_id: otpId,
+        otp_code: code,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setStauts(data);
+        if (status) {
+          setPhoneToUser();
+        } else {
+          console.log("MODAL ERROR")
+        }
+      })
+      .catch((error) => console.error("Verification Error:", error));
+  };
+  const [userOtp, setUserOtp] = useState("");
+
+  const handleOtpChange = (e) => {
+    setUserOtp(e.target.value);
+  };
 
   return (
     <StyledDiv>
@@ -63,9 +123,7 @@ export const PhoneNumberStep = ({
         <StyledButton
           className="btn-primary"
           variant="contained"
-          onClick={() => {
-            console.log("Send code");
-          }}
+          onClick={() => sendSms(phoneNumber)}
         >
           Send code
         </StyledButton>
@@ -74,8 +132,8 @@ export const PhoneNumberStep = ({
       <StyledBox>
         <OTP
           length={oneTimePasswordLength}
-          value={otp}
-          onChange={setOtp}
+          value={code}
+          onChange={setCode}
           separator=""
         />
       </StyledBox>
@@ -93,7 +151,8 @@ export const PhoneNumberStep = ({
         <Button
           className="btn-primary"
           variant="contained"
-          onClick={setPhoneToUser}
+          // onClick={setPhoneToUser}
+          onClick={() => verifyOtp(otpId, code)}
           disabled={isButtonDisabled}
         >
           Continue

@@ -342,7 +342,7 @@ export default function Personal() {
           </Stepper>
         </TabPanel>
       </Box>
-      <Withdrawal />
+      {/* <Withdrawal /> */}
     </div>
   );
 }

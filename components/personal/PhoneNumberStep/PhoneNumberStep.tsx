@@ -52,59 +52,93 @@ export const PhoneNumberStep = ({
   const isButtonDisabled = code.length < oneTimePasswordLength;
 
   const [otpId, setOtpId] = useState<string>("");
-  const [status, setStauts] = useState();
-  const sendSms = (phoneNumber: string) => {
-    fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
-      method: "POST",
+
+
+  const fetchAuthToken = async (clientId: string, clientSecret: string) => {
+    const response = await fetch('https://api.d7networks.com/auth/v1/login/application', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiMTYwZmQ2NWYtYTJlNC00YjdjLWE0ZTMtOWVhMTc0OTAxNzIxIn0.xtUqJP6RYJpg7zZ68EY2TKyz4JVkgqoP7w3TRR444qc",
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
-        originator: "MyAwardWallet",
-        recipient: phoneNumber,
-        content: "Your OTP code is: {}",
-        expiry: 300,
-        data_coding: "auto",
-        retry_delay: 60,
-        retry_count: 3,
-        otp_code_length: 5,
-        otp_type: "numeric",
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
+      body: new URLSearchParams({
+        'client_id': clientId,
+        'client_secret': clientSecret
+      })
+    });
+  
+    const data = await response.json();
+    if (response.ok) {
+      return data.access_token;
+    } else {
+      throw new Error(data.message || 'Failed to fetch auth token');
+    }
+  };
+  
+  const sendSms = async (phoneNumber: string) => {
+    try {
+      const authToken = await fetchAuthToken('q3pclZDnn9ZjbgvXoLcmrKZDO8fJ8EAwkQ4DHWpG', 'MCgmZREVlaiUkM4XkszuIdKgQEQlsR43dPbwhg7qaeOaaGf0Rm36IfZMF9Sc1tBeshdp2SDOTQ67TkTajD3F7bYhMWbxpIxvvxE48xx8NOh8qB3NfPaMqt7fGoji1C0a');
+      const response = await fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+          originator: "MyAwardWallet",
+          recipient: phoneNumber,
+          content: "Your OTP code is: {}",
+          expiry: 300,
+          data_coding: "auto",
+          retry_delay: 60,
+          retry_count: 3,
+          otp_code_length: 5,
+          otp_type: "numeric",
+        }),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
         console.log(data);
         setOtpId(data.otp_id);
-      })
-      .catch((error) => console.error("Error:", error));
+      } else {
+        throw new Error(data.message || 'Failed to send SMS');
+      }
+    } catch (error) {
+      console.error("Error: catch some error");
+    }
   };
-  const verifyOtp = (otpId: string, code: string) => {
-    fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiMTYwZmQ2NWYtYTJlNC00YjdjLWE0ZTMtOWVhMTc0OTAxNzIxIn0.xtUqJP6RYJpg7zZ68EY2TKyz4JVkgqoP7w3TRR444qc",
-      },
-      body: JSON.stringify({
-        otp_id: otpId,
-        otp_code: code,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setStauts(data);
-        if (data.status === "APPROVED") {
-          setPhoneToUser();
-        } else {
-          console.log("MODAL ERROR");
-        }
-      })
-      .catch((error) => console.error("Verification Error:", error));
+  
+  const verifyOtp = async (otpId: string, code: string) => {
+    try {
+      // Получаем токен аутентификации
+      const authToken = await fetchAuthToken('q3pclZDnn9ZjbgvXoLcmrKZDO8fJ8EAwkQ4DHWpG', 'MCgmZREVlaiUkM4XkszuIdKgQEQlsR43dPbwhg7qaeOaaGf0Rm36IfZMF9Sc1tBeshdp2SDOTQ67TkTajD3F7bYhMWbxpIxvvxE48xx8NOh8qB3NfPaMqt7fGoji1C0a');
+  
+      // Выполняем запрос на проверку OTP с динамически полученным токеном
+      const response = await fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+          otp_id: otpId,
+          otp_code: code,
+        }),
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+      if (response.ok && data.status === "APPROVED") {
+        setPhoneToUser();
+      } else {
+        console.log("MODAL ERROR");
+      }
+    } catch (error) {
+      console.error("Verification Error:");
+    }
   };
+  
   // const [userOtp, setUserOtp] = useState("");
 
   // const handleOtpChange = (e) => {

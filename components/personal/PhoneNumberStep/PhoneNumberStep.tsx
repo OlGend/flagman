@@ -54,91 +54,114 @@ export const PhoneNumberStep = ({
   const [otpId, setOtpId] = useState<string>("");
 
 
-  const fetchAuthToken = async (clientId: string, clientSecret: string) => {
-    const response = await fetch('https://api.d7networks.com/auth/v1/login/application', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        'client_id': clientId,
-        'client_secret': clientSecret
-      })
-    });
+  // const fetchAuthToken = async (clientId: string, clientSecret: string) => {
+  //   const response = await fetch('https://api.d7networks.com/auth/v1/login/application', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     body: new URLSearchParams({
+  //       'client_id': clientId,
+  //       'client_secret': clientSecret
+  //     })
+  //   });
   
-    const data = await response.json();
-    if (response.ok) {
-      return data.access_token;
-    } else {
-      throw new Error(data.message || 'Failed to fetch auth token');
-    }
-  };
+  //   const data = await response.json();
+  //   if (response.ok) {
+  //     return data.access_token;
+  //   } else {
+  //     throw new Error(data.message || 'Failed to fetch auth token');
+  //   }
+  // };
   
-  const sendSms = async (phoneNumber: string) => {
+  // const sendSms = async (phoneNumber: string) => {
+  //   try {
+  //     const authToken = await fetchAuthToken('q3pclZDnn9ZjbgvXoLcmrKZDO8fJ8EAwkQ4DHWpG', 'MCgmZREVlaiUkM4XkszuIdKgQEQlsR43dPbwhg7qaeOaaGf0Rm36IfZMF9Sc1tBeshdp2SDOTQ67TkTajD3F7bYhMWbxpIxvvxE48xx8NOh8qB3NfPaMqt7fGoji1C0a');
+  //     const response = await fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${authToken}`,
+  //       },
+  //       body: JSON.stringify({
+  //         originator: "MyAwardWallet",
+  //         recipient: phoneNumber,
+  //         content: "Your OTP code is: {}",
+  //         expiry: 300,
+  //         data_coding: "auto",
+  //         retry_delay: 60,
+  //         retry_count: 3,
+  //         otp_code_length: 5,
+  //         otp_type: "numeric",
+  //       }),
+  //     });
+  
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       console.log(data);
+  //       setOtpId(data.otp_id);
+  //     } else {
+  //       throw new Error(data.message || 'Failed to send SMS');
+  //     }
+  //   } catch (error) {
+  //     console.error("Error: catch some error");
+  //   }
+  // };
+
+  const handleSendSMS = async () => {
     try {
-      const authToken = await fetchAuthToken('q3pclZDnn9ZjbgvXoLcmrKZDO8fJ8EAwkQ4DHWpG', 'MCgmZREVlaiUkM4XkszuIdKgQEQlsR43dPbwhg7qaeOaaGf0Rm36IfZMF9Sc1tBeshdp2SDOTQ67TkTajD3F7bYhMWbxpIxvvxE48xx8NOh8qB3NfPaMqt7fGoji1C0a');
-      const response = await fetch("https://api.d7networks.com/verify/v1/otp/send-otp", {
+      const response = await fetch("https://pickbonus.myawardwallet.com/api/user/get_token.php", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
-          originator: "MyAwardWallet",
-          recipient: phoneNumber,
-          content: "Your OTP code is: {}",
-          expiry: 300,
-          data_coding: "auto",
-          retry_delay: 60,
-          retry_count: 3,
-          otp_code_length: 5,
-          otp_type: "numeric",
-        }),
+        body: new URLSearchParams({
+          phoneNumber: phoneNumber // Отправляем номер телефона
+        })
       });
-  
+
       const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-        setOtpId(data.otp_id);
-      } else {
-        throw new Error(data.message || 'Failed to send SMS');
-      }
+      setOtpId(data.otp_id);
+      console.log("TOKEN",data); // Обработка ответа от вашего PHP API
+
     } catch (error) {
-      console.error("Error: catch some error");
+      console.error("Ошибка:", error);
     }
   };
   
-  const verifyOtp = async (otpId: string, code: string) => {
-    try {
-      // Получаем токен аутентификации
-      const authToken = await fetchAuthToken('q3pclZDnn9ZjbgvXoLcmrKZDO8fJ8EAwkQ4DHWpG', 'MCgmZREVlaiUkM4XkszuIdKgQEQlsR43dPbwhg7qaeOaaGf0Rm36IfZMF9Sc1tBeshdp2SDOTQ67TkTajD3F7bYhMWbxpIxvvxE48xx8NOh8qB3NfPaMqt7fGoji1C0a');
+  console.log("RESPONSE", otpId)
+
+  // const verifyOtp = async (otpId: string, code: string) => {
+  //   try {
+  //     // Получаем токен аутентификации
+  //     const authToken = await fetchAuthToken('q3pclZDnn9ZjbgvXoLcmrKZDO8fJ8EAwkQ4DHWpG', 'MCgmZREVlaiUkM4XkszuIdKgQEQlsR43dPbwhg7qaeOaaGf0Rm36IfZMF9Sc1tBeshdp2SDOTQ67TkTajD3F7bYhMWbxpIxvvxE48xx8NOh8qB3NfPaMqt7fGoji1C0a');
   
-      // Выполняем запрос на проверку OTP с динамически полученным токеном
-      const response = await fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
-        body: JSON.stringify({
-          otp_id: otpId,
-          otp_code: code,
-        }),
-      });
+  //     // Выполняем запрос на проверку OTP с динамически полученным токеном
+  //     const response = await fetch("https://api.d7networks.com/verify/v1/otp/verify-otp", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${authToken}`,
+  //       },
+  //       body: JSON.stringify({
+  //         otp_id: otpId,
+  //         otp_code: code,
+  //       }),
+  //     });
   
-      
-      const data = await response.json();
-      console.log(data);
+
+  //     const data = await response.json();
+  //     console.log(data);
   
-      if (response.ok && data.status === "APPROVED") {
-        setPhoneToUser();
-      } else {
-        console.log("MODAL ERROR");
-      }
-    } catch (error) {
-      console.error("Verification Error:");
-    }
-  };
+  //     if (response.ok && data.status === "APPROVED") {
+  //       setPhoneToUser();
+  //     } else {
+  //       console.log("MODAL ERROR");
+  //     }
+  //   } catch (error) {
+  //     console.error("Verification Error:");
+  //   }
+  // };
   
   // const [userOtp, setUserOtp] = useState("");
 
@@ -158,7 +181,7 @@ export const PhoneNumberStep = ({
         <StyledButton
           className="btn-primary"
           variant="contained"
-          onClick={() => sendSms(phoneNumber)}
+          onClick={handleSendSMS}
         >
           Send code
         </StyledButton>
@@ -187,7 +210,7 @@ export const PhoneNumberStep = ({
           className="btn-primary"
           variant="contained"
           // onClick={setPhoneToUser}
-          onClick={() => verifyOtp(otpId, code)}
+          // onClick={() => verifyOtp(otpId, code)}
           disabled={isButtonDisabled}
         >
           Continue

@@ -19,6 +19,7 @@ import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
 import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
+import Cards from "@/components/products/Cards";
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
 const defaultCoin = "USDTTRC20";
@@ -343,6 +344,7 @@ export default function Personal() {
         </TabPanel>
       </Box>
       {/* <Withdrawal /> */}
+      <Cards />
     </div>
   );
 }

@@ -8935,3 +8935,14 @@ input.error {
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
+
+
+/* /////CARD */
+.cards>div {
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+.cards>div:nth-child(4n + 4) {
+  margin-right: 0;
+}

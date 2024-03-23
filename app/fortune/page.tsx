@@ -1,11 +1,5 @@
 "use client";
 import { useState } from "react";
-// import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "Payments | Bonus XXXCasinoGuru",
-//   description: "Navigate the complexities of casino payment methods with ease, thanks to Bonus XXXCasinoGuru's comprehensive Payments guide. From credit cards and e-wallets to cryptocurrencies, we cover all the options, detailing the pros and cons to help you make informed decisions. Learn about processing times, fees, and security measures so you can deposit and withdraw funds with confidence. Your seamless gaming experience starts with choosing the right payment method, and we're here to guide you every step of the way!",
-// };
 
 export default function Fortune() {
   const [iframeWidth, setIframeWidth] = useState<string>('1200px');

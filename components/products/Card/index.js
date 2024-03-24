@@ -6,34 +6,32 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function MediaCard(item) {
-  const descriptions = JSON.parse(item.item.product_description);
+export default function MediaCard(props) {
+  const { lang, item } = props;
+  const descriptions = JSON.parse(item.product_description);
 
-  const country = localStorage.getItem("country").toLowerCase();
+  // Найти описание для текущего языка
+  const descriptionForLang = descriptions.find(desc => desc[lang]) || descriptions.find(desc => desc["all"]);
 
-  console.log(country);
-
-  console.log(item.item);
   return (
     <Card className="relative" sx={{ maxWidth: 275, minWidth: 275 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={`/products/${item.item.product_image}.jpg`}
-        title={item.item.product_image}
+        image={`/products/${item.product_image}.jpg`}
+        title={item.product_image}
       />
       <CardContent className="mb-12">
         <div className="flex justify-between">
           <Typography gutterBottom variant="h5" component="div">
-            {item.item.product_name}
+            {item.product_name}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {item.item.products_amount}
+            {item.products_amount}
           </Typography>
         </div>
         <Typography variant="body2" color="text.secondary">
-          {descriptions.map((desc, index) => (
-            <div key={index}>{desc.en}</div>
-          ))}
+          {/* Отображаем найденное описание */}
+          <div>{descriptionForLang[lang] || descriptionForLang["all"]}</div>
         </Typography>
       </CardContent>
       <CardActions className="absolute bottom-0">

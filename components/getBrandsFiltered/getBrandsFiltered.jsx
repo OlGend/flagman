@@ -1,7 +1,7 @@
 // Это больше не компонент React, а асинхронная функция для получения данных брендов.
 export const getBrandsFiltered = async (filtered, lng) => {
-  const apiOld = "api/brands";
-  const apiNew = "api/brands";
+  const apiOld = "https://pickbonus.myawardwallet.com/api/brandsNew/read.php";
+  const apiNew = "https://pickbonus.myawardwallet.com/api/brandsNew2/read.php";
 
   const source = localStorage.getItem("source");
   // const geo = localStorage.getItem("country");
@@ -10,7 +10,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
 
   try {
     const url = source === "partner1039" ? apiNew : apiOld;
-    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/read.php");
+    const res = await fetch(url);
 
 
    
@@ -23,9 +23,8 @@ export const getBrandsFiltered = async (filtered, lng) => {
      
 
         filteredData = responseData.brandsNew.filter((rowData) => {
-          const categoriesArray = rowData["categories"]
-            .split(",")
-            .map((category) => category.trim());
+          const categoriesArray = rowData["categories"] ? 
+            rowData["categories"].split(",").map((category) => category.trim()) : [];
           return (
             rowData.GEO === geoLng &&
             rowData["CurrentStatus"] === "Ongoing" &&
@@ -35,6 +34,7 @@ export const getBrandsFiltered = async (filtered, lng) => {
             categoriesArray.includes(filtered)
           );
         });
+        
       }
 
       return filteredData; // Возвращаем отфильтрованные данные

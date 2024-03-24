@@ -153,6 +153,8 @@ export default function TopBrands() {
     fetchBrands();
   }, [i18n.language]);
 
+  console.log("i18n", i18n.language)
+
   useEffect(() => {
     if (brands.length === 0) {
       setLoading(true);

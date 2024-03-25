@@ -93,6 +93,8 @@ export default function Personal() {
     }
   };
 
+
+
   useEffect(() => {
     const getCoins = async () => {
       try {
@@ -344,7 +346,7 @@ export default function Personal() {
         </TabPanel>
       </Box>
       {/* <Withdrawal /> */}
-      <Cards />
+      <Cards user={user} onFinish={onFinish} />
     </div>
   );
 }

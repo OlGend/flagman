@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-
 import Loader from "@/components/Loader";
 import useSWR from "swr";
 import { shuffle } from "lodash";
@@ -20,7 +19,6 @@ import { getBrands } from "@/components/getBrands/getBrands";
 import i18n from "@/components/i18n";
 
 export default function TopBrands() {
-
   ////////////////////NEW CODE/////////////////////
 
   // Получаем текущий URL
@@ -46,8 +44,6 @@ export default function TopBrands() {
   const [newUrl, setNewUrl] = useState("");
   const [source, setSource] = useState("");
 
-
-
   useEffect(() => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     const urlObj = typeof window !== "undefined" ? new URL(url) : null;
@@ -56,7 +52,7 @@ export default function TopBrands() {
     searchParams.delete("brand");
 
     const currentKeyword = searchParams.get("keyword");
-    console.log("CURRENT", currentKeyword)
+    console.log("CURRENT", currentKeyword);
 
     if (currentKeyword !== null && currentKeyword.includes("partner1039")) {
       // Если в строке есть "partner1039" или "partner1041", вырезаем и добавляем в setSource
@@ -120,8 +116,6 @@ export default function TopBrands() {
 
   const [loading, setLoading] = useState(true);
 
-
-
   if (typeof window !== "undefined") {
     const newSource = localStorage.getItem("source");
     const urlBrands = newSource === "partner1039" ? 248 : 221;
@@ -139,9 +133,8 @@ export default function TopBrands() {
   const { t } = useTranslation();
 
   const [brands, setBrands] = useState([]);
-  console.log("BRANDS", brands)
+  console.log("BRANDS", brands);
 
-  
   const categoryBrands = { key1: "Segment2", key2: "Premium" };
   useEffect(() => {
     const fetchBrands = async () => {
@@ -154,7 +147,7 @@ export default function TopBrands() {
     fetchBrands();
   }, [i18n.language]);
 
-  console.log("i18n", i18n.language)
+  console.log("i18n", i18n.language);
 
   useEffect(() => {
     if (brands.length === 0) {
@@ -169,7 +162,7 @@ export default function TopBrands() {
   const shuffledBrands = shuffle(brands);
   // Берем первые 6 элементов из перемешанного массива
   const randomBrands = shuffledBrands;
-  
+
   // Преобразуем эти объекты в карточки
   cards2 = randomBrands.slice(0, 6).map((brand) => ({
     key: uuidv4(),
@@ -186,12 +179,10 @@ export default function TopBrands() {
     <>
       <div className="topbr">
         <div className="main__container">
-          {loading ? ( 
+          {loading ? (
             <Loader />
           ) : (
- 
             cards2 && (
- 
               <Carousel
                 className="carmob"
                 cards={cards2}
@@ -209,7 +200,6 @@ export default function TopBrands() {
         <div className="main__container flex items-center">
           <div className="flex flex-col">
             <h1 className="">
- 
               Feeling lucky today?{" "}
               <span className="text-blued">Click now to play</span> and see if{" "}
               <span className="text-blued"> luck is on your side!</span>
@@ -231,3 +221,132 @@ export default function TopBrands() {
     </>
   );
 }
+
+// INSERT INTO brands_generation (
+//   `Tech`,
+//   `Casino brand`,
+//   `Current Status`,
+//   `Sandbox`,
+//   `Interaction Type`,
+//   `GEO`,
+//   `Localization`,
+//   `Shortcomings`,
+//   `Date of Last Change`,
+//   `The type of a deal`,
+//   `CPA`,
+//   `RS`,
+//   `BL`,
+//   `BN`,
+//   `Bonus type`,
+//   `Segment`,
+//   `Deposit bonus, %`,
+//   `Max bonus`,
+//   `Free spins`,
+//   `Wager`,
+//   `Min deposit`,
+//   `В-та`,
+//   `Offer content`,
+//   `Our offer content`,
+//   `Affiliate Link`,
+//   `reg2dep`,
+//   `gobig`,
+//   `вес`,
+//   `count`,
+//   `Link img`,
+//   `Casino brand 1`,
+//   `keitaro gobig ID`,
+//   `keitaro r2d ID`,
+//   `postback`,
+//   `Segment2`,
+//   `Первый приоритет`,
+//   `Trendsetting`,
+//   `Hottest`,
+//   `Quick Sign-Up`,
+//   `Video`,
+//   `id_brand`
+// )
+// SELECT
+//   `Tech`,
+//   `Casino brand`,
+//   `Current Status`,
+//   `Sandbox`,
+//   `Interaction Type`,
+//   `GEO`,
+//   `Localization`,
+//   `Shortcomings`,
+//   `Date of Last Change`,
+//   `The type of a deal`,
+//   `CPA`,
+//   `RS`,
+//   `BL`,
+//   `BN`,
+//   `Bonus type`,
+//   `Segment`,
+//   `Deposit bonus, %`,
+//   `Max bonus`,
+//   `Free spins`,
+//   `Wager`,
+//   `Min deposit`,
+//   `В-та`,
+//   `Offer content`,
+//   `Our offer content`,
+//   `Affiliate Link`,
+//   `reg2dep`,
+//   `gobig`,
+//   `вес`,
+//   `count`,
+//   `Link img`,
+//   `Casino brand 1`,
+//   `keitaro gobig ID`,
+//   `keitaro r2d ID`,
+//   `postback`,
+//   `Segment2`,
+//   `Первый приоритет`,
+//   `Trendsetting`,
+//   `Hottest`,
+//   `Quick Sign-Up`,
+//   `Video`,
+//   `id_brand`
+// FROM brands
+// ON DUPLICATE KEY UPDATE
+//   `Tech` = VALUES(`Tech`),
+//   `Casino brand` = VALUES(`Casino brand`),
+//   `Current Status` = VALUES(`Current Status`),
+//   `Sandbox` = VALUES(`Sandbox`),
+//   `Interaction Type` = VALUES(`Interaction Type`),
+//   `GEO` = VALUES(`GEO`),
+//   `Localization` = VALUES(`Localization`),
+//   `Shortcomings` = VALUES(`Shortcomings`),
+//   `Date of Last Change` = VALUES(`Date of Last Change`),
+//   `The type of a deal` = VALUES(`The type of a deal`),
+//   `CPA` = VALUES(`CPA`),
+//   `RS` = VALUES(`RS`),
+//   `BL` = VALUES(`BL`),
+//   `BN` = VALUES(`BN`),
+//   `Bonus type` = VALUES(`Bonus type`),
+//   `Segment` = VALUES(`Segment`),
+//   `Deposit bonus, %` = VALUES(`Deposit bonus, %`),
+//   `Max bonus` = VALUES(`Max bonus`),
+//   `Free spins` = VALUES(`Free spins`),
+//   `Wager` = VALUES(`Wager`),
+//   `Min deposit` = VALUES(`Min deposit`),
+//   `В-та` = VALUES(`В-та`),
+//   `Offer content` = VALUES(`Offer content`),
+//   `Our offer content` = VALUES(`Our offer content`),
+//   `Affiliate Link` = VALUES(`Affiliate Link`),
+//   `reg2dep` = VALUES(`reg2dep`),
+//   `gobig` = VALUES(`gobig`),
+//   `вес` = VALUES(`вес`),
+//   `count` = VALUES(`count`),
+//   `Link img` = VALUES(`Link img`),
+//   `Casino brand 1` = VALUES(`Casino brand 1`),
+//   `keitaro gobig ID` = VALUES(`keitaro gobig ID`),
+//   `keitaro r2d ID` = VALUES(`keitaro r2d ID`),
+//   `postback` = VALUES(`postback`),
+//   `Segment2` = VALUES(`Segment2`),
+//   `Первый приоритет` = VALUES(`Первый приоритет`),
+//   `Trendsetting` = VALUES(`Trendsetting`),
+//   `Hottest` = VALUES(`Hottest`),
+//   `Quick Sign-Up` = VALUES(`Quick Sign-Up`),
+//   `Video` = VALUES(`Video`),
+//   `id_brand` = VALUES(`id_brand`);

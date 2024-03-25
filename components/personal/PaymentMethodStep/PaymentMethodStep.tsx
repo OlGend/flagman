@@ -32,7 +32,7 @@ const getHelperText = (
   isMoreThanUserBalance: boolean
 ) => {
   if (!!amount && isLessThanFour)
-    return "Withdrawal rejected: Minimum withdrawal amount is 1 USD.";
+    return "Withdrawal rejected: Minimum withdrawal amount is 4 USD.";
   if (!!amount && isMoreThanUserBalance)
     return "Not enough funds in the account.";
   return undefined;

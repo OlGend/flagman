@@ -4,7 +4,6 @@ import useSWR, { mutate } from "swr";
 import { useTranslation } from "react-i18next";
 import Loader from "@/components/Loader";
 
-
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const { data: selectedLanguage, error } = useSWR(
@@ -15,7 +14,6 @@ const LanguageSwitcher = () => {
   if (typeof window !== "undefined") {
     defLng = localStorage.getItem("country");
   }
-
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,8 +47,6 @@ const LanguageSwitcher = () => {
     }
   }, []);
 
-
-
   // Обработка ошибок для selectedLanguage и languageDetails
   if (error) {
     return <div>Failed to load</div>;
@@ -60,7 +56,7 @@ const LanguageSwitcher = () => {
     setIsLoading(true);
 
     localStorage.setItem("country", lng);
-      // setIsLoading(false);
+    // setIsLoading(false);
     try {
       mutate("selectedLanguage", lng, false);
       await i18n.changeLanguage(lng);
@@ -74,25 +70,6 @@ const LanguageSwitcher = () => {
   };
 
   const availableLanguages = [
-
-    // {
-    //   code: "au",
-    //   label: "Australia",
-    //   flag: "🇦🇺"
-    // }, 
-    // { code: "ca", label: "Canada", flag: "🇨🇦" },
-    // {
-    //   code: "nz",
-    //   label: "New Zealand",
-    //   flag: "🇳🇿"
-    // },
-    // {
-    //   code: "pl",
-    //   label: "Poland",
-    //   flag: "🇨🇦"
-    // },
-
-
     { code: "au", label: "Australia", flag: "🇦🇺" },
     { code: "at", label: "Austria", flag: "🇦🇹" },
     { code: "be", label: "Belgium", flag: "🇧🇪" },
@@ -121,23 +98,32 @@ const LanguageSwitcher = () => {
     { code: "all", label: "World", flag: "🌍" },
   ];
   const availableLanguagesPartners = [
-    {
-      code: "au",
-      label: "Australia",
-      flag: "🇦🇺",
-    },
+    { code: "au", label: "Australia", flag: "🇦🇺" },
+    { code: "at", label: "Austria", flag: "🇦🇹" },
+    { code: "be", label: "Belgium", flag: "🇧🇪" },
+    { code: "bg", label: "Bulgaria", flag: "🇧🇬" },
     { code: "ca", label: "Canada", flag: "🇨🇦" },
-    {
-      code: "nz",
-      label: "New Zealand",
-      flag: "🇳🇿",
-    },
-    ,
-    {
-      code: "pl",
-      label: "Poland",
-      flag: "🇨🇦"
-    }
+    { code: "cz", label: "Czech", flag: "🇨🇿" },
+    { code: "dk", label: "Denmark", flag: "🇩🇰" },
+    { code: "fi", label: "Finland", flag: "🇫🇮" },
+    { code: "fr", label: "France", flag: "🇫🇷" },
+    { code: "de", label: "Germany", flag: "🇩🇪" },
+    { code: "gr", label: "Greece", flag: "🇬🇷" },
+    { code: "hu", label: "Hungary", flag: "🇭🇺" },
+    { code: "ie", label: "Ireland", flag: "🇮🇪" },
+    { code: "it", label: "Italy", flag: "🇮🇹" },
+    { code: "nl", label: "Netherlands", flag: "🇳🇱" },
+    { code: "nz", label: "New Zealand", flag: "🇳🇿" },
+    { code: "no", label: "Norway", flag: "🇳🇴" },
+    { code: "pl", label: "Poland", flag: "🇵🇱" },
+    { code: "pt", label: "Portugal", flag: "🇵🇹" },
+    { code: "sk", label: "Slovakia", flag: "🇸🇰" },
+    { code: "es", label: "Spain", flag: "🇪🇸" },
+    { code: "se", label: "Sweden", flag: "🇸🇪" },
+    { code: "ch", label: "Switzerland", flag: "🇨🇭" },
+    { code: "tr", label: "Turkey", flag: "🇹🇷" },
+    { code: "gb", label: "United Kingdom", flag: "🇬🇧" },
+    { code: "all", label: "World", flag: "🌍" },
   ];
   let item;
   if (typeof window !== "undefined") {
@@ -158,10 +144,7 @@ const LanguageSwitcher = () => {
         onChange={(e) => {
           const selected = newLng.find((lang) => lang.code === e.target.value);
           if (selected) {
-            changeLanguage(
-              selected.code,
-              selected.flag
-            );
+            changeLanguage(selected.code, selected.flag);
           }
         }}
       >
@@ -182,10 +165,7 @@ const LanguageSwitcher = () => {
         onChange={(e) => {
           const selected = newLng.find((lang) => lang.code === e.target.value);
           if (selected) {
-            changeLanguage(
-              selected.code,
-              selected.flag
-            );
+            changeLanguage(selected.code, selected.flag);
           }
         }}
       >

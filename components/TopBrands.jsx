@@ -139,6 +139,7 @@ export default function TopBrands() {
   const { t } = useTranslation();
 
   const [brands, setBrands] = useState([]);
+  console.log("BRANDS", brands)
 
   
   const categoryBrands = { key1: "Segment2", key2: "Premium" };

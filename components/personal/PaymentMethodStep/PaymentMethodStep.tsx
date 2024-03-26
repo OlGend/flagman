@@ -9,7 +9,7 @@ import {
 import { ChangeEvent } from "react";
 import { styled } from "@mui/system";
 
-import type { User } from "@/app/personal/page";
+import type { User } from "@/app/interfaces/user";
 
 type PaymentMethodStepProps = {
   coin: string;
@@ -21,7 +21,7 @@ type PaymentMethodStepProps = {
   onChangeAmount: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onChangeStep: (coin: string, amount: string) => Promise<void>;
+  onChangeStep: () => Promise<void>;
 };
 
 const MIN_AMOUNT = 4;
@@ -82,9 +82,7 @@ export const PaymentMethodStep = ({
         <Button
           className="btn-primary"
           variant="contained"
-          onClick={() => {
-            onChangeStep(coin, amount);
-          }}
+          onClick={onChangeStep}
           disabled={isButtonDisabled}
         >
           Continue

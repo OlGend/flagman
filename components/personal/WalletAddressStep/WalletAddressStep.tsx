@@ -1,7 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { styled } from "@mui/system";
-import type { User } from "@/app/personal/page";
+import type { User } from "@/app/interfaces/user";
+import { useMutationWalletAddressValidate } from "@/queries";
 
 type WalletAddressStepProps = {
   coin: string;
@@ -15,31 +16,6 @@ type WalletAddressStepProps = {
   user: User | null;
 };
 
-const apiKey = "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC";
-const url = "https://api.nowpayments.io/v1/payout/validate-address";
-
-const validateWalletAddress = async (coin: string, walletAddress: string) => {
-  const body = JSON.stringify({
-    address: walletAddress,
-    currency: coin,
-  });
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "x-api-key": apiKey,
-        "Content-Type": "application/json",
-      },
-      body,
-    });
-
-    return response.ok;
-  } catch {
-    return false;
-  }
-};
-
 export const WalletAddressStep = ({
   coin,
   walletAddress,
@@ -49,21 +25,17 @@ export const WalletAddressStep = ({
   onConfirm,
   user,
 }: WalletAddressStepProps) => {
-  const [isTextFieldError, setIsTextFieldError] = useState(false);
+  const {
+    data: isWalletAddressValid,
+    loading: walletAddressValidateLoading,
+    error: walletAddressValidateError,
+    errorMessage: walletAddressValidateErrorMessage,
+    refetch: refetchWalletAddressValidate,
+  } = useMutationWalletAddressValidate(coin, walletAddress);
 
   const setNextStep = async () => {
-    setIsTextFieldError(false);
-    const isWalletAddressValid = await validateWalletAddress(
-      coin,
-      walletAddress
-    );
-
-    if (!isWalletAddressValid) {
-      setIsTextFieldError(true);
-      return;
-    }
-
-    setIsTextFieldError(false);
+    const response = await refetchWalletAddressValidate();
+    if (!response) return;
 
     if (!user?.phone_number) {
       onChangeStep(step + 1);
@@ -74,18 +46,17 @@ export const WalletAddressStep = ({
   };
 
   const isButtonDisabled = !walletAddress;
-  const helperText = isTextFieldError ? "Your address is not valid" : undefined;
+  const isError = isWalletAddressValid !== null && !isWalletAddressValid;
 
   return (
     <StyledDiv>
       <TextField
         value={walletAddress}
         onChange={onChangeWalletAddress}
-        error={isTextFieldError}
-        helperText={helperText}
+        error={isError}
+        helperText={walletAddressValidateErrorMessage}
         fullWidth
       />
-
       <Box>
         <Button
           className="btn-primary"

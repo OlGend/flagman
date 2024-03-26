@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState} from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -30,8 +30,6 @@ export default function MediaCard(props) {
   const descriptionForLang =
     descriptions.find((desc) => desc[lang]) ||
     descriptions.find((desc) => desc["all"]);
-
-  console.log("userId", userId);
 
   const onConfirm = async () => {
     const status_payment = JSON.stringify({
@@ -100,15 +98,16 @@ export default function MediaCard(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{...style, width: 400  }}>
+        <Box sx={{ ...style, width: 400 }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Confirm Purchase
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Are you sure you want to buy this product for {item.products_amount}$?
+            Are you sure you want to buy this product for {item.products_amount}
+            $?
           </Typography>
           <Button
-          className="btn btn-primary mt-4"
+            className="btn btn-primary mt-4"
             onClick={async () => {
               await onConfirm(); // Вызываем onConfirm здесь для обработки покупки
               handleClose(); // Закрываем модальное окно после покупки
@@ -122,4 +121,3 @@ export default function MediaCard(props) {
     </Card>
   );
 }
-

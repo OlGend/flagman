@@ -4,7 +4,7 @@ import { useState } from "react";
 import { styled } from "@mui/system";
 
 import { OTP } from "../OTP";
-import { User } from "@/app/personal/page";
+import type { User } from "@/app/interfaces/user";
 
 type PhoneNumberStepProps = {
   step: number;
@@ -13,7 +13,17 @@ type PhoneNumberStepProps = {
   user: User | null;
 };
 
-const oneTimePasswordLength = 5;
+const DEFAULT_OTP_LENGTH = 5;
+type queries = number;
+type SendPhoneNumberResponse = {
+  expiry: number;
+  otp_id: string;
+  status: string;
+};
+
+type ConfirmOtpResponse = {
+  status: "EXPIRED" | "APPROVED";
+};
 
 export const PhoneNumberStep = ({
   step,
@@ -26,13 +36,14 @@ export const PhoneNumberStep = ({
     | undefined;
 
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [code, setCode] = useState("");
+  const [otp, setOtp] = useState("");
+  const [otpId, setOtpId] = useState("");
 
   const onChangePhoneNumber = (nextPhoneNumber: string) => {
     setPhoneNumber(nextPhoneNumber);
   };
 
-  const setPhoneToUser = async () => {
+  const onSaveUserPhoneNumber = async () => {
     if (!user) return;
 
     await fetch(
@@ -49,63 +60,57 @@ export const PhoneNumberStep = ({
     await onConfirm();
   };
 
-  const isButtonDisabled = code.length < oneTimePasswordLength;
-
-  const [otpId, setOtpId] = useState<string>("");
-
-
-  const handleSendSMS = async () => {
+  const onSendPhoneNumber = async () => {
     try {
-      const response = await fetch("https://pickbonus.myawardwallet.com/api/user/get_token.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          phoneNumber: phoneNumber // Отправляем номер телефона
-        })
-      });
+      const response = await fetch(
+        "https://pickbonus.myawardwallet.com/api/user/get_token.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            phoneNumber: phoneNumber, // Отправляем номер телефона
+          }),
+        }
+      );
 
-      const data = await response.json();
+      const data: SendPhoneNumberResponse = await response.json();
       setOtpId(data.otp_id);
-      console.log("TOKEN",data); // Обработка ответа от вашего PHP API
-
-    } catch (error) {
-      console.error("Ошибка:", error);
+    } catch (e) {
+      console.error("ERROR - onSendOtpToPhoneNumber:", e);
     }
   };
-  
-  console.log("RESPONSE", otpId);
 
-  const verifyOtp = async () => {
-  
+  const onConfirmOtp = async () => {
     try {
-      const response = await fetch('https://pickbonus.myawardwallet.com/api/user/send_code.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          otp_id: otpId,
-          otp_code: code
-        })
-      });
+      const response = await fetch(
+        "https://pickbonus.myawardwallet.com/api/user/send_code.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            otp_id: otpId,
+            otp_code: otp,
+          }),
+        }
+      );
 
-      const data = await response.json();
+      const data: ConfirmOtpResponse = await response.json();
+      // throw new Error("");
 
-      // В зависимости от ответа вашего сервера, вы можете настроить сообщение
       if (response.ok && data.status === "APPROVED") {
-        setPhoneToUser();
-        postMessage('OTP верифицирован успешно.');
-      } else {
-        postMessage('Ошибка при верификации OTP.');
+        await onSaveUserPhoneNumber();
+        await onConfirm();
       }
-    } catch (error) {
-      console.error('Ошибка:', error);
-      postMessage('Ошибка при верификации OTP.');
+    } catch (e) {
+      console.error("ERROR - onConfirmOtp:", e);
     }
   };
 
+  const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
 
   return (
     <StyledDiv>
@@ -119,7 +124,7 @@ export const PhoneNumberStep = ({
         <StyledButton
           className="btn-primary"
           variant="contained"
-          onClick={handleSendSMS}
+          onClick={onSendPhoneNumber}
         >
           Send code
         </StyledButton>
@@ -127,9 +132,9 @@ export const PhoneNumberStep = ({
 
       <StyledBox>
         <OTP
-          length={oneTimePasswordLength}
-          value={code}
-          onChange={setCode}
+          length={DEFAULT_OTP_LENGTH}
+          value={otp}
+          onChange={setOtp}
           separator=""
         />
       </StyledBox>
@@ -147,9 +152,8 @@ export const PhoneNumberStep = ({
         <Button
           className="btn-primary"
           variant="contained"
-          // onClick={setPhoneToUser}
-          onClick={verifyOtp}
-          disabled={isButtonDisabled}
+          onClick={onConfirmOtp}
+          disabled={isButtonContinueDisabled}
         >
           Continue
         </Button>
@@ -187,5 +191,3 @@ const StyledBox = styled(Box)(
     justify-content: center;
   `
 );
-
-

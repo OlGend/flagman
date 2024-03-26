@@ -1,5 +1,19 @@
 "use client";
 
+import { User } from "@/app/interfaces/user";
+import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
+import { FinallyStep } from "@/components/personal/FinallyStep";
+import { PaymentHistory } from "@/components/personal/PaymentHistory";
+import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
+import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
+import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
+import Cards from "@/components/products/Cards";
+import {
+  useQueryCoins,
+  useQueryUser,
+  useQueryFee,
+  useQueryEstimated,
+} from "@/queries";
 import {
   Box,
   SelectChangeEvent,
@@ -11,128 +25,52 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { ChangeEvent, useEffect, useState } from "react";
-
-import { FinallyStep } from "@/components/personal/FinallyStep";
-import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
-import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
-import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
-import { PaymentHistory } from "@/components/personal/PaymentHistory";
-import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
-import Cards from "@/components/products/Cards";
+import { ChangeEvent, useState } from "react";
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
 const defaultCoin = "USDTTRC20";
 const defaultStep = 0;
 
-const api = "https://pickbonus.myawardwallet.com/api";
-const apiKey = "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC";
-
-type CoinsResponse = {
-  selectedCurrencies: string[];
-};
-
-type Fee = {
-  currency: string;
-  fee: number;
-};
-
-type Estimated = {
-  amount_from: number;
-  currency_from: string;
-  currency_to: string;
-  estimated_amount: string;
-};
-
-export type User = {
-  id: string;
-  balance: string;
-  phone_number: string | null;
-  status_payment: string | null;
-  // VIP: "";
-  // auth: null;
-  // country: "AU";
-  // customer: "";
-  // input: "";
-  // login: "test_max";
-  // password: "";
-  // status_payment: null;
-  // tickets: "2";
-  // winbalance: "";
-};
-
-const getUserId = () => {
-  return (
-    localStorage.getItem("user_id") ??
-    new URLSearchParams(window.location.search).get("keyword")
-  );
-};
-
 export default function Personal() {
-  const [coins, setCoins] = useState<string[] | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const {
+    data: user,
+    loading: userLoading,
+    error: userError,
+    errorMessage: userErrorMessage,
+    refetch: refetchUser,
+  } = useQueryUser();
 
-  const getUser = async () => {
-    try {
-      const userId = getUserId();
-
-      if (!userId) return;
-
-      const response = await fetch(`${api}/user/read_one.php?id=${userId}`);
-
-      if (response.ok) {
-        const data: User = await response.json();
-        setUser(data);
-
-        return;
-      }
-
-      console.error(`Response - getUser not ok: ${response}`);
-    } catch (e) {
-      console.error(`Error - getUser: ${e}`);
-    }
-  };
-
-
-
-  useEffect(() => {
-    const getCoins = async () => {
-      try {
-        const response = await fetch(
-          "https://api.nowpayments.io/v1/merchant/coins",
-          {
-            headers: {
-              "x-api-key": apiKey,
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data: CoinsResponse = await response.json();
-          setCoins(data.selectedCurrencies);
-
-          return;
-        }
-
-        console.error(`Response - getCoins not ok: ${response}`);
-      } catch (e) {
-        console.error(`Error - getCoins: ${e}`);
-      }
-    };
-
-    getUser();
-    getCoins();
-  }, []);
+  const {
+    data: coins,
+    loading: coinsLoading,
+    error: coinsError,
+    errorMessage: coinsErrorMessage,
+    refetch: refetchCoins,
+  } = useQueryCoins();
 
   const [coin, setCoin] = useState(defaultCoin);
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [step, setStep] = useState(defaultStep);
   const [tab, setTab] = useState(0);
-  const [fee, setFee] = useState<Fee["fee"] | null>(null);
-  const [estimatedAmount, setEstimatedAmount] = useState<
-    Estimated["estimated_amount"] | null
-  >(null);
+
+  const {
+    data: fee,
+    loading: feeLoading,
+    error: feeError,
+    errorMessage: feeErrorMessage,
+    refetch: refetchFee,
+    reset: resetFee,
+  } = useQueryFee(coin, amount);
+
+  const {
+    data: estimatedAmount,
+    loading: estimatedAmountLoading,
+    error: estimatedAmountError,
+    errorMessage: estimatedAmountErrorMessage,
+    refetch: refetchEstimatedAmount,
+    reset: resetEstimatedAmount,
+  } = useQueryEstimated(coin, amount);
 
   const onChangeCoin = (e: SelectChangeEvent<string>) => {
     const nextCoin = e.target.value;
@@ -161,47 +99,14 @@ export default function Personal() {
     setTab(nextValue);
   };
 
-  const getFee = async (coin: string, amount: string) => {
+  const goToWalletAddressStep = async () => {
     try {
-      const response = await fetch(
-        `https://api.nowpayments.io/v1/payout/fee?currency=${coin}&amount=${amount}`,
-        {
-          headers: {
-            "x-api-key": apiKey,
-          },
-        }
-      );
-
-      if (!response.ok) return;
-      const data: Fee = await response.json();
-      setFee(data.fee);
-
-      console.log("getFee - response:", response);
-    } catch (e) {
-      console.error("ERROR - getFee:", e);
+      await refetchFee();
+      await refetchEstimatedAmount();
+      onChangeStep(step + 1);
+    } catch (error) {
+      // TODO: add error handler
     }
-  };
-
-  const getEstimated = async (coin: string, amount: string) => {
-    try {
-      const response = await fetch(
-        `https://pickbonus.myawardwallet.com/api/payment/estimated.php?amount=${amount}&currency_from=usd&currency_to=${coin}`
-      );
-
-      if (!response.ok) return;
-      const data: Estimated = await response.json();
-      setEstimatedAmount(data.estimated_amount);
-
-      console.log("getEstimated - response", response);
-    } catch (e) {
-      console.error("ERROR - getEstimated:", e);
-    }
-  };
-
-  const sendRequest = async (coin: string, amount: string) => {
-    await getFee(coin, amount);
-    await getEstimated(coin, amount);
-    onChangeStep(step + 1);
   };
 
   const onConfirm = async () => {
@@ -222,25 +127,22 @@ export default function Personal() {
       sumMinus: amount,
     });
 
-    console.log("body", body);
-
     try {
       const response = await updateUserStatusPayment(body);
       onChangeStep(step + 1);
-      console.log("response", response);
     } catch (e) {
       console.error("ERROR - onConfirm:", e);
     }
   };
 
   const onFinish = async () => {
-    await getUser();
+    await refetchUser();
     setCoin(defaultCoin);
     setAmount("");
     setWalletAddress("");
     setStep(defaultStep);
-    setFee(null);
-    setEstimatedAmount(null);
+    resetFee();
+    resetEstimatedAmount();
   };
 
   const getSteps = (user: User | null) => {
@@ -257,7 +159,7 @@ export default function Personal() {
             step={step}
             onChangeCoin={onChangeCoin}
             onChangeAmount={onChangeAmount}
-            onChangeStep={sendRequest}
+            onChangeStep={goToWalletAddressStep}
           />
         ),
       },
@@ -321,13 +223,10 @@ export default function Personal() {
           onChange={onChangeTab}
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Tab label="Withdrawal History" />
           <Tab label="Withdrawal Request" />
+          <Tab label="Withdrawal History" />
         </Tabs>
         <TabPanel value={tab} index={0}>
-          <PaymentHistory statusPayment={user?.status_payment} />
-        </TabPanel>
-        <TabPanel value={tab} index={1}>
           <Stepper
             activeStep={step}
             orientation="vertical"
@@ -343,6 +242,9 @@ export default function Personal() {
               </Step>
             ))}
           </Stepper>
+        </TabPanel>
+        <TabPanel value={tab} index={1}>
+          <PaymentHistory statusPayment={user?.status_payment} />
         </TabPanel>
       </Box>
       {/* <Withdrawal /> */}

@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 
+import Image from "next/image";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -62,35 +64,35 @@ export default function MediaCard(props) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Card className="relative" sx={{ maxWidth: 275, minWidth: 275 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={`/products/${item.product_image}.jpg`}
-        title={item.product_image}
-      />
-      <CardContent className="mb-12">
-        <div className="flex justify-between">
-          <Typography gutterBottom variant="h5" component="div">
-            {item.product_name}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="div">
-            {item.products_amount}$
-          </Typography>
+    <div className="w-full">
+      <div className="card flex flex-nowrap w-full justify-between items-center">
+        <Image
+        className=" flex"
+          src={`/products/${item.product_image}.jpg`}
+          alt={item.product_name}
+          width={64}
+          height={48}
+        />
+        <div className="basis-8/12 card-content flex">
+          <div className="flex justify-between basis-3/12 mr-3">
+            <p className="mr-3"> {item.product_name}</p>
+            <p>{item.products_amount}$</p>
+          </div>
+          <p className="basis-8/12 ml-auto">
+            {" "}
+            <span>{descriptionForLang[lang] || descriptionForLang["all"]}</span>
+          </p>
         </div>
-        <Typography variant="body2" color="text.secondary">
-          <span>{descriptionForLang[lang] || descriptionForLang["all"]}</span>
-        </Typography>
-      </CardContent>
-      <CardActions className="absolute bottom-0">
         <Button
           onClick={handleOpen}
-          className="btn-primary"
+          className="btn-primary btn basis-1/12"
           variant="contained"
           size="small"
         >
           Buy
         </Button>
-      </CardActions>
+      </div>
+
       <Modal
         keepMounted
         open={open}
@@ -118,6 +120,6 @@ export default function MediaCard(props) {
           </Button>
         </Box>
       </Modal>
-    </Card>
+    </div>
   );
 }

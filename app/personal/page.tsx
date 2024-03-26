@@ -209,6 +209,7 @@ export default function Personal() {
   return (
     <div className="page-personal main__container pb-10">
       <Box
+      
         sx={{
           flexGrow: 1,
           bgcolor: "background.paper",
@@ -225,6 +226,7 @@ export default function Personal() {
         >
           <Tab label="Withdrawal Request" />
           <Tab label="Withdrawal History" />
+          <Tab label="Cards Shop" />
         </Tabs>
         <TabPanel value={tab} index={0}>
           <Stepper
@@ -246,9 +248,11 @@ export default function Personal() {
         <TabPanel value={tab} index={1}>
           <PaymentHistory statusPayment={user?.status_payment} />
         </TabPanel>
+        <TabPanel value={tab} index={2}>
+          <Cards user={user} onFinish={onFinish} />
+        </TabPanel>
       </Box>
       {/* <Withdrawal /> */}
-      <Cards user={user} onFinish={onFinish} />
     </div>
   );
 }

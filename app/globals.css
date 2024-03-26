@@ -8940,9 +8940,9 @@ input.error {
 
 /* /////CARD */
 .cards>div {
-  margin-right: auto;
+  /* margin-right: auto; */
   margin-bottom: 30px;
 }
-.cards>div:nth-child(4n + 4) {
+/* .cards>div:nth-child(3n + 3) {
   margin-right: 0;
-}
+} */

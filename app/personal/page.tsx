@@ -1,6 +1,6 @@
 "use client";
 
-import { User } from "@/app/interfaces/user";
+import type { User } from "@/interfaces/user";
 import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 import { FinallyStep } from "@/components/personal/FinallyStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
@@ -209,7 +209,6 @@ export default function Personal() {
   return (
     <div className="page-personal main__container pb-10">
       <Box
-      
         sx={{
           flexGrow: 1,
           bgcolor: "background.paper",

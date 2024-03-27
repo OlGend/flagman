@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
 import { styled } from "@mui/system";
-import type { User } from "@/app/interfaces/user";
+import type { User } from "@/interfaces/user";
 import { useMutationWalletAddressValidate } from "@/queries";
 
 type WalletAddressStepProps = {

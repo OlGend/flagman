@@ -1,4 +1,4 @@
-import { User } from "@/app/interfaces/user";
+import type { User } from "@/interfaces/user";
 import { useEffect, useState } from "react";
 
 const api = "https://pickbonus.myawardwallet.com/api";

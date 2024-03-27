@@ -4,7 +4,11 @@ import { useState } from "react";
 import { styled } from "@mui/system";
 
 import { OTP } from "../OTP";
-import type { User } from "@/app/interfaces/user";
+import type { User } from "@/interfaces/user";
+import {
+  useMutationSaveUserPhoneNumber,
+  useMutationSendUserPhoneNumber,
+} from "@/queries";
 
 type PhoneNumberStepProps = {
   step: number;
@@ -14,12 +18,6 @@ type PhoneNumberStepProps = {
 };
 
 const DEFAULT_OTP_LENGTH = 5;
-type queries = number;
-type SendPhoneNumberResponse = {
-  expiry: number;
-  otp_id: string;
-  status: string;
-};
 
 type ConfirmOtpResponse = {
   status: "EXPIRED" | "APPROVED";
@@ -37,52 +35,34 @@ export const PhoneNumberStep = ({
 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const [otpId, setOtpId] = useState("");
 
   const onChangePhoneNumber = (nextPhoneNumber: string) => {
     setPhoneNumber(nextPhoneNumber);
   };
 
-  const onSaveUserPhoneNumber = async () => {
-    if (!user) return;
+  const [
+    saveUserPhoneNumber,
+    {
+      success: saveUserPhoneNumberSuccess,
+      loading: saveUserPhoneNumberLoading,
+      error: saveUserPhoneNumberError,
+      errorMessage: saveUserPhoneNumberErrorMessage,
+    },
+  ] = useMutationSaveUserPhoneNumber();
 
-    await fetch(
-      `https://pickbonus.myawardwallet.com/api/user/update_phone.php`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          id: user.id,
-          phone_number: phoneNumber,
-        }),
-      }
-    );
-
-    await onConfirm();
-  };
-
-  const onSendPhoneNumber = async () => {
-    try {
-      const response = await fetch(
-        "https://pickbonus.myawardwallet.com/api/user/get_token.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            phoneNumber: phoneNumber, // Отправляем номер телефона
-          }),
-        }
-      );
-
-      const data: SendPhoneNumberResponse = await response.json();
-      setOtpId(data.otp_id);
-    } catch (e) {
-      console.error("ERROR - onSendOtpToPhoneNumber:", e);
-    }
-  };
+  const [
+    sendUserPhoneNumber,
+    {
+      data: sendUserPhoneNumberData,
+      success: sendUserPhoneNumberSuccess,
+      loading: sendUserPhoneNumberLoading,
+      error: sendUserPhoneNumberError,
+      errorMessage: sendUserPhoneNumberErrorMessage,
+    },
+  ] = useMutationSendUserPhoneNumber();
 
   const onConfirmOtp = async () => {
+    if (!sendUserPhoneNumberData) return;
     try {
       const response = await fetch(
         "https://pickbonus.myawardwallet.com/api/user/send_code.php",
@@ -92,7 +72,7 @@ export const PhoneNumberStep = ({
             "Content-Type": "application/x-www-form-urlencoded",
           },
           body: new URLSearchParams({
-            otp_id: otpId,
+            otp_id: sendUserPhoneNumberData,
             otp_code: otp,
           }),
         }
@@ -102,7 +82,7 @@ export const PhoneNumberStep = ({
       // throw new Error("");
 
       if (response.ok && data.status === "APPROVED") {
-        await onSaveUserPhoneNumber();
+        await saveUserPhoneNumber({ user, phoneNumber });
         await onConfirm();
       }
     } catch (e) {
@@ -124,7 +104,9 @@ export const PhoneNumberStep = ({
         <StyledButton
           className="btn-primary"
           variant="contained"
-          onClick={onSendPhoneNumber}
+          onClick={() => {
+            sendUserPhoneNumber({ phoneNumber });
+          }}
         >
           Send code
         </StyledButton>

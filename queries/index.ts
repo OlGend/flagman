@@ -6,3 +6,5 @@ export * from "./useQueryUser";
 
 // MUTATIONS
 export * from "./useMutationWalletAddressValidate";
+export * from "./useMutationSaveUserPhoneNumber";
+export * from "./useMutationSendUserPhoneNumber";

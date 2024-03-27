@@ -15,6 +15,7 @@ import {
 import { useState, MouseEvent } from "react";
 import { visuallyHidden } from "@mui/utils";
 import dayjs from "dayjs";
+import { styled } from "@mui/material/styles";
 
 type PaymentHistory = {
   USD: string;
@@ -198,7 +199,7 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
             <TableBody>
               {sortedRows.map((row, idx) => {
                 return (
-                  <TableRow hover key={idx}>
+                  <CustomTableRow hover key={idx}>
                     <TableCell>{row.paymentMethod}</TableCell>
                     <TableCell>{row.paymentSumIn}</TableCell>
                     <TableCell>{row.paymentAddress}</TableCell>
@@ -207,8 +208,12 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
                         "ddd, DD MMM YYYY hh:mm:ss a"
                       )}
                     </TableCell>
-                    <TableCell>{row.status}</TableCell>
-                  </TableRow>
+                    {row.status === "Waiting" ? (
+                      <WaitingStatusCell>{row.status}</WaitingStatusCell>
+                    ) : (
+                      <ActiveStatusCell>{row.status}</ActiveStatusCell>
+                    )}
+                  </CustomTableRow>
                 );
               })}
             </TableBody>
@@ -227,5 +232,23 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
     </Box>
   );
 };
+
+const CustomTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#F0F3F7",
+  }
+}));
+const WaitingStatusCell = styled(TableCell)(({ theme }) => ({
+  color: "#BC7710",
+}));
+const ActiveStatusCell = styled(TableCell)(({ theme }) => ({
+  color: "#07B963",
+}));
+
+const Paper = styled("div")(
+  () => `
+    box-shadow: none;
+  `
+);
 
 

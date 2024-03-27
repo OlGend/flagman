@@ -228,7 +228,7 @@ export default function Personal() {
           <Tab label="Withdrawal History" />
           <Tab label="Cards Shop" />
         </Tabs>
-        <TabPanel value={tab} index={0}>
+        <TabPanel value={tab} index={1}>
           <Stepper
             activeStep={step}
             orientation="vertical"
@@ -245,7 +245,7 @@ export default function Personal() {
             ))}
           </Stepper>
         </TabPanel>
-        <TabPanel value={tab} index={1}>
+        <TabPanel value={tab} index={0}>
           <PaymentHistory statusPayment={user?.status_payment} />
         </TabPanel>
         <TabPanel value={tab} index={2}>

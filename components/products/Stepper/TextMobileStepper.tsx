@@ -11,7 +11,11 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import { PhoneNumberStep } from "@/components/products/PhoneNumberStep";
 import { useQueryUser } from "@/queries";
 
-export const TextMobileStepper = ({ onConfirm }) => {
+interface TextMobileStepperProps {
+  onConfirm: () => Promise<void>;
+}
+
+export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm }) => {
   const {
     data: user,
     loading: userLoading,
@@ -81,7 +85,7 @@ export const TextMobileStepper = ({ onConfirm }) => {
         <Typography>{steps[activeStep].label}</Typography>
       </Paper>
       <Box sx={{ width: "100%", p: 2 }}>
-        {steps[activeStep].description}
+        {steps[activeStep].content}
       </Box>
       <Box sx={{ width: "100%", p: 2 }}>
         {steps[activeStep].content}

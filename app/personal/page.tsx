@@ -146,7 +146,7 @@ export default function Personal() {
     resetEstimatedAmount();
   };
 
-  const finalSum = estimatedAmount - fee;
+  // const finalSum = estimatedAmount - fee;
 
   const getSteps = (user: User | null) => {
     const initialSteps = [
@@ -168,7 +168,7 @@ export default function Personal() {
       },
       {
         label: "Wallet Address",
-        description: `Fee: ${fee} ${coin}, You will receive on balance: ${finalSum} ${coin}`,
+        description: `Fee: ${fee} ${coin}, You will receive on balance: ${estimatedAmount - fee} ${coin}`,
         content: (
           <WalletAddressStep
             coin={coin}

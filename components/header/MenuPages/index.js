@@ -12,13 +12,14 @@ import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
 import { getUserData } from "@/components/getUser/getUser";
 import transferSpinsToTickets from "@/components/getUser/transferSpins";
 
 import DisabledSpins from "@/components/header/DisabledSpins";
+import { styled } from "@mui/material/styles";
 
 export default function AccountMenu({ userId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -61,7 +62,7 @@ export default function AccountMenu({ userId }) {
   return userData ? (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Badge badgeContent={userData.tickets} color="secondary">
+        <CustomBadge badgeContent={userData.tickets} color="secondary">
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
@@ -71,12 +72,12 @@ export default function AccountMenu({ userId }) {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>
+              <CustomAvatar sx={{ width: 32, height: 32 }}>
                 {userData.login.charAt(0).toUpperCase()}
-              </Avatar>
+              </CustomAvatar>
             </IconButton>
           </Tooltip>
-        </Badge>
+        </CustomBadge>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -112,14 +113,14 @@ export default function AccountMenu({ userId }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Link className="w-full flex items-center" href={`/personal`}>
-            <Avatar />{" "}
-            {userData.login.length > 10
-              ? `${userData.login.substring(0, 10)}...`
-              : userData.login}
-          </Link>
-        </MenuItem>
+        {/* <div className="w-full flex items-center py-2 px-4 name_login">
+          {userData.login.length > 10
+            ? `${userData.login.substring(0, 10)}...`
+            : userData.login}
+        </div> */}
+        <div className="w-full flex items-center user__balance" onClick={handleClose}>
+          Your balance: <span className="p-2 ml-2">{userData.balance}$</span>
+        </div>
         <MenuItem onClick={handleClose}>
           <Badge badgeContent={userData.tickets} color="primary">
             <Link className="flex items-center w-full" href={`/fortune`}>
@@ -156,27 +157,44 @@ export default function AccountMenu({ userId }) {
           </Link>
         </MenuItem>
         <Divider />
-
-        {userData.spins_waiting > 0 && (
-          <MenuItem>
-            <ListItemIcon>{userData.spins_waiting}</ListItemIcon>
-            {userData.tickets === "0" ? (
+      
               <Button
                 onClick={handleTransferSpinsToTickets}
-                className="btn-primary"
+                className="btn-primary w-full get_spins"
                 variant="contained"
-                disabled={userData.tickets > 0}
-              >
+                disabled={userData.spins_waiting === 0}
+                >
+                <strong className="mr-2">{userData.spins_waiting}</strong>
                 Get spins
               </Button>
-            ) : (
-              <DisabledSpins />
-            )}
-          </MenuItem>
-        )}
+          {/* <MenuItem>
+         
+         
+          </MenuItem> */}
+    
+
       </Menu>
     </React.Fragment>
   ) : (
     <div></div>
   );
 }
+const CustomAvatar = styled(Avatar)(({ theme }) => ({
+  background: "#DCEBFC",
+  width: "44px !important",
+  height: "44px !important",
+  color: "#1B5DB2",
+  fontWeight: "700",
+  fontSize: "21px",
+  paddingTop: "6px",
+}));
+
+const CustomBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    top: "15px",
+    right: "5px",
+    background: "#07B963",
+    fontWeight: "700",
+    fontSize: "11px",
+  },
+}));

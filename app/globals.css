@@ -8921,7 +8921,6 @@ input.error {
   height: 45px;
 }
 
-
 .withdrawal .withdrawal.flex.mt-2 {
   flex-wrap: wrap;
 }
@@ -8936,13 +8935,63 @@ input.error {
   padding-bottom: 100px;
 }
 
-
-
 /* /////CARD */
-.cards>div {
+.cards > div {
   /* margin-right: auto; */
   margin-bottom: 30px;
 }
 /* .cards>div:nth-child(3n + 3) {
   margin-right: 0;
 } */
+
+.name_login {
+  background: #0967e3;
+  color: #fff;
+}
+.user__balance {
+  background: #0967e3;
+  color: #fff;
+  padding-left: 16px;
+}
+.user__balance span {
+  color: #fff;
+  background: #07b963;
+  border-radius: 3px;
+}
+#account-menu > div {
+  border-radius: 15px;
+}
+#account-menu ul {
+  padding: 0;
+}
+#account-menu ul li {
+  border-bottom: 1px solid #d9dde2;
+  padding: 8px 16px;
+}
+#account-menu ul li:last-of-type {
+  /* padding: 0; */
+  border-bottom: none;
+}
+#account-menu ul hr {
+  display: none;
+}
+#account-menu ul div {
+  border-radius: 15px 0;
+}
+.btn-primary.get_spins {
+  border-radius: 15px;
+  background-color: #07b963;
+  font-weight: 700;
+}
+.btn-primary.get_spins strong {
+  height: 30px;
+  min-width: 30px;
+  background-color: #fff;
+  color: #07b963;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 50%;
+  padding-top: 3px;
+}

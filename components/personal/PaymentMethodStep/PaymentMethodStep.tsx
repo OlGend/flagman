@@ -62,20 +62,30 @@ export const PaymentMethodStep = ({
 
   return (
     <StyledDiv>
-      <Select value={coin} onChange={onChangeCoin}>
+      <Select className={`select_coins ${coin}`} value={coin} onChange={onChangeCoin}>
         {coins?.map((coin) => (
-          <MenuItem key={coin} value={coin}>
+          <MenuItem className={`${coin}`} key={coin} value={coin}>
             {coin}
           </MenuItem>
         ))}
       </Select>
 
       <TextField
+        className="input_number"
         value={amount}
         onChange={onChangeAmount}
         type="number"
         error={isTextFieldError}
         helperText={helperText}
+        sx={{
+          "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
+            {
+              "-webkit-appearance": "none",
+            },
+          "& input[type=number]": {
+            "-moz-appearance": "textfield",
+          },
+        }}
       />
 
       <Box>
@@ -85,7 +95,7 @@ export const PaymentMethodStep = ({
           onClick={onChangeStep}
           disabled={isButtonDisabled}
         >
-          Continue
+          Next step
         </Button>
       </Box>
     </StyledDiv>

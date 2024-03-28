@@ -146,11 +146,13 @@ export default function Personal() {
     resetEstimatedAmount();
   };
 
+  const finalSum = estimatedAmount - fee;
+
   const getSteps = (user: User | null) => {
     const initialSteps = [
       {
         label: "Payment Method",
-        description: "Description",
+        description: "Select one of the withdrawal methods and enter the withdrawal amount",
         content: (
           <PaymentMethodStep
             coin={coin}
@@ -166,7 +168,7 @@ export default function Personal() {
       },
       {
         label: "Wallet Address",
-        description: `Fee: ${fee}, Estimated amount: ${estimatedAmount}`,
+        description: `Fee: ${fee} ${coin}, You will receive on balance: ${finalSum} ${coin}`,
         content: (
           <WalletAddressStep
             coin={coin}
@@ -182,15 +184,15 @@ export default function Personal() {
 
       {
         label: "Finally Step",
-        description: "Description",
-        content: <FinallyStep text="Test text." onFinish={onFinish} />,
+        description: "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands",
+        content: <FinallyStep text="" onFinish={onFinish} />,
       },
     ];
 
     if (!user?.phone_number) {
       initialSteps.splice(2, 0, {
         label: "Phone Number",
-        description: "Description",
+        description: "To create a transfer, we need to verify your phone number",
         content: (
           <PhoneNumberStep
             step={step}
@@ -210,6 +212,7 @@ export default function Personal() {
   return (
     <div className="page-personal main__container pb-10">
       <Box
+        className="tab_field"
         sx={{
           flexGrow: 1,
           bgcolor: "background.paper",
@@ -228,11 +231,12 @@ export default function Personal() {
           <Tab label="Withdrawal History" />
           <Tab label="Cards Shop" />
         </Tabs>
-        <TabPanel value={tab} index={0}>
+        <TabPanel className="tab_panel" value={tab} index={0}>
           <Stepper
             activeStep={step}
             orientation="vertical"
             sx={{ width: "100%" }}
+            className="stepper"
           >
             {steps.map((step) => (
               <Step key={step.label}>
@@ -245,10 +249,10 @@ export default function Personal() {
             ))}
           </Stepper>
         </TabPanel>
-        <TabPanel value={tab} index={1}>
+        <TabPanel className="tab_panel" value={tab} index={1}>
           <PaymentHistory statusPayment={user?.status_payment} />
         </TabPanel>
-        <TabPanel value={tab} index={2}>
+        <TabPanel className="tab_panel" value={tab} index={2}>
           <Cards user={user} onFinish={onFinish} />
         </TabPanel>
       </Box>

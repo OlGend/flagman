@@ -8995,3 +8995,85 @@ input.error {
   border-radius: 50%;
   padding-top: 3px;
 }
+
+.stepper svg {
+  width: 44px;
+  height: 44px;
+}
+.stepper > div > div {
+  margin-left: 22px;
+}
+.MuiStepConnector-line {
+  margin-left: 10px;
+}
+
+.select_coins,
+.input_number > div,
+.input_address > div,
+.input_phone > div {
+  border: 0px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  appearance: none !important;
+  -moz-appearance: none !important;
+}
+.select_coins svg {
+  width: 22px;
+  height: 22px;
+}
+.select_coins svg:after {
+  display: block;
+  content: "d";
+}
+.MuiSelect-select {
+  margin-left: 25px;
+}
+#menu- ul li {
+  padding-left: 40px;
+  outline: none;
+}
+* {
+  outline: none !important;
+}
+.tab_field {
+  border-radius: 8px;
+}
+
+.LTC {
+  background-image: url(/LTC.png) !important;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+.USDTTRC20 {
+  background-image: url(/USDTTRC20.png) !important;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+.stepper .btn-primary {
+  border-radius: 40px;
+  text-transform: none;
+  font-size: 18px;
+}
+.MuiStepLabel-label {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+.btn-radius {
+  border-radius: 8px !important;
+  font-size: 16px !important;
+}
+.MuiStepper-vertical.stepper {
+  max-width: 500px;
+}
+.MuiStepper-vertical.stepper p {
+  font-size: 12px;
+  margin-left: 10px;
+}
+.tab_panel {
+  min-height: 480px;
+}
+#tableTitle {
+  font-size: 24px;
+}

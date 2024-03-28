@@ -51,15 +51,25 @@ export const WalletAddressStep = ({
   return (
     <StyledDiv>
       <TextField
+      className="input_address"
         value={walletAddress}
         onChange={onChangeWalletAddress}
         error={isError}
         helperText={walletAddressValidateErrorMessage}
         fullWidth
+        sx={{
+          "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
+            {
+              "-webkit-appearance": "none",
+            },
+          "& input[type=number]": {
+            "-moz-appearance": "textfield",
+          },
+        }}
       />
       <Box>
         <Button
-          className="btn-primary"
+          className="btn-primary mr-2"
           variant="contained"
           onClick={() => {
             onChangeStep(step - 1);
@@ -73,7 +83,7 @@ export const WalletAddressStep = ({
           onClick={setNextStep}
           disabled={isButtonDisabled}
         >
-          Continue
+          Next step
         </Button>
       </Box>
     </StyledDiv>

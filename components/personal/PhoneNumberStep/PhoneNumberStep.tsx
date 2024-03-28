@@ -94,15 +94,25 @@ export const PhoneNumberStep = ({
 
   return (
     <StyledDiv>
-      <StyledBoxTel>
+      <StyledBoxTel className="relative">
         <MuiTelInput
+          className="input_phone"
           value={phoneNumber}
           onChange={onChangePhoneNumber}
           defaultCountry={defaultCountry}
           fullWidth
+          sx={{
+            "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
+              {
+                "-webkit-appearance": "none",
+              },
+            "& input[type=number]": {
+              "-moz-appearance": "textfield",
+            },
+          }}
         />
         <StyledButton
-          className="btn-primary"
+          className="btn-primary absolute right-2 btn-radius"
           variant="contained"
           onClick={() => {
             sendUserPhoneNumber({ phoneNumber });

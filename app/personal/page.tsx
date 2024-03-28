@@ -168,7 +168,7 @@ export default function Personal() {
       },
       {
         label: "Wallet Address",
-        description: `Fee: ${fee} ${coin}, You will receive on balance: ${estimatedAmount - fee} ${coin}`,
+        description: `Fee: ${fee} ${coin}, You will receive on balance: ${estimatedAmount} ${coin}`,
         content: (
           <WalletAddressStep
             coin={coin}

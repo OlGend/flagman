@@ -9077,3 +9077,12 @@ input.error {
 #tableTitle {
   font-size: 24px;
 }
+#myIframe {
+  border-radius: 12px;
+}
+.page-fortune .card-brand {
+  margin-left: 14px;
+}
+.page-fortune .card-brand:nth-child(5n + 1) {
+  margin-left: 0;
+}

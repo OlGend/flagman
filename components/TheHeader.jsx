@@ -7,14 +7,14 @@ import { Navigation } from "./Navigation";
 import Image from "next/image";
 import Img from "@/public/logo3.png";
 // import SearchComponent from "@/components/SearchComponent";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LanguageSwitcher from "@/components/switcher/LanguageSwitcher";
+import BrandsSwitcher from "@/components/switcher/BrandsSwitcher";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import MenuPages from "@/components/header/MenuPages";
-
 import { getUserData } from "@/components/getUser/getUser";
-
 import { navItems } from "@/components/header/NavItems";
+import MenuLanguages from "@/components/header/MenuLanguages";
 
 const TheHeader = () => {
   const { t } = useTranslation();
@@ -74,11 +74,15 @@ const TheHeader = () => {
             {/* <SearchComponent /> */}
           </div>
 
-          <I18nextProvider i18n={i18n}>
-            <div className="somelng">
-              <LanguageSwitcher />{" "}
-            </div>
-          </I18nextProvider>
+          <MenuLanguages />
+          <div>
+            <I18nextProvider i18n={i18n}>
+              <div className="somelng">
+                <LanguageSwitcher />{" "}
+              </div>
+            </I18nextProvider>
+            <BrandsSwitcher />
+          </div>
 
           <MenuPages userId={user} />
 

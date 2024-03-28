@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
+import { getBrands } from "@/components/getBrands/getBrands";
+
 import Loader from "./Loader";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -23,6 +25,7 @@ import {
   DotsThreeCircle,
   Handshake,
 } from "phosphor-react";
+import { useLanguage } from "@/components/switcher/LanguageContext";
 
 export default function AllBrands({ filtered, isLoader }) {
   const { t } = useTranslation();
@@ -37,28 +40,35 @@ export default function AllBrands({ filtered, isLoader }) {
   const [openWithdrawalId, setOpenWithdrawalId] = useState(null);
   const [openDepositsId, setOpenDepositsId] = useState(null);
   const [openCountriesId, setOpenCountriesId] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  const handleLinkClick = () => {
-    setIsLoading(true);
+  // const handleLinkClick = () => {
+  //   setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000);
+  // };
 
   const [filteredBrands, setFilteredBrands] = useState([]);
+
+
   const [topBrands, setTopBrands] = useState([]);
 
+  const { language } = useLanguage();
+  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
   useEffect(() => {
     const fetchData = async () => {
-      const brands = await getBrandsFiltered(filtered, i18n.language);
+      const brands = await getBrandsFiltered(filtered, language);
+      const brands2 = await getBrands(categoryBrands, language);
 
       setFilteredBrands(brands);
+      setTopBrands(brands2);
+
     };
 
     fetchData();
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     setHasMoreBrands(visibleBrands < filteredBrands.length);
@@ -85,8 +95,8 @@ export default function AllBrands({ filtered, isLoader }) {
   const [brandsGenerated, setBrandsGenerated] = useState(false);
 
   useEffect(() => {
-    setBrandsGenerated(false); // Устанавливаем в false при изменении локали, чтобы пересчитать случайные бренды
-  }, [filtered.topBrand]); // Отслеживаем изменения связанные с локалью
+    setBrandsGenerated(false);
+  }, [filtered.topBrand]);
 
   useEffect(() => {
     const generateRandomBrands = () => {
@@ -104,8 +114,8 @@ export default function AllBrands({ filtered, isLoader }) {
       }
     };
 
-    generateRandomBrands(); // Вызываем генерацию при первом рендере
-  }, [brandsGenerated, filteredBrands]); // Отслеживаем изменения brandsGenerated и filteredBrands
+    generateRandomBrands();
+  }, [brandsGenerated, filteredBrands]);
 
   const vis = randomBrands.length > 0 ? randomBrands : filteredBrands;
   const vis2 = randomBrands2.length > 0 ? randomBrands2 : filteredBrands;
@@ -126,7 +136,6 @@ export default function AllBrands({ filtered, isLoader }) {
     };
   }, []);
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -164,7 +173,7 @@ export default function AllBrands({ filtered, isLoader }) {
       ) : (
         <div className="flex flex-wrap justify-between awesome">
           <div className="flex flex-col px-0 py-6 basis-[75%]">
-            {vis.slice(0, visibleBrands).map((brand) => {
+            {filteredBrands.slice(0, visibleBrands).map((brand) => {
               const advantages =
                 brand.advantages !== null
                   ? brand.advantages
@@ -319,7 +328,10 @@ export default function AllBrands({ filtered, isLoader }) {
                             {/* Виводимо обмежені країни */}
                             <div className="countries flex flex-wrap justify-between mt-1">
                               {restricted.map((restrict, index) => (
-                                <div className="basis-[49%] pl-1 mb-2 flex" key={index}>
+                                <div
+                                  className="basis-[49%] pl-1 mb-2 flex"
+                                  key={index}
+                                >
                                   <MinusCircle color="#dd3333" size={18} />
                                   <span>{restrict.restrict}</span>
                                 </div>
@@ -332,7 +344,6 @@ export default function AllBrands({ filtered, isLoader }) {
                   </div>
                   <div className="basis-[36%]">
                     <div className="brandImage p-3">
-                  
                       <Link
                         key={brand.id_brand}
                         href={`${brand.GoBig}/${newUrl}`}
@@ -390,8 +401,8 @@ export default function AllBrands({ filtered, isLoader }) {
             )}
           </div>
           <div className="flex flex-col basis-[24%] py-6">
-            {!isMobile && vis2.length > 0 ? (
-              vis2.slice(0, visibleBrands2).map((item) => {
+            {!isMobile ? (
+              topBrands.slice(0, visibleBrands2).map((item) => {
                 // const reviewImgSrc = extractReviewImage(item.content.rendered);
                 // const playLink = extractLink(item.content.rendered);
                 return (
@@ -431,7 +442,7 @@ export default function AllBrands({ filtered, isLoader }) {
               })
             ) : (
               <Slider {...settings}>
-                {vis2.map((item) => {
+                {topBrands.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"

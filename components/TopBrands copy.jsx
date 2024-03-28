@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import Card from "@/components/slider/Card";
 import Carousel from "@/components/slider/Carousel";
 import imgrandom from "@/public/coins_banner2.jpg";
-import { useLanguage } from "@/components/switcher/LanguageContext";
+
 import { getBrands } from "@/components/getBrands/getBrands";
 
 import i18n from "@/components/i18n";
@@ -133,23 +133,23 @@ export default function TopBrands() {
   const { t } = useTranslation();
 
   const [brands, setBrands] = useState([]);
-  const { language } = useLanguage(); 
+  console.log("BRANDS", brands);
 
   const [languageBrands, setLanguageBrands] = useState(localStorage.getItem("country_brands"));
 
   const categoryBrands = { key1: "Segment2", key2: "Premium" };
   useEffect(() => {
     const fetchBrands = async () => {
-      // Теперь используй переменную language для запроса к API
-      const brandsData = await getBrands(categoryBrands, language);
-      setBrands(brandsData);
-      setLoading(false);
+      if (typeof window !== "undefined") {
+        const brandsData = await getBrands(categoryBrands, languageBrands);
+        setBrands(brandsData);
+      }
     };
-    console.log("TOPBRANDS", language)
+
     fetchBrands();
-  }, [language]); 
+  }, [languageBrands]);
 
-
+  console.log("i18n", i18n.language);
 
   useEffect(() => {
     if (brands.length === 0) {

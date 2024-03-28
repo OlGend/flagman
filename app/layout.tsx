@@ -3,10 +3,10 @@ import { TheHeader } from "@/components/TheHeader";
 import "./globals.css";
 import type { Metadata } from "next";
 import { TheFooter } from "@/components/TheFooter";
+import { LanguageProvider } from "@/components/switcher/LanguageContext";
 import RandomWindow from "@/components/random/RandomWindow";
 // import BannerWindow from "@/components/banner/BannerWindow";
 import Script from "next/script";
-
 
 export const metadata: Metadata = {
   title:
@@ -22,11 +22,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-
-      </head>
+      <head></head>
       <body>
-   
         {/* <RandomWindow /> */}
         {/* <Script src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB" strategy="afterInteractive" />
         <Script id="google-analytics">
@@ -49,15 +46,15 @@ export default function RootLayout({
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
           `}
         </Script> */}
-        <TheHeader />
-   
-        <main>
+        <LanguageProvider>
+          <TheHeader />
 
-
-          {children}
-          {/* <Analytics /> */}
-        </main>
-        <TheFooter />
+          <main>
+            {children}
+            {/* <Analytics /> */}
+          </main>
+          <TheFooter />
+        </LanguageProvider>
       </body>
     </html>
   );

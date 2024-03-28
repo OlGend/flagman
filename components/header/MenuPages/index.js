@@ -158,7 +158,7 @@ export default function AccountMenu({ userId }) {
         </MenuItem>
         <Divider />
       
-              <Button
+              {/* <Button
                 onClick={handleTransferSpinsToTickets}
                 className="btn-primary w-full get_spins"
                 variant="contained"
@@ -166,12 +166,8 @@ export default function AccountMenu({ userId }) {
                 >
                 <strong className="mr-2">{userData.spins_waiting}</strong>
                 Get spins
-              </Button>
-          {/* <MenuItem>
-         
-         
-          </MenuItem> */}
-    
+              </Button> */}
+
 
       </Menu>
     </React.Fragment>

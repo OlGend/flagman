@@ -35,6 +35,6 @@
     "app/layout.tsx",
     "components/BrandSearchContainer.jsx",
     "app/search/page.jsx"
-, "components/posts/PostContent.jsx", "components/LanguageSwitcher.jsx", "app/api/brands/route.ts", "components/header/MenuPages/index.js"  ],
+, "components/posts/PostContent.jsx", "components/switcher/LanguageSwitcher.jsx", "app/api/brands/route.ts", "components/header/MenuPages/index.js"  ],
   "exclude": ["node_modules"]
 }

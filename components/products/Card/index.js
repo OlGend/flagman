@@ -9,6 +9,9 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
+import { TextMobileStepper } from "@/components/products/Stepper";
+
+import { useQueryUser } from "@/queries";
 
 import Image from "next/image";
 
@@ -25,13 +28,21 @@ const style = {
 };
 
 export default function MediaCard(props) {
-  const { lang, item, userId, onFinish } = props;
+  const { lang, item, onFinish } = props;
   const [open, setOpen] = useState(false);
   const descriptions = JSON.parse(item.product_description);
 
   const descriptionForLang =
     descriptions.find((desc) => desc[lang]) ||
     descriptions.find((desc) => desc["all"]);
+
+  const {
+    data: user,
+    loading: userLoading,
+    error: userError,
+    errorMessage: userErrorMessage,
+    refetch: refetchUser,
+  } = useQueryUser();
 
   const onConfirm = async () => {
     const status_payment = JSON.stringify({
@@ -44,7 +55,7 @@ export default function MediaCard(props) {
     });
 
     const body = JSON.stringify({
-      id: userId,
+      id: user.id,
       status_payment,
       sumMinus: item.products_amount,
     });
@@ -67,7 +78,7 @@ export default function MediaCard(props) {
     <div className="w-full">
       <div className="card flex flex-nowrap w-full justify-between items-center">
         <Image
-        className=" flex"
+          className=" flex"
           src={`/products/${item.product_image}.jpg`}
           alt={item.product_name}
           width={64}
@@ -101,6 +112,9 @@ export default function MediaCard(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
+          <TextMobileStepper onConfirm={onConfirm} />
+        </Box>
+        {/* <Box sx={{ ...style, width: 400 }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Confirm Purchase
           </Typography>
@@ -118,7 +132,7 @@ export default function MediaCard(props) {
           >
             Confirm
           </Button>
-        </Box>
+        </Box> */}
       </Modal>
     </div>
   );

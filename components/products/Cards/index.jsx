@@ -27,7 +27,7 @@ const Cards = ({ user, onFinish }) => {
   return (
     <div className="flex flex-wrap mt-10 cards">
       {productsData.map((item) => (
-        <MediaCard lang={lang} item={item} userId={user?.id} onFinish={onFinish} key={item.product_id} />
+        <MediaCard lang={lang} item={item} onFinish={onFinish} key={item.product_id} />
       ))}
       <p></p>
     </div>

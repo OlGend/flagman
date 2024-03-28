@@ -173,7 +173,7 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%" }}>
+      <CustomPaper sx={{ width: "100%" }}>
         <Toolbar
           sx={{
             pl: { sm: 2 },
@@ -228,7 +228,7 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
           onPageChange={onChangePage}
           onRowsPerPageChange={onChangeRowsPerPage}
         />
-      </Paper>
+      </CustomPaper>
     </Box>
   );
 };
@@ -245,10 +245,8 @@ const ActiveStatusCell = styled(TableCell)(({ theme }) => ({
   color: "#07B963",
 }));
 
-const Paper = styled("div")(
-  () => `
-    box-shadow: none;
-  `
-);
+const CustomPaper = styled(Paper)(({ theme }) => ({
+  boxShadow: "none",
+}));
 
 

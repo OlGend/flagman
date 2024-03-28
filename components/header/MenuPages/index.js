@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
 import { getUserData } from "@/components/getUser/getUser";
@@ -60,7 +61,7 @@ export default function AccountMenu({ userId }) {
   return userData ? (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Badge badgeContent={userData.spins_waiting} color="secondary">
+        <Badge badgeContent={userData.tickets} color="secondary">
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
@@ -141,6 +142,17 @@ export default function AccountMenu({ userId }) {
               />
             </ListItemIcon>
             My wallet
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link className="flex items-center w-full" href={`/personal`}>
+            <ListItemIcon>
+              <ShoppingBagOutlinedIcon
+                sx={{ width: 20, height: 20 }}
+                className="mr-1"
+              />
+            </ListItemIcon>
+            Cards Shop
           </Link>
         </MenuItem>
         <Divider />

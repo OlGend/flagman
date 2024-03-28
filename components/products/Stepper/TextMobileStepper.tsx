@@ -40,18 +40,18 @@ export const TextMobileStepper = ({ onConfirm }) => {
         />
       ),
     },
-    {
-      label: "Create an ad group",
-      description:
-        "An ad group contains one or more ads which target a shared set of keywords.",
-    },
-    {
-      label: "Create an ad",
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
-    },
+    // {
+    //   label: "Create an ad group",
+    //   description:
+    //     "An ad group contains one or more ads which target a shared set of keywords.",
+    // },
+    // {
+    //   label: "Create an ad",
+    //   description: `Try out different ad text to see what brings in the most customers,
+    //             and learn how to enhance your ads using features like ad extensions.
+    //             If you run into any problems with your ads, find out how to tell if
+    //             they're running and how to resolve approval issues.`,
+    // },
   ];
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);

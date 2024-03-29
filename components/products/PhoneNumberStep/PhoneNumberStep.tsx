@@ -85,10 +85,11 @@ export const PhoneNumberStep = ({
       const data: ConfirmOtpResponse = await response.json();
       // throw new Error("");
 
-      if (response.ok && data.status === "APPROVED") {
+      if (response.ok && data.status === "APPROVED" && user !== null) {
         await saveUserPhoneNumber({ user, phoneNumber });
         await onConfirm();
       }
+      
     } catch (e) {
       console.error("ERROR - onConfirmOtp:", e);
     }

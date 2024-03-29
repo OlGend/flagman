@@ -8,9 +8,12 @@ export const useLanguage = () => useContext(LanguageContext);
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('ca'); 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem('country_brands');
-    if (storedLanguage) {
-      setLanguage(storedLanguage);
+    // Эта проверка гарантирует, что код внутри useEffect будет выполняться только в браузере
+    if (typeof window !== 'undefined') {
+      const storedLanguage = localStorage.getItem('country_brands');
+      if (storedLanguage) {
+        setLanguage(storedLanguage);
+      }
     }
   }, []);
 

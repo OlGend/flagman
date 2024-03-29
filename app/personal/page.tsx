@@ -221,6 +221,7 @@ export default function Personal() {
         }}
       >
         <Tabs
+        className="tabs_pagination"
           orientation="vertical"
           variant="scrollable"
           value={tab}

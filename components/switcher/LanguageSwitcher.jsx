@@ -138,7 +138,7 @@ const LanguageSwitcher = () => {
   return (
     <div className={`language-switcher ml-3 flex flex-col`}>
       <select
-        className={`desctoplang ${selectedLanguage}`}
+        className={`desktop-lang ${selectedLanguage}`}
         value={selectedLanguage}
         onChange={(e) => {
           const selected = newLng.find((lang) => lang.code === e.target.value);
@@ -158,27 +158,7 @@ const LanguageSwitcher = () => {
           </option>
         ))}
       </select>
-      <select
-        className={`mobilelang ${selectedLanguage}`}
-        value={selectedLanguage}
-        onChange={(e) => {
-          const selected = newLng.find((lang) => lang.code === e.target.value);
-          if (selected) {
-            changeLanguage(selected.code, selected.flag);
-          }
-        }}
-      >
-        {newLng.map((language) => (
-          <option
-            className={`${language.code} notranslate`}
-            key={language.code}
-            value={language.code}
-            style={{ fontSize: "20px" }}
-          >
-            {language.flag} {language.code.toLocaleUpperCase()}
-          </option>
-        ))}
-      </select>
+
       {isLoading && <Loader />}
     </div>
   );

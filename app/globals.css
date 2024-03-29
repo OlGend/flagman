@@ -9076,7 +9076,6 @@ input.error {
   display: flex;
   align-items: center;
   position: relative;
-  width: 99px; /* Регулируйте ширину по вашему усмотрению */
   font-family: Arial, sans-serif;
   margin-left: 16px;
   margin-right: 16px;
@@ -9127,5 +9126,39 @@ input.error {
 /* Активный язык */
 .language-switcher select option:checked {
   background-color: #0967e3;
+  color: #fff;
+}
+@media (min-width: 320px) and (max-width: 1259px) {
+  .page-fortune {
+    padding-top: 50px;
+  }
+  .mobile-switcher {
+    max-width: 110px;
+  }
+  .selectlang > div {
+    padding: 0px 10px !important;
+  }
+  .flagflag {
+    font-size: 20px;
+    border-right: 1px solid #fff;
+    padding-top: 6px;
+  }
+  .flagflag2 {
+    font-size: 15px;
+    padding-top: 3px;
+  }
+ 
+  .tab_field {
+    display: flex;
+    flex-direction: column;
+  }
+  .tabs_pagination>div div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow-y: scroll;
+  }
+}
+.MuiStep-root span {
   color: #fff;
 }

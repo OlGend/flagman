@@ -64,7 +64,7 @@ export default function MultipleSelectPlaceholder() {
   ];
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mobile-switcher">
       <FormControl className="m-0 form-control" sx={{ m: 1, width: 300, mt: 3 }}>
         <Select
           className="selectlang"

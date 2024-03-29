@@ -7106,8 +7106,8 @@ p {
   background-position: top center !important;
 } */
 .topbr .review-bonus {
-  font-size: 22px !important;
-  line-height: 26px !important;
+  font-size: 18px !important;
+  line-height: 23px !important;
 }
 .filter-brands .card-brand-filtered .buttons {
   flex-direction: column;
@@ -7799,58 +7799,7 @@ p {
 .header__bg {
   padding: 5px;
 }
-.language-switcher {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 99px; /* Регулируйте ширину по вашему усмотрению */
-  font-family: Arial, sans-serif;
-}
 
-.language-switcher select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  padding: 6px 20px 5px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  width: 100%;
-  cursor: pointer;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.144);
-  background-color: #051bad;
-  outline: none;
-}
-
-.language-switcher select:focus {
-  outline: none;
-  border-color: #0967e3;
-}
-
-/* Стили для стрелки выпадающего списка */
-.language-switcher select::-ms-expand {
-  display: none;
-}
-
-/* Стили для опций в выпадающем списке */
-.language-switcher select option {
-  font-size: 16px;
-  background-color: #fff;
-  color: #000;
-}
-
-/* При наведении на опцию */
-.language-switcher select option:hover {
-  background-color: #0967e3;
-  color: #fff;
-}
-
-/* Активный язык */
-.language-switcher select option:checked {
-  background-color: #0967e3;
-  color: #fff;
-}
 
 .page-post li {
   list-style-type: none;
@@ -9119,4 +9068,64 @@ input.error {
 }
 .selectlang svg {
   display: none !important;
+}
+.menu-modal {
+  padding: 15px;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 99px; /* Регулируйте ширину по вашему усмотрению */
+  font-family: Arial, sans-serif;
+  margin-left: 0;
+
+}
+.menu-modal div {
+  margin-top: 15px;
+}
+.language-switcher select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+ background: #f0f3f7;
+  padding: 5px 5px;
+  border: 1px solid rgba(123, 140, 152, 0.2);
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+}
+
+.language-switcher select:focus {
+  outline: none;
+  border-color: #0967e3;
+}
+
+/* Стили для стрелки выпадающего списка */
+.language-switcher select::-ms-expand {
+  display: none;
+}
+
+/* Стили для опций в выпадающем списке */
+.language-switcher select option {
+  font-size: 16px;
+  background-color: #fff;
+  color: #000;
+}
+
+/* При наведении на опцию */
+.language-switcher select option:hover {
+  background-color: #0967e3;
+  color: #fff;
+}
+
+/* Активный язык */
+.language-switcher select option:checked {
+  background-color: #0967e3;
+  color: #fff;
 }

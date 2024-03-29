@@ -63,13 +63,11 @@ export default function MultipleSelectPlaceholder() {
     { code: "all", label: "World", flag: "🌍" },
   ];
 
-  
-
   return (
     <div className="flex items-center">
-      <FormControl className="m-0" sx={{ m: 1, width: 300, mt: 3 }}>
+      <FormControl className="m-0 modal-menu" sx={{ m: 1, width: 300, mt: 3 }}>
         <Select
-        className="selectlang"
+          className="selectlang"
           multiple
           displayEmpty
           value={personName}
@@ -82,7 +80,9 @@ export default function MultipleSelectPlaceholder() {
               return (
                 <div className="flex items-center">
                   <em className="flagflag">{languageFlag}</em>
-                  <em className="flagflag2">{i18n.language ? i18n.language.toUpperCase() : ''}</em>
+                  <em className="flagflag2">
+                    {i18n.language ? i18n.language.toUpperCase() : ""}
+                  </em>
                 </div>
               );
             }
@@ -97,10 +97,16 @@ export default function MultipleSelectPlaceholder() {
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <BrandsSwitcher />
-          <LanguageSwitcher />
-          <MenuItem></MenuItem>
-          <MenuItem></MenuItem>
+          <div className="menu-modal">
+            <div>
+              <p>Your country of residence</p>
+              <BrandsSwitcher />
+            </div>
+            <div>
+              <p>Website language</p>
+              <LanguageSwitcher />
+            </div>
+          </div>
         </Select>
       </FormControl>
     </div>

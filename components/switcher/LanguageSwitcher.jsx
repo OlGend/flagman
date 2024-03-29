@@ -137,7 +137,6 @@ const LanguageSwitcher = () => {
 
   return (
     <div className={`language-switcher ml-3 flex flex-col`}>
-      <p className="headerText">Your country of residence</p>
       <select
         className={`desctoplang ${selectedLanguage}`}
         value={selectedLanguage}

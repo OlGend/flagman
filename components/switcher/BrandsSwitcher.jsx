@@ -33,8 +33,8 @@ const BrandsSwitcher = () => {
 
   const changeLanguage = (lng) => {
     setIsLoading(true);
-    setLanguage(lng); // Изменяем язык с помощью функции из контекста
-    localStorage.setItem("country_brands", lng); // Сохраняем в localStorage
+    setLanguage(lng); 
+    localStorage.setItem("country_brands", lng); 
     setIsLoading(false);
   };
 
@@ -105,8 +105,8 @@ const BrandsSwitcher = () => {
   return (
     <div className={`language-switcher ml-3 flex flex-col`}>
       <select
-        className={`desktop-lang ${language}`} // Используй language для класса
-        value={language} // Используй language как текущее значение
+        className={`desktop-lang ${language}`} 
+        value={language} 
         onChange={(e) => {
           const selected = availableLanguages.find(
             (lang) => lang.code === e.target.value

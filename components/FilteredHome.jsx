@@ -90,7 +90,7 @@ const FilteredHome = () => {
         </div>
 
         <div className="overlay-filter">
-          {/* {navigateBrands.map((item) => {
+          {navigateBrands.map((item) => {
             return (
               currentTab === item.currentTab && (
                 <AllBrands
@@ -100,7 +100,7 @@ const FilteredHome = () => {
                 />
               )
             );
-          })} */}
+          })}
         </div>
       </div>
     </div>

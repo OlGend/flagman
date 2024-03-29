@@ -1,8 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import Loader from "@/components/Loader";
-import useSWR from "swr";
 import { shuffle } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,14 +12,13 @@ import { useLanguage } from "@/components/switcher/LanguageContext";
 import { getBrands } from "@/components/getBrands/getBrands";
 
 export default function TopBrands() {
-  const [ipData, setIpData] = useState(null);
-  const [ipDataCode, setIpDataCode] = useState(null);
+
   const [newUrl, setNewUrl] = useState("");
   const [source, setSource] = useState("");
   const [loading, setLoading] = useState(true);
   const [brands, setBrands] = useState([]);
   const { language } = useLanguage(); 
-  const { t } = useTranslation();
+
 
   useEffect(() => {
     // Обновляем URL, удаляем параметры и устанавливаем source на основе localStorage

@@ -11,6 +11,7 @@ import Cards from "@/components/products/Cards";
 import {
   useQueryCoins,
   useQueryUser,
+  Coins,
   useQueryFee,
   useQueryEstimated,
 } from "@/queries";
@@ -26,6 +27,8 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import Loader from "@/components/Loader";
+import { Fetcher } from "@/components/Fetcher";
 
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
@@ -49,11 +52,19 @@ export default function Personal() {
     refetch: refetchCoins,
   } = useQueryCoins();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [coin, setCoin] = useState(defaultCoin);
   const [amount, setAmount] = useState("");
-  const [walletAddress, setWalletAddress] = useState("");
+  const [walletAddress, setWalletAddress] = useState(
+    "TPAi2YkH4CvP92uADDFa5rgit5XZdV7NQ5"
+  );
   const [step, setStep] = useState(defaultStep);
   const [tab, setTab] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const onChangePhoneNumber = (nextPhoneNumber: string) => {
+    setPhoneNumber(nextPhoneNumber);
+  };
 
   const {
     data: fee,
@@ -101,11 +112,14 @@ export default function Personal() {
   };
 
   const goToWalletAddressStep = async () => {
+    setIsLoading(true);
     try {
       await refetchFee();
       await refetchEstimatedAmount();
       onChangeStep(step + 1);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       // TODO: add error handler
     }
   };
@@ -146,13 +160,18 @@ export default function Personal() {
     resetEstimatedAmount();
   };
 
-  // const finalSum = estimatedAmount - fee;
+  const getWalletAddressStepDescription = () => {
+    if (!fee || !estimatedAmount) return;
+    const receive = Number(estimatedAmount) - fee;
+    return `Fee: ${fee} ${coin}, You will receive on balance: ${receive} ${coin}`;
+  };
 
-  const getSteps = (user: User | null) => {
+  const getSteps = (user: User, coins: Coins["selectedCurrencies"]) => {
     const initialSteps = [
       {
         label: "Payment Method",
-        description: "Select one of the withdrawal methods and enter the withdrawal amount",
+        description:
+          "Select one of the withdrawal methods and enter the withdrawal amount",
         content: (
           <PaymentMethodStep
             coin={coin}
@@ -168,7 +187,7 @@ export default function Personal() {
       },
       {
         label: "Wallet Address",
-        description: `Fee: ${fee} ${coin}, You will receive on balance: ${estimatedAmount} ${coin}`,
+        description: getWalletAddressStepDescription(),
         content: (
           <WalletAddressStep
             coin={coin}
@@ -184,21 +203,25 @@ export default function Personal() {
 
       {
         label: "Finally Step",
-        description: "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands",
+        description:
+          "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands",
         content: <FinallyStep text="" onFinish={onFinish} />,
       },
     ];
 
-    if (!user?.phone_number) {
+    if (!user.phone_number) {
       initialSteps.splice(2, 0, {
         label: "Phone Number",
-        description: "To create a transfer, we need to verify your phone number",
+        description:
+          "To create a transfer, we need to verify your phone number",
         content: (
           <PhoneNumberStep
             step={step}
             onChangeStep={onChangeStep}
             onConfirm={onConfirm}
             user={user}
+            phoneNumber={phoneNumber}
+            onChangePhoneNumber={onChangePhoneNumber}
           />
         ),
       });
@@ -207,56 +230,73 @@ export default function Personal() {
     return initialSteps;
   };
 
-  const steps = getSteps(user);
-
   return (
     <div className="page-personal main__container pb-10">
-      <Box
-        className="tab_field"
-        sx={{
-          flexGrow: 1,
-          bgcolor: "background.paper",
-          display: "flex",
-          height: "100%",
+      <Fetcher
+        payload={[user, coins]}
+        loading={userLoading || coinsLoading}
+        loader={<Loader />}
+        error={userError || coinsError}
+        onReload={() => {
+          refetchUser();
+          refetchCoins();
         }}
-      >
-        <Tabs
-        className="tabs_pagination"
-          orientation="vertical"
-          variant="scrollable"
-          value={tab}
-          onChange={onChangeTab}
-          sx={{ borderRight: 1, borderColor: "divider" }}
-        >
-          <Tab label="Withdrawal Request" />
-          <Tab label="Withdrawal History" />
-          <Tab label="Cards Shop" />
-        </Tabs>
-        <TabPanel className="tab_panel" value={tab} index={0}>
-          <Stepper
-            activeStep={step}
-            orientation="vertical"
-            sx={{ width: "100%" }}
-            className="stepper"
-          >
-            {steps.map((step) => (
-              <Step key={step.label}>
-                <StepLabel>{step.label}</StepLabel>
-                <StepContent>
-                  <Typography>{step.description}</Typography>
-                  {step.content}
-                </StepContent>
-              </Step>
-            ))}
-          </Stepper>
-        </TabPanel>
-        <TabPanel className="tab_panel" value={tab} index={1}>
-          <PaymentHistory statusPayment={user?.status_payment} />
-        </TabPanel>
-        <TabPanel className="tab_panel" value={tab} index={2}>
-          <Cards user={user} onFinish={onFinish} />
-        </TabPanel>
-      </Box>
+        render={([user, coins]) => {
+          const steps = getSteps(user, coins);
+
+          return (
+            <Box
+              className="tab_field"
+              sx={{
+                flexGrow: 1,
+                bgcolor: "background.paper",
+                display: "flex",
+                height: "100%",
+              }}
+            >
+              <Tabs
+                className="tabs_pagination"
+                orientation="vertical"
+                variant="scrollable"
+                value={tab}
+                onChange={onChangeTab}
+                sx={{ borderRight: 1, borderColor: "divider" }}
+              >
+                <Tab label="Withdrawal Request" />
+                <Tab label="Withdrawal History" />
+                <Tab label="Cards Shop" />
+              </Tabs>
+              <TabPanel className="tab_panel" value={tab} index={0}>
+                <Stepper
+                  activeStep={step}
+                  orientation="vertical"
+                  sx={{ width: "100%" }}
+                  className="stepper"
+                >
+                  {steps.map((step) => (
+                    <Step key={step.label}>
+                      <StepLabel>{step.label}</StepLabel>
+                      <StepContent>
+                        <Typography>{step.description}</Typography>
+                        {step.content}
+                      </StepContent>
+                    </Step>
+                  ))}
+                </Stepper>
+              </TabPanel>
+              <TabPanel className="tab_panel" value={tab} index={1}>
+                <PaymentHistory statusPayment={user.status_payment} />
+              </TabPanel>
+              <TabPanel className="tab_panel" value={tab} index={2}>
+                <Cards user={user} onFinish={onFinish} />
+              </TabPanel>
+
+              {isLoading && <Loader />}
+            </Box>
+          );
+        }}
+      />
+
       {/* <Withdrawal /> */}
     </div>
   );

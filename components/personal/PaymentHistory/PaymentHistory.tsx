@@ -138,7 +138,7 @@ function EnhancedTableHead({
 }
 
 type PaymentHistoryProps = {
-  statusPayment: string | null | undefined;
+  statusPayment: string | null;
 };
 
 export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
@@ -236,7 +236,7 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
 const CustomTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: "#F0F3F7",
-  }
+  },
 }));
 const WaitingStatusCell = styled(TableCell)(({ theme }) => ({
   color: "#BC7710",
@@ -248,5 +248,3 @@ const ActiveStatusCell = styled(TableCell)(({ theme }) => ({
 const CustomPaper = styled(Paper)(({ theme }) => ({
   boxShadow: "none",
 }));
-
-

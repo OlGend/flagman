@@ -12,11 +12,9 @@ export const useMutationSaveUserPhoneNumber = () => {
     user,
     phoneNumber,
   }: {
-    user: User | null;
+    user: User;
     phoneNumber: string;
   }) => {
-    if (!user) throw new Error();
-
     setSuccess(null);
     setLoading(true);
     setError(false);

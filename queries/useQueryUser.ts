@@ -12,7 +12,7 @@ const getUserId = () => {
 
 export const useQueryUser = () => {
   const [data, setData] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

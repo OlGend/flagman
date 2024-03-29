@@ -13,9 +13,9 @@ import type { User } from "@/interfaces/user";
 
 type PaymentMethodStepProps = {
   coin: string;
-  coins: string[] | null;
+  coins: string[];
   amount: string;
-  user: User | null;
+  user: User;
   step: number;
   onChangeCoin: (e: SelectChangeEvent<string>) => void;
   onChangeAmount: (
@@ -49,11 +49,11 @@ export const PaymentMethodStep = ({
   onChangeStep,
 }: PaymentMethodStepProps) => {
   const isLessThanFour = Number(amount) < MIN_AMOUNT;
-  const isMoreThanUserBalance = Number(amount) > Number(user?.balance);
+  const isMoreThanUserBalance = Number(amount) > Number(user.balance);
 
-  const isTextFieldError =
-    !!amount && (isLessThanFour || isMoreThanUserBalance);
-  const isButtonDisabled = !amount || isLessThanFour || isMoreThanUserBalance;
+  const isButtonNextStepDisabled =
+    !amount || isLessThanFour || isMoreThanUserBalance;
+  const error = !!amount && (isLessThanFour || isMoreThanUserBalance);
   const helperText = getHelperText(
     amount,
     isLessThanFour,
@@ -62,8 +62,12 @@ export const PaymentMethodStep = ({
 
   return (
     <StyledDiv>
-      <Select className={`select_coins ${coin}`} value={coin} onChange={onChangeCoin}>
-        {coins?.map((coin) => (
+      <Select
+        className={`select_coins ${coin}`}
+        value={coin}
+        onChange={onChangeCoin}
+      >
+        {coins.map((coin) => (
           <MenuItem className={`${coin}`} key={coin} value={coin}>
             {coin}
           </MenuItem>
@@ -75,7 +79,7 @@ export const PaymentMethodStep = ({
         value={amount}
         onChange={onChangeAmount}
         type="number"
-        error={isTextFieldError}
+        error={error}
         helperText={helperText}
         sx={{
           "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
@@ -93,7 +97,7 @@ export const PaymentMethodStep = ({
           className="btn-primary"
           variant="contained"
           onClick={onChangeStep}
-          disabled={isButtonDisabled}
+          disabled={isButtonNextStepDisabled}
         >
           Next step
         </Button>

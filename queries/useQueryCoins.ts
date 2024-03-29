@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type Coins = {
+export type Coins = {
   selectedCurrencies: string[];
 };
 
@@ -8,7 +8,7 @@ const apiKey = "MG5SRC6-HFBMACK-MMSR9QW-1EST6QC";
 
 export const useQueryCoins = () => {
   const [data, setData] = useState<Coins["selectedCurrencies"] | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

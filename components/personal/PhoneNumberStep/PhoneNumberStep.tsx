@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Dialog } from "@mui/material";
 import { MuiTelInput, MuiTelInputCountry } from "mui-tel-input";
 import { useState } from "react";
 import { styled } from "@mui/system";
@@ -14,31 +14,42 @@ type PhoneNumberStepProps = {
   step: number;
   onChangeStep: (nextStep: number) => void;
   onConfirm: () => Promise<void>;
-  user: User | null;
+  user: User;
+  phoneNumber: string;
+  onChangePhoneNumber: (nextPhoneNumber: string) => void;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
 
-type ConfirmOtpResponse = {
+type Status = {
   status: "EXPIRED" | "APPROVED";
 };
+
+type Message = {
+  message: string;
+};
+
+type ConfirmOtpResponse = Status | Message;
+
+const hasConfirmOtpResponseStatus = (
+  response: ConfirmOtpResponse
+): response is Status => "status" in response;
 
 export const PhoneNumberStep = ({
   step,
   onChangeStep,
   onConfirm,
   user,
+  phoneNumber,
+  onChangePhoneNumber,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
     | undefined;
 
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-
-  const onChangePhoneNumber = (nextPhoneNumber: string) => {
-    setPhoneNumber(nextPhoneNumber);
-  };
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [otpMessage, setOtpMessage] = useState("");
 
   const [
     saveUserPhoneNumber,
@@ -61,8 +72,20 @@ export const PhoneNumberStep = ({
     },
   ] = useMutationSendUserPhoneNumber();
 
+  const onSendUserPhoneNumber = async (phoneNumber: string) => {
+    setOtp("");
+    setOtpMessage("");
+    try {
+      await sendUserPhoneNumber({ phoneNumber });
+      setIsDialogOpen(true);
+    } catch (e) {
+      // TODO: add error handler
+    }
+  };
+
   const onConfirmOtp = async () => {
     if (!sendUserPhoneNumberData) return;
+    setOtpMessage("");
     try {
       const response = await fetch(
         "https://pickbonus.myawardwallet.com/api/user/send_code.php",
@@ -79,15 +102,30 @@ export const PhoneNumberStep = ({
       );
 
       const data: ConfirmOtpResponse = await response.json();
-      // throw new Error("");
 
-      if (response.ok && data.status === "APPROVED") {
+      if (hasConfirmOtpResponseStatus(data) && data.status === "APPROVED") {
         await saveUserPhoneNumber({ user, phoneNumber });
         await onConfirm();
+        onCloseDialog();
+        return;
+      }
+
+      if (hasConfirmOtpResponseStatus(data) && data.status === "EXPIRED") {
+        setOtpMessage("Your OTP expired");
+        return;
+      }
+
+      if (!hasConfirmOtpResponseStatus(data)) {
+        setOtpMessage(data.message);
       }
     } catch (e) {
+      setOtpMessage("Something wrong, try again!");
       console.error("ERROR - onConfirmOtp:", e);
     }
+  };
+
+  const onCloseDialog = () => {
+    setIsDialogOpen(false);
   };
 
   const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
@@ -115,21 +153,32 @@ export const PhoneNumberStep = ({
           className="btn-primary absolute right-2 btn-radius"
           variant="contained"
           onClick={() => {
-            sendUserPhoneNumber({ phoneNumber });
+            onSendUserPhoneNumber(phoneNumber);
           }}
         >
           Send code
         </StyledButton>
       </StyledBoxTel>
 
-      <StyledBox>
-        <OTP
-          length={DEFAULT_OTP_LENGTH}
-          value={otp}
-          onChange={setOtp}
-          separator=""
-        />
-      </StyledBox>
+      <Dialog open={isDialogOpen} onClose={onCloseDialog}>
+        <StyledBox>
+          <OTP
+            length={DEFAULT_OTP_LENGTH}
+            value={otp}
+            onChange={setOtp}
+            separator=""
+          />
+        </StyledBox>
+        {otpMessage && <div>{otpMessage}</div>}
+        <Button
+          className="btn-primary"
+          variant="contained"
+          onClick={onConfirmOtp}
+          disabled={isButtonContinueDisabled}
+        >
+          Continue
+        </Button>
+      </Dialog>
 
       <Box>
         <Button
@@ -140,14 +189,6 @@ export const PhoneNumberStep = ({
           }}
         >
           Prev step
-        </Button>
-        <Button
-          className="btn-primary"
-          variant="contained"
-          onClick={onConfirmOtp}
-          disabled={isButtonContinueDisabled}
-        >
-          Continue
         </Button>
       </Box>
     </StyledDiv>

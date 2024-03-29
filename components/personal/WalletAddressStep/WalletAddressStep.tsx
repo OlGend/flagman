@@ -3,6 +3,7 @@ import { ChangeEvent } from "react";
 import { styled } from "@mui/system";
 import type { User } from "@/interfaces/user";
 import { useMutationWalletAddressValidate } from "@/queries";
+import Loader from "@/components/Loader";
 
 type WalletAddressStepProps = {
   coin: string;
@@ -13,7 +14,7 @@ type WalletAddressStepProps = {
   ) => void;
   onChangeStep: (nextStep: number) => void;
   onConfirm: () => Promise<void>;
-  user: User | null;
+  user: User;
 };
 
 export const WalletAddressStep = ({
@@ -25,19 +26,21 @@ export const WalletAddressStep = ({
   onConfirm,
   user,
 }: WalletAddressStepProps) => {
-  const {
-    data: isWalletAddressValid,
-    loading: walletAddressValidateLoading,
-    error: walletAddressValidateError,
-    errorMessage: walletAddressValidateErrorMessage,
-    refetch: refetchWalletAddressValidate,
-  } = useMutationWalletAddressValidate(coin, walletAddress);
+  const [
+    walletAddressValidate,
+    {
+      data: isWalletAddressValid,
+      loading: isWalletAddressValidateLoading,
+      error: isWalletAddressValidateError,
+      message: walletAddressValidateMessage,
+    },
+  ] = useMutationWalletAddressValidate(coin, walletAddress);
 
   const setNextStep = async () => {
-    const response = await refetchWalletAddressValidate();
+    const response = await walletAddressValidate();
     if (!response) return;
 
-    if (!user?.phone_number) {
+    if (!user.phone_number) {
       onChangeStep(step + 1);
       return;
     }
@@ -45,17 +48,19 @@ export const WalletAddressStep = ({
     await onConfirm();
   };
 
-  const isButtonDisabled = !walletAddress;
-  const isError = isWalletAddressValid !== null && !isWalletAddressValid;
+  const isButtonNextStepDisabled = !walletAddress;
+  const isError =
+    (isWalletAddressValid !== null && !isWalletAddressValid) ||
+    isWalletAddressValidateError;
 
   return (
     <StyledDiv>
       <TextField
-      className="input_address"
+        className="input_address"
         value={walletAddress}
         onChange={onChangeWalletAddress}
         error={isError}
-        helperText={walletAddressValidateErrorMessage}
+        helperText={walletAddressValidateMessage}
         fullWidth
         sx={{
           "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
@@ -81,11 +86,13 @@ export const WalletAddressStep = ({
           className="btn-primary"
           variant="contained"
           onClick={setNextStep}
-          disabled={isButtonDisabled}
+          disabled={isButtonNextStepDisabled}
         >
           Next step
         </Button>
       </Box>
+
+      {isWalletAddressValidateLoading && <Loader />}
     </StyledDiv>
   );
 };

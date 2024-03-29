@@ -2,10 +2,7 @@
 import { Metadata } from "next";
 import TopBrands from "@/components/TopBrands";
 
-
-
 import FilteredHome from "@/components/FilteredHome";
-
 
 export const metadata: Metadata = {
   title:
@@ -18,10 +15,9 @@ export default async function Home() {
   return (
     <>
       {/* <PreviewHome /> */}
-   
-        <TopBrands />
-   
-  
+
+      {/* <TopBrands /> */}
+
       <div className="background-block">
         <FilteredHome />
         {/* <NewBrands /> */}

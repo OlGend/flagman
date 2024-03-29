@@ -17,46 +17,54 @@ export const useMutationWalletAddressValidate = (
   const [data, setData] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState("");
 
-  const getData = async () => {
+  const mutation = async () => {
     setLoading(true);
     setError(false);
-    setErrorMessage(null);
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "x-api-key": apiKey,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        address: walletAddress,
-        currency: coin,
-      }),
-    });
+    setMessage("");
 
     try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "x-api-key": apiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          address: walletAddress,
+          currency: coin,
+        }),
+      });
+
+      if (response.ok) {
+        setData(true);
+        setLoading(false);
+        return true;
+      }
+
       const data: WalletAddressValidate = await response.json();
+
       setData(data.status);
       setLoading(false);
-      setError(true);
-      setErrorMessage("Invalid payout address, try again!");
+      setMessage("Invalid payout address, try again!");
       return data.status;
     } catch (error) {
-      setData(true);
+      setData(null);
       setLoading(false);
-      setError(false);
-      setErrorMessage(null);
-      return true;
+      setError(true);
+      setMessage("Something wrong, try again!");
+      return false;
     }
   };
 
-  return {
-    data,
-    loading,
-    error,
-    errorMessage,
-    refetch: getData,
-  };
+  return [
+    mutation,
+    {
+      data,
+      loading,
+      error,
+      message,
+    },
+  ] as const;
 };

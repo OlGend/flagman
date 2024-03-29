@@ -16,7 +16,7 @@ export default async function Home() {
     <>
       {/* <PreviewHome /> */}
 
-      {/* <TopBrands /> */}
+      <TopBrands />
 
       <div className="background-block">
         <FilteredHome />

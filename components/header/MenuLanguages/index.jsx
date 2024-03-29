@@ -65,7 +65,7 @@ export default function MultipleSelectPlaceholder() {
 
   return (
     <div className="flex items-center">
-      <FormControl className="m-0 modal-menu" sx={{ m: 1, width: 300, mt: 3 }}>
+      <FormControl className="m-0 form-control" sx={{ m: 1, width: 300, mt: 3 }}>
         <Select
           className="selectlang"
           multiple
@@ -97,16 +97,12 @@ export default function MultipleSelectPlaceholder() {
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <div className="menu-modal">
-            <div>
-              <p>Your country of residence</p>
-              <BrandsSwitcher />
-            </div>
-            <div>
-              <p>Website language</p>
-              <LanguageSwitcher />
-            </div>
-          </div>
+      
+            <p className="ml-4 mr-4 mt-4">Your country of residence</p>
+            <BrandsSwitcher  />
+            <p className="ml-4 mr-4">Website language</p>
+            <LanguageSwitcher />
+
         </Select>
       </FormControl>
     </div>

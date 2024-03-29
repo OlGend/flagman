@@ -7800,7 +7800,6 @@ p {
   padding: 5px;
 }
 
-
 .page-post li {
   list-style-type: none;
   padding-left: 15px;
@@ -9069,7 +9068,7 @@ input.error {
 .selectlang svg {
   display: none !important;
 }
-.menu-modal {
+.selectlang ul {
   padding: 15px;
 }
 
@@ -9079,8 +9078,9 @@ input.error {
   position: relative;
   width: 99px; /* Регулируйте ширину по вашему усмотрению */
   font-family: Arial, sans-serif;
-  margin-left: 0;
-
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 .menu-modal div {
   margin-top: 15px;
@@ -9089,7 +9089,7 @@ input.error {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
- background: #f0f3f7;
+  background: #f0f3f7;
   padding: 5px 5px;
   border: 1px solid rgba(123, 140, 152, 0.2);
   font-size: 20px;

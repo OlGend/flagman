@@ -9,7 +9,9 @@ const BrandsSwitcher = () => {
 
   const ipData = async () => {
     try {
-      const response = await fetch("https://ipapi.co/json/?key=YD0x5VtXrPJkOcFQMjEyQgqjfM6jUcwS4J54b3DI8ztyrFpHzW");
+      const response = await fetch(
+        "https://ipapi.co/json/?key=YD0x5VtXrPJkOcFQMjEyQgqjfM6jUcwS4J54b3DI8ztyrFpHzW"
+      );
       const data = await response.json();
       if (data.country) {
         setLanguage(data.country.toLowerCase()); // Используй setLanguage из контекста
@@ -22,9 +24,11 @@ const BrandsSwitcher = () => {
       setLanguage("au"); // Установка значения по умолчанию в случае ошибки
     }
   };
-
   useEffect(() => {
-    ipData();
+    const savedLanguage = localStorage.getItem("country_brands");
+    if (!savedLanguage) {
+      ipData();
+    }
   }, []);
 
   const changeLanguage = (lng) => {
@@ -129,3 +133,4 @@ const BrandsSwitcher = () => {
 };
 
 export default BrandsSwitcher;
+

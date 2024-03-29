@@ -75,7 +75,7 @@ const TheHeader = () => {
           </div>
 
           <MenuLanguages />
-          <div>
+          <div className="d-none">
             <I18nextProvider i18n={i18n}>
               <div className="somelng">
                 <LanguageSwitcher />{" "}

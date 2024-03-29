@@ -9086,3 +9086,6 @@ input.error {
 .page-fortune .card-brand:nth-child(5n + 1) {
   margin-left: 0;
 }
+.d-none {
+  display: none;
+}

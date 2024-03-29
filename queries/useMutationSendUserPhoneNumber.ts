@@ -8,17 +8,15 @@ type Response = {
 
 export const useMutationSendUserPhoneNumber = () => {
   const [data, setData] = useState<Response["otp_id"] | null>(null);
-  const [success, setSuccess] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState("");
 
   const mutation = async ({ phoneNumber }: { phoneNumber: string }) => {
     setData(null);
-    setSuccess(null);
     setLoading(true);
     setError(false);
-    setErrorMessage(null);
+    setMessage("");
 
     try {
       const response = await fetch(
@@ -36,13 +34,11 @@ export const useMutationSendUserPhoneNumber = () => {
       if (!response.ok) throw new Error();
       const data: Response = await response.json();
       setData(data.otp_id);
-      setSuccess(true);
       setLoading(false);
     } catch (e) {
-      setSuccess(false);
       setLoading(false);
       setError(true);
-      setErrorMessage("Unexpected error, try again!");
+      setMessage("Something wrong, try again!");
     }
   };
 
@@ -50,10 +46,9 @@ export const useMutationSendUserPhoneNumber = () => {
     mutation,
     {
       data,
-      success,
       loading,
       error,
-      errorMessage,
+      message,
     },
   ] as const;
 };

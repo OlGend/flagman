@@ -1,18 +1,17 @@
-import { Typography, Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 type FinallyStepProps = {
   text: string;
-  onFinish: () => Promise<void>;
+  onClick: () => Promise<void>;
 };
 
-export const FinallyStep = ({ text, onFinish }: FinallyStepProps) => {
+export const FinallyStep = ({ text, onClick }: FinallyStepProps) => {
   return (
     <StyledDiv>
       <Typography>{text}</Typography>
-
       <Box>
-        <Button className="btn-primary" variant="contained" onClick={onFinish}>
+        <Button className="btn-primary" variant="contained" onClick={onClick}>
           Finish
         </Button>
       </Box>

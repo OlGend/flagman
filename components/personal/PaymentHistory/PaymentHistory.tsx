@@ -12,10 +12,10 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useState, MouseEvent } from "react";
+import { styled } from "@mui/material/styles";
 import { visuallyHidden } from "@mui/utils";
 import dayjs from "dayjs";
-import { styled } from "@mui/material/styles";
+import { MouseEvent, useState } from "react";
 
 type PaymentHistory = {
   USD: string;
@@ -158,12 +158,12 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
     setOrderBy(property);
   };
 
-  const onChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+  const onChangePage = (_e: unknown, nextPage: number) => {
+    setPage(nextPage);
   };
 
-  const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const onChangeRowsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(e.target.value, 10));
     setPage(0);
   };
 

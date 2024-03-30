@@ -1,30 +1,30 @@
-import { Box, Button, TextField } from "@mui/material";
-import { ChangeEvent } from "react";
-import { styled } from "@mui/system";
+import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
 import { useMutationWalletAddressValidate } from "@/queries";
-import Loader from "@/components/Loader";
+import { Box, Button, TextField } from "@mui/material";
+import { styled } from "@mui/system";
+import { ChangeEvent } from "react";
 
 type WalletAddressStepProps = {
+  user: User;
+  step: number;
   coin: string;
   walletAddress: string;
-  step: number;
+  onChangeStep: (nextStep: number) => void;
   onChangeWalletAddress: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onChangeStep: (nextStep: number) => void;
-  onConfirm: () => Promise<void>;
-  user: User;
+  onConfirm: (userId: User["id"]) => Promise<void>;
 };
 
 export const WalletAddressStep = ({
+  user,
+  step,
   coin,
   walletAddress,
-  step,
-  onChangeWalletAddress,
   onChangeStep,
+  onChangeWalletAddress,
   onConfirm,
-  user,
 }: WalletAddressStepProps) => {
   const [
     walletAddressValidate,
@@ -45,7 +45,7 @@ export const WalletAddressStep = ({
       return;
     }
 
-    await onConfirm();
+    await onConfirm(user.id);
   };
 
   const isButtonNextStepDisabled = !walletAddress;

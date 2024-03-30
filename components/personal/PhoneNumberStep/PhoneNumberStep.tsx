@@ -1,22 +1,23 @@
 import { Box, Button, Dialog } from "@mui/material";
+import { styled } from "@mui/system";
 import { MuiTelInput, MuiTelInputCountry } from "mui-tel-input";
 import { useState } from "react";
-import { styled } from "@mui/system";
 
-import { OTP } from "../OTP";
+import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
 import {
   useMutationSaveUserPhoneNumber,
   useMutationSendUserPhoneNumber,
 } from "@/queries";
+import { OTP } from "../OTP";
 
 type PhoneNumberStepProps = {
-  step: number;
-  onChangeStep: (nextStep: number) => void;
-  onConfirm: () => Promise<void>;
   user: User;
+  step: number;
   phoneNumber: string;
+  onChangeStep: (nextStep: number) => void;
   onChangePhoneNumber: (nextPhoneNumber: string) => void;
+  onConfirm: (userId: User["id"]) => Promise<void>;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -36,28 +37,27 @@ const hasConfirmOtpResponseStatus = (
 ): response is Status => "status" in response;
 
 export const PhoneNumberStep = ({
-  step,
-  onChangeStep,
-  onConfirm,
   user,
+  step,
   phoneNumber,
+  onChangeStep,
   onChangePhoneNumber,
+  onConfirm,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
     | undefined;
 
+  const [isLoading, setIsLoading] = useState(false);
   const [otp, setOtp] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [otpMessage, setOtpMessage] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [
     saveUserPhoneNumber,
     {
-      success: saveUserPhoneNumberSuccess,
-      loading: saveUserPhoneNumberLoading,
-      error: saveUserPhoneNumberError,
-      errorMessage: saveUserPhoneNumberErrorMessage,
+      loading: isSaveUserPhoneNumberLoading,
+      error: isEaveUserPhoneNumberError,
     },
   ] = useMutationSaveUserPhoneNumber();
 
@@ -65,26 +65,23 @@ export const PhoneNumberStep = ({
     sendUserPhoneNumber,
     {
       data: sendUserPhoneNumberData,
-      success: sendUserPhoneNumberSuccess,
-      loading: sendUserPhoneNumberLoading,
-      error: sendUserPhoneNumberError,
-      errorMessage: sendUserPhoneNumberErrorMessage,
+      loading: isSendUserPhoneNumberLoading,
+      error: isSendUserPhoneNumberError,
+      message: sendUserPhoneNumberMessage,
     },
   ] = useMutationSendUserPhoneNumber();
 
   const onSendUserPhoneNumber = async (phoneNumber: string) => {
     setOtp("");
     setOtpMessage("");
-    try {
-      await sendUserPhoneNumber({ phoneNumber });
-      setIsDialogOpen(true);
-    } catch (e) {
-      // TODO: add error handler
-    }
+    setIsDialogOpen(false);
+    await sendUserPhoneNumber({ phoneNumber });
+    setIsDialogOpen(true);
   };
 
   const onConfirmOtp = async () => {
     if (!sendUserPhoneNumberData) return;
+    setIsLoading(true);
     setOtpMessage("");
     try {
       const response = await fetch(
@@ -104,23 +101,28 @@ export const PhoneNumberStep = ({
       const data: ConfirmOtpResponse = await response.json();
 
       if (hasConfirmOtpResponseStatus(data) && data.status === "APPROVED") {
-        await saveUserPhoneNumber({ user, phoneNumber });
-        await onConfirm();
+        await saveUserPhoneNumber({ userId: user.id, phoneNumber });
+        await onConfirm(user.id);
         onCloseDialog();
+        setIsLoading(false);
         return;
       }
 
       if (hasConfirmOtpResponseStatus(data) && data.status === "EXPIRED") {
         setOtpMessage("Your OTP expired");
+        setIsLoading(false);
         return;
       }
 
       if (!hasConfirmOtpResponseStatus(data)) {
         setOtpMessage(data.message);
+        setIsLoading(false);
+        return;
       }
+      setIsLoading(false);
     } catch (e) {
       setOtpMessage("Something wrong, try again!");
-      console.error("ERROR - onConfirmOtp:", e);
+      setIsLoading(false);
     }
   };
 
@@ -129,6 +131,8 @@ export const PhoneNumberStep = ({
   };
 
   const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
+  const isLoaderShown =
+    isSendUserPhoneNumberLoading || isLoading || isSaveUserPhoneNumberLoading;
 
   return (
     <StyledDiv>
@@ -160,7 +164,10 @@ export const PhoneNumberStep = ({
         </StyledButton>
       </StyledBoxTel>
 
-      <Dialog open={isDialogOpen} onClose={onCloseDialog}>
+      <Dialog
+        open={isDialogOpen && !isSendUserPhoneNumberError}
+        onClose={onCloseDialog}
+      >
         <StyledBox>
           <OTP
             length={DEFAULT_OTP_LENGTH}
@@ -179,7 +186,7 @@ export const PhoneNumberStep = ({
           Continue
         </Button>
       </Dialog>
-
+      {sendUserPhoneNumberMessage && <div>{sendUserPhoneNumberMessage}</div>}
       <Box>
         <Button
           className="btn-primary"
@@ -191,6 +198,7 @@ export const PhoneNumberStep = ({
           Prev step
         </Button>
       </Box>
+      {isLoaderShown && <Loader />}
     </StyledDiv>
   );
 };

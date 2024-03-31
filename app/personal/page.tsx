@@ -2,7 +2,6 @@
 
 import { Fetcher } from "@/components/Fetcher";
 import Loader from "@/components/Loader";
-import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 import { FinallyStep } from "@/components/personal/FinallyStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
 import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
@@ -28,9 +27,6 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
-
-// import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
 const DEFAULT_COIN = "USDTTRC20";
 const DEFAULT_STEP = 0;
@@ -124,31 +120,6 @@ export default function Personal() {
     resetEstimatedAmount();
   };
 
-  // TODO: check and make better
-  const onConfirm = async (userId: User["id"]) => {
-    const body = JSON.stringify({
-      id: userId,
-      status_payment: JSON.stringify({
-        status: "Waiting",
-        timestamp: new Date().toISOString(),
-        paymentMethod: coin,
-        paymentSumIn: estimatedAmount,
-        paymentAddress: walletAddress,
-        USD: amount,
-      }),
-      sumMinus: amount,
-    });
-
-    try {
-      const response = await updateUserStatusPayment(body);
-      console.log("--- response ---", response);
-
-      onChangeStep(step + 1);
-    } catch (e) {
-      console.error("ERROR - onConfirm:", e);
-    }
-  };
-
   const getWalletAddressStepDescription = () => {
     if (!fee || !estimatedAmount) return;
     const receive = Number(estimatedAmount) - fee;
@@ -184,9 +155,10 @@ export default function Personal() {
             step={step}
             coin={coin}
             walletAddress={walletAddress}
+            amount={amount}
+            estimatedAmount={estimatedAmount}
             onChangeStep={onChangeStep}
             onChangeWalletAddress={onChangeWalletAddress}
-            onConfirm={onConfirm}
           />
         ),
       },
@@ -200,7 +172,7 @@ export default function Personal() {
     ];
 
     if (!user.phone_number) {
-      initialSteps.splice(2, 0, {
+      initialSteps.splice(1, 0, {
         label: "Phone Number",
         description:
           "To create a transfer, we need to verify your phone number",
@@ -211,7 +183,6 @@ export default function Personal() {
             phoneNumber={phoneNumber}
             onChangeStep={onChangeStep}
             onChangePhoneNumber={onChangePhoneNumber}
-            onConfirm={onConfirm}
           />
         ),
       });
@@ -251,39 +222,9 @@ export default function Personal() {
                   onChange={onChangeTab}
                   tabs={{
                     labels: [
-                      <Box
-                        key={1}
-                        component="span"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <Bank size={20} />
-                        <Typography component="span" marginLeft={1}>
-                          Withdrawal Request
-                        </Typography>
-                      </Box>,
-                      <Box
-                        key={2}
-                        component="span"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <ClockCounterClockwise size={20} />
-                        <Typography component="span" marginLeft={1}>
-                          Withdrawal History
-                        </Typography>
-                      </Box>,
-                      <Box
-                        key={3}
-                        component="span"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <ShoppingCart size={20} />
-                        <Typography component="span" marginLeft={1}>
-                          Cards Shop
-                        </Typography>
-                      </Box>,
+                      "Withdrawal Request",
+                      "Withdrawal History",
+                      "Cards Shop",
                     ],
                     content: [
                       <Stepper

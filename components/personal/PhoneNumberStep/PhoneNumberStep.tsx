@@ -17,7 +17,6 @@ type PhoneNumberStepProps = {
   phoneNumber: string;
   onChangeStep: (nextStep: number) => void;
   onChangePhoneNumber: (nextPhoneNumber: string) => void;
-  onConfirm: (userId: User["id"]) => Promise<void>;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -42,7 +41,6 @@ export const PhoneNumberStep = ({
   phoneNumber,
   onChangeStep,
   onChangePhoneNumber,
-  onConfirm,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -102,9 +100,9 @@ export const PhoneNumberStep = ({
 
       if (hasConfirmOtpResponseStatus(data) && data.status === "APPROVED") {
         await saveUserPhoneNumber({ userId: user.id, phoneNumber });
-        await onConfirm(user.id);
         onCloseDialog();
         setIsLoading(false);
+        onChangeStep(step + 1);
         return;
       }
 
@@ -156,7 +154,6 @@ export const PhoneNumberStep = ({
       </StyledBoxTel>
 
       <Dialog
-   
         open={isDialogOpen && !isSendUserPhoneNumberError}
         onClose={onCloseDialog}
       >
@@ -192,7 +189,6 @@ export const PhoneNumberStep = ({
       </Box>
       {isLoaderShown && <Loader />}
     </StyledDiv>
-    
   );
 };
 
@@ -226,5 +222,3 @@ const StyledBox = styled(Box)(
     padding: 16px;
   `
 );
-
-

@@ -1,20 +1,25 @@
 import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
-import { useMutationWalletAddressValidate } from "@/queries";
+import {
+  useMutationUpdatePayment,
+  useMutationWalletAddressValidate,
+} from "@/queries";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/system";
 import { ChangeEvent } from "react";
+// import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 
 type WalletAddressStepProps = {
   user: User;
   step: number;
   coin: string;
   walletAddress: string;
+  amount: string;
+  estimatedAmount: string | null;
   onChangeStep: (nextStep: number) => void;
   onChangeWalletAddress: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onConfirm: (userId: User["id"]) => Promise<void>;
 };
 
 export const WalletAddressStep = ({
@@ -22,9 +27,10 @@ export const WalletAddressStep = ({
   step,
   coin,
   walletAddress,
+  amount,
+  estimatedAmount,
   onChangeStep,
   onChangeWalletAddress,
-  onConfirm,
 }: WalletAddressStepProps) => {
   const [
     walletAddressValidate,
@@ -36,22 +42,36 @@ export const WalletAddressStep = ({
     },
   ] = useMutationWalletAddressValidate(coin, walletAddress);
 
+  const [
+    updatePayment,
+    {
+      loading: isUpdatePaymentLoading,
+      error: isUpdatePaymentError,
+      message: updatePaymentMessage,
+    },
+  ] = useMutationUpdatePayment(
+    user.id,
+    coin,
+    estimatedAmount,
+    walletAddress,
+    amount
+  );
+
   const setNextStep = async () => {
     const response = await walletAddressValidate();
     if (!response) return;
-
-    if (!user.phone_number) {
-      onChangeStep(step + 1);
-      return;
-    }
-
-    await onConfirm(user.id);
+    const isUpdated = await updatePayment();
+    if (!isUpdated) return;
+    onChangeStep(step + 1);
   };
 
   const isButtonNextStepDisabled = !walletAddress;
   const isError =
     (isWalletAddressValid !== null && !isWalletAddressValid) ||
-    isWalletAddressValidateError;
+    isWalletAddressValidateError ||
+    isUpdatePaymentError;
+  const isLoaderShown =
+    isWalletAddressValidateLoading || isUpdatePaymentLoading;
 
   return (
     <StyledDiv>
@@ -60,7 +80,7 @@ export const WalletAddressStep = ({
         value={walletAddress}
         onChange={onChangeWalletAddress}
         error={isError}
-        helperText={walletAddressValidateMessage}
+        helperText={walletAddressValidateMessage ?? updatePaymentMessage}
         fullWidth
       />
       <Box>
@@ -83,7 +103,7 @@ export const WalletAddressStep = ({
         </Button>
       </Box>
 
-      {isWalletAddressValidateLoading && <Loader />}
+      {isLoaderShown && <Loader />}
     </StyledDiv>
   );
 };

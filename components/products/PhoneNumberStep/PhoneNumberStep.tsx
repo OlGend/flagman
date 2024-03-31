@@ -19,7 +19,7 @@ type PhoneNumberStepProps = {
   onConfirm: () => Promise<void>;
   user: User | null;
   product: object;
-  setEmail: (email: string) => void; 
+  setEmail: (email: string) => void;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -34,7 +34,7 @@ export const PhoneNumberStep = ({
   onConfirm,
   user,
   product,
-  setEmail
+  setEmail,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -50,12 +50,7 @@ export const PhoneNumberStep = ({
 
   const [
     saveUserPhoneNumber,
-    {
-  
-      loading: saveUserPhoneNumberLoading,
-      error: saveUserPhoneNumberError,
-   
-    },
+    { loading: saveUserPhoneNumberLoading, error: saveUserPhoneNumberError },
   ] = useMutationSaveUserPhoneNumber();
 
   const [
@@ -65,7 +60,6 @@ export const PhoneNumberStep = ({
 
       loading: sendUserPhoneNumberLoading,
       error: sendUserPhoneNumberError,
-    
     },
   ] = useMutationSendUserPhoneNumber();
 
@@ -88,12 +82,13 @@ export const PhoneNumberStep = ({
 
       const data: ConfirmOtpResponse = await response.json();
       // throw new Error("");
-      const id = user.id;
+      if (user !== null) {
+        const id = user.id;
 
-      if (response.ok && data.status === "APPROVED" && user !== null) {
-        await saveUserPhoneNumber({ userId: id, phoneNumber });
-        // await onConfirm(id);
-        // window.location.reload();
+        if (response.ok && data.status === "APPROVED") {
+          await saveUserPhoneNumber({ userId: id, phoneNumber });
+          // другой код
+        }
       }
     } catch (e) {
       console.error("ERROR - onConfirmOtp:", e);
@@ -104,7 +99,6 @@ export const PhoneNumberStep = ({
   const [showOtp, setShowOtp] = useState(true);
   const [showProduct, setShowProduct] = useState(false);
   const [showPhone, setShowPhone] = useState(false);
-
 
   return (
     <StyledDiv>
@@ -174,59 +168,53 @@ export const PhoneNumberStep = ({
         </div>
       )}
       {showProduct && (
-          <Box className="flex flex-col items-center">
-            <Typography
-              className="text-center mb-2"
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-            >
-              Indicate the email address to which to send the card
-            </Typography>
+        <Box className="flex flex-col items-center">
+          <Typography
+            className="text-center mb-2"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
+            Indicate the email address to which to send the card
+          </Typography>
 
-            <OutlinedInput
- 
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <OutlinedInput onChange={(e) => setEmail(e.target.value)} />
 
-            <Button
-              className="btn btn-primary mt-4"
-              onClick={async () => {
-                await onConfirm(user.id);
-              }}
-              variant="contained"
-            >
-              Confirm
-            </Button>
-          </Box>
-        )}
-         {user?.phone_number && (
-          <Box className="flex flex-col items-center">
-            <Typography
-              className="text-center mb-2"
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-            >
-              Indicate the email address to which to send the card
-            </Typography>
+          <Button
+            className="btn btn-primary mt-4"
+            onClick={async () => {
+              await onConfirm(user.id);
+            }}
+            variant="contained"
+          >
+            Confirm
+          </Button>
+        </Box>
+      )}
+      {user?.phone_number && (
+        <Box className="flex flex-col items-center">
+          <Typography
+            className="text-center mb-2"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
+            Indicate the email address to which to send the card
+          </Typography>
 
-            <OutlinedInput
- 
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <OutlinedInput onChange={(e) => setEmail(e.target.value)} />
 
-            <Button
-              className="btn btn-primary mt-4"
-              onClick={async () => {
-                await onConfirm(user.id);
-              }}
-              variant="contained"
-            >
-              Confirm
-            </Button>
-          </Box>
-        )}
+          <Button
+            className="btn btn-primary mt-4"
+            onClick={async () => {
+              await onConfirm(user.id);
+            }}
+            variant="contained"
+          >
+            Confirm
+          </Button>
+        </Box>
+      )}
     </StyledDiv>
   );
 };

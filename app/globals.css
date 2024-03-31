@@ -8984,7 +8984,7 @@ input.error {
   outline: none !important;
 }
 .tab_field {
-  border-radius: 8px;
+  border-radius: 0 8px 8px 8px;
 }
 
 .LTC {
@@ -9151,6 +9151,9 @@ input.error {
     display: flex;
     flex-direction: column;
   }
+  .title-balance {
+    min-width: 208px;
+  }
   .tabs_pagination > div div {
     display: flex;
     flex-direction: row;
@@ -9158,7 +9161,7 @@ input.error {
     overflow-y: scroll;
     border: 1px solid rgba(123, 140, 152, 0.2);
     background: #f0f3f7;
-    border-radius: 8px 8px 0 0;
+    border-radius: 0px 8px 0 0;
     scroll-snap-type: x mandatory;
   }
   .tabs_pagination > div div button {
@@ -9179,6 +9182,9 @@ input.error {
   }
   .page-personal img {
     margin-right: 10px;
+  }
+  .modal-mui>.MuiBox-root {
+    width: 95%;
   }
 }
 .mobile-wrap {
@@ -9218,8 +9224,18 @@ input.error {
 }
 
 .modal-mui>.MuiBox-root {
- width: 95%;
+ 
  padding: 16px;
  border-radius: 8px;
  border: none;
+}
+.title-balance {
+  min-width: 210px;
+  max-width: 210px;
+  background: #07b963;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 5px 5px 0 0;
+  display: inline-block;
+  font-size: 18px;
 }

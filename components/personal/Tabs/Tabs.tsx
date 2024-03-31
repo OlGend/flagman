@@ -28,7 +28,7 @@ export const Tabs = ({ value, onChange, tabs }: TabsProps) => {
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
         {tabs.labels.map((label) => (
-          <MuiTab className="tab-label" key={label} label={label} />
+          <MuiTab className="tab-label" key={0} label={label} />
         ))}
       </MuiTabs>
       {tabs.content.map((content, idx) => (

@@ -235,66 +235,84 @@ export default function Personal() {
           const steps = getSteps(user, coins);
 
           return (
-            <Box
-              className="tab_field"
-              sx={{
-                flexGrow: 1,
-                bgcolor: "background.paper",
-                display: "flex",
-                height: "100%",
-              }}
-            >
-              <Tabs
-                value={tab}
-                onChange={onChangeTab}
-                tabs={{
-                  labels: [
-                    <Box key={1} component="span" display="flex" alignItems="center">
-                      <Bank size={20} />
-                      <Typography component="span" marginLeft={1}>
-                        Withdrawal Request
-                      </Typography>
-                    </Box>,
-                    <Box key={2} component="span" display="flex" alignItems="center">
-                      <ClockCounterClockwise size={20} />
-                      <Typography component="span" marginLeft={1}>
-                        Withdrawal History
-                      </Typography>
-                    </Box>,
-                    <Box key={3} component="span" display="flex" alignItems="center">
-                      <ShoppingCart size={20} />
-                      <Typography component="span" marginLeft={1}>
-                        Cards Shop
-                      </Typography>
-                    </Box>
-                  ],
-                  content: [
-                    <Stepper
-                      key="withdrawalRequest"
-                      activeStep={step}
-                      orientation="vertical"
-                      sx={{ width: "100%" }}
-                      className="stepper"
-                    >
-                      {steps.map((step) => (
-                        <Step key={step.label}>
-                          <StepLabel>{step.label}</StepLabel>
-                          <StepContent>
-                            <Typography>{step.description}</Typography>
-                            {step.content}
-                          </StepContent>
-                        </Step>
-                      ))}
-                    </Stepper>,
-                    <PaymentHistory
-                      key="withdrawalHistory"
-                      statusPayment={user.status_payment}
-                    />,
-                    <Cards key="cardsShop" user={user} onFinish={onFinish} />,
-                  ],
+            <div>
+              <h2 className="title-balance">Your balance: {user.balance}$</h2>
+              <Box
+                className="tab_field"
+                sx={{
+                  flexGrow: 1,
+                  bgcolor: "background.paper",
+                  display: "flex",
+                  height: "100%",
                 }}
-              />
-            </Box>
+              >
+                <Tabs
+                  value={tab}
+                  onChange={onChangeTab}
+                  tabs={{
+                    labels: [
+                      <Box
+                        key={1}
+                        component="span"
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <Bank size={20} />
+                        <Typography component="span" marginLeft={1}>
+                          Withdrawal Request
+                        </Typography>
+                      </Box>,
+                      <Box
+                        key={2}
+                        component="span"
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <ClockCounterClockwise size={20} />
+                        <Typography component="span" marginLeft={1}>
+                          Withdrawal History
+                        </Typography>
+                      </Box>,
+                      <Box
+                        key={3}
+                        component="span"
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <ShoppingCart size={20} />
+                        <Typography component="span" marginLeft={1}>
+                          Cards Shop
+                        </Typography>
+                      </Box>,
+                    ],
+                    content: [
+                      <Stepper
+                        key="withdrawalRequest"
+                        activeStep={step}
+                        orientation="vertical"
+                        sx={{ width: "100%" }}
+                        className="stepper"
+                      >
+                        {steps.map((step) => (
+                          <Step key={step.label}>
+                            <StepLabel>{step.label}</StepLabel>
+                            <StepContent>
+                              <Typography>{step.description}</Typography>
+                              {step.content}
+                            </StepContent>
+                          </Step>
+                        ))}
+                      </Stepper>,
+                      <PaymentHistory
+                        key="withdrawalHistory"
+                        statusPayment={user.status_payment}
+                      />,
+                      <Cards key="cardsShop" user={user} onFinish={onFinish} />,
+                    ],
+                  }}
+                />
+              </Box>
+            </div>
           );
         }}
       />

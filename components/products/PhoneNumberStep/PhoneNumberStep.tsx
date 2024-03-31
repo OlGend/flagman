@@ -213,7 +213,7 @@ export const PhoneNumberStep = ({
             className="btn btn-primary mt-4"
             onClick={async () => {
               if (user !== null) {
-                await onConfirm(user.id);
+                await onConfirm();
               } else {
                 // Обработай ситуацию, когда user === null
                 console.error("User is null");

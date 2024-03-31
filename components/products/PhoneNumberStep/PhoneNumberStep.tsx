@@ -54,7 +54,7 @@ export const PhoneNumberStep = ({
   
       loading: saveUserPhoneNumberLoading,
       error: saveUserPhoneNumberError,
-      errorMessage: saveUserPhoneNumberErrorMessage,
+   
     },
   ] = useMutationSaveUserPhoneNumber();
 
@@ -65,7 +65,7 @@ export const PhoneNumberStep = ({
 
       loading: sendUserPhoneNumberLoading,
       error: sendUserPhoneNumberError,
-      errorMessage: sendUserPhoneNumberErrorMessage,
+    
     },
   ] = useMutationSendUserPhoneNumber();
 

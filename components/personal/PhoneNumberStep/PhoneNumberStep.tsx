@@ -143,15 +143,6 @@ export const PhoneNumberStep = ({
           onChange={onChangePhoneNumber}
           defaultCountry={defaultCountry}
           fullWidth
-          sx={{
-            "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
-              {
-                "-webkit-appearance": "none",
-              },
-            "& input[type=number]": {
-              "-moz-appearance": "textfield",
-            },
-          }}
         />
         <StyledButton
           className="btn-primary absolute right-2 btn-radius"
@@ -232,3 +223,5 @@ const StyledBox = styled(Box)(
     justify-content: center;
   `
 );
+
+

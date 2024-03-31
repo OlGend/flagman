@@ -8886,7 +8886,7 @@ input.error {
 /* /////CARD */
 .cards > div {
   /* margin-right: auto; */
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 /* .cards>div:nth-child(3n + 3) {
   margin-right: 0;
@@ -9141,24 +9141,66 @@ input.error {
   .flagflag {
     font-size: 20px;
     border-right: 1px solid #fff;
-    padding-top: 6px;
   }
   .flagflag2 {
     font-size: 15px;
     padding-top: 3px;
   }
- 
+
   .tab_field {
     display: flex;
     flex-direction: column;
   }
-  .tabs_pagination>div div {
+  .tabs_pagination > div div {
     display: flex;
     flex-direction: row;
     width: 100%;
     overflow-y: scroll;
+    border: 1px solid rgba(123, 140, 152, 0.2);
+    background: #f0f3f7;
+    border-radius: 8px 8px 0 0;
+    scroll-snap-type: x mandatory;
   }
+  .tabs_pagination > div div button {
+    font-weight: 700;
+    scroll-snap-align: end;
+    border-right: 1px solid rgba(123, 140, 152, 0.2);
+  }
+  .tabs_pagination > div div button:last-of-type {
+    border-right: none;
+  }
+  .Mui-selected {
+  }
+  .mobile-container {
+    min-width: 960px;
+  }
+  .page-personal .dm-none {
+    display: none;
+  }
+  .page-personal img {
+    margin-right: 10px;
+  }
+ 
+}
+.mobile-wrap {
+  min-height: 300px;
+}
+.tabs_pagination > div div button {
+  font-weight: 700;
 }
 .MuiStep-root span {
   color: #fff;
 }
+.page-personal .card {
+  border: 1px solid rgba(123, 140, 152, 0.2);
+  background: #f0f3f7;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.page-personal .card img {
+  max-height: 48px;
+}
+/* .page-personal .test-center {
+  text-align: center;
+} */

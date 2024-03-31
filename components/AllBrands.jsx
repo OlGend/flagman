@@ -6,12 +6,10 @@ import Link from "next/link";
 import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
 import { getBrands } from "@/components/getBrands/getBrands";
 
-import Loader from "./Loader";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FilterLoader from "@/components/FilterLoader";
-import i18n from "@/components/i18n";
 import {
   Gift,
   ShieldPlus,
@@ -28,7 +26,7 @@ import {
 import { useLanguage } from "@/components/switcher/LanguageContext";
 
 export default function AllBrands({ filtered, isLoader }) {
-  const { t } = useTranslation();
+
   const itemsPerPage = 4;
   const itemsPerPage2 = 4;
 

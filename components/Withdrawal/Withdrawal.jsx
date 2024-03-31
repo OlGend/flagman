@@ -263,7 +263,7 @@ export default function Withdrawal() {
   return (
     <div className="withdrawal">
       <div className="top-block">
-        <h2>{t("Withdrawal")}</h2>
+        <h2>{"Withdrawal"}</h2>
       </div>
       
       <button onClick={sendSms}>SMS</button>
@@ -278,15 +278,15 @@ export default function Withdrawal() {
               className={`menu-item active`}
               onClick={() => handleMenuItemClick("withdrawal/")}
             >
-              {t("Withdrawal Request")}
+              {"Withdrawal Request"}
             </div>
           </div>
           <div className="menu-info">
             <div className="flex menu-content">
-              <h4>{t("Withdrawal Requests")}</h4>
+              <h4>{"Withdrawal Requests"}</h4>
               <div className="all-balance">
                 <p>
-                  <span>{user.login}</span> {t("your current balance is:")}
+                  <span>{user.login}</span> {"your current balance is:"}
                 </p>
                 {Object.keys(user).length > 0 && (
                   <div className="balance">
@@ -296,7 +296,7 @@ export default function Withdrawal() {
               </div>
               <div className="withdrawal-form">
                 <div className="column">
-                  <label htmlFor="method">{t("Select Payment Method")}</label>
+                  <label htmlFor="method">{"Select Payment Method"}</label>
 
                   {coins && (
                     <PaymentMethodSelect
@@ -308,7 +308,7 @@ export default function Withdrawal() {
                 </div>
                 {selectedPaymentMethod && (
                   <div className="column">
-                    <label htmlFor="amount">{t("Amount")} USD</label>
+                    <label htmlFor="amount">{"Amount"} USD</label>
                     <input
                       type="number"
                       name="amount"
@@ -332,7 +332,7 @@ export default function Withdrawal() {
                   onClick={modalPay}
                   disabled={errorMin}
                 >
-                  {t("Payout")}
+                  {"Payout"}
                 </button>
 
                 {modalPayout && (

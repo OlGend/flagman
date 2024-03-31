@@ -172,25 +172,20 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <CustomPaper sx={{ width: "100%" }}>
+    <Box >
+      <CustomPaper >
         <Toolbar
           sx={{
             pl: { sm: 2 },
             pr: { xs: 1, sm: 1 },
           }}
         >
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
+          <Typography variant="h6" id="tableTitle" component="div">
             Payment History
           </Typography>
         </Toolbar>
-        <TableContainer>
-          <Table sx={{ width: "100%" }}>
+        <TableContainer className="mobile-wrap" >
+          <Table className="mobile-container">
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}

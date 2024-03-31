@@ -63,6 +63,12 @@ export default function MultipleSelectPlaceholder() {
     { code: "all", label: "World", flag: "🌍" },
   ];
 
+  const [lng, setLng] = useState();
+
+  useEffect(() => {
+    setLng(i18n.language);
+  }, [i18n.language])
+
   return (
     <div className="flex items-center mobile-switcher">
       <FormControl className="m-0 form-control" sx={{ m: 1, width: 300, mt: 3 }}>
@@ -81,7 +87,7 @@ export default function MultipleSelectPlaceholder() {
                 <div className="flex items-center">
                   <em className="flagflag">{languageFlag}</em>
                   <em className="flagflag2">
-                    {i18n.language ? i18n.language.toUpperCase() : ""}
+                    {lng ? lng.toUpperCase() : ""}
                   </em>
                 </div>
               );

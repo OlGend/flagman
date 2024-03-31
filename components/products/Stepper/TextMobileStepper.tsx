@@ -13,9 +13,10 @@ import { useQueryUser } from "@/queries";
 
 interface TextMobileStepperProps {
   onConfirm: () => Promise<void>;
+  item: object;
 }
 
-export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm }) => {
+export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm, item }) => {
   const {
     data: user,
     loading: userLoading,
@@ -41,6 +42,7 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm 
           onChangeStep={onChangeStep}
           onConfirm={onConfirm}
           user={user}
+          product={item}
         />
       ),
     },
@@ -71,7 +73,7 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm 
 
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <Paper
+      {/* <Paper
         square
         elevation={0}
         sx={{
@@ -83,43 +85,41 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm 
         }}
       >
         <Typography>{steps[activeStep].label}</Typography>
-      </Paper>
-      <Box sx={{ width: "100%", p: 2 }}>
+      </Paper> */}
+      <Box>
         {steps[activeStep].content}
       </Box>
-      <Box sx={{ width: "100%", p: 2 }}>
-        {steps[activeStep].content}
-      </Box>
-      <MobileStepper
+
+      {/* <MobileStepper
         variant="text"
         steps={maxSteps}
-        position="static"
+        // position="static"
         activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
+        // nextButton={
+        //   <Button
+        //     size="small"
+        //     onClick={handleNext}
+        //     disabled={activeStep === maxSteps - 1}
+        //   >
+        //     Next
+        //     {theme.direction === "rtl" ? (
+        //       <KeyboardArrowLeft />
+        //     ) : (
+        //       <KeyboardArrowRight />
+        //     )}
+        //   </Button>
+        // }
+        // backButton={
+        //   <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+        //     {theme.direction === "rtl" ? (
+        //       <KeyboardArrowRight />
+        //     ) : (
+        //       <KeyboardArrowLeft />
+        //     )}
+        //     Back
+        //   </Button>
+        // }
+      /> */}
     </Box>
   );
 };

@@ -10,14 +10,14 @@ import {
   useMutationSaveUserPhoneNumber,
   useMutationSendUserPhoneNumber,
 } from "@/queries";
-
-
+import Image from "next/image";
 
 type PhoneNumberStepProps = {
   step: number;
   onChangeStep: (nextStep: number) => void;
   onConfirm: () => Promise<void>;
   user: User | null;
+  product: object;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -31,6 +31,7 @@ export const PhoneNumberStep = ({
   onChangeStep,
   onConfirm,
   user,
+  product,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -84,17 +85,18 @@ export const PhoneNumberStep = ({
 
       const data: ConfirmOtpResponse = await response.json();
       // throw new Error("");
+      const id = user.id;
 
       if (response.ok && data.status === "APPROVED" && user !== null) {
-        await saveUserPhoneNumber({ user, phoneNumber });
-        await onConfirm();
+        await saveUserPhoneNumber({ userId: id, phoneNumber });
+        await onConfirm(id);
+        // window.location.reload();
       }
-      
     } catch (e) {
       console.error("ERROR - onConfirmOtp:", e);
     }
   };
-
+  console.log(user, "USER");
   const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
   const [showOtp, setShowOtp] = useState(true);
   const [showProduct, setShowProduct] = useState(false);
@@ -107,31 +109,33 @@ export const PhoneNumberStep = ({
       {!user?.phone_number && (
         <div>
           {showOtp && (
-            <StyledBoxTel className="relative">
-              <MuiTelInput
-                value={phoneNumber}
-                onChange={onChangePhoneNumber}
-                defaultCountry={defaultCountry}
-                fullWidth
-              />
-              <StyledButton
-                className="btn-primary absolute right-1 text-xs"
-                variant="contained"
-                onClick={() => {
-                  sendUserPhoneNumber({ phoneNumber })
-                    .then(() => {
+            <>
+              <h2 className="text-center mb-2">Enter your phone number</h2>
+              <StyledBoxTel className="relative">
+                <MuiTelInput
+                  value={phoneNumber}
+                  onChange={onChangePhoneNumber}
+                  defaultCountry={defaultCountry}
+                  fullWidth
+                />
+                <StyledButton
+                  className="btn-primary absolute right-1 text-xs"
+                  variant="contained"
+                  onClick={() => {
+                    sendUserPhoneNumber({ phoneNumber }).then(() => {
                       setShowOtp(false);
                       setShowPhone(true);
-                    })
-                }}
-                
-              >
-                Send code
-              </StyledButton>
-            </StyledBoxTel>
+                    });
+                  }}
+                >
+                  Send code
+                </StyledButton>
+              </StyledBoxTel>
+            </>
           )}
           {showPhone && (
-            <Box>
+            <Box className="flex flex-col items-center">
+              <h2 className="mb-2">Enter the code</h2>
               <StyledBox>
                 <OTP
                   length={DEFAULT_OTP_LENGTH}
@@ -140,50 +144,69 @@ export const PhoneNumberStep = ({
                   separator=""
                 />
               </StyledBox>
-              <Button
-                className="btn-primary"
-                variant="contained"
-                onClick={() => {
-                  onChangeStep(step - 1);
-                }}
-              >
-                Prev step
-              </Button>
-              <Button
-                className="btn-primary"
-                variant="contained"
-                onClick={async () => {
-                  await onConfirmOtp();
-                  setShowProduct(true);
-                  setShowPhone(false);
-                }}
-                disabled={isButtonContinueDisabled}
-              >
-                Continue
-              </Button>
+              <div className="mt-4">
+                <Button
+                  className="btn-primary mr-1"
+                  variant="contained"
+                  onClick={() => {
+                    onChangeStep(step - 1);
+                  }}
+                >
+                  Prev step
+                </Button>
+                <Button
+                  className="btn-primary ml-1"
+                  variant="contained"
+                  onClick={async () => {
+                    await onConfirmOtp();
+                    setShowProduct(true);
+                    setShowPhone(false);
+                  }}
+                  disabled={isButtonContinueDisabled}
+                >
+                  Continue
+                </Button>
+              </div>
             </Box>
           )}
         </div>
       )}
-      {showProduct || user?.phone_number && (
-        <Box sx={{ width: 400 }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Confirm Purchase
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Are you sure you want to buy this product for 20$?
-          </Typography>
-          <Button
-            className="btn btn-primary mt-4"
-            onClick={async () => {
-              await onConfirm();
-            }}
-            variant="contained"
-          >
-            Confirm
-          </Button>
-        </Box>
-      )}
+      {showProduct ||
+        (user?.phone_number && (
+          <Box className="flex flex-col items-center">
+            <Typography
+              className="text-center mb-2"
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+            >
+              Confirm Purchase
+            </Typography>
+            <Image
+              src={`/products/${product.product_image}.jpg`}
+              alt={product.products_name}
+              width={150}
+              height={150}
+            />
+            <Typography
+              className="text-center"
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+            >
+              Are you sure you want to buy this product for{" "}
+              {product.products_amount}$?
+            </Typography>
+            <Button
+              className="btn btn-primary mt-4"
+              onClick={async () => {
+                await onConfirm(user.id);
+              }}
+              variant="contained"
+            >
+              Confirm
+            </Button>
+          </Box>
+        ))}
     </StyledDiv>
   );
 };

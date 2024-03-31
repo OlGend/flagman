@@ -83,7 +83,7 @@ const Navigation = ({ navLinks, onLinkClick }: Props) => {
                 ) : (
                   <>
                     {link.icon}
-                    <span>{t(link.label)}</span>
+                    <span>{link.label}</span>
                   </>
                 )}
               </div>
@@ -114,7 +114,7 @@ const Navigation = ({ navLinks, onLinkClick }: Props) => {
                               {isLoading ? (
                                 <Loader />
                               ) : (
-                                <span>{t(subLink.label)}</span>
+                                <span>{subLink.label}</span>
                               )}
                             </div>
                           </div>
@@ -151,7 +151,7 @@ const Navigation = ({ navLinks, onLinkClick }: Props) => {
                               {isLoading ? (
                                 <Loader />
                               ) : (
-                                <span>{t(subLink.label)}</span>
+                                <span>{subLink.label}</span>
                               )}
                             </div>
                           </div>

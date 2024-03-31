@@ -89,7 +89,7 @@ export default function MediaCard(props) {
             <p className="mr-3"> {item.product_name}</p>
             <p>{item.products_amount}$</p>
           </div>
-          <p className="basis-8/12 ml-auto">
+          <p className="basis-8/12 ml-auto dm-none">
             {" "}
             <span>{descriptionForLang[lang] || descriptionForLang["all"]}</span>
           </p>
@@ -112,7 +112,7 @@ export default function MediaCard(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <TextMobileStepper onConfirm={onConfirm} />
+          <TextMobileStepper onConfirm={onConfirm} item={item} />
         </Box>
         {/* <Box sx={{ ...style, width: 400 }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">

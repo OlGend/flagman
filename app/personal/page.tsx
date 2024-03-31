@@ -283,7 +283,6 @@ export default function Personal() {
         }}
       />
 
-      {/* <Withdrawal /> */}
     </div>
   );
 }

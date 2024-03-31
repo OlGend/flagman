@@ -9,7 +9,7 @@ import Img from "@/public/logo3.png";
 // import SearchComponent from "@/components/SearchComponent";
 import LanguageSwitcher from "@/components/switcher/LanguageSwitcher";
 import BrandsSwitcher from "@/components/switcher/BrandsSwitcher";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import MenuPages from "@/components/header/MenuPages";
 import { getUserData } from "@/components/getUser/getUser";
@@ -17,7 +17,7 @@ import { navItems } from "@/components/header/NavItems";
 import MenuLanguages from "@/components/header/MenuLanguages";
 
 const TheHeader = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -74,15 +74,15 @@ const TheHeader = () => {
             {/* <SearchComponent /> */}
           </div>
 
-          <MenuLanguages />
-          <div className="d-none">
-            <I18nextProvider i18n={i18n}>
+          <I18nextProvider i18n={i18n}>
+            <MenuLanguages />
+            <div className="d-none">
               <div className="somelng">
                 <LanguageSwitcher />{" "}
               </div>
-            </I18nextProvider>
-            <BrandsSwitcher />
-          </div>
+              <BrandsSwitcher />
+            </div>
+          </I18nextProvider>
 
           <MenuPages userId={user} />
 
@@ -102,7 +102,8 @@ const TheHeader = () => {
                 <Navigation
                   navLinks={navItems.map((item) => ({
                     ...item,
-                    label: t(item.label),
+                    label: item.label,
+                    // label: t(item.label),
                   }))}
                   onLinkClick={closeMobileMenu}
                 />
@@ -115,7 +116,7 @@ const TheHeader = () => {
         <Navigation
           navLinks={navItems.map((item) => ({
             ...item,
-            label: t(item.label),
+            label: item.label,
           }))}
         />
       </div>

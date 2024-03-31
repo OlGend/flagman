@@ -182,7 +182,6 @@ const CustomAvatar = styled(Avatar)(({ theme }) => ({
   color: "#1B5DB2",
   fontWeight: "700",
   fontSize: "21px",
-  paddingTop: "6px",
 }));
 
 const CustomBadge = styled(Badge)(({ theme }) => ({

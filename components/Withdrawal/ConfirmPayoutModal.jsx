@@ -39,22 +39,22 @@ const ConfirmPayoutModal = ({
         </div>
         <div className="column">
           <p>
-            {t("Withdrawal commission:")}{" "}
+            {"Withdrawal commission:"}{" "}
             {minFee ? minFee.fee.toFixed(6).replace(/\.?0+$/, "") : ""}{" "}
             {estimated.currency_to}. <br></br>
-            {t("You will receive")}{" "}
+            {"You will receive"}{" "}
             {(estimated.estimated_amount - minFee.fee)
               .toFixed(6)
               .replace(/\.?0+$/, "")}{" "}
-            {estimated.currency_to} {t("in your wallet.")}
+            {estimated.currency_to} {"in your wallet."}
             <br></br>
-            {t("Enter your wallet details and click ‘Withdraw Funds’")}
+            {"Enter your wallet details and click ‘Withdraw Funds’"}
           </p>
         </div>
 
         <div className="column">
           <label htmlFor="wallet">
-            {t("Wallet Address")} {selectedPaymentMethod}
+            {"Wallet Address"} {selectedPaymentMethod}
           </label>
           <input
             type="text"
@@ -67,7 +67,7 @@ const ConfirmPayoutModal = ({
             onChange={(e) => onAddressChange(e.target.value)}
           />
           {errorWallet && (
-            <span className="error-span">{t("Your address is not valid")}</span>
+            <span className="error-span">{"Your address is not valid"}</span>
           )}
         </div>
         {/* <button className="btn btn-primary btn-modal" onClick={validateAddress}>

@@ -88,7 +88,7 @@ const FilteredCasinos = () => {
               onClick={() => handleTabChange(item.currentTab)}
             >
               {item.icon}
-              {t(item.currentText)}
+              {item.currentText}
             </button>
           ))}
         </div>

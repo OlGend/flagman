@@ -51,7 +51,7 @@ export const PhoneNumberStep = ({
   const [
     saveUserPhoneNumber,
     {
-      success: saveUserPhoneNumberSuccess,
+  
       loading: saveUserPhoneNumberLoading,
       error: saveUserPhoneNumberError,
       errorMessage: saveUserPhoneNumberErrorMessage,
@@ -62,7 +62,7 @@ export const PhoneNumberStep = ({
     sendUserPhoneNumber,
     {
       data: sendUserPhoneNumberData,
-      success: sendUserPhoneNumberSuccess,
+
       loading: sendUserPhoneNumberLoading,
       error: sendUserPhoneNumberError,
       errorMessage: sendUserPhoneNumberErrorMessage,

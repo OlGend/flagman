@@ -3,6 +3,7 @@ import { MuiTelInput, MuiTelInputCountry } from "mui-tel-input";
 import { useState, useEffect } from "react";
 import { styled } from "@mui/system";
 import Typography from "@mui/material/Typography";
+import { OutlinedInput } from "@mui/material";
 
 import { OTP } from "../OTP";
 import type { User } from "@/interfaces/user";
@@ -18,6 +19,7 @@ type PhoneNumberStepProps = {
   onConfirm: () => Promise<void>;
   user: User | null;
   product: object;
+  setEmail: (email: string) => void; 
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -32,6 +34,7 @@ export const PhoneNumberStep = ({
   onConfirm,
   user,
   product,
+  setEmail
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -89,19 +92,18 @@ export const PhoneNumberStep = ({
 
       if (response.ok && data.status === "APPROVED" && user !== null) {
         await saveUserPhoneNumber({ userId: id, phoneNumber });
-        await onConfirm(id);
+        // await onConfirm(id);
         // window.location.reload();
       }
     } catch (e) {
       console.error("ERROR - onConfirmOtp:", e);
     }
   };
-  console.log(user, "USER");
+
   const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
   const [showOtp, setShowOtp] = useState(true);
   const [showProduct, setShowProduct] = useState(false);
   const [showPhone, setShowPhone] = useState(false);
-
 
 
   return (
@@ -171,8 +173,7 @@ export const PhoneNumberStep = ({
           )}
         </div>
       )}
-      {showProduct ||
-        (user?.phone_number && (
+      {showProduct && (
           <Box className="flex flex-col items-center">
             <Typography
               className="text-center mb-2"
@@ -180,22 +181,14 @@ export const PhoneNumberStep = ({
               variant="h6"
               component="h2"
             >
-              Confirm Purchase
+              Indicate the email address to which to send the card
             </Typography>
-            <Image
-              src={`/products/${product.product_image}.jpg`}
-              alt={product.products_name}
-              width={150}
-              height={150}
+
+            <OutlinedInput
+ 
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <Typography
-              className="text-center"
-              id="modal-modal-description"
-              sx={{ mt: 2 }}
-            >
-              Are you sure you want to buy this product for{" "}
-              {product.products_amount}$?
-            </Typography>
+
             <Button
               className="btn btn-primary mt-4"
               onClick={async () => {
@@ -206,7 +199,34 @@ export const PhoneNumberStep = ({
               Confirm
             </Button>
           </Box>
-        ))}
+        )}
+         {user?.phone_number && (
+          <Box className="flex flex-col items-center">
+            <Typography
+              className="text-center mb-2"
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+            >
+              Indicate the email address to which to send the card
+            </Typography>
+
+            <OutlinedInput
+ 
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <Button
+              className="btn btn-primary mt-4"
+              onClick={async () => {
+                await onConfirm(user.id);
+              }}
+              variant="contained"
+            >
+              Confirm
+            </Button>
+          </Box>
+        )}
     </StyledDiv>
   );
 };

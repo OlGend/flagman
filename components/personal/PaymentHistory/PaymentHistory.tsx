@@ -180,8 +180,8 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
             pr: { xs: 1, sm: 1 },
           }}
         >
-          <Typography variant="h6" id="tableTitle" component="div">
-            Payment History
+          <Typography variant="h2" id="tableTitle" component="div">
+            Withdrawal History
           </Typography>
         </Toolbar>
         <TableContainer className="mobile-wrap" >

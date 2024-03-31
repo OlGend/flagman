@@ -156,6 +156,7 @@ export const PhoneNumberStep = ({
       </StyledBoxTel>
 
       <Dialog
+   
         open={isDialogOpen && !isSendUserPhoneNumberError}
         onClose={onCloseDialog}
       >
@@ -191,6 +192,7 @@ export const PhoneNumberStep = ({
       </Box>
       {isLoaderShown && <Loader />}
     </StyledDiv>
+    
   );
 };
 
@@ -221,6 +223,7 @@ const StyledBox = styled(Box)(
   () => `
     display: flex;
     justify-content: center;
+    padding: 16px;
   `
 );
 

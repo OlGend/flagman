@@ -14,9 +14,14 @@ import { useQueryUser } from "@/queries";
 interface TextMobileStepperProps {
   onConfirm: () => Promise<void>;
   item: object;
+  setEmail: (email: string) => void;
 }
 
-export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm, item }) => {
+export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({
+  onConfirm,
+  item,
+  setEmail,
+}) => {
   const {
     data: user,
     loading: userLoading,
@@ -31,8 +36,6 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm,
     setStep(nextStep);
   };
 
-  console.log("USDER", user)
-
   const steps = [
     {
       label: "Verify your phone number",
@@ -43,21 +46,10 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm,
           onConfirm={onConfirm}
           user={user}
           product={item}
+          setEmail={setEmail}
         />
       ),
     },
-    // {
-    //   label: "Create an ad group",
-    //   description:
-    //     "An ad group contains one or more ads which target a shared set of keywords.",
-    // },
-    // {
-    //   label: "Create an ad",
-    //   description: `Try out different ad text to see what brings in the most customers,
-    //             and learn how to enhance your ads using features like ad extensions.
-    //             If you run into any problems with your ads, find out how to tell if
-    //             they're running and how to resolve approval issues.`,
-    // },
   ];
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -86,9 +78,7 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({ onConfirm,
       >
         <Typography>{steps[activeStep].label}</Typography>
       </Paper> */}
-      <Box>
-        {steps[activeStep].content}
-      </Box>
+      <Box>{steps[activeStep].content}</Box>
 
       {/* <MobileStepper
         variant="text"

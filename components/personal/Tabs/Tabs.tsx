@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 
 type Tabs = {
-  labels: string[];
+  labels: (string | JSX.Element)[];
   content: JSX.Element[];
 };
 
@@ -28,7 +28,7 @@ export const Tabs = ({ value, onChange, tabs }: TabsProps) => {
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
         {tabs.labels.map((label) => (
-          <MuiTab key={label} label={label} />
+          <MuiTab className="tab-label" key={label} label={label} />
         ))}
       </MuiTabs>
       {tabs.content.map((content, idx) => (

@@ -28,6 +28,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
 
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
@@ -248,9 +249,24 @@ export default function Personal() {
                 onChange={onChangeTab}
                 tabs={{
                   labels: [
-                    "Withdrawal Request",
-                    "Withdrawal History",
-                    "Cards Shop",
+                    <Box key={1} component="span" display="flex" alignItems="center">
+                      <Bank size={20} />
+                      <Typography component="span" marginLeft={1}>
+                        Withdrawal Request
+                      </Typography>
+                    </Box>,
+                    <Box key={2} component="span" display="flex" alignItems="center">
+                      <ClockCounterClockwise size={20} />
+                      <Typography component="span" marginLeft={1}>
+                        Withdrawal History
+                      </Typography>
+                    </Box>,
+                    <Box key={3} component="span" display="flex" alignItems="center">
+                      <ShoppingCart size={20} />
+                      <Typography component="span" marginLeft={1}>
+                        Cards Shop
+                      </Typography>
+                    </Box>
                   ],
                   content: [
                     <Stepper
@@ -282,7 +298,6 @@ export default function Personal() {
           );
         }}
       />
-
     </div>
   );
 }

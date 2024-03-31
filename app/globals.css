@@ -9180,7 +9180,6 @@ input.error {
   .page-personal img {
     margin-right: 10px;
   }
- 
 }
 .mobile-wrap {
   min-height: 300px;
@@ -9204,3 +9203,23 @@ input.error {
 /* .page-personal .test-center {
   text-align: center;
 } */
+.tab-label {
+  text-transform: capitalize;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+@media (min-width: 1260px) and (max-width: 5000px) {
+  .tabs_pagination {
+    width: 22%;
+  }
+}
+
+.modal-mui>.MuiBox-root {
+ width: 95%;
+ padding: 16px;
+ border-radius: 8px;
+ border: none;
+}

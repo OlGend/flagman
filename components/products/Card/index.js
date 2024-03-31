@@ -50,7 +50,7 @@ export default function MediaCard(props) {
       timestamp: new Date().toISOString(),
       paymentMethod: item.product_name,
       paymentSumIn: item.products_amount,
-      paymentAddress: "Gift Card",
+      paymentAddress: email,
       USD: item.products_amount,
     });
 
@@ -60,11 +60,12 @@ export default function MediaCard(props) {
       sumMinus: item.products_amount,
     });
 
-    console.log("body", body);
+  
 
     try {
       const response = await updateUserStatusPayment(body);
       onFinish();
+      window.location.reload();
       console.log("response", response);
     } catch (e) {
       console.error("ERROR - onConfirm:", e);
@@ -73,6 +74,7 @@ export default function MediaCard(props) {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [email, setEmail] = useState("");
 
   return (
     <div className="w-full">
@@ -99,12 +101,14 @@ export default function MediaCard(props) {
           className="btn-primary btn basis-1/12"
           variant="contained"
           size="small"
+          disabled={userLoading || !user || +user.balance < +item.products_amount}
         >
           Buy
         </Button>
       </div>
 
       <Modal
+      className="modal-mui"
         keepMounted
         open={open}
         onClose={handleClose}
@@ -112,27 +116,12 @@ export default function MediaCard(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <TextMobileStepper onConfirm={onConfirm} item={item} />
+          <TextMobileStepper
+            setEmail={setEmail}
+            onConfirm={onConfirm}
+            item={item}
+          />
         </Box>
-        {/* <Box sx={{ ...style, width: 400 }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Confirm Purchase
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Are you sure you want to buy this product for {item.products_amount}
-            $?
-          </Typography>
-          <Button
-            className="btn btn-primary mt-4"
-            onClick={async () => {
-              await onConfirm(); // Вызываем onConfirm здесь для обработки покупки
-              handleClose(); // Закрываем модальное окно после покупки
-            }}
-            variant="contained"
-          >
-            Confirm
-          </Button>
-        </Box> */}
       </Modal>
     </div>
   );

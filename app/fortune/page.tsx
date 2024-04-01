@@ -24,6 +24,10 @@ export default function Fortune() {
     return () => window.removeEventListener("resize", updateIframeSize);
   }, []);
 
+
+
+  
+
   return (
     <div className="page-fortune main__container">
       <div className="pt-10 pb-10">

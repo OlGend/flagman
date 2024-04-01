@@ -43,21 +43,32 @@ export default function AccountMenu({ userId }) {
         console.error("Ошибка при получении данных пользователя:", error);
       }
     };
-
+    window.addEventListener("message", function (event) {
+      // Проверяем, не является ли event.data пустым
+      if (event.data) {
+        fetchData();
+        console.log("Повідомлення від iframe: ", event.data);
+        // Здесь можно выполнить дальнейшие действия с event.data, если оно не пустое
+      } else {
+        console.log("Отримано порожнє повідомлення від iframe.");
+      }
+    });
     fetchData();
   }, [userId]);
 
-  const handleTransferSpinsToTickets = async () => {
-    try {
-      await transferSpinsToTickets(userData);
-      handleClose();
-      // После успешной отправки запроса, загружаем данные пользователя заново
-      const updatedUserData = await getUserData(userId);
-      setUserData(updatedUserData); // Обновляем состояние userData новыми данными
-    } catch (error) {
-      console.error("Ошибка при передаче spins_waiting в tickets:", error);
-    }
-  };
+
+
+  // const handleTransferSpinsToTickets = async () => {
+  //   try {
+  //     await transferSpinsToTickets(userData);
+  //     handleClose();
+  //     // После успешной отправки запроса, загружаем данные пользователя заново
+  //     const updatedUserData = await getUserData(userId);
+  //     setUserData(updatedUserData); // Обновляем состояние userData новыми данными
+  //   } catch (error) {
+  //     console.error("Ошибка при передаче spins_waiting в tickets:", error);
+  //   }
+  // };
 
   return userData ? (
     <React.Fragment>

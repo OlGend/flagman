@@ -27,6 +27,8 @@ import { useLanguage } from "@/components/switcher/LanguageContext";
 
 export default function AllBrands({ filtered, isLoader }) {
 
+  const { t } = useTranslation();
+
   const itemsPerPage = 4;
   const itemsPerPage2 = 4;
 
@@ -116,7 +118,7 @@ export default function AllBrands({ filtered, isLoader }) {
   }, [brandsGenerated, filteredBrands]);
 
   const vis = randomBrands.length > 0 ? randomBrands : filteredBrands;
-  const vis2 = randomBrands2.length > 0 ? randomBrands2 : filteredBrands;
+  const vis2 = randomBrands2.length > 0 ? randomBrands2 : topBrands;
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -164,6 +166,7 @@ export default function AllBrands({ filtered, isLoader }) {
   const handleCountriesClick = (brandId) => {
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
+
   return (
     <>
       {isLoader ? (
@@ -171,7 +174,7 @@ export default function AllBrands({ filtered, isLoader }) {
       ) : (
         <div className="flex flex-wrap justify-between awesome">
           <div className="flex flex-col px-0 py-6 basis-[75%]">
-            {filteredBrands.slice(0, visibleBrands).map((brand) => {
+            {vis.slice(0, visibleBrands).map((brand) => {
               const advantages =
                 brand.advantages !== null
                   ? brand.advantages
@@ -220,7 +223,7 @@ export default function AllBrands({ filtered, isLoader }) {
                     <div className="mb-2 withdrawal withdrawal-limits flex items-center">
                       <Handshake className="mr-1 mb-1" size={24} />
 
-                      <div className="title mr-2">Withdrawal Limits:</div>
+                      <div className="title mr-2">{t("Withdrawal Limits:")}</div>
                       <div className="items-center">
                         {brand.WithdrawalLimits}
                       </div>
@@ -232,7 +235,7 @@ export default function AllBrands({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <ShieldPlus size={24} />
-                          <span className="mt-1 ml-2">Advantages</span>
+                          <span className="mt-1 ml-2">{t("Advantages")}</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isPlusesOpen && (
@@ -256,7 +259,7 @@ export default function AllBrands({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <CurrencyCircleDollar size={24} />
-                          <span className="mt-1 ml-2">Payment Methods</span>
+                          <span className="mt-1 ml-2">{t("Payment Methods")}</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isDepositsOpen && (
@@ -286,7 +289,7 @@ export default function AllBrands({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <GameController size={24} />
-                          <span className="mt-1 ml-2">Game Providers</span>
+                          <span className="mt-1 ml-2">{t("Game Providers")}</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isWithdrawalOpen && (
@@ -317,7 +320,7 @@ export default function AllBrands({ filtered, isLoader }) {
                         <div className="title flex items-center">
                           <Prohibit size={24} />
                           <span className="mt-1 ml-2">
-                            Restricted Countries
+                            {t("Restricted Countries")}
                           </span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
@@ -370,9 +373,9 @@ export default function AllBrands({ filtered, isLoader }) {
                       Read Review
                       </Link> */}
                       <div className="flex flex-col items-center w-full p-4 howUse mt-2 mb-2">
-                        <span className="text-center">How to get bonus?</span>
+                        <span className="text-center">{t("How to get bonus?")}</span>
                         <p className="text-center m-0 text-slate-500">
-                          Activate bonus in your casino account
+                        {t("Activate bonus in your casino account")}
                         </p>
                       </div>
                       <Link
@@ -380,7 +383,7 @@ export default function AllBrands({ filtered, isLoader }) {
                         href={`${brand.GoBig}/${newUrl}`}
                         target="_blank"
                       >
-                        <Play className="mr-2" size={24} /> Play Now
+                        <Play className="mr-2" size={24} /> {t("Play Now")}
                       </Link>
                     </div>
                   </div>
@@ -394,13 +397,13 @@ export default function AllBrands({ filtered, isLoader }) {
                 onClick={loadMoreBrands}
               >
                 <DotsThreeCircle className="mr-1" size={24} />
-                Load More Brands
+                {t("Load More Brands")}
               </button>
             )}
           </div>
           <div className="flex flex-col basis-[24%] py-6">
             {!isMobile ? (
-              topBrands.slice(0, visibleBrands2).map((item) => {
+              vis2.slice(0, visibleBrands2).map((item) => {
                 // const reviewImgSrc = extractReviewImage(item.content.rendered);
                 // const playLink = extractLink(item.content.rendered);
                 return (
@@ -433,14 +436,14 @@ export default function AllBrands({ filtered, isLoader }) {
                       href={`${item.GoBig}/${newUrl}`}
                       target="_blank"
                     >
-                      Play now
+                     {t("Play Now")}
                     </Link>
                   </div>
                 );
               })
             ) : (
               <Slider {...settings}>
-                {topBrands.map((item) => {
+                {vis2.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -471,7 +474,7 @@ export default function AllBrands({ filtered, isLoader }) {
                         href={`${item.GoBig}/${newUrl}`}
                         target="_blank"
                       >
-                        Play now
+                       {t("Play Now")}
                       </Link>
                     </div>
                   );

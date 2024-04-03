@@ -10,6 +10,8 @@ import Carousel from "@/components/slider/Carousel";
 import imgrandom from "@/public/coins_banner2.jpg";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 import { getBrands } from "@/components/getBrands/getBrands";
+import { useTranslation } from 'react-i18next';
+
 
 export default function TopBrands() {
 
@@ -18,6 +20,7 @@ export default function TopBrands() {
   const [loading, setLoading] = useState(true);
   const [brands, setBrands] = useState([]);
   const { language } = useLanguage(); 
+  const { t } = useTranslation();
 
 
   useEffect(() => {
@@ -85,6 +88,7 @@ export default function TopBrands() {
     <>
       <div className="topbr">
         <div className="main__container">
+        
           {loading ? <Loader /> : cards2 && <Carousel className="carmob" cards={cards2} height="500px" width="100%" margin="0 auto" offset={200} showArrows={false} />}
         </div>
       </div>
@@ -92,11 +96,11 @@ export default function TopBrands() {
         <div className="main__container flex items-center">
           <div className="flex flex-col">
             <h1 className="">
-              Feeling lucky today? <span className="text-blued">Click now to play</span> and see if <span className="text-blued"> luck is on your side!</span>
+              {t("Feeling lucky today?")} <span className="text-blued">{t("Click now to play")}</span> {t("and see if")} <span className="text-blued"> {t("luck is on your side!")}</span>
             </h1>
             {shuffledBrands.slice(0, 1).map((item) => (
               <Link target="_blank" key={item} className="btn btn-primary big-btn mt-3" href={`${item.GoBig}/${newUrl}`}>
-                Try Your Luck
+                {t("Try Your Luck")}
               </Link>
             ))}
           </div>

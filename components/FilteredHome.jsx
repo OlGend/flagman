@@ -23,30 +23,35 @@ const FilteredHome = () => {
       currentTab: 1,
       currentCategories: 25,
       currentText: "All Brands",
+      currentText2: t("All Brands"),
       icon: <SquareLogo className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 2,
       currentCategories: 26,
       currentText: "Recommended Brands",
+      currentText2: t("Recommended Brands"),
       icon: <Medal className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 3,
       currentCategories: 24,
       currentText: "Newly Brands",
+      currentText2: t("Newly Brands"),
       icon: <Crown className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 4,
       currentCategories: 19,
       currentText: "Crypto Brands",
+      currentText2: t("Crypto Brands"),
       icon: <CurrencyBtc className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 5,
       currentCategories: 187,
       currentText: "Top Sports Brands",
+      currentText2: t("Top Sports Brands"),
       icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
     },
   ];
@@ -65,12 +70,10 @@ const FilteredHome = () => {
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
             <h2 className="">
-              Catalog of all 2024 Online Casino Bonuses Offered
+              {t("Catalog of all 2024 Online Casino Bonuses Offered")}
             </h2>
             <p className="mt-3 pb-4">
-              Seeking online casino bonuses and promotions? Explore our current
-              database featuring numerous casino bonus offers for your
-              selection.
+              {t("Seeking online casino bonuses and promotions? Explore our current database featuring numerous casino bonus offers for your selection.")}
             </p>
           </div>
         </div>
@@ -84,7 +87,7 @@ const FilteredHome = () => {
               onClick={() => handleTabChange(item.currentTab)}
             >
               {item.icon}
-              {item.currentText}
+              {item.currentText2}
             </button>
           ))}
         </div>

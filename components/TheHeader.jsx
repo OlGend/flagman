@@ -9,7 +9,7 @@ import Img from "@/public/logo3.png";
 // import SearchComponent from "@/components/SearchComponent";
 import LanguageSwitcher from "@/components/switcher/LanguageSwitcher";
 import BrandsSwitcher from "@/components/switcher/BrandsSwitcher";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import MenuPages from "@/components/header/MenuPages";
 import { getUserData } from "@/components/getUser/getUser";
@@ -17,7 +17,9 @@ import { navItems } from "@/components/header/NavItems";
 import MenuLanguages from "@/components/header/MenuLanguages";
 
 const TheHeader = () => {
-  // const { t } = useTranslation();
+
+  const { t } = useTranslation();
+  const items = navItems(t);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -100,7 +102,7 @@ const TheHeader = () => {
             <div className="menu-mobile">
               <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
                 <Navigation
-                  navLinks={navItems.map((item) => ({
+                  navLinks={items.map((item) => ({
                     ...item,
                     label: item.label,
                     // label: t(item.label),
@@ -114,7 +116,7 @@ const TheHeader = () => {
       </div>
       <div className="header__container menu-desctop">
         <Navigation
-          navLinks={navItems.map((item) => ({
+          navLinks={items.map((item) => ({
             ...item,
             label: item.label,
           }))}

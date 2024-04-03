@@ -17,10 +17,10 @@ async function initializeI18n() {
     defLng = data.country.toLowerCase();
   } catch (error) {
     console.error("Ошибка при запросе к API:", error);
-    defLng = "au"; // Установка значения по умолчанию в случае ошибки
+    defLng = "all"; // Установка значения по умолчанию в случае ошибки
   }
 
-  const languages = ["au", "ca", "nz", "pl"];
+  const languages = ["all", "au", "ca", "nz", "pl"];
 
   // Используем метод map для сопоставления значений массива languages с defLng
   const matchedLanguages = languages.map((language) => {
@@ -183,7 +183,7 @@ async function initializeI18n() {
     .use(initReactI18next)
     .init({
       resources,
-      lng: matchedLanguage || "au",
+      lng: matchedLanguage || "all",
       interpolation: {
         escapeValue: false,
       },

@@ -167,6 +167,8 @@ export default function AllBrands({ filtered, isLoader }) {
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
 
+  console.log("}}}}}}}}}",filteredBrands)
+
   return (
     <>
       {isLoader ? (
@@ -174,7 +176,7 @@ export default function AllBrands({ filtered, isLoader }) {
       ) : (
         <div className="flex flex-wrap justify-between awesome">
           <div className="flex flex-col px-0 py-6 basis-[75%]">
-            {vis.slice(0, visibleBrands).map((brand) => {
+            {filteredBrands.slice(0, visibleBrands).map((brand) => {
               const advantages =
                 brand.advantages !== null
                   ? brand.advantages
@@ -403,7 +405,7 @@ export default function AllBrands({ filtered, isLoader }) {
           </div>
           <div className="flex flex-col basis-[24%] py-6">
             {!isMobile ? (
-              vis2.slice(0, visibleBrands2).map((item) => {
+              topBrands.slice(0, visibleBrands2).map((item) => {
                 // const reviewImgSrc = extractReviewImage(item.content.rendered);
                 // const playLink = extractLink(item.content.rendered);
                 return (
@@ -443,7 +445,7 @@ export default function AllBrands({ filtered, isLoader }) {
               })
             ) : (
               <Slider {...settings}>
-                {vis2.map((item) => {
+                {topBrands.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"

@@ -167,7 +167,7 @@ export default function AllBrands({ filtered, isLoader }) {
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
 
-  console.log("}}}}}}}}}",filteredBrands)
+
 
   return (
     <>

@@ -21,7 +21,7 @@ import transferSpinsToTickets from "@/components/getUser/transferSpins";
 import DisabledSpins from "@/components/header/DisabledSpins";
 import { styled } from "@mui/material/styles";
 
-export default function AccountMenu({ userId }) {
+export default function AccountMenu({ userId, t }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -58,23 +58,11 @@ export default function AccountMenu({ userId }) {
 
 
 
-  // const handleTransferSpinsToTickets = async () => {
-  //   try {
-  //     await transferSpinsToTickets(userData);
-  //     handleClose();
-  //     // После успешной отправки запроса, загружаем данные пользователя заново
-  //     const updatedUserData = await getUserData(userId);
-  //     setUserData(updatedUserData); // Обновляем состояние userData новыми данными
-  //   } catch (error) {
-  //     console.error("Ошибка при передаче spins_waiting в tickets:", error);
-  //   }
-  // };
-
   return userData ? (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <CustomBadge badgeContent={userData.tickets} color="secondary">
-          <Tooltip title="Account settings">
+          <Tooltip title={t("Account menu")}>
             <IconButton
               onClick={handleClick}
               size="small"
@@ -124,13 +112,13 @@ export default function AccountMenu({ userId }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {/* <div className="w-full flex items-center py-2 px-4 name_login">
-          {userData.login.length > 10
-            ? `${userData.login.substring(0, 10)}...`
-            : userData.login}
-        </div> */}
-        <div className="w-full flex items-center user__balance" onClick={handleClose}>
-          Your balance: <span className="p-2 ml-2">{userData.balance}$</span>
+
+        <div
+          className="w-full flex items-center user__balance"
+          onClick={handleClose}
+        >
+          {t("Your balance:")}{" "}
+          <span className="p-2 ml-2">{userData.balance}$</span>
         </div>
         <MenuItem onClick={handleClose}>
           <Badge badgeContent={userData.tickets} color="primary">
@@ -141,7 +129,7 @@ export default function AccountMenu({ userId }) {
                   className="mr-1"
                 />
               </ListItemIcon>
-              Fortune wheel
+              {t("Fortune wheel")}
             </Link>
           </Badge>
         </MenuItem>
@@ -153,7 +141,7 @@ export default function AccountMenu({ userId }) {
                 className="mr-1"
               />
             </ListItemIcon>
-            My wallet
+            {t("My wallet")}
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
@@ -164,22 +152,10 @@ export default function AccountMenu({ userId }) {
                 className="mr-1"
               />
             </ListItemIcon>
-            Cards Shop
+            {t("Cards Shop")}
           </Link>
         </MenuItem>
         <Divider />
-      
-              {/* <Button
-                onClick={handleTransferSpinsToTickets}
-                className="btn-primary w-full get_spins"
-                variant="contained"
-                disabled={userData.spins_waiting === 0}
-                >
-                <strong className="mr-2">{userData.spins_waiting}</strong>
-                Get spins
-              </Button> */}
-
-
       </Menu>
     </React.Fragment>
   ) : (

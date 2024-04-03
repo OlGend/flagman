@@ -29,6 +29,7 @@ import {
 } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
@@ -36,6 +37,7 @@ const DEFAULT_COIN = "USDTTRC20";
 const DEFAULT_STEP = 0;
 
 export default function Personal() {
+  const { t } = useTranslation();
   const {
     data: user,
     loading: userLoading,
@@ -152,15 +154,15 @@ export default function Personal() {
   const getWalletAddressStepDescription = () => {
     if (!fee || !estimatedAmount) return;
     const receive = Number(estimatedAmount) - fee;
-    return `Fee: ${fee} ${coin}, You will receive on balance: ${receive} ${coin}`;
+    return `${t("Fee:")} ${fee} ${coin}, ${t("You will receive on balance:")} ${receive} ${coin}`;
   };
 
   const getSteps = (user: User, coins: Coins["selectedCurrencies"]) => {
     const initialSteps = [
       {
-        label: "Payment Method",
+        label: t("Payment Method"),
         description:
-          "Select one of the withdrawal methods and enter the withdrawal amount",
+          t("Select one of the withdrawal methods and enter the withdrawal amount"),
         content: (
           <PaymentMethodStep
             user={user}
@@ -172,11 +174,12 @@ export default function Personal() {
             onChangeCoin={onChangeCoin}
             onChangeAmount={onChangeAmount}
             getFeeAndEstimatedAmount={getFeeAndEstimatedAmount}
+            t={t}
           />
         ),
       },
       {
-        label: "Wallet Address",
+        label: t("Wallet Address"),
         description: getWalletAddressStepDescription(),
         content: (
           <WalletAddressStep
@@ -192,18 +195,18 @@ export default function Personal() {
       },
 
       {
-        label: "Finally Step",
+        label: t("Finally Step"),
         description:
-          "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands",
+          t("Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"),
         content: <FinallyStep text="" onClick={onFinish} />,
       },
     ];
 
     if (!user.phone_number) {
       initialSteps.splice(2, 0, {
-        label: "Phone Number",
+        label: t("Phone Number"),
         description:
-          "To create a transfer, we need to verify your phone number",
+          t("To create a transfer, we need to verify your phone number"),
         content: (
           <PhoneNumberStep
             user={user}
@@ -236,7 +239,7 @@ export default function Personal() {
 
           return (
             <div>
-              <h2 className="title-balance">Your balance: {user.balance}$</h2>
+              <h2 className="title-balance">{t("Your balance:")} {user.balance}$</h2>
               <Box
                 className="tab_field"
                 sx={{
@@ -259,7 +262,7 @@ export default function Personal() {
                       >
                         <Bank size={20} />
                         <Typography component="span" marginLeft={1}>
-                          Withdrawal Request
+                          {t("Withdrawal Request")}
                         </Typography>
                       </Box>,
                       <Box
@@ -270,7 +273,7 @@ export default function Personal() {
                       >
                         <ClockCounterClockwise size={20} />
                         <Typography component="span" marginLeft={1}>
-                          Withdrawal History
+                          {t("Withdrawal History")}
                         </Typography>
                       </Box>,
                       <Box
@@ -281,7 +284,7 @@ export default function Personal() {
                       >
                         <ShoppingCart size={20} />
                         <Typography component="span" marginLeft={1}>
-                          Cards Shop
+                          {t("Cards Shop")}
                         </Typography>
                       </Box>,
                     ],

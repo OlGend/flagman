@@ -86,7 +86,7 @@ const TheHeader = () => {
             </div>
           </I18nextProvider>
 
-          <MenuPages userId={user} />
+          <MenuPages userId={user} t={t} />
 
           <div className="mobile-none">
             <button

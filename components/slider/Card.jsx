@@ -1,13 +1,17 @@
-"use client"
+"use client";
 import Styles from "./Card.module.css";
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import Image from "next/image";
 // import { track } from '@vercel/analytics';
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+
 // import Button from "./Button";
 
 function Card({ imagen, link, bonus }) {
+  const { t } = useTranslation();
+
   const [show, setShown] = useState(false);
 
   const props3 = useSpring({
@@ -25,7 +29,6 @@ function Card({ imagen, link, bonus }) {
       const savedUrl = localStorage.getItem("savedUrl");
       setNewUrl(savedUrl);
     }
-  
   }, []);
 
   return (
@@ -45,9 +48,8 @@ function Card({ imagen, link, bonus }) {
           className="btn btn-primary"
           href={`${link}/${newUrl}`}
           target="_blank"
-    
         >
-          Play now
+          {t("Play Now")}
         </Link>
         {/* <Button text="Demo" />
         <Button text="Code" /> */}

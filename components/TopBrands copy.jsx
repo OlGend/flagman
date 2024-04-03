@@ -170,13 +170,14 @@ export default function TopBrands() {
     key: uuidv4(),
     content: (
       <Card
-        imagen={brand.LinkImg}
+        imagen={brand.CasinoBrand}
         link={brand.GoBig}
         bonus={brand.OurOfferContent}
       />
     ),
   }));
 
+  console.log(cards2)
   return (
     <>
       <div className="topbr">

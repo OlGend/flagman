@@ -347,8 +347,8 @@ export default function AllBrands({ filtered, isLoader }) {
                         href={`${brand.GoBig}/${newUrl}`}
                       >
                         <Image
-                          src={brand.LinkImg}
-                          alt={brand.LinkImg}
+                          src={`/brands/${brand.CasinoBrand}.png`}
+                          alt={`/brands/${brand.CasinoBrand}.png`}
                           width={250}
                           height={125}
                           loading="lazy"
@@ -416,8 +416,8 @@ export default function AllBrands({ filtered, isLoader }) {
                         target="_blank"
                       >
                         <Image
-                          src={item.LinkImg}
-                          alt={item.LinkImg}
+                          src={`/brands/${item.CasinoBrand}.png`}
+                          alt={`/brands/${item.CasinoBrand}.png`}
                           width={200}
                           height={80}
                           loading="lazy"
@@ -454,8 +454,8 @@ export default function AllBrands({ filtered, isLoader }) {
                           target="_blank"
                         >
                           <Image
-                            src={item.LinkImg}
-                            alt={item.LinkImg}
+                            src={`/brands/${item.CasinoBrand}.png`}
+                            alt={`/brands/${item.CasinoBrand}.png`}
                             width={200}
                             height={80}
                             loading="lazy"

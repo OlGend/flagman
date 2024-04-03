@@ -78,7 +78,7 @@ export default function TopBrands() {
   const shuffledBrands = shuffle(brands);
   const cards2 = shuffledBrands.slice(0, 6).map((brand) => ({
     key: uuidv4(),
-    content: <Card imagen={brand.LinkImg} link={brand.GoBig} bonus={brand.OurOfferContent} />,
+    content: <Card imagen={`/brands/${brand.CasinoBrand}.png`} link={brand.GoBig} bonus={brand.OurOfferContent} />,
   }));
 
   return (

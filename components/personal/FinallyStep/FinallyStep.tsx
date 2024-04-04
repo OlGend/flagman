@@ -4,15 +4,16 @@ import { styled } from "@mui/system";
 type FinallyStepProps = {
   text: string;
   onClick: () => Promise<void>;
+  t: Function; 
 };
 
-export const FinallyStep = ({ text, onClick }: FinallyStepProps) => {
+export const FinallyStep = ({ text, onClick, t }: FinallyStepProps) => {
   return (
     <StyledDiv>
       <Typography>{text}</Typography>
       <Box>
         <Button className="btn-primary" variant="contained" onClick={onClick}>
-          Finish
+          {t("Finish")}
         </Button>
       </Box>
     </StyledDiv>

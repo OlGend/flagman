@@ -51,8 +51,6 @@ export default function AllBrands({ filtered, isLoader }) {
   // };
 
   const [filteredBrands, setFilteredBrands] = useState([]);
-
-
   const [topBrands, setTopBrands] = useState([]);
 
   const { language } = useLanguage();

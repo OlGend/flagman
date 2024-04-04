@@ -12,8 +12,8 @@ const Amatic = () => {
     <div className="bonuses">
       <div className="main__container flex justify-between items-center">
         <div className="flex flex-col basis-[60%]">
-          <h1 className="text-white">Push Gaming: Revolutionizing iGaming with Cutting-Edge Concepts</h1>
-          <p className="text-white mt-5">In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like &#39;Jammin&#39; Jars&#39; and &#39;Wild Swarm,&#39; the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming&#39;s focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.</p>
+          <h1 className="text-white">{t("Push Gaming: Revolutionizing iGaming with Cutting-Edge Concepts")}</h1>
+          <p className="text-white mt-5">{t("In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like 'Jammin' Jars' and 'Wild Swarm,' the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming's focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.")}</p>
           {/* <Subscribe /> */}
         </div>
         <div className="basis-[40%] flex justify-center">

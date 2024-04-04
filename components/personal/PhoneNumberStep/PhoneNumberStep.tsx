@@ -18,6 +18,7 @@ type PhoneNumberStepProps = {
   onChangeStep: (nextStep: number) => void;
   onChangePhoneNumber: (nextPhoneNumber: string) => void;
   onConfirm: (userId: User["id"]) => Promise<void>;
+  t: Function;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -43,6 +44,7 @@ export const PhoneNumberStep = ({
   onChangeStep,
   onChangePhoneNumber,
   onConfirm,
+  t
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -109,7 +111,7 @@ export const PhoneNumberStep = ({
       }
 
       if (hasConfirmOtpResponseStatus(data) && data.status === "EXPIRED") {
-        setOtpMessage("Your OTP expired");
+        setOtpMessage(t("Your OTP expired"));
         setIsLoading(false);
         return;
       }
@@ -121,7 +123,7 @@ export const PhoneNumberStep = ({
       }
       setIsLoading(false);
     } catch (e) {
-      setOtpMessage("Something wrong, try again!");
+      setOtpMessage(t("Something wrong, try again!"));
       setIsLoading(false);
     }
   };
@@ -151,7 +153,7 @@ export const PhoneNumberStep = ({
             onSendUserPhoneNumber(phoneNumber);
           }}
         >
-          Send code
+          {t("Send code")}
         </StyledButton>
       </StyledBoxTel>
 
@@ -175,7 +177,7 @@ export const PhoneNumberStep = ({
           onClick={onConfirmOtp}
           disabled={isButtonContinueDisabled}
         >
-          Continue
+          {t("Continue")}
         </Button>
       </Dialog>
       {sendUserPhoneNumberMessage && <div>{sendUserPhoneNumberMessage}</div>}
@@ -187,7 +189,7 @@ export const PhoneNumberStep = ({
             onChangeStep(step - 1);
           }}
         >
-          Prev step
+          {t("Prev step")}
         </Button>
       </Box>
       {isLoaderShown && <Loader />}

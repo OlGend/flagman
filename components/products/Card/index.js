@@ -10,10 +10,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 import { TextMobileStepper } from "@/components/products/Stepper";
-
 import { useQueryUser } from "@/queries";
-
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: "absolute",
@@ -31,7 +30,7 @@ export default function MediaCard(props) {
   const { lang, item, onFinish } = props;
   const [open, setOpen] = useState(false);
   const descriptions = JSON.parse(item.product_description);
-
+  const { t } = useTranslation();
   const descriptionForLang =
     descriptions.find((desc) => desc[lang]) ||
     descriptions.find((desc) => desc["all"]);
@@ -103,7 +102,7 @@ export default function MediaCard(props) {
           size="small"
           disabled={userLoading || !user || +user.balance < +item.products_amount}
         >
-          Buy
+          {t("Buy")}
         </Button>
       </div>
 
@@ -120,6 +119,7 @@ export default function MediaCard(props) {
             setEmail={setEmail}
             onConfirm={onConfirm}
             item={item}
+            t={t}
           />
         </Box>
       </Modal>

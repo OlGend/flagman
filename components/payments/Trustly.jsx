@@ -12,8 +12,8 @@ const Payments = () => {
     <div className="bonuses">
       <div className="main__container flex justify-between items-center">
         <div className="flex flex-col basis-[60%]">
-          <h1 className="text-white">Top Online Casinos Supporting Trustly Transactions for 2024</h1>
-          <p className="text-white mt-5">Searching for internet casinos that welcome Trustly payments? Browse our curated list and in-depth evaluations to discover the most suitable Trustly-compatible casino for you.</p>
+          <h1 className="text-white">{t("Top Online Casinos Supporting Trustly Transactions for 2024")}</h1>
+          <p className="text-white mt-5">{t("Searching for internet casinos that welcome Trustly payments? Browse our curated list and in-depth evaluations to discover the most suitable Trustly-compatible casino for you.")}</p>
           {/* <Subscribe /> */}
         </div>
         <div className="basis-[40%] flex justify-center">

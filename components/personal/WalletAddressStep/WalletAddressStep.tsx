@@ -15,6 +15,7 @@ type WalletAddressStepProps = {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   onConfirm: (userId: User["id"]) => Promise<void>;
+  t: Function;
 };
 
 export const WalletAddressStep = ({
@@ -25,6 +26,7 @@ export const WalletAddressStep = ({
   onChangeStep,
   onChangeWalletAddress,
   onConfirm,
+  t
 }: WalletAddressStepProps) => {
   const [
     walletAddressValidate,
@@ -71,7 +73,7 @@ export const WalletAddressStep = ({
             onChangeStep(step - 1);
           }}
         >
-          Prev step
+          {t("Prev step")}
         </Button>
         <Button
           className="btn-primary"
@@ -79,7 +81,7 @@ export const WalletAddressStep = ({
           onClick={setNextStep}
           disabled={isButtonNextStepDisabled}
         >
-          Next step
+          {t("Next step")}
         </Button>
       </Box>
 

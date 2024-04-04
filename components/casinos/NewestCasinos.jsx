@@ -12,8 +12,8 @@ const NewestCasinos = () => {
     <div className="bonuses">
       <div className="main__container flex justify-between items-center">
         <div className="flex flex-col basis-[60%]">
-          <h1 className="text-white">Fresh Entrants to the Online Casino Scene 2024</h1>
-          <p className="text-white mt-5">On the Hunt for Fresh 2024 Online Casino Platforms? Discover Recently Launched Casino Sites Offering Outstanding Incentives and Cutting-Edge Attributes. Constantly Refreshed for Your Exploration.</p>
+          <h1 className="text-white">{t("Fresh Entrants to the Online Casino Scene 2024")}</h1>
+          <p className="text-white mt-5">{t("On the Hunt for Fresh 2024 Online Casino Platforms? Discover Recently Launched Casino Sites Offering Outstanding Incentives and Cutting-Edge Attributes. Constantly Refreshed for Your Exploration.")}</p>
           {/* <Subscribe /> */}
         </div>
         <div className="basis-[40%] flex justify-center">

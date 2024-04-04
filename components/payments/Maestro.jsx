@@ -12,8 +12,8 @@ const Payments = () => {
     <div className="bonuses">
       <div className="main__container flex justify-between items-center">
         <div className="flex flex-col basis-[60%]">
-          <h1 className="text-white">Top-Rated Online Casinos Accepting Maestro Payments for 2024</h1>
-          <p className="text-white mt-5">Interested in gaming at online casinos that welcome Maestro transactions? Let Casino Guru steer you to the ideal Maestro-friendly casino for you.</p>
+          <h1 className="text-white">{t("Top-Rated Online Casinos Accepting Maestro Payments for 2024")}</h1>
+          <p className="text-white mt-5">{t("Interested in gaming at online casinos that welcome Maestro transactions? Let Casino Guru steer you to the ideal Maestro-friendly casino for you.")}</p>
           {/* <Subscribe /> */}
         </div>
         <div className="basis-[40%] flex justify-center">

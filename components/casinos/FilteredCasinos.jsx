@@ -1,6 +1,6 @@
 // TopBrands.jsx (Клієнтський компонент)
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AllCasinos from "./AllCasinos";
 import {
@@ -22,6 +22,7 @@ const FilteredCasinos = () => {
       currentTab: 1,
       currentCategories: 19,
       currentText: "Crypto Casinos",
+      currentText2: t("Crypto Casinos"),
       icon: <CurrencyBtc className="mr-2 pb-1" size={32} />,
       slug: "crypto-casinos",
     },
@@ -29,6 +30,7 @@ const FilteredCasinos = () => {
       currentTab: 2,
       currentCategories: 20,
       currentText: "Fast Withdrawal Casinos",
+      currentText2: t("Fast Withdrawal Casinos"),
       icon: <Cardholder className="mr-2 pb-1" size={32} />,
       slug: "fast-withdrawal-casinos",
     },
@@ -36,6 +38,7 @@ const FilteredCasinos = () => {
       currentTab: 3,
       currentCategories: 22,
       currentText: "Live Casinos",
+      currentText2: t("Live Casinos"),
       icon: <UsersThree className="mr-2 pb-1" size={32} />,
       slug: "live-casinos",
     },
@@ -43,6 +46,7 @@ const FilteredCasinos = () => {
       currentTab: 4,
       currentCategories: 24,
       currentText: "Newest Casinos",
+      currentText2: t("Newest Casinos"),
       icon: <CalendarCheck className="mr-2 pb-1" size={32} />,
       slug: "newest-casinos",
     },
@@ -50,6 +54,7 @@ const FilteredCasinos = () => {
       currentTab: 5,
       currentCategories: 26,
       currentText: "Top Certified Casinos",
+      currentText2: t("Top Certified Casinos"),
       icon: <Scroll className="mr-2 pb-1" size={32} />,
       slug: "top-certified-casinos",
     },
@@ -69,12 +74,10 @@ const FilteredCasinos = () => {
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
             <h2 className="">
-              Comprehensive Compilation of 2024 Online Casino Selection
+              {t("Comprehensive Compilation of 2024 Online Casino Selection")}
             </h2>
             <p className="mt-3 pb-4">
-              In Search of an Online Casino? Navigate through our up-to-date
-              repository housing a myriad of casinos awaiting your
-              consideration.
+              {t("In Search of an Online Casino? Navigate through our up-to-date repository housing a myriad of casinos awaiting your consideration.")}
             </p>
           </div>
         </div>
@@ -88,7 +91,7 @@ const FilteredCasinos = () => {
               onClick={() => handleTabChange(item.currentTab)}
             >
               {item.icon}
-              {item.currentText}
+              {item.currentText2}
             </button>
           ))}
         </div>
@@ -98,9 +101,10 @@ const FilteredCasinos = () => {
             return (
               currentTab === item.currentTab && (
                 <AllCasinos
-                  key={`${item.currentTab}-${i18n.language}`}
-                  filtered={item.currentText}
-                  isLoader={isLoader}
+                key={`${item.currentTab}-${i18n.language}`}
+                filtered={item.currentText}
+                isLoader={isLoader}
+                t={t}
                 />
               )
             );

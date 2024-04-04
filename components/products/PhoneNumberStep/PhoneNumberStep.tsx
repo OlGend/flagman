@@ -20,6 +20,7 @@ type PhoneNumberStepProps = {
   user: User | null;
   product: object;
   setEmail: (email: string) => void;
+  t: Function;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -35,6 +36,7 @@ export const PhoneNumberStep = ({
   user,
   product,
   setEmail,
+  t
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -106,7 +108,7 @@ export const PhoneNumberStep = ({
         <div>
           {showOtp && (
             <>
-              <h2 className="text-center mb-2">Enter your phone number</h2>
+              <h2 className="text-center mb-2">{t("Enter your phone number")}</h2>
               <StyledBoxTel className="relative">
                 <MuiTelInput
                   value={phoneNumber}
@@ -124,14 +126,14 @@ export const PhoneNumberStep = ({
                     });
                   }}
                 >
-                  Send code
+                  {t("Send code")}
                 </StyledButton>
               </StyledBoxTel>
             </>
           )}
           {showPhone && (
             <Box className="flex flex-col items-center">
-              <h2 className="mb-2">Enter the code</h2>
+              <h2 className="mb-2">{t("Enter the code")}</h2>
               <StyledBox>
                 <OTP
                   length={DEFAULT_OTP_LENGTH}
@@ -148,7 +150,7 @@ export const PhoneNumberStep = ({
                     onChangeStep(step - 1);
                   }}
                 >
-                  Prev step
+                  {t("Prev step")}
                 </Button>
                 <Button
                   className="btn-primary ml-1"
@@ -160,7 +162,7 @@ export const PhoneNumberStep = ({
                   }}
                   disabled={isButtonContinueDisabled}
                 >
-                  Continue
+                  {t("Continue")}
                 </Button>
               </div>
             </Box>
@@ -175,7 +177,7 @@ export const PhoneNumberStep = ({
             variant="h6"
             component="h2"
           >
-            Indicate the email address to which to send the card
+            {t("Indicate the email address to which to send the card")}
           </Typography>
 
           <OutlinedInput onChange={(e) => setEmail(e.target.value)} />
@@ -192,7 +194,7 @@ export const PhoneNumberStep = ({
             }}
             variant="contained"
           >
-            Confirm
+            {t("Confirm")}
           </Button>
         </Box>
       )}
@@ -204,7 +206,7 @@ export const PhoneNumberStep = ({
             variant="h6"
             component="h2"
           >
-            Indicate the email address to which to send the card
+            {t("Indicate the email address to which to send the card")}
           </Typography>
 
           <OutlinedInput onChange={(e) => setEmail(e.target.value)} />
@@ -222,7 +224,7 @@ export const PhoneNumberStep = ({
             
             variant="contained"
           >
-            Confirm
+            {t("Confirm")}
           </Button>
         </Box>
       )}

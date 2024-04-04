@@ -1,6 +1,6 @@
-// TopBrands.jsx (Клієнтський компонент)
+
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AllPayments from "./AllPayments";
 import Image from "next/image";
@@ -301,12 +301,10 @@ const FilteredPayments = () => {
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
             <h2 className="">
-              Catalog of all offered Online Casinos by Payment Methods in 2024
+              {t("Catalog of all offered Online Casinos by Payment Methods in 2024")}
             </h2>
             <p className="mt-3 pb-4">
-              Looking for online casinos with specific payment methods? Explore
-              our current database of numerous casino offers for you to choose
-              from.
+              {t("Looking for online casinos with specific payment methods? Explore our current database of numerous casino offers for you to choose from.")}
             </p>
           </div>
         </div>
@@ -335,6 +333,7 @@ const FilteredPayments = () => {
                   key={`${item.currentTab}-${i18n.language}`}
                   filtered={item.currentText}
                   isLoader={isLoader}
+                  t={t}
                 />
               )
             );

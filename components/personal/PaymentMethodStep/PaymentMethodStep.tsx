@@ -24,6 +24,7 @@ type PaymentMethodStepProps = {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   getFeeAndEstimatedAmount: () => Promise<void>;
+  t: Function;
 };
 
 const MIN_AMOUNT = 4;
@@ -52,7 +53,9 @@ export const PaymentMethodStep = ({
   onChangeCoin,
   onChangeAmount,
   getFeeAndEstimatedAmount,
+  t,
 }: PaymentMethodStepProps) => {
+ 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -82,6 +85,8 @@ export const PaymentMethodStep = ({
       setIsLoading(false);
     }
   };
+
+
 
   return (
     <StyledDiv>
@@ -115,7 +120,7 @@ export const PaymentMethodStep = ({
           onClick={getFeeAndEstimatedAmountAndThanGoToWalletAddressStep}
           disabled={isButtonNextStepDisabled}
         >
-          Next step
+          {t("Next step")}
         </Button>
       </Box>
       {isLoading && <Loader />}

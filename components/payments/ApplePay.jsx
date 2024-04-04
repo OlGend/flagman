@@ -13,10 +13,10 @@ const Payments = () => {
       <div className="main__container flex justify-between items-center">
         <div className="flex flex-col basis-[60%]">
           <h1 className="text-white">
-          Exceptional Online Casinos That Welcome Apple Pay Transactions in 2024
+          {t("Exceptional Online Casinos That Welcome Apple Pay Transactions in 2024")}
           </h1>
           <p className="text-white mt-5">
-          Wondering which online casinos accept Apple Pay for financial transactions? Let our guide direct you to the most reliable Apple Pay casinos for a top-notch gaming experience.
+          {t("Wondering which online casinos accept Apple Pay for financial transactions? Let our guide direct you to the most reliable Apple Pay casinos for a top-notch gaming experience.")}
           </p>
           {/* <Subscribe /> */}
         </div>

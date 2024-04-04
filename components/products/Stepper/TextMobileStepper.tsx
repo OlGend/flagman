@@ -15,12 +15,14 @@ interface TextMobileStepperProps {
   onConfirm: () => Promise<void>;
   item: object;
   setEmail: (email: string) => void;
+  t: Function;
 }
 
 export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({
   onConfirm,
   item,
   setEmail,
+  t
 }) => {
   const {
     data: user,
@@ -38,7 +40,7 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({
 
   const steps = [
     {
-      label: "Verify your phone number",
+      label: t("Verify your phone number"),
       content: (
         <PhoneNumberStep
           step={step}
@@ -47,6 +49,7 @@ export const TextMobileStepper: React.FC<TextMobileStepperProps> = ({
           user={user}
           product={item}
           setEmail={setEmail}
+          t={t}
         />
       ),
     },

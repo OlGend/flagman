@@ -190,6 +190,7 @@ export default function Personal() {
             onChangeStep={onChangeStep}
             onChangeWalletAddress={onChangeWalletAddress}
             onConfirm={onConfirm}
+            t={t}
           />
         ),
       },
@@ -198,7 +199,7 @@ export default function Personal() {
         label: t("Finally Step"),
         description:
           t("Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"),
-        content: <FinallyStep text="" onClick={onFinish} />,
+        content: <FinallyStep text="" onClick={onFinish} t={t} />,
       },
     ];
 
@@ -215,6 +216,7 @@ export default function Personal() {
             onChangeStep={onChangeStep}
             onChangePhoneNumber={onChangePhoneNumber}
             onConfirm={onConfirm}
+            t={t}
           />
         ),
       });

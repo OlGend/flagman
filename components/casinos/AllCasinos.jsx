@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
-import Loader from "@/components/Loader";
+import { getBrands } from "@/components/getBrands/getBrands";
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FilterLoader from "@/components/FilterLoader";
-import i18n from "@/components/i18n";
 import {
   Gift,
   ShieldPlus,
@@ -24,7 +24,7 @@ import {
   DotsThreeCircle,
   Handshake,
 } from "phosphor-react";
-
+import { useLanguage } from "@/components/switcher/LanguageContext";
 
 
 export default function AllBonuses({ filtered, isLoader }) {
@@ -52,15 +52,20 @@ export default function AllBonuses({ filtered, isLoader }) {
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [topBrands, setTopBrands] = useState([]);
 
+  const { language } = useLanguage();
+  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
   useEffect(() => {
     const fetchData = async () => {
-      const brands = await getBrandsFiltered(filtered, i18n.language);
+      const brands = await getBrandsFiltered(filtered, language);
+      const brands2 = await getBrands(categoryBrands, language);
 
       setFilteredBrands(brands);
+      setTopBrands(brands2);
+
     };
 
     fetchData();
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     setHasMoreBrands(visibleBrands < filteredBrands.length);
@@ -166,7 +171,7 @@ export default function AllBonuses({ filtered, isLoader }) {
       ) : (
         <div className="flex flex-wrap justify-between awesome">
           <div className="flex flex-col px-0 py-6 basis-[75%]">
-            {vis.slice(0, visibleBrands).map((brand) => {
+            {filteredBrands.slice(0, visibleBrands).map((brand) => {
               const advantages =
                 brand.advantages !== null
                   ? brand.advantages
@@ -215,7 +220,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                     <div className="mb-2 withdrawal withdrawal-limits flex items-center">
                       <Handshake className="mr-1 mb-1" size={24} />
 
-                      <div className="title mr-2">Withdrawal Limits:</div>
+                      <div className="title mr-2">{t("Withdrawal Limits:")}</div>
                       <div className="items-center">
                         {brand.WithdrawalLimits}
                       </div>
@@ -227,7 +232,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <ShieldPlus size={24} />
-                          <span className="mt-1 ml-2">Advantages</span>
+                          <span className="mt-1 ml-2">{t("Advantages")}</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isPlusesOpen && (
@@ -251,7 +256,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <CurrencyCircleDollar size={24} />
-                          <span className="mt-1 ml-2">Payment Methods</span>
+                          <span className="mt-1 ml-2">{t("Payment Methods")}</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isDepositsOpen && (
@@ -281,7 +286,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <GameController size={24} />
-                          <span className="mt-1 ml-2">Game Providers</span>
+                          <span className="mt-1 ml-2">{t("Game Providers")}</span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isWithdrawalOpen && (
@@ -312,7 +317,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                         <div className="title flex items-center">
                           <Prohibit size={24} />
                           <span className="mt-1 ml-2">
-                            Restricted Countries
+                            {t("Restricted Countries")}
                           </span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
@@ -321,7 +326,10 @@ export default function AllBonuses({ filtered, isLoader }) {
                             {/* Виводимо обмежені країни */}
                             <div className="countries flex flex-wrap justify-between mt-1">
                               {restricted.map((restrict, index) => (
-                                <div className="basis-[49%] pl-1 mb-2 flex" key={index}>
+                                <div
+                                  className="basis-[49%] pl-1 mb-2 flex"
+                                  key={index}
+                                >
                                   <MinusCircle color="#dd3333" size={18} />
                                   <span>{restrict.restrict}</span>
                                 </div>
@@ -334,14 +342,13 @@ export default function AllBonuses({ filtered, isLoader }) {
                   </div>
                   <div className="basis-[36%]">
                     <div className="brandImage p-3">
-                  
                       <Link
                         key={brand.id_brand}
                         href={`${brand.GoBig}/${newUrl}`}
                       >
                         <Image
-                          src={brand.LinkImg}
-                          alt={brand.LinkImg}
+                          src={`/brands/${brand.CasinoBrand}.png`}
+                          alt={`/brands/${brand.CasinoBrand}.png`}
                           width={250}
                           height={125}
                           loading="lazy"
@@ -363,9 +370,9 @@ export default function AllBonuses({ filtered, isLoader }) {
                       Read Review
                       </Link> */}
                       <div className="flex flex-col items-center w-full p-4 howUse mt-2 mb-2">
-                        <span className="text-center">How to get bonus?</span>
+                        <span className="text-center">{t("How to get bonus?")}</span>
                         <p className="text-center m-0 text-slate-500">
-                          Activate bonus in your casino account
+                        {t("Activate bonus in your casino account")}
                         </p>
                       </div>
                       <Link
@@ -373,7 +380,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                         href={`${brand.GoBig}/${newUrl}`}
                         target="_blank"
                       >
-                        <Play className="mr-2" size={24} /> Play Now
+                        <Play className="mr-2" size={24} /> {t("Play Now")}
                       </Link>
                     </div>
                   </div>
@@ -387,13 +394,15 @@ export default function AllBonuses({ filtered, isLoader }) {
                 onClick={loadMoreBrands}
               >
                 <DotsThreeCircle className="mr-1" size={24} />
-                Load More Brands
+                {t("Load More Brands")}
               </button>
             )}
           </div>
           <div className="flex flex-col basis-[24%] py-6">
-            {!isMobile && vis2.length > 0 ? (
-              vis2.slice(0, visibleBrands2).map((item) => {
+            {!isMobile ? (
+              topBrands.slice(0, visibleBrands2).map((item) => {
+                // const reviewImgSrc = extractReviewImage(item.content.rendered);
+                // const playLink = extractLink(item.content.rendered);
                 return (
                   <div
                     className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -407,8 +416,8 @@ export default function AllBonuses({ filtered, isLoader }) {
                         target="_blank"
                       >
                         <Image
-                          src={item.LinkImg}
-                          alt={item.LinkImg}
+                          src={`/brands/${item.CasinoBrand}.png`}
+                          alt={`/brands/${item.CasinoBrand}.png`}
                           width={200}
                           height={80}
                           loading="lazy"
@@ -424,14 +433,14 @@ export default function AllBonuses({ filtered, isLoader }) {
                       href={`${item.GoBig}/${newUrl}`}
                       target="_blank"
                     >
-                      Play now
+                     {t("Play Now")}
                     </Link>
                   </div>
                 );
               })
             ) : (
               <Slider {...settings}>
-                {vis2.map((item) => {
+                {topBrands.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -445,8 +454,8 @@ export default function AllBonuses({ filtered, isLoader }) {
                           target="_blank"
                         >
                           <Image
-                            src={item.LinkImg}
-                            alt={item.LinkImg}
+                            src={`/brands/${item.CasinoBrand}.png`}
+                            alt={`/brands/${item.CasinoBrand}.png`}
                             width={200}
                             height={80}
                             loading="lazy"
@@ -462,7 +471,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                         href={`${item.GoBig}/${newUrl}`}
                         target="_blank"
                       >
-                        Play now
+                       {t("Play Now")}
                       </Link>
                     </div>
                   );

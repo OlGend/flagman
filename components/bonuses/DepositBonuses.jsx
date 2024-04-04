@@ -13,8 +13,8 @@ const DepositBonuses = () => {
       <div className="main__container flex justify-between items-center">
         <div className="flex flex-col basis-[60%]">
         
-          <h1 className="text-white">Finest Casino Welcome Bonuses on Your Initial 2024 Deposit</h1>
-          <p className="text-white mt-5">Select from a variety of top-tier introductory casino rewards and receive additional bonus funds incorporated into your initial payment. Exclusive registration incentive deals designed for fresh participants.</p>
+          <h1 className="text-white">{t("Finest Casino Welcome Bonuses on Your Initial 2024 Deposit")}</h1>
+          <p className="text-white mt-5">{t("Select from a variety of top-tier introductory casino rewards and receive additional bonus funds incorporated into your initial payment. Exclusive registration incentive deals designed for fresh participants.")}</p>
           {/* <Subscribe /> */}
 
         </div>

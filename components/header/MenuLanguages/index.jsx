@@ -60,6 +60,7 @@ export default function MultipleSelectPlaceholder() {
     { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "tr", label: "Turkey", flag: "🇹🇷" },
     { code: "gb", label: "United Kingdom", flag: "🇬🇧" },
+    { code: "us", label: "United States", flag: "🇺🇸" },
     { code: "all", label: "World", flag: "🌍" },
   ];
 

@@ -124,7 +124,7 @@ const BrandsSwitcher = () => {
         className={`desktop-lang ${language}`}
         value={language}
         onChange={(e) => {
-          const selected = availableLanguages.find(
+          const selected = newLng.find(
             (lang) => lang.code === e.target.value
           );
           if (selected) {

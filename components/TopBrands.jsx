@@ -36,6 +36,8 @@ export default function TopBrands() {
     searchParams.delete("brand");
     const currentKeyword = searchParams.get("keyword");
 
+    console.log("xxxx", currentKeyword);
+
     const partners = ["partner1039", "partner1043", "partner1044"];
 
     function setPartnerSource(keyword) {
@@ -63,11 +65,12 @@ export default function TopBrands() {
       console.log("Keyword is missing");
     }
 
+    console.log("===", searchParams);
     const newUrlWithSource =
       "?" +
       (searchParams.toString()
         ? searchParams.toString() + "&"
-        : "keyword=undefined") +
+        : `keyword=${localStorage.getItem("user_id")}&`) +
       `creative_id=XXL`;
     if (newUrlWithSource.includes("keyword")) {
       localStorage.setItem("savedUrl", newUrlWithSource);

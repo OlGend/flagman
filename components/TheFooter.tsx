@@ -49,7 +49,7 @@ const TheFooter = () => {
             </div>
           </div>
         </div>
-        <div className="footer-center ">
+        {/* <div className="footer-center ">
           <div className="main__container flex pt-5 pb-4">
             <div className="solution-images flex flex-wrap justify-start items-center">
             </div>
@@ -74,7 +74,7 @@ const TheFooter = () => {
           <div className="main__container pt-3">
             <p>bonus.xxxcasinoGuru.com {t("footer_description")}</p>
           </div>
-        </div>
+        </div> */}
         <div className="footer-end">
           <div className="main__container pt-3 pb-3 flex justify-center">
             <span>Copyright © 2024, bonus.xxxcasinoGuru.com All rights reserved.</span>

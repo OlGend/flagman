@@ -70,7 +70,7 @@ export default function TopBrands() {
       "?" +
       (searchParams.toString()
         ? searchParams.toString() + "&"
-        : `keyword=${localStorage.getItem("user_id")}&`) +
+        : `keyword=${localStorage.getItem("user_id")}&`) + `source=${localStorage.getItem("source")}` +
       `creative_id=XXL`;
     if (newUrlWithSource.includes("keyword")) {
       localStorage.setItem("savedUrl", newUrlWithSource);

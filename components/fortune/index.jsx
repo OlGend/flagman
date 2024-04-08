@@ -3,18 +3,20 @@ import { getBrands } from "@/components/getBrands/getBrands";
 import i18n from "@/components/i18n";
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "@/components/switcher/LanguageContext";
 const Fortunes = () => {
   const [brands, setBrands] = useState([]);
+  const { language } = useLanguage();
   const categoryBrands = { key1: "Segment2", key2: "Premium" };
 
   useEffect(() => {
     const fetchBrands = async () => {
-      const brandsData = await getBrands(categoryBrands, i18n.language);
+      const brandsData = await getBrands(categoryBrands, language);
       setBrands(brandsData);
     };
 
     fetchBrands();
-  }, []);
+  }, [language]);
   return (
     <div className="flex flex-wrap px-0 py-6">
       {brands.map((brand) => (

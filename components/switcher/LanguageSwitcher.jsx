@@ -70,11 +70,7 @@ const LanguageSwitcher = () => {
   };
 
   const availableLanguages = [
-    { code: "au", label: "Australia", flag: "🇦🇺" },
-    { code: "at", label: "Austria", flag: "🇦🇹" },
-    { code: "be", label: "Belgium", flag: "🇧🇪" },
     { code: "bg", label: "Bulgaria", flag: "🇧🇬" },
-    { code: "ca", label: "Canada", flag: "🇨🇦" },
     { code: "cz", label: "Czech", flag: "🇨🇿" },
     { code: "dk", label: "Denmark", flag: "🇩🇰" },
     { code: "fi", label: "Finland", flag: "🇫🇮" },
@@ -82,27 +78,18 @@ const LanguageSwitcher = () => {
     { code: "de", label: "Germany", flag: "🇩🇪" },
     { code: "gr", label: "Greece", flag: "🇬🇷" },
     { code: "hu", label: "Hungary", flag: "🇭🇺" },
-    { code: "ie", label: "Ireland", flag: "🇮🇪" },
     { code: "it", label: "Italy", flag: "🇮🇹" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
-    { code: "nz", label: "New Zealand", flag: "🇳🇿" },
     { code: "no", label: "Norway", flag: "🇳🇴" },
     { code: "pl", label: "Poland", flag: "🇵🇱" },
-    { code: "pt", label: "Portugal", flag: "🇵🇹" },
     { code: "sk", label: "Slovakia", flag: "🇸🇰" },
     { code: "es", label: "Spain", flag: "🇪🇸" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
-    { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "tr", label: "Turkey", flag: "🇹🇷" },
-    { code: "gb", label: "United Kingdom", flag: "🇬🇧" },
     { code: "all", label: "World", flag: "🌍" },
   ];
-  const availableLanguagesPartners = [
-    { code: "au", label: "Australia", flag: "🇦🇺" },
-    { code: "at", label: "Austria", flag: "🇦🇹" },
-    { code: "be", label: "Belgium", flag: "🇧🇪" },
+  const availableLanguages1039 = [
     { code: "bg", label: "Bulgaria", flag: "🇧🇬" },
-    { code: "ca", label: "Canada", flag: "🇨🇦" },
     { code: "cz", label: "Czech", flag: "🇨🇿" },
     { code: "dk", label: "Denmark", flag: "🇩🇰" },
     { code: "fi", label: "Finland", flag: "🇫🇮" },
@@ -110,28 +97,38 @@ const LanguageSwitcher = () => {
     { code: "de", label: "Germany", flag: "🇩🇪" },
     { code: "gr", label: "Greece", flag: "🇬🇷" },
     { code: "hu", label: "Hungary", flag: "🇭🇺" },
-    { code: "ie", label: "Ireland", flag: "🇮🇪" },
     { code: "it", label: "Italy", flag: "🇮🇹" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
-    { code: "nz", label: "New Zealand", flag: "🇳🇿" },
     { code: "no", label: "Norway", flag: "🇳🇴" },
     { code: "pl", label: "Poland", flag: "🇵🇱" },
-    { code: "pt", label: "Portugal", flag: "🇵🇹" },
     { code: "sk", label: "Slovakia", flag: "🇸🇰" },
     { code: "es", label: "Spain", flag: "🇪🇸" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
-    { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "tr", label: "Turkey", flag: "🇹🇷" },
-    { code: "gb", label: "United Kingdom", flag: "🇬🇧" },
+    { code: "all", label: "World", flag: "🌍" },
+  ];
+  const availableLanguages1043 = [{ code: "all", label: "World", flag: "🌍" }];
+  const availableLanguages1044 = [
+    { code: "fi", label: "Finland", flag: "🇫🇮" },
+    { code: "se", label: "Sweden", flag: "🇸🇪" },
     { code: "all", label: "World", flag: "🌍" },
   ];
   let item;
   if (typeof window !== "undefined") {
     item = localStorage.getItem("source");
   }
-  const newLng =
-    item === "partner1039" ? availableLanguagesPartners : availableLanguages;
-
+  // let newLng =
+  //   item === "partner1039" ? availableLanguagesPartners : availableLanguages;
+  let newLng;
+  if (item === "partner1039") {
+    newLng = availableLanguages1039;
+  } else if (item === "partner1043") {
+    newLng = availableLanguages1043;
+  } else if (item === "partner1044") {
+    newLng = availableLanguages1044;
+  } else {
+    newLng = availableLanguages;
+  }
   // Обработка ошибок для selectedLanguage и languageDetails
   if (error) return <div>Failed to load</div>;
 

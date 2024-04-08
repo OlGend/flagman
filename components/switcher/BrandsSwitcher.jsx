@@ -33,8 +33,8 @@ const BrandsSwitcher = () => {
 
   const changeLanguage = (lng) => {
     setIsLoading(true);
-    setLanguage(lng); 
-    localStorage.setItem("country_brands", lng); 
+    setLanguage(lng);
+    localStorage.setItem("country_brands", lng);
     setIsLoading(false);
   };
 
@@ -66,7 +66,7 @@ const BrandsSwitcher = () => {
     { code: "gb", label: "United Kingdom", flag: "🇬🇧" },
     { code: "all", label: "World", flag: "🌍" },
   ];
-  const availableLanguagesPartners = [
+  const availableLanguages1039 = [
     { code: "au", label: "Australia", flag: "🇦🇺" },
     { code: "at", label: "Austria", flag: "🇦🇹" },
     { code: "be", label: "Belgium", flag: "🇧🇪" },
@@ -94,19 +94,35 @@ const BrandsSwitcher = () => {
     { code: "gb", label: "United Kingdom", flag: "🇬🇧" },
     { code: "all", label: "World", flag: "🌍" },
   ];
-
+  const availableLanguages1043 = [
+    { code: "ca", label: "Canada", flag: "🇨🇦" },
+    { code: "us", label: "United States", flag: "🇺🇸" },
+  ];
+  const availableLanguages1044 = [
+    { code: "fi", label: "Finland", flag: "🇫🇮" },
+    { code: "se", label: "Sweden", flag: "🇸🇪" },
+    { code: "all", label: "World", flag: "🌍" },
+  ];
   let item;
   if (typeof window !== "undefined") {
     item = localStorage.getItem("source");
   }
-  const newLng =
-    item === "partner1039" ? availableLanguagesPartners : availableLanguages;
+  let newLng;
+  if (item === "partner1039") {
+    newLng = availableLanguages1039;
+  } else if (item === "partner1043") {
+    newLng = availableLanguages1043;
+  } else if (item === "partner1044") {
+    newLng = availableLanguages1044;
+  } else {
+    newLng = availableLanguages;
+  }
 
   return (
     <div className={`language-switcher ml-3 flex flex-col`}>
       <select
-        className={`desktop-lang ${language}`} 
-        value={language} 
+        className={`desktop-lang ${language}`}
+        value={language}
         onChange={(e) => {
           const selected = availableLanguages.find(
             (lang) => lang.code === e.target.value
@@ -133,4 +149,3 @@ const BrandsSwitcher = () => {
 };
 
 export default BrandsSwitcher;
-

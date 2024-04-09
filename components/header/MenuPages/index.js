@@ -44,13 +44,10 @@ export default function AccountMenu({ userId, t }) {
       }
     };
     window.addEventListener("message", function (event) {
-      // Проверяем, не является ли event.data пустым
       if (event.data) {
         fetchData();
-        console.log("Повідомлення від iframe: ", event.data);
-        // Здесь можно выполнить дальнейшие действия с event.data, если оно не пустое
       } else {
-        console.log("Отримано порожнє повідомлення від iframe.");
+        console.log("--");
       }
     });
     fetchData();
@@ -58,8 +55,13 @@ export default function AccountMenu({ userId, t }) {
 
 
 
+
+
+
   return userData ? (
     <React.Fragment>
+ 
+
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <CustomBadge badgeContent={userData.tickets} color="secondary">
           <Tooltip title={t("Account menu")}>
@@ -112,7 +114,6 @@ export default function AccountMenu({ userId, t }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-
         <div
           className="w-full flex items-center user__balance"
           onClick={handleClose}

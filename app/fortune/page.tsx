@@ -38,53 +38,53 @@ export default function Fortune() {
     return date;
   };
 
-  // Функция для обновления данных пользователя, если необходимо
-  const updateUserDataIfNeeded = async (data: UserData) => {
-    if (!data) return;
+  // // Функция для обновления данных пользователя, если необходимо
+  // const updateUserDataIfNeeded = async (data: UserData) => {
+  //   if (!data) return;
 
-    const oldDate = data.winbalance ? new Date(data.winbalance) : new Date(0);
-    startOfDay(oldDate);
-    const newDate = new Date();
-    startOfDay(newDate);
+  //   const oldDate = data.winbalance ? new Date(data.winbalance) : new Date(0);
+  //   startOfDay(oldDate);
+  //   const newDate = new Date();
+  //   startOfDay(newDate);
 
-    if (newDate.getTime() - oldDate.getTime() >= 86400000) {
-      const formattedNewDate = newDate.toISOString();
+  //   if (newDate.getTime() - oldDate.getTime() >= 86400000) {
+  //     const formattedNewDate = newDate.toISOString();
 
-      try {
-        const body = JSON.stringify({
-          id: userId,
-          winbalance: formattedNewDate,
-        });
-        const response = await fetch(
-          "https://pickbonus.myawardwallet.com/api/user/update_time.php",
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body,
-          }
-        );
+  //     try {
+  //       const body = JSON.stringify({
+  //         id: userId,
+  //         winbalance: formattedNewDate,
+  //       });
+  //       const response = await fetch(
+  //         "https://pickbonus.myawardwallet.com/api/user/update_time.php",
+  //         {
+  //           method: "PUT",
+  //           headers: { "Content-Type": "application/json" },
+  //           body,
+  //         }
+  //       );
 
-        if (!response.ok) throw new Error(`Error: ${response.status}`);
-        console.log("Данные успешно обновлены");
-        await fetchData(); // Перезагружаем данные пользователя
-      } catch (error) {
-        console.error("Ошибка при обновлении данных пользователя:", error);
-      }
-    } else {
-      console.log("Обновление не требуется.");
-    }
-  };
+  //       if (!response.ok) throw new Error(`Error: ${response.status}`);
+  //       console.log("Данные успешно обновлены");
+  //       await fetchData(); // Перезагружаем данные пользователя
+  //     } catch (error) {
+  //       console.error("Ошибка при обновлении данных пользователя:", error);
+  //     }
+  //   } else {
+  //     console.log("Обновление не требуется.");
+  //   }
+  // };
 
-  // Функция для получения данных пользователя
-  const fetchData = async () => {
-    if (!userId) return;
-    try {
-      const data = await getUserData(userId);
-      setUserData(data);
-    } catch (error) {
-      console.error("Ошибка при получении данных пользователя:", error);
-    }
-  };
+  // // Функция для получения данных пользователя
+  // const fetchData = async () => {
+  //   if (!userId) return;
+  //   try {
+  //     const data = await getUserData(userId);
+  //     setUserData(data);
+  //   } catch (error) {
+  //     console.error("Ошибка при получении данных пользователя:", error);
+  //   }
+  // };
 
   addEventListener("message", (event) => {
     // fetchData(userId);

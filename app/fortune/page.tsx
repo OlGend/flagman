@@ -45,7 +45,7 @@ export default function Fortune() {
     const newDate = new Date();
     startOfDay(newDate);
 
-    if (newDate - oldDate >= 86400000) {
+    if (newDate.getTime() - oldDate.getTime() >= 86400000) {
       const formattedNewDate = newDate.toISOString();
 
       try {

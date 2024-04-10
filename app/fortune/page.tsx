@@ -26,7 +26,7 @@ export default function Fortune() {
   }, []);
 
   // Функция для обнуления времени в объекте даты
-  const startOfDay = (date) => {
+  const startOfDay = (date: Date) => {
     date.setHours(0, 0, 0, 0);
     return date;
   };

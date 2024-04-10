@@ -33,10 +33,10 @@ export default function Fortune() {
   }, []);
 
   // Функция для обнуления времени в объекте даты
-  const startOfDay = (date: Date) => {
-    date.setHours(0, 0, 0, 0);
-    return date;
-  };
+  // const startOfDay = (date: Date) => {
+  //   date.setHours(0, 0, 0, 0);
+  //   return date;
+  // };
 
   // // Функция для обновления данных пользователя, если необходимо
   // const updateUserDataIfNeeded = async (data: UserData) => {
@@ -86,10 +86,10 @@ export default function Fortune() {
   //   }
   // };
 
-  addEventListener("message", (event) => {
-    // fetchData(userId);
-    // updateUserDataIfNeeded(userData);
-  });
+  // addEventListener("message", (event) => {
+  //   // fetchData(userId);
+  //   // updateUserDataIfNeeded(userData);
+  // });
 
   return (
     <div className="page-fortune main__container">

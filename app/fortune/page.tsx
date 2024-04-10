@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 import Fortunes from "@/components/fortune";
 import { getUserData } from "@/components/getUser/getUser";
 
+interface UserData {
+  winbalance?: string; // "?" указывает, что свойство необязательное
+  // Добавьте другие свойства здесь по необходимости
+}
+
 export default function Fortune() {
   const [iframeWidth, setIframeWidth] = useState("1170px");
   const [iframeHeight, setIframeHeight] = useState("658px");
@@ -32,7 +37,7 @@ export default function Fortune() {
   };
 
   // Функция для обновления данных пользователя, если необходимо
-  const updateUserDataIfNeeded = async (data) => {
+  const updateUserDataIfNeeded = async (data: UserData) => {
     if (!data) return;
 
     const oldDate = data.winbalance ? new Date(data.winbalance) : new Date(0);
@@ -81,12 +86,12 @@ export default function Fortune() {
 
   addEventListener("message", (event) => {
     fetchData(userId);
-    updateUserDataIfNeeded(userData);
+    // updateUserDataIfNeeded(userData);
   });
 
   return (
     <div className="page-fortune main__container">
-      <button onClick={() => updateUserDataIfNeeded(userData)}>On</button>
+      {/* <button onClick={() => updateUserDataIfNeeded(userData)}>On</button> */}
       <div className="pt-10 pb-10">
         <iframe
           id="myIframe"

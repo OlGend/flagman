@@ -14,7 +14,9 @@ export default function Fortune() {
   const [userData, setUserData] = useState(null);
 
   // Получение ID пользователя
-  const userId = localStorage.getItem("user_id");
+  if (typeof window !== "undefined") {
+    const userId = localStorage.getItem("user_id");
+  }
 
   // Обновление размеров iframe при изменении размеров окна
   useEffect(() => {

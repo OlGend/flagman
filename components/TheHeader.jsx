@@ -52,8 +52,8 @@ const TheHeader = () => {
     async function updateUserData(data) {
       localStorage.setItem("user_id", data);
       setUser(data);
-      // const dataUser = await getUserData(data);
-      const dataUser = "test_oleh"
+      const dataUser = await getUserData(data);
+      // const dataUser = "test_oleh"
       console.log("userData", dataUser);
       if (dataUser) {
         setDataUser(dataUser);

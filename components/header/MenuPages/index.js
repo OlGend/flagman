@@ -43,13 +43,13 @@ export default function AccountMenu({ userId, t }) {
         console.error("Ошибка при получении данных пользователя:", error);
       }
     };
-    window.addEventListener("message", function (event) {
-      if (event.data) {
-        fetchData();
-      } else {
-        console.log("--");
-      }
-    });
+    // window.addEventListener("message", function (event) {
+    //   if (event.data) {
+    //     fetchData();
+    //   } else {
+    //     console.log("--");
+    //   }
+    // });
     fetchData();
   }, [userId]);
 

@@ -15,9 +15,9 @@ import MenuPages from "@/components/header/MenuPages";
 import { getUserData } from "@/components/getUser/getUser";
 import { navItems } from "@/components/header/NavItems";
 import MenuLanguages from "@/components/header/MenuLanguages";
+import { CurrencyCircleDollar, Pinwheel } from "phosphor-react";
 
 const TheHeader = () => {
-
   const { t } = useTranslation();
   const items = navItems(t);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,21 +31,39 @@ const TheHeader = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+
   const urlParams = new URLSearchParams(
     typeof window !== "undefined" ? window.location.search : ""
   );
+  const [load, setLoad] = useState(false);
 
   const [keywordValue, setKeywordValue] = useState(null);
   const idUserParam = urlParams.get("keyword");
   const userData = keywordValue !== null ? keywordValue : idUserParam;
-
+  const [dataUser, setDataUser] = useState();
   useEffect(() => {
+    // function updateUserData(data) {
+    //   localStorage.setItem("user_id", data);
+    //   setUser(data);
+    //   const user =  getUserData(data);
+    //   console.log('object', user)
+    //   setLoad(true);
+    // }
+    async function updateUserData(data) {
+      localStorage.setItem("user_id", data);
+      setUser(data);
+      const dataUser = await getUserData(data);
+      console.log("userData", dataUser);
+      if (dataUser) {
+        setDataUser(dataUser);
+        setLoad(true);
+      }
+    }
+
     if (idUserParam !== null) {
-      localStorage.setItem("user_id", idUserParam);
-      setUser(idUserParam);
+      updateUserData(idUserParam);
     } else if (keywordValue !== null) {
-      localStorage.setItem("user_id", idUserParam);
-      setUser(keywordValue);
+      updateUserData(keywordValue);
     } else if (typeof window !== "undefined") {
       const keyword = localStorage.getItem("savedUrl");
       if (keyword) {
@@ -53,14 +71,15 @@ const TheHeader = () => {
         const keywordPair = pairs.find((pair) => pair.startsWith("?keyword="));
         if (keywordPair) {
           const keywordValue2 = keywordPair.split("=")[1];
-          localStorage.setItem("user_id", keywordValue2);
-          setUser(keywordValue2);
+          updateUserData(keywordValue2);
           setKeywordValue(userData);
           setIsLoading(true);
         }
       }
     }
-  }, []);
+  }, [idUserParam, keywordValue]); // Добавлены зависимости
+
+  console.log(load, user, userData);
 
   return (
     <header className="header">
@@ -72,8 +91,30 @@ const TheHeader = () => {
             </Link>
           </div>
 
-          <div className="search-container flex items-end justify-center ml-auto">
-            {/* <SearchComponent /> */}
+          {/* <div className="search-container flex items-end justify-center ml-auto">
+            <SearchComponent />
+          </div> */}
+          <div className="account-items ml-auto flex items-center">
+            <Link href={`/fortune`} className="balance flex p-2">
+              {load ? (
+                <>
+                  <CurrencyCircleDollar className="mr-1" size={24} /> {dataUser.balance}$
+                </>
+                
+              ) : (
+                "..."
+              )}
+            </Link>
+            <Link href={`/personal`} className="spins flex p-2">
+              {load ? (
+                <>
+                  <Pinwheel className="mr-1" size={24} /> {dataUser.tickets}
+                </>
+                
+              ) : (
+                "..."
+              )}
+            </Link>
           </div>
 
           <I18nextProvider i18n={i18n}>

@@ -9061,6 +9061,7 @@ input.error {
   max-width: 150px;
   border: 1px solid #fff !important;
   margin-left: auto;
+  max-height: 40px;
 }
 .selectlang > div {
   padding: 8px 15px !important;
@@ -9240,4 +9241,31 @@ input.error {
   border-radius: 5px 5px 0 0;
   display: inline-block;
   font-size: 18px;
+}
+.account-items {
+  border: 1px solid rgba(255, 255, 255, 0.527) !important;
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+.account-items .balance {
+  color: #fff;
+  background: #07b963;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 0.5rem !important;
+  display: flex !important;
+}
+.account-items .spins {
+  color: #fff;
+  background: #E7854A;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 0.5rem !important;
+  display: flex !important;
+  margin-left: 0.5rem;
+}
+.mobile-switcher {
+  max-width: 150px;
 }

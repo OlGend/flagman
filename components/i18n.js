@@ -5225,17 +5225,23 @@ async function initializeI18n() {
     }
   };
 
+  let source;
+  if (typeof window !== "undefined") {
+    source = localStorage.getItem("source");
+  }
+
   // Инициализация i18n
   await i18n
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
       resources,
-      lng: matchedLanguage || "all",
+      lng: source !== "partner1043" ? matchedLanguage : "all",
       interpolation: {
         escapeValue: false,
       },
     });
+
 }
 
 initializeI18n();

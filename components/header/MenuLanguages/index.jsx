@@ -68,11 +68,19 @@ export default function MultipleSelectPlaceholder() {
 
   useEffect(() => {
     setLng(i18n.language);
-  }, [i18n.language])
+  }, [i18n.language]);
+
+  let source;
+  if (typeof window !== "undefined") {
+    source = localStorage.getItem("source");
+  }
 
   return (
     <div className="flex items-center mobile-switcher">
-      <FormControl className="m-0 form-control" sx={{ m: 1, width: 300, mt: 3 }}>
+      <FormControl
+        className="m-0 form-control"
+        sx={{ m: 1, width: 300, mt: 3 }}
+      >
         <Select
           className="selectlang"
           multiple
@@ -87,9 +95,11 @@ export default function MultipleSelectPlaceholder() {
               return (
                 <div className="flex items-center">
                   <em className="flagflag">{languageFlag}</em>
-                  <em className="flagflag2">
-                    {lng ? lng.toUpperCase() : ""}
-                  </em>
+                  {source !== "partner1043" && (
+                    <em className="flagflag2">
+                      {lng ? lng.toUpperCase() : ""}
+                    </em>
+                  )}
                 </div>
               );
             }
@@ -104,12 +114,10 @@ export default function MultipleSelectPlaceholder() {
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-      
-            <p className="ml-4 mr-4 mt-4">Your country of residence</p>
-            <BrandsSwitcher  />
-            <p className="ml-4 mr-4">Website language</p>
-            <LanguageSwitcher />
+          <p className="ml-4 mr-4 mt-4">Your country of residence</p>
+          <BrandsSwitcher />
 
+          <LanguageSwitcher />
         </Select>
       </FormControl>
     </div>

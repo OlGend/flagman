@@ -17,35 +17,35 @@ const LanguageSwitcher = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [source, setSource] = useState("");
-  useEffect(() => {
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    const urlObj = typeof window !== "undefined" ? new URL(url) : null;
+  // const [source, setSource] = useState("");
+  // useEffect(() => {
+  //   const url = typeof window !== "undefined" ? window.location.href : "";
+  //   const urlObj = typeof window !== "undefined" ? new URL(url) : null;
 
-    const searchParams = new URLSearchParams(urlObj.search);
-    searchParams.delete("brand");
+  //   const searchParams = new URLSearchParams(urlObj.search);
+  //   searchParams.delete("brand");
 
-    const currentKeyword = searchParams.get("keyword");
+  //   const currentKeyword = searchParams.get("keyword");
 
-    if (currentKeyword !== null && currentKeyword.includes("partner1039")) {
-      // Если в строке есть "partner1039" или "partner1041", вырезаем и добавляем в setSource
-      const partnerIndex = currentKeyword.indexOf("partner");
-      const partnerText = currentKeyword.substring(
-        partnerIndex,
-        partnerIndex + 11
-      ); // 11 - длина "partner1039" или "partner1041"
-      setSource(partnerText);
+  //   if (currentKeyword !== null && currentKeyword.includes("partner1039")) {
+  //     // Если в строке есть "partner1039" или "partner1041", вырезаем и добавляем в setSource
+  //     const partnerIndex = currentKeyword.indexOf("partner");
+  //     const partnerText = currentKeyword.substring(
+  //       partnerIndex,
+  //       partnerIndex + 11
+  //     ); // 11 - длина "partner1039" или "partner1041"
+  //     setSource(partnerText);
 
-      // Используем "partner1039" или "partner1041" в newUrl
-      searchParams.set("source", partnerText);
-    } else {
-      // Если "partner1039" или "partner1041" отсутствует, добавляем 0 в setSource
-      setSource("0");
-      searchParams.set("source", "0");
-      // Если "partner1039" или "partner1041" отсутствует, новый URL не содержит source
-      // searchParams.delete("source");
-    }
-  }, []);
+  //     // Используем "partner1039" или "partner1041" в newUrl
+  //     searchParams.set("source", partnerText);
+  //   } else {
+  //     // Если "partner1039" или "partner1041" отсутствует, добавляем 0 в setSource
+  //     setSource("0");
+  //     searchParams.set("source", "0");
+  //     // Если "partner1039" или "partner1041" отсутствует, новый URL не содержит source
+  //     // searchParams.delete("source");
+  //   }
+  // }, []);
 
   // Обработка ошибок для selectedLanguage и languageDetails
   if (error) {
@@ -133,30 +133,39 @@ const LanguageSwitcher = () => {
   if (error) return <div>Failed to load</div>;
 
   return (
-    <div className={`language-switcher ml-3 flex flex-col`}>
-      <select
-        className={`desktop-lang ${selectedLanguage}`}
-        value={selectedLanguage}
-        onChange={(e) => {
-          const selected = newLng.find((lang) => lang.code === e.target.value);
-          if (selected) {
-            changeLanguage(selected.code, selected.flag);
-          }
-        }}
-      >
-        {newLng.map((language) => (
-          <option
-            className={`${language.code} notranslate`}
-            key={language.code}
-            value={language.code}
-            style={{ fontSize: "20px" }}
-          >
-            {language.flag} {language.label}
-          </option>
-        ))}
-      </select>
+    <div>
+      {item !== "partner1043" && (
+        <div>
+          <p className="ml-4 mr-4">Website language</p>
+          <div className={`language-switcher ml-3 flex flex-col`}>
+            <select
+              className={`desktop-lang ${selectedLanguage}`}
+              value={selectedLanguage}
+              onChange={(e) => {
+                const selected = newLng.find(
+                  (lang) => lang.code === e.target.value
+                );
+                if (selected) {
+                  changeLanguage(selected.code, selected.flag);
+                }
+              }}
+            >
+              {newLng.map((language) => (
+                <option
+                  className={`${language.code} notranslate`}
+                  key={language.code}
+                  value={language.code}
+                  style={{ fontSize: "20px" }}
+                >
+                  {language.flag} {language.label}
+                </option>
+              ))}
+            </select>
 
-      {isLoading && <Loader />}
+            {isLoading && <Loader />}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

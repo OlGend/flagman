@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -75,8 +75,13 @@ export default function MediaCard(props) {
   const handleClose = () => setOpen(false);
   const [email, setEmail] = useState("");
 
+
+
+
   return (
     <div className="w-full">
+
+
       <div className="card flex flex-nowrap w-full justify-between items-center">
         <Image
           className=" flex"

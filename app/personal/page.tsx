@@ -27,7 +27,8 @@ import {
   Stepper,
   Typography,
 } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
+
 import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
 import { useTranslation } from "react-i18next";
 
@@ -37,6 +38,8 @@ const DEFAULT_COIN = "USDTTRC20";
 const DEFAULT_STEP = 0;
 
 export default function Personal() {
+
+
   const { t } = useTranslation();
   const {
     data: user,
@@ -55,15 +58,30 @@ export default function Personal() {
   } = useQueryCoins();
 
   const [tab, setTab] = useState(0);
+
+    // Sync tab state with URL parameter
+    useEffect(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const tab = searchParams.get("tab");
+      const tabMap = { wallet: 0, cards: 2 };
+      if (tab in tabMap) {
+        setTab(tabMap[tab]);
+      }
+    }, []);
+
   const [step, setStep] = useState(DEFAULT_STEP);
   const [coin, setCoin] = useState(DEFAULT_COIN);
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const onChangeTab = (_e: React.SyntheticEvent, nextTab: number) => {
-    setTab(nextTab);
+  // const onChangeTab = (_e: React.SyntheticEvent, nextTab: number) => {
+  //   setTab(nextTab);
+  // };
+  const onChangeTab = (_e, newTabIndex) => {
+    setTab(newTabIndex);
   };
+
 
   const onChangeStep = (nextStep: number) => {
     setStep(nextStep);
@@ -154,15 +172,18 @@ export default function Personal() {
   const getWalletAddressStepDescription = () => {
     if (!fee || !estimatedAmount) return;
     const receive = Number(estimatedAmount) - fee;
-    return `${t("Fee:")} ${fee} ${coin}, ${t("You will receive on balance:")} ${receive} ${coin}`;
+    return `${t("Fee:")} ${fee} ${coin}, ${t(
+      "You will receive on balance:"
+    )} ${receive} ${coin}`;
   };
 
   const getSteps = (user: User, coins: Coins["selectedCurrencies"]) => {
     const initialSteps = [
       {
         label: t("Payment Method"),
-        description:
-          t("Select one of the withdrawal methods and enter the withdrawal amount"),
+        description: t(
+          "Select one of the withdrawal methods and enter the withdrawal amount"
+        ),
         content: (
           <PaymentMethodStep
             user={user}
@@ -197,8 +218,9 @@ export default function Personal() {
 
       {
         label: t("Finally Step"),
-        description:
-          t("Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"),
+        description: t(
+          "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"
+        ),
         content: <FinallyStep text="" onClick={onFinish} t={t} />,
       },
     ];
@@ -206,8 +228,9 @@ export default function Personal() {
     if (!user.phone_number) {
       initialSteps.splice(2, 0, {
         label: t("Phone Number"),
-        description:
-          t("To create a transfer, we need to verify your phone number"),
+        description: t(
+          "To create a transfer, we need to verify your phone number"
+        ),
         content: (
           <PhoneNumberStep
             user={user}
@@ -241,7 +264,9 @@ export default function Personal() {
 
           return (
             <div>
-              <h2 className="title-balance">{t("Your balance:")} {user.balance}$</h2>
+              <h2 className="title-balance">
+                {t("Your balance:")} {user.balance}$
+              </h2>
               <Box
                 className="tab_field"
                 sx={{

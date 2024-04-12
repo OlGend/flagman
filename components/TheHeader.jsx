@@ -15,7 +15,11 @@ import MenuPages from "@/components/header/MenuPages";
 import { getUserData } from "@/components/getUser/getUser";
 import { navItems } from "@/components/header/NavItems";
 import MenuLanguages from "@/components/header/MenuLanguages";
-import { CurrencyCircleDollar, Pinwheel } from "phosphor-react";
+
+import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import Badge from "@mui/material/Badge";
 
 const TheHeader = () => {
   const { t } = useTranslation();
@@ -96,26 +100,50 @@ const TheHeader = () => {
             <SearchComponent />
           </div> */}
           <div className="account-items ml-auto flex items-center">
-            <Link href={`/fortune`} className="balance flex p-2">
+            <div className="flex flex-col">
               {load ? (
-                <>
-                  <CurrencyCircleDollar className="mr-1" size={24} /> {dataUser.balance}$
-                </>
-                
+                <Badge badgeContent={`${dataUser.balance}$`} color="secondary">
+                  <Link href={`/personal`} className="balance flex">
+                    <>
+                      <AccountBalanceWalletOutlinedIcon
+                        className="mr-2"
+                        size={18}
+                      />{" "}
+                      <span>My Wallet</span>
+                    </>
+                  </Link>
+                </Badge>
               ) : (
                 "..."
               )}
-            </Link>
-            <Link href={`/personal`} className="spins flex p-2">
+            </div>
+            <div className="flex flex-col ml-8">
               {load ? (
-                <>
-                  <Pinwheel className="mr-1" size={24} /> {dataUser.tickets}
-                </>
-                
+                <Badge badgeContent={`${dataUser.tickets}`} color="primary">
+                  <Link href={`/fortune`} className="spins flex">
+                    <>
+                      <CurrencyExchangeOutlinedIcon
+                        className="mr-2"
+                        size={18}
+                      />
+                      <span>Fortune Wheel</span>
+                    </>
+                  </Link>
+                </Badge>
               ) : (
                 "..."
               )}
-            </Link>
+            </div>
+            <div className="flex flex-col ml-8">
+              {load && (
+                <Link href={`/personal`} className="cards-shop flex">
+                  <>
+                    <ShoppingBagOutlinedIcon className="mr-2" size={18} />
+                    <span>Cards Shop</span>
+                  </>
+                </Link>
+              )}
+            </div>
           </div>
 
           <I18nextProvider i18n={i18n}>

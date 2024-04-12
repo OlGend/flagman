@@ -59,15 +59,20 @@ export default function Personal() {
 
   const [tab, setTab] = useState(0);
 
-    // Sync tab state with URL parameter
-    useEffect(() => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const tab = searchParams.get("tab");
-      const tabMap = { wallet: 0, cards: 2 };
-      if (tab in tabMap) {
-        setTab(tabMap[tab]);
-      }
-    }, []);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const tab = searchParams.get("tab");
+  
+    // Определяем tabMap с индексной сигнатурой
+    const tabMap: { [key: string]: number } = { wallet: 0, cards: 2 };
+  
+    // Проверяем, что tab не null и существует в tabMap
+    if (tab !== null && tab in tabMap) {
+      setTab(tabMap[tab]); // Теперь доступ к элементам через строку корректно типизирован
+    }
+  }, []);
+  
+    
 
   const [step, setStep] = useState(DEFAULT_STEP);
   const [coin, setCoin] = useState(DEFAULT_COIN);
@@ -78,7 +83,7 @@ export default function Personal() {
   // const onChangeTab = (_e: React.SyntheticEvent, nextTab: number) => {
   //   setTab(nextTab);
   // };
-  const onChangeTab = (_e, newTabIndex) => {
+  const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
     setTab(newTabIndex);
   };
 

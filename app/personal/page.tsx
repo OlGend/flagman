@@ -72,6 +72,9 @@ export default function Personal() {
       cards: 2
     };
     
+
+    
+    
   
     if (tab !== null && tab in tabMap) {
       setTab(tabMap[tab]);
@@ -123,9 +126,10 @@ export default function Personal() {
   //   setTab(newTabIndex);
   // };
   const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
+
     // Сначала определим объект сопоставления вне лямбда-функции
     const tabMap = { wallet: 0, historia: 1, cards: 2 };
-    const tabName = Object.keys(tabMap).find(key => tabMap[key] === newTabIndex);
+    const tabName = Object.keys(tabMap).find(key => tabMap[key as keyof typeof tabMap] === newTabIndex);
   
     if (tabName) {
       const newUrl = `${window.location.pathname}?tab=${tabName}`;

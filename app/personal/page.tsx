@@ -96,19 +96,19 @@ export default function Personal() {
 
   // const [tab, setTab] = useState(getInitialTab());
 
-  useEffect(() => {
-    const handlePopState = () => {
-      setTab(getInitialTab());
-    };
+  // useEffect(() => {
+  //   const handlePopState = () => {
+  //     setTab(getInitialTab());
+  //   };
 
-    // Слушаем изменения в истории браузера
-    window.addEventListener("popstate", handlePopState);
+  //   // Слушаем изменения в истории браузера
+  //   window.addEventListener("popstate", handlePopState);
 
-    // Очистка слушателя
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
+  //   // Очистка слушателя
+  //   return () => {
+  //     window.removeEventListener("popstate", handlePopState);
+  //   };
+  // }, []);
 
   
 

@@ -9131,7 +9131,9 @@ input.error {
   background-color: #0967e3;
   color: #fff;
 }
+
 @media (min-width: 320px) and (max-width: 1259px) {
+  
   .page-fortune {
     padding-top: 50px;
   }
@@ -9278,4 +9280,21 @@ input.error {
   font-size: 16px !important;
   display: flex !important;
 
+}
+.tabsstep svg {
+  min-width: 20px;
+}
+
+
+@media(min-width: 320px) and (max-width: 767px) {
+  .account-items {
+    display: none;
+  }
+  #myIframe {
+    height: 250px;
+    width: 100%;
+  }
+  .mobile-switcher {
+    margin-left: auto;
+  }
 }

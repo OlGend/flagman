@@ -87,6 +87,7 @@ export default function Fortune() {
   // };
 
   // addEventListener("message", (event) => {
+  //   console.log("EVENT", event)
   //   // fetchData(userId);
   //   // updateUserDataIfNeeded(userData);
   // });

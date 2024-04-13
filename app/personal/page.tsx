@@ -307,7 +307,7 @@ export default function Personal() {
           const steps = getSteps(user, coins);
 
           return (
-            <div>
+            <div className="tabsstep">
               <h2 className="title-balance">
                 {t("Your balance:")} {user.balance}$
               </h2>

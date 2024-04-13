@@ -8924,7 +8924,7 @@ input.error {
   display: none;
 }
 #account-menu ul div {
-  border-radius: 15px 0;
+  border-radius: 15px 15px 0 0;
 }
 .btn-primary.get_spins {
   border-radius: 15px;

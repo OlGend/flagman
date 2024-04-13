@@ -31,6 +31,7 @@ import { ChangeEvent, useState, useEffect } from "react";
 
 import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from 'next/navigation';
 
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
@@ -38,8 +39,8 @@ const DEFAULT_COIN = "USDTTRC20";
 const DEFAULT_STEP = 0;
 
 export default function Personal() {
-
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log("params", searchParams)
   const { t } = useTranslation();
   const {
     data: user,
@@ -63,16 +64,46 @@ export default function Personal() {
     const searchParams = new URLSearchParams(window.location.search);
     const tab = searchParams.get("tab");
   
-    // Определяем tabMap с индексной сигнатурой
     const tabMap: { [key: string]: number } = { wallet: 0, cards: 2 };
   
-    // Проверяем, что tab не null и существует в tabMap
     if (tab !== null && tab in tabMap) {
-      setTab(tabMap[tab]); // Теперь доступ к элементам через строку корректно типизирован
-    }
-  }, []);
+      setTab(tabMap[tab]);
   
+      // Создаём новый объект URLSearchParams на основе текущего
+      // чтобы можно было изменить параметры
+      const newSearchParams = new URLSearchParams(window.location.search);
+      newSearchParams.delete('tab'); // Удаляем параметр 'tab'
+  
+      // Обновляем URL без перезагрузки страницы
+      const newUrl = `${window.location.pathname}?${newSearchParams.toString()}`;
+      window.history.pushState({}, '', newUrl);
+    }
     
+  }, [searchParams]);
+  // const getInitialTab = () => {
+  //   const searchParams = new URLSearchParams(window.location.search);
+  //   const tab = searchParams.get("tab");
+  //   const tabMap = { wallet: 0, cards: 2 };
+  //   return tab !== null && tab in tabMap ? tabMap[tab] : 0;
+  // };
+
+  // const [tab, setTab] = useState(getInitialTab());
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setTab(getInitialTab());
+    };
+
+    // Слушаем изменения в истории браузера
+    window.addEventListener("popstate", handlePopState);
+
+    // Очистка слушателя
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
+  
 
   const [step, setStep] = useState(DEFAULT_STEP);
   const [coin, setCoin] = useState(DEFAULT_COIN);
@@ -80,14 +111,22 @@ export default function Personal() {
   const [walletAddress, setWalletAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  // const onChangeTab = (_e: React.SyntheticEvent, nextTab: number) => {
-  //   setTab(nextTab);
+ 
+  // const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
+  //   setTab(newTabIndex);
   // };
-  const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
-    setTab(newTabIndex);
+  const onChangeTab = (_e, newTabIndex) => {
+    // Сначала определим объект сопоставления вне лямбда-функции
+    const tabMap = { wallet: 0, historia: 1, cards: 2 };
+    const tabName = Object.keys(tabMap).find(key => tabMap[key] === newTabIndex);
+  
+    if (tabName) {
+      const newUrl = `${window.location.pathname}?tab=${tabName}`;
+      window.history.pushState({}, '', newUrl);
+      setTab(newTabIndex);
+    }
   };
-
-
+  
   const onChangeStep = (nextStep: number) => {
     setStep(nextStep);
   };

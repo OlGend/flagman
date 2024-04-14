@@ -27,9 +27,13 @@ const style = {
 };
 
 export default function MediaCard(props) {
+  function cleanJson(jsonString) {
+    return jsonString.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+  }
   const { lang, item, onFinish } = props;
   const [open, setOpen] = useState(false);
-  const descriptions = JSON.parse(item.product_description);
+  console.log("pppp", item.product_description)
+  const descriptions = JSON.parse(cleanJson(item.product_description));
   const { t } = useTranslation();
   const descriptionForLang =
     descriptions.find((desc) => desc[lang]) ||
@@ -93,7 +97,7 @@ export default function MediaCard(props) {
         <div className="basis-8/12 card-content flex">
           <div className="flex justify-between basis-3/12 mr-3">
             <p className="mr-3"> {item.product_name}</p>
-            <p>{item.products_amount}$</p>
+            <p>{item.products_amount}</p>
           </div>
           <p className="basis-8/12 ml-auto dm-none">
             {" "}

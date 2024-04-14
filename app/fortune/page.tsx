@@ -92,13 +92,32 @@ export default function Fortune() {
   //   // updateUserDataIfNeeded(userData);
   // });
 
+
+  const [messageData, setMessageData] = useState(null);
+    useEffect(() => {
+      const handleMessage = (event) => {
+        if (event.origin !== window.location.origin) {
+          console.error("Received message from an unauthorized origin:", event.origin);
+          return;
+        }
+
+        console.log("Received data:", event.data);
+        setMessageData(event.data);
+      };
+    
+      window.addEventListener("message", handleMessage);
+      return () => window.removeEventListener("message", handleMessage);
+    }, []);
+    console.log("---", messageData);
+  
+
   return (
     <div className="page-fortune main__container">
       {/* <button onClick={() => updateUserDataIfNeeded(userData)}>On</button> */}
       <div className="pt-10 pb-10">
         <iframe
           id="myIframe"
-          src="/wheel/index.html"
+          src="/wheelOriginal/index.html"
           width={iframeWidth}
           height={iframeHeight}
         />

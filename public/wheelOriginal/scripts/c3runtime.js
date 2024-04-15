@@ -4820,6 +4820,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Audio.Acts.Stop,
 		C3.Plugins.Sprite.Cnds.OnCollision,
+		C3.ScriptsInEvents.Es_game_Event13_Act4,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.Text.Acts.SetFontColor,
 		C3.Behaviors.Flash.Acts.Flash,

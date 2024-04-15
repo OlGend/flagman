@@ -40,30 +40,61 @@ const TheHeader = () => {
     typeof window !== "undefined" ? window.location.search : ""
   );
   const [load, setLoad] = useState(false);
+
   const [keywordValue, setKeywordValue] = useState(null);
   const idUserParam = urlParams.get("keyword");
   const userData = keywordValue !== null ? keywordValue : idUserParam;
   const [dataUser, setDataUser] = useState();
-  const [d, setD] = useState(null)
+
+  const [d, setD] = useState(null);
 
   useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.origin !== "http://localhost:3000") {
+        console.error(
+          "Received message from an unauthorized origin:",
+          event.origin
+        );
+        return;
+      }
 
+      const jsonData = event.data;
+      console.log("Raw data from iframe:", jsonData);
+      setD(typeof jsonData === jsonData.includes("Json") ? jsonData : JSON.stringify(jsonData));
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+  console.log("SETDSETDSETD", d);
+
+  // useEffect(() => {
+  //   if(d && d.includes("Json")) {
+  //     console.log("SET", "upload")
+  //   }
+  // }, [d])
+
+  useEffect(() => {
     async function updateUserData(data) {
       localStorage.setItem("user_id", data);
       setUser(data);
       const dataUser = await getUserData(data);
-      if (dataUser) {
-        setDataUser(dataUser);
+      // const dataUser = "test_oleh"
+      console.log("userData", dataUser);
+      // if (dataUser) {
+      //   setDataUser(dataUser);
+      //   setLoad(true);
+      // }
+      if (dataUser || (d && d.includes("Json"))) {
+        setDataUser(dataUser); // Это может быть не нужно, если dataUser не изменился
         setLoad(true);
       }
-      if (d && typeof d === 'string' && d.includes("Json")) {
-        console.log("--------------------- Data in `d` contains 'Json':", d);
-        const dataUser = await getUserData(data);
-        if (dataUser) {
-          setDataUser(dataUser);
-          setLoad(true);
-        }
-      }
+    }
+    if(d && d.includes("Json")) {
+      console.log("SET", "upload")
     }
     if (idUserParam !== null) {
       updateUserData(idUserParam);
@@ -84,28 +115,6 @@ const TheHeader = () => {
     }
   }, [d]); 
 
-
-
-  useEffect(() => {
-    const handleMessage = (event) => {
-
-      if (event.origin !== "http://localhost:3000") {
-        console.error("Received message from an unauthorized origin:", event.origin);
-        return;
-      }
-      console.log("Raw data from iframe:", event.data);
-      const jsonData = event.data;
-      setD(typeof jsonData === 'string' ? jsonData : "");
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, []);
-  
-
   return (
     <header className="header">
       <div className="header__bg">
@@ -116,7 +125,9 @@ const TheHeader = () => {
             </Link>
           </div>
 
-      
+          {/* <div className="search-container flex items-end justify-center ml-auto">
+            <SearchComponent />
+          </div> */}
           <div className="account-items ml-auto flex items-center">
             <div className="flex flex-col">
               {load ? (

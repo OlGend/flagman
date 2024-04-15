@@ -8,6 +8,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
+
 import Link from "next/link";
 import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
@@ -15,12 +16,23 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
 import { getUserData } from "@/components/getUser/getUser";
+import transferSpinsToTickets from "@/components/getUser/transferSpins";
+
+import DisabledSpins from "@/components/header/DisabledSpins";
 import { styled } from "@mui/material/styles";
+import { useQueryUser } from "@/queries";
 
 export default function AccountMenu({ userId, t }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const {
+    data: user,
+    loading: userLoading,
+    error: userError,
+    errorMessage: userErrorMessage,
+    refetch: refetchUser,
+  } = useQueryUser();
 
-  const [d, setD] = useState(null)
+  const [d, setD] = useState([]);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,38 +41,49 @@ export default function AccountMenu({ userId, t }) {
     setAnchorEl(null);
   };
 
-  const [userData, setUserData] = useState(null); 
+  const [userData, setUserData] = useState(null); // Хранение данных пользователя
 
   useEffect(() => {
     if (!userId) return;
     const fetchData = async () => {
       try {
-        const data = await getUserData(userId); 
-        setUserData(data); 
+        const data = await getUserData(userId); // Асинхронный вызов
+        setUserData(data); // Сохранение полученных данных в состояние
       } catch (error) {
         console.error("Ошибка при получении данных пользователя:", error);
       }
     };
     fetchData();
-    if (d && typeof d === 'string' && d.includes("Json")) {
+    if (d && typeof d === "string" && d.includes("Json")) {
       console.log("--------------------- Data in `d` contains 'Json':", d);
-      fetchData();
+      fetchData(); // Вызываем функцию обновления
     }
   }, [userId, d]);
 
-
-
-console.log("---------------------", d);
+  console.log("---------------------", d);
   useEffect(() => {
     const handleMessage = (event) => {
-
+      // Проверка на происхождение сообщения
       if (event.origin !== "http://localhost:3000") {
-        console.error("Received message from an unauthorized origin:", event.origin);
+        console.error(
+          "Received message from an unauthorized origin:",
+          event.origin
+        );
         return;
       }
+
       console.log("Raw data from iframe:", event.data);
+
+      // Прямое использование данных, предполагая, что это объект JavaScript
       const jsonData = event.data;
-      setD(typeof jsonData === 'string' ? jsonData : "");
+
+      // Обновление состояния с данными сообщения
+      setD(typeof jsonData === "string" ? jsonData : "");
+
+      // // Проверка на наличие конкретного сообщения и выполнение действия
+      // if (jsonData && jsonData.message === "Пользователь был обновлен") {
+      //   console.log("YES BABY");
+      // }
     };
 
     window.addEventListener("message", handleMessage);
@@ -69,7 +92,14 @@ console.log("---------------------", d);
       window.removeEventListener("message", handleMessage);
     };
   }, []);
-  
+
+  // useEffect(() => {
+  //   if (d && Object.keys(d).length > 0) {  // Проверяем, что в `d` есть данные
+  //     console.log("---------------------", d);
+  //     updateUser();  // Вызываем функцию обновления
+  //   }
+  // }, [d]);  // Зависимость от изменений `d`
+
   return userData ? (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>

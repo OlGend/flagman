@@ -93,22 +93,8 @@ export default function Fortune() {
   // });
 
 
-  const [messageData, setMessageData] = useState(null);
-    useEffect(() => {
-      const handleMessage = (event) => {
-        if (event.origin !== window.location.origin) {
-          console.error("Received message from an unauthorized origin:", event.origin);
-          return;
-        }
 
-        console.log("Received data:", event.data);
-        setMessageData(event.data);
-      };
-    
-      window.addEventListener("message", handleMessage);
-      return () => window.removeEventListener("message", handleMessage);
-    }, []);
-    console.log("---", messageData);
+  
   
 
   return (

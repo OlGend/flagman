@@ -8978,6 +8978,7 @@ input.error {
 }
 .tab-label span {
   text-transform: capitalize !important; 
+  width: 100%;
 }
 #menu- ul li {
   padding-left: 40px;

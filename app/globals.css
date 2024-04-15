@@ -9299,3 +9299,12 @@ input.error {
     margin-left: auto;
   }
 }
+
+.cardaval {
+  padding: 5px;
+  border-radius: 4px;
+  color: #b1b1b1;
+  margin-left: auto;
+  border: 1px solid rgba(123, 140, 152, 0.2);
+  background: #fff;
+}

@@ -333,7 +333,8 @@ async function initializeI18n() {
         "Fortune Wheel": "Fortune Wheel",
         "Cards Shop": "Cards Shop",
         "Amount": "Amount",
-        "Email": "Email"
+        "Email": "Email",
+        "Card availability varies by region.": "Card availability varies by region."
       },
     },
     pl: {

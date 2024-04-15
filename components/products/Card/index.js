@@ -80,6 +80,7 @@ export default function MediaCard(props) {
 
   return (
     <div className="w-full">
+        
       <div className="card flex flex-nowrap w-full justify-between items-center">
         <Image
           className=" flex"
@@ -90,10 +91,10 @@ export default function MediaCard(props) {
         />
         <div className="basis-8/12 card-content flex">
           <div className="flex justify-between basis-3/12 mr-3">
-            <p className="mr-3"> {item.product_name}</p>
-            <p>{item.products_amount}</p>
+            <p className="mr-3 flex items-center"> {item.product_name}</p>
+            <p className="flex items-center">{item.products_amount}$</p>
           </div>
-          <p className="basis-8/12 ml-auto dm-none">
+          <p className="basis-8/12 ml-auto dm-none flex items-center">
             {" "}
             <span>{descriptionForLang[lang] || descriptionForLang["all"]}</span>
           </p>

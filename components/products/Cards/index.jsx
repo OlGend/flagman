@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Cards = ({ user, onFinish }) => {
   const [productsData, setProductsData] = useState([]);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   // const userId = user;
   const lang = i18n.language;
   useEffect(() => {
@@ -54,7 +54,7 @@ const Cards = ({ user, onFinish }) => {
           key={item.product_id}
         />
       ))}
-      <p></p>
+      <span className="cardaval">{t("Card availability varies by region.")}</span>
     </div>
   );
 };

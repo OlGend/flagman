@@ -9288,6 +9288,12 @@ input.error {
 
 
 @media(min-width: 320px) and (max-width: 767px) {
+  .basis-8\/12 {
+    flex-basis: initial !important;
+  }
+  .tab_panel .vard .btn {
+    min-width: 90px !important;
+  }
   .account-items {
     display: none;
   }

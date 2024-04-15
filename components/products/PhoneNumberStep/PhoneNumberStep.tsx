@@ -179,8 +179,8 @@ export const PhoneNumberStep = ({
           >
             {t("Indicate the email address to which to send the card")}
           </Typography>
-
-          <OutlinedInput onChange={(e) => setEmail(e.target.value)} />
+    
+          <OutlinedInput placeholder={t("Email")} onChange={(e) => setEmail(e.target.value)} />
 
           <Button
             className="btn btn-primary mt-4"
@@ -208,8 +208,8 @@ export const PhoneNumberStep = ({
           >
             {t("Indicate the email address to which to send the card")}
           </Typography>
-
-          <OutlinedInput onChange={(e) => setEmail(e.target.value)} />
+      
+          <OutlinedInput placeholder={t("Email")} onChange={(e) => setEmail(e.target.value)} />
 
           <Button
             className="btn btn-primary mt-4"

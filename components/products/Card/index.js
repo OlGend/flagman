@@ -32,7 +32,7 @@ export default function MediaCard(props) {
   }
   const { lang, item, onFinish } = props;
   const [open, setOpen] = useState(false);
-  console.log("pppp", item.product_description)
+  console.log("pppp", item.product_description);
   const descriptions = JSON.parse(cleanJson(item.product_description));
   const { t } = useTranslation();
   const descriptionForLang =
@@ -63,8 +63,6 @@ export default function MediaCard(props) {
       sumMinus: item.products_amount,
     });
 
-  
-
     try {
       const response = await updateUserStatusPayment(body);
       onFinish();
@@ -80,19 +78,15 @@ export default function MediaCard(props) {
   const [email, setEmail] = useState("");
 
 
-
-
   return (
     <div className="w-full">
-
-
       <div className="card flex flex-nowrap w-full justify-between items-center">
         <Image
           className=" flex"
           src={`/products/${item.product_image}.jpg`}
           alt={item.product_name}
-          width={64}
-          height={48}
+          width={96}
+          height={74}
         />
         <div className="basis-8/12 card-content flex">
           <div className="flex justify-between basis-3/12 mr-3">
@@ -109,14 +103,16 @@ export default function MediaCard(props) {
           className="btn-primary btn basis-1/12"
           variant="contained"
           size="small"
-          disabled={userLoading || !user || +user.balance < +item.products_amount}
+          disabled={
+            userLoading || !user || +user.balance < +item.products_amount
+          }
         >
           {t("Buy")}
         </Button>
       </div>
 
       <Modal
-      className="modal-mui"
+        className="modal-mui"
         keepMounted
         open={open}
         onClose={handleClose}
@@ -125,6 +121,7 @@ export default function MediaCard(props) {
       >
         <Box sx={{ ...style, width: 400 }}>
           <TextMobileStepper
+          
             setEmail={setEmail}
             onConfirm={onConfirm}
             item={item}

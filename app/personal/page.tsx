@@ -40,7 +40,6 @@ const DEFAULT_STEP = 0;
 
 export default function Personal() {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log("params", searchParams)
   const { t } = useTranslation();
   const {
     data: user,

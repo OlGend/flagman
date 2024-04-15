@@ -20,7 +20,7 @@ async function initializeI18n() {
     defLng = "all"; // Установка значения по умолчанию в случае ошибки
   }
 
-  const languages = ["au", "ca", "nz", "pl", "us", "se", 'fi', 'all'];
+  const languages = ["au", "ca", "nz", "pl", "us", "se", "fi", "all"];
 
   // Используем метод map для сопоставления значений массива languages с defLng
   const matchedLanguages = languages.map((language) => {
@@ -118,7 +118,7 @@ async function initializeI18n() {
         "My wallet": "My wallet",
         "Cards Shop": "Cards Shop",
         "Account menu": "Account menu",
-  
+
         "Fee:": "Fee",
         "You will receive on balance:": "You will receive on balance:",
         "Payment Method": "Payment Method",
@@ -310,15 +310,32 @@ async function initializeI18n() {
           "Pragmatic Play: Fusing Quality and Creativity for an Unmatched iGaming Experience",
         "A frontrunner in the iGaming industry, Pragmatic Play has made its name through a potent blend of innovative gameplay and top-notch graphics. Renowned for popular titles like 'Wolf Gold' and 'The Dog House,' the company delivers a versatile range of slots, live casino games, and even bingo offerings. Pragmatic Play's commitment to quality is manifest in its intuitive interfaces, engaging storylines, and well-executed game mechanics. By consistently rolling out new and captivating games, they manage to stay ahead in the competitive world of online gaming, solidifying their reputation as a reliable and inventive game provider.":
           "A frontrunner in the iGaming industry, Pragmatic Play has made its name through a potent blend of innovative gameplay and top-notch graphics. Renowned for popular titles like 'Wolf Gold' and 'The Dog House,' the company delivers a versatile range of slots, live casino games, and even bingo offerings. Pragmatic Play's commitment to quality is manifest in its intuitive interfaces, engaging storylines, and well-executed game mechanics. By consistently rolling out new and captivating games, they manage to stay ahead in the competitive world of online gaming, solidifying their reputation as a reliable and inventive game provider.",
-        "Easily Find Your Ideal Online Casino: Sorted by Game Developers for Tailored Gaming Experiences": "Easily Find Your Ideal Online Casino: Sorted by Game Developers for Tailored Gaming Experiences",
-        "To make your hunt easier, we've sorted our casino offerings by game developer. This enables you to effortlessly locate a gaming site that provides the exact games you wish to play. From state-of-the-art video slots and electrifying live casino experiences to traditional table games, we've got all your preferences accounted for. Browse our detailed list of game providers to find casinos backed by premier software developers, guaranteeing high-quality visuals, captivating gameplay, and engaging features.": "To make your hunt easier, we've sorted our casino offerings by game developer. This enables you to effortlessly locate a gaming site that provides the exact games you wish to play. From state-of-the-art video slots and electrifying live casino experiences to traditional table games, we've got all your preferences accounted for. Browse our detailed list of game providers to find casinos backed by premier software developers, guaranteeing high-quality visuals, captivating gameplay, and engaging features.",
-        "Push Gaming: Revolutionizing iGaming with Cutting-Edge Concepts": "Push Gaming: Revolutionizing iGaming with Cutting-Edge Concepts",
-        "In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like 'Jammin' Jars' and 'Wild Swarm,' the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming's focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.": "In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like 'Jammin' Jars' and 'Wild Swarm,' the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming's focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.",
-        "Spinomenal: A New Age Innovator in the iGaming Ecosystem": "Spinomenal: A New Age Innovator in the iGaming Ecosystem",
-        "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II,' the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.": "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II,' the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.",
+        "Easily Find Your Ideal Online Casino: Sorted by Game Developers for Tailored Gaming Experiences":
+          "Easily Find Your Ideal Online Casino: Sorted by Game Developers for Tailored Gaming Experiences",
+        "To make your hunt easier, we've sorted our casino offerings by game developer. This enables you to effortlessly locate a gaming site that provides the exact games you wish to play. From state-of-the-art video slots and electrifying live casino experiences to traditional table games, we've got all your preferences accounted for. Browse our detailed list of game providers to find casinos backed by premier software developers, guaranteeing high-quality visuals, captivating gameplay, and engaging features.":
+          "To make your hunt easier, we've sorted our casino offerings by game developer. This enables you to effortlessly locate a gaming site that provides the exact games you wish to play. From state-of-the-art video slots and electrifying live casino experiences to traditional table games, we've got all your preferences accounted for. Browse our detailed list of game providers to find casinos backed by premier software developers, guaranteeing high-quality visuals, captivating gameplay, and engaging features.",
+        "Push Gaming: Revolutionizing iGaming with Cutting-Edge Concepts":
+          "Push Gaming: Revolutionizing iGaming with Cutting-Edge Concepts",
+        "In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like 'Jammin' Jars' and 'Wild Swarm,' the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming's focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.":
+          "In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like 'Jammin' Jars' and 'Wild Swarm,' the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming's focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.",
+        "Spinomenal: A New Age Innovator in the iGaming Ecosystem":
+          "Spinomenal: A New Age Innovator in the iGaming Ecosystem",
+        "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II,' the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
+          "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II,' the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.",
+
+        Sum: "Sum",
+        Method: "Method",
+        Amount: "Amount",
+        "Wallet address": "Wallet address",
+        "Time of request": "Time of request",
+        Status: "Status",
+        "My Wallet": "My Wallet",
+        "Fortune Wheel": "Fortune Wheel",
+        "Cards Shop": "Cards Shop",
+        "Amount": "Amount",
+        "Email": "Email"
       },
     },
-  
     pl: {
       translation: {
         "Casinos ▼": "Kasyna ▼",
@@ -402,7 +419,7 @@ async function initializeI18n() {
         "My wallet": "Mój portfel",
         "Cards Shop": "Sklep z kartami podarunkowymi",
         "Account menu": "Menu konta",
-  
+
         "Fee:": "Opłata:",
         "You will receive on balance:": "Otrzymasz na saldo:",
         "Payment Method": "Metoda płatności",
@@ -691,7 +708,7 @@ async function initializeI18n() {
         "My wallet": "Meine Brieftasche",
         "Cards Shop": "Kaufen",
         "Account menu": "Kontomenü",
-  
+
         "Fee:": "Gebühr:",
         "You will receive on balance:": "Sie werden auf Balance erhalten:",
         "Payment Method": "Zahlungsmethode",
@@ -980,7 +997,7 @@ async function initializeI18n() {
         "My wallet": "Портфейла ми",
         "Cards Shop": "Магазин",
         "Account menu": "Меню на акаунта",
-  
+
         "Fee:": "Такса:",
         "You will receive on balance:": "Ще получите на баланса",
         "Payment Method": "Метод на плащане",
@@ -1269,7 +1286,7 @@ async function initializeI18n() {
         "My wallet": "Můj peněženka",
         "Cards Shop": "Obchod",
         "Account menu": "Menu účtu",
-  
+
         "Fee:": "Poplatek:",
         "You will receive on balance:": "Dostanete na účet",
         "Payment Method": "Způsob platby",
@@ -1557,7 +1574,7 @@ async function initializeI18n() {
         "My wallet": "Min tegnebog",
         "Cards Shop": "Butik",
         "Account menu": "Konto menu",
-  
+
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil modtage på balance:",
         "Payment Method": "Betalingsmetode",
@@ -1845,7 +1862,7 @@ async function initializeI18n() {
         "My wallet": "Mijn portemonnee",
         "Cards Shop": "Winkel",
         "Account menu": "Account menu",
-  
+
         "Fee:": "Betaling:",
         "You will receive on balance:": "Je zult ontvangen op saldo:",
         "Payment Method": "Betalingsmethode",
@@ -2134,7 +2151,7 @@ async function initializeI18n() {
         "My wallet": "Mi cartera",
         "Cards Shop": "Tienda",
         "Account menu": "Menú de cuenta",
-  
+
         "Fee:": "Tarifa:",
         "You will receive on balance:": "Recibirás en saldo:",
         "Payment Method": "Método de pago",
@@ -2385,7 +2402,8 @@ async function initializeI18n() {
         Spinomenal: "Spinomenal",
         "Play Now": "Pelaa nyt",
         "How to get bonus?": "Kuinka saada bonus?",
-        "Activate bonus in your casino account": "Aktivoi bonus kasinotililläsi",
+        "Activate bonus in your casino account":
+          "Aktivoi bonus kasinotililläsi",
         "Load More Brands": "Lataa lisää kasinoita",
         "Withdrawal Limits:": "Nosto rajoitukset:",
         Advantages: "Edut",
@@ -2421,7 +2439,7 @@ async function initializeI18n() {
         "My wallet": "Minun lompakkoni",
         "Cards Shop": "Kauppa",
         "Account menu": "Tilivalikko",
-  
+
         "Fee:": "Maksu:",
         "You will receive on balance:": "Sinä saat saldona:",
         "Payment Method": "Maksutapa",
@@ -2711,7 +2729,7 @@ async function initializeI18n() {
         "My wallet": "Mon portefeuille",
         "Cards Shop": "Magasin",
         "Account menu": "Menu du compte",
-  
+
         "Fee:": "Frais:",
         "You will receive on balance:": "Vous recevrez au solde:",
         "Payment Method": "Méthode de paiement",
@@ -2998,7 +3016,7 @@ async function initializeI18n() {
         "My wallet": "Ο πορτοφόλι μου",
         "Cards Shop": "Κατάστημα",
         "Account menu": "Μενού λογαριασμού",
-  
+
         "Fee:": "Κόστος:",
         "You will receive on balance:": "Θα λάβετε στο υπόλοιπό σας:",
         "Payment Method": "Μέθοδος Πληρωμής",
@@ -3286,7 +3304,7 @@ async function initializeI18n() {
         "My wallet": "A pénztárcám",
         "Cards Shop": "Bolt",
         "Account menu": "Fiók menü",
-  
+
         "Fee:": "Díj:",
         "You will receive on balance:": "Az egyenlegedre kapod:",
         "Payment Method": "Fizetési mód",
@@ -3575,7 +3593,7 @@ async function initializeI18n() {
         "My wallet": "Il mio portafoglio",
         "Cards Shop": "Negozio",
         "Account menu": "Menu account",
-  
+
         "Fee:": "Tassa:",
         "You will receive on balance:": "Riceverai sul saldo:",
         "Payment Method": "Metodo di pagamento",
@@ -3864,7 +3882,7 @@ async function initializeI18n() {
         "My wallet": "Min lommebok",
         "Cards Shop": "Butikk",
         "Account menu": "Kontomeny",
-  
+
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil motta på balanse:",
         "Payment Method": "Betalingsmetode",
@@ -4153,7 +4171,7 @@ async function initializeI18n() {
         "My wallet": "Minha carteira",
         "Cards Shop": "Loja",
         "Account menu": "Menu da conta",
-  
+
         "Fee:": "Taxa:",
         "You will receive on balance:": "Você receberá no saldo:",
         "Payment Method": "Método de Pagamento",
@@ -4441,7 +4459,7 @@ async function initializeI18n() {
         "My wallet": "Min plånbok",
         "Cards Shop": "Butik",
         "Account menu": "Kontomeny",
-  
+
         "Fee:": "Avgift",
         "You will receive on balance:": "Du kommer att få på balans:",
         "Payment Method": "Betalningsmetod",
@@ -4730,7 +4748,7 @@ async function initializeI18n() {
         "My wallet": "Moja peňaženka",
         "Cards Shop": "Obchod",
         "Account menu": "Účetové menu",
-  
+
         "Fee:": "Poplatok:",
         "You will receive on balance:": "Na účet dostanete:",
         "Payment Method": "Spôsob platby",
@@ -5018,7 +5036,7 @@ async function initializeI18n() {
         "My wallet": "Cüzdanım",
         "Cards Shop": "Mağaza",
         "Account menu": "Hesap menüsü",
-  
+
         "Fee:": "Ücret:",
         "You will receive on balance:": "Bakiyenize alacaksınız:",
         "Payment Method": "Ödeme Yöntemi",
@@ -5222,7 +5240,7 @@ async function initializeI18n() {
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Spinomenal, iGaming sahnesinde çevik ve ileri düşünen bir oyuncu olarak yerini kazanmıştır ve oyun geliştirme konusundaki yaratıcı yaklaşımıyla tanınmaktadır. 'Book of Guardians' ve 'Demi Gods II' gibi son derece etkileyici slot oyunlarına uzmanlaşan şirket, canlı grafikleri cazip oyun mekaniğiyle birleştiriyor. Spinomenal'ın kullanıcı deneyimine verdiği önem açıktır, hem masaüstü hem de mobil oyunlar için optimize edilmiş oyunlar sunmaktadır. Bonus oyunları ve ilerici jackpotlar gibi yenilikçi özellikleri, onları sürekli büyüyen bir pazarda öne çıkan bir sağlayıcı yapmaktadır ve taze ve heyecan verici oyun deneyimi arayan geniş bir oyuncu kitlesine hitap etmektedir.",
       },
-    }
+    },
   };
 
   let source;
@@ -5241,7 +5259,6 @@ async function initializeI18n() {
         escapeValue: false,
       },
     });
-
 }
 
 initializeI18n();

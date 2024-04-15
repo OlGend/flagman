@@ -93,7 +93,7 @@ const TheHeader = () => {
         console.error("Received message from an unauthorized origin:", event.origin);
         return;
       }
-      console.log("Raw data from iframe:", event.data);
+      // console.log("Raw data from iframe:", event.data);
       const jsonData = event.data;
       setD(typeof jsonData === 'string' ? jsonData : "");
     };
@@ -127,7 +127,7 @@ const TheHeader = () => {
                         className="mr-2"
                         size={18}
                       />{" "}
-                      <span>My Wallet</span>
+                      <span>{t("My Wallet")}</span>
                     </>
                   </Link>
                 </Badge>
@@ -144,7 +144,7 @@ const TheHeader = () => {
                         className="mr-2"
                         size={18}
                       />
-                      <span>Fortune Wheel</span>
+                      <span>{t("Fortune Wheel")}</span>
                     </>
                   </Link>
                 </Badge>
@@ -157,7 +157,7 @@ const TheHeader = () => {
                 <Link href={`/personal?tab=cards`} className="cards-shop flex">
                   <>
                     <ShoppingBagOutlinedIcon className="mr-2" size={18} />
-                    <span>Cards Shop</span>
+                    <span>{t("Cards Shop")}</span>
                   </>
                 </Link>
               )}

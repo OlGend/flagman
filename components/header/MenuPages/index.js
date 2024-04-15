@@ -58,7 +58,7 @@ console.log("---------------------", d);
         console.error("Received message from an unauthorized origin:", event.origin);
         return;
       }
-      console.log("Raw data from iframe:", event.data);
+      // console.log("Raw data from iframe:", event.data);
       const jsonData = event.data;
       setD(typeof jsonData === 'string' ? jsonData : "");
     };

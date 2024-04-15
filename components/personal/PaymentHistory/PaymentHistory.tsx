@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 import { visuallyHidden } from "@mui/utils";
 import dayjs from "dayjs";
 import { MouseEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type PaymentHistory = {
   USD: string;
@@ -56,13 +57,12 @@ type HeadCell = {
   label: string;
   numeric: boolean;
 };
-
 const headCells: readonly HeadCell[] = [
   {
     id: "paymentMethod",
     numeric: false,
     disablePadding: true,
-    label: "Withdrawal method",
+    label: "Method",
   },
   {
     id: "paymentSumIn",
@@ -109,6 +109,8 @@ function EnhancedTableHead({
       onRequestSort(event, property);
     };
 
+    const { t } = useTranslation();
+
   return (
     <TableHead>
       <TableRow>
@@ -123,7 +125,7 @@ function EnhancedTableHead({
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              {t(headCell.label)}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -170,10 +172,10 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
   const sortedRows = paymentHistory
     .sort(getComparator(order, orderBy))
     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
+  const { t } = useTranslation();
   return (
-    <Box >
-      <CustomPaper >
+    <Box>
+      <CustomPaper>
         <Toolbar
           sx={{
             pl: { sm: 2 },
@@ -181,10 +183,10 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
           }}
         >
           <Typography variant="h2" id="tableTitle" component="div">
-            Withdrawal History
+            {t("Withdrawal History")}
           </Typography>
         </Toolbar>
-        <TableContainer className="mobile-wrap" >
+        <TableContainer className="mobile-wrap">
           <Table className="mobile-container">
             <EnhancedTableHead
               order={order}

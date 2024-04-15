@@ -86,7 +86,7 @@ const LanguageSwitcher = () => {
     { code: "es", label: "Spain", flag: "🇪🇸" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
     { code: "tr", label: "Turkey", flag: "🇹🇷" },
-    { code: "en", label: "World", flag: "🌍" },
+    { code: "en", label: "English", flag: "🌍" },
   ];
   const availableLanguages1039 = [
     { code: "bg", label: "Bulgaria", flag: "🇧🇬" },
@@ -105,13 +105,13 @@ const LanguageSwitcher = () => {
     { code: "es", label: "Spain", flag: "🇪🇸" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
     { code: "tr", label: "Turkey", flag: "🇹🇷" },
-    { code: "en", label: "World", flag: "🌍" },
+    { code: "en", label: "English", flag: "🌍" },
   ];
-  const availableLanguages1043 = [{ code: "all", label: "World", flag: "🌍" }];
+  const availableLanguages1043 = [{ code: "en", label: "English", flag: "🌍" }];
   const availableLanguages1044 = [
     { code: "fi", label: "Finland", flag: "🇫🇮" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
-    { code: "en", label: "World", flag: "🌍" },
+    { code: "en", label: "English", flag: "🌍" },
   ];
   let item;
   if (typeof window !== "undefined") {

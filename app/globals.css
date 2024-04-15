@@ -9209,7 +9209,8 @@ input.error {
 }
 
 .page-personal .card img {
-  max-height: 48px;
+  max-height: 64px;
+  border-radius: 4px;
 }
 /* .page-personal .test-center {
   text-align: center;

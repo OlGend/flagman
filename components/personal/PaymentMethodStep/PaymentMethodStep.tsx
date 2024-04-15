@@ -12,6 +12,7 @@ import { ChangeEvent, useState } from "react";
 import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
 
+
 type PaymentMethodStepProps = {
   user: User;
   coins: string[];
@@ -56,6 +57,7 @@ export const PaymentMethodStep = ({
   t,
 }: PaymentMethodStepProps) => {
  
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -103,6 +105,7 @@ export const PaymentMethodStep = ({
       </Select>
       <TextField
         className="input_number"
+        placeholder={t("Sum")}
         value={amount}
         onChange={(e) => {
           setIsError(false);

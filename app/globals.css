@@ -8973,8 +8973,11 @@ input.error {
   display: block;
   content: "d";
 }
-.MuiSelect-select {
+.select_coins .MuiSelect-select {
   margin-left: 25px;
+}
+.tab-label span {
+  text-transform: capitalize !important; 
 }
 #menu- ul li {
   padding-left: 40px;

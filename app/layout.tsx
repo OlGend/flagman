@@ -24,10 +24,6 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body>
-    
-       
-
-
         <LanguageProvider>
           <TheHeader />
 
@@ -37,7 +33,10 @@ export default function RootLayout({
           </main>
           <TheFooter />
         </LanguageProvider>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB" strategy="afterInteractive" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB"
+          strategy="afterInteractive"
+        />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -57,6 +56,22 @@ export default function RootLayout({
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
           `}
+        </Script>
+        <Script id="ladesc">
+          {`
+        <script type="text/javascript">
+    var _scq = _scq || [];
+    var _scs = _scs || {};
+    _scs.teamId = "tiH64fWRQms3wUeLC0y3fc";
+ 
+    (function() {
+      var dc = document.createElement('script');
+      dc.type = 'text/javascript';
+      dc.async = true;
+      dc.src = '//cdn.sendx.io/prod/tiH64fWRQms3wUeLC0y3fc.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(dc, s);
+    })();`}
         </Script>
       </body>
     </html>

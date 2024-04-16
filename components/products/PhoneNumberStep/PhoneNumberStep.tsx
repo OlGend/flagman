@@ -216,7 +216,7 @@ export const PhoneNumberStep = ({
                 variant="h6"
                 component="h2"
               >
-                {t("Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.")}
+                {t("Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.")}
               </Typography>
               <Button
                 className="btn btn-primary mt-4"
@@ -271,7 +271,7 @@ export const PhoneNumberStep = ({
                 variant="h6"
                 component="h2"
               >
-                {t("Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.")}
+                {t("Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.")}
               </Typography>
               <Button
                 className="btn btn-primary mt-4"

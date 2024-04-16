@@ -341,8 +341,8 @@ async function initializeI18n() {
         "Something wrong, try again!": "Something wrong, try again!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
-          "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox":
+          "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.",
         Address: "Address",
         "Final Step": "Final Step",
         "Failed to load data": "Failed to load data",
@@ -659,7 +659,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Coś poszło nie tak, spróbuj ponownie!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Proszę zauważyć: Wypłaty z PayPal są przetwarzane codziennie od 7:00 do 20:00 czasu środkowoeuropejskiego",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Twoje żądanie karty przedpłaconej zostało odebrane. Nasz zespół wsparcia skontaktuje się z Tobą wkrótce, aby ustalić szczegóły. Sprawdź swoją skrzynkę odbiorczą. Sprawdź swoją skrzynkę odbiorczą.",
         Address: "Adres",
         "Final Step": "Ostatni krok",
@@ -976,7 +976,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Etwas stimmt nicht, versuche es erneut!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Bitte beachten Sie: PayPal-Auszahlungen werden täglich von 7 bis 20 Uhr MEZ bearbeitet.",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Ihre Anfrage für die Prepaid-Karte wurde erhalten. Unser Support-Team wird sich bald mit Ihnen in Verbindung setzen, um Details zu finalisieren. Überprüfen Sie Ihr Postfach.",
         Address: "Adresse",
         "Final Step": "Letzter Schritt",
@@ -1292,7 +1292,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Нещо е грешно, опитайте отново!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Моля, обърнете внимание: Изтеглянията чрез PayPal се обработват всеки ден от 7:00 до 20:00 часа Централноевропейско време",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Вашата заявка за предплатена карта е получена. Нашите служители за поддръжка ще се свържат скоро с вас, за да уточним детайлите. Проверете вашия пощенски кутия.",
         Address: "Адрес",
         "Final Step": "Последна стъпка",
@@ -1608,7 +1608,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Něco je špatně, zkuste to znovu!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Upozornění: Výběry z PayPalu jsou zpracovávány každý den od 7:00 do 20:00 hodin středoevropského času",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Váš požadavek na předplacenou kartu byl přijat. Naše podpůrný tým vás brzy kontaktuje, abychom dokončili detaily. Zkontrolujte svou doručenou poštu. Zkontrolujte svou doručenou poštu.",
         Address: "Adresa",
         "Final Step": "Poslední krok",
@@ -1923,7 +1923,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Noget galt, prøv igen!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Bemærk venligst: PayPal-udbetalinger behandles hver dag fra kl. 7 til kl. 20 CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Din anmodning om et forudbetalt kort er modtaget. Vores supportteam vil snart kontakte dig for at afslutte detaljerne. Tjek din indbakke. Tjek din indbakke.",
         Address: "Adresse",
         "Final Step": "Endelig trin",
@@ -2239,7 +2239,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Iets mis, probeer opnieuw!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Let op: PayPal opnames worden elke dag verwerkt van 7.00 tot 20.00 uur CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Uw aanvraag voor een prepaid kaart is ontvangen. Ons ondersteuningsteam zal binnenkort contact met u opnemen om de details af te ronden. Controleer uw inbox. Controleer uw inbox.",
         Address: "Adres",
         "Final Step": "Laatste Stap",
@@ -2555,7 +2555,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "¡Algo salió mal, inténtalo de nuevo!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Por favor, ten en cuenta: Las retiradas de PayPal se procesan todos los días de 7 AM a 8 PM CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Tu solicitud de tarjeta prepaga ha sido recibida. Nuestro equipo de soporte se pondrá en contacto contigo pronto para finalizar los detalles. Revisa tu bandeja de entrada. Revisa tu bandeja de entrada.",
         Address: "Dirección",
         "Final Step": "Paso final",
@@ -2870,7 +2870,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Jotain vikaa, yritä uudelleen!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Huomioithan: PayPal-nostot käsitellään joka päivä klo 7–20 CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Prepaid-korttisi pyyntö on vastaanotettu. Tukitiimimme ottaa sinuun pian yhteyttä yksityiskohtien viimeistelyä varten. Tarkista sähköpostisi.",
         Address: "Osoite",
         "Final Step": "Viimeinen askel",
@@ -3185,7 +3185,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Quelque chose ne va pas, réessayez !",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Veuillez noter : les retraits PayPal sont traités tous les jours de 7h à 20h CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Votre demande de carte prépayée a été reçue. Notre équipe de support vous contactera bientôt pour finaliser les détails. Vérifiez votre boîte de réception.",
         Address: "Adresse",
         "Final Step": "Étape finale",
@@ -3501,7 +3501,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Κάτι πήγε στραβά, δοκιμάστε ξανά!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Παρακαλώ σημειώστε: Οι αναλήψεις PayPal επεξεργάζονται κάθε μέρα από τις 7 π.μ. έως τις 8 μ.μ. ώρα Κεντρικής Ευρώπης",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Το αίτημα για την προπληρωμένη κάρτα σας έχει ληφθεί. Η ομάδα υποστήριξής μας θα επικοινωνήσει σύντομα μαζί σας για την ολοκλήρωση των λεπτομερειών. Ελέγξτε τα εισερχόμενα σας. Ελέγξτε τα εισερχόμενα σας.",
         Address: "Διεύθυνση",
         "Final Step": "Τελικό Βήμα",
@@ -3817,7 +3817,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Valami hiba történt, próbáld újra!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Kérjük, vegye figyelembe: A PayPal kifizetéseket minden nap 7 és 20 óra között, közép-európai idő szerint dolgozzuk fel.",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Az előre fizetett kártya kérelme megérkezett. Támogatási csapatunk hamarosan fel fogja venni Önnel a kapcsolatot a részletek véglegesítése érdekében. Ellenőrizze a beérkező üzeneteket.",
         Address: "Cím",
         "Final Step": "Utolsó lépés",
@@ -4133,7 +4133,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Qualcosa non va, riprova!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Si prega di notare: i prelievi PayPal vengono elaborati tutti i giorni dalle 7:00 alle 20:00 CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "La tua richiesta di carta prepagata è stata ricevuta. Il nostro team di supporto ti contatterà presto per finalizzare i dettagli. Controlla la tua casella di posta.",
         Address: "Indirizzo",
         "Final Step": "Ultimo Passo",
@@ -4449,7 +4449,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Noe galt, prøv igjen!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Vær oppmerksom på: PayPal-uttak behandles hver dag fra kl. 07.00 til kl. 20.00 CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Din forespørsel om forhåndsbetalt kort er mottatt. Vårt supportteam vil kontakte deg snart for å avklare detaljer. Sjekk innboksen din. Sjekk innboksen din.",
         Address: "Adresse",
         "Final Step": "Siste steg",
@@ -4764,7 +4764,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Algo errado, tente novamente!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Por favor, note: Os saques do PayPal são processados todos os dias das 7h às 20h CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Sua solicitação de cartão pré-pago foi recebida. Nossa equipe de suporte entrará em contato em breve para finalizar os detalhes. Verifique sua caixa de entrada. Verifique sua caixa de entrada.",
         Address: "Endereço",
         "Final Step": "Último Passo",
@@ -5081,7 +5081,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Något fel, försök igen!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Observera: PayPal-uttag behandlas varje dag från kl. 7 till kl. 20 CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Din förfrågan om förbetald kort har mottagits. Vårt supportteam kommer att kontakta dig snart för att slutföra detaljerna. Kolla din inkorg. Kolla din inkorg.",
         Address: "Adress",
         "Final Step": "Sista steget",
@@ -5397,7 +5397,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Niečo je zle, skúste to znova!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Upozorňujeme: Výbery prostredníctvom PayPal sú spracovávané každý deň od 7:00 do 20:00 hod. stredoeurópskeho času (CET).",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Vaša žiadosť o predplatenú kartu bola prijatá. Náš podporný tím vás čoskoro skontaktuje, aby sme dokončili detaily. Skontrolujte si doručenú poštu. Skontrolujte si doručenú poštu.",
         Address: "Adresa",
         "Final Step": "Posledný krok",
@@ -5711,7 +5711,7 @@ async function initializeI18n() {
         "Something wrong, try again!": "Bir şeyler yanlış, tekrar dene!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Lütfen dikkat: PayPal çekim işlemleri her gün 7:00 ile 20:00 arasında CET saat diliminde gerçekleştirilir.",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
           "Ön ödemeli kart talebiniz alındı. Destek ekibimiz yakında sizinle iletişime geçecek ve detayları sonlandıracak. Gelen kutunuzu kontrol edin. Gelen kutunuzu kontrol edin.",
         Address: "Adres",
         "Final Step": "Son Adım",

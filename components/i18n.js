@@ -73,7 +73,7 @@ async function initializeI18n() {
         Amusnet: "Amusnet",
         Evolution: "Evolution",
         Mascot: "Mascot",
-        NeTent: "NeTent",
+        NetEnt: "NetEnt",
         "Nolimit city": "Nolimit city",
         "Play’n go": "Play’n go",
         "Pragmatic Play": "Pragmatic Play",
@@ -118,8 +118,8 @@ async function initializeI18n() {
         "My wallet": "My wallet",
         "Cards Shop": "Cards Shop",
         "Account menu": "Account menu",
-
-        "Fee:": "Fee",
+  
+        "Fee:": "Fee:",
         "You will receive on balance:": "You will receive on balance:",
         "Payment Method": "Payment Method",
         "Select one of the withdrawal methods and enter the withdrawal amount":
@@ -303,7 +303,7 @@ async function initializeI18n() {
         "Emerging as a force to be reckoned with in the iGaming industry, No Limit City Gaming is synonymous with creative freedom and technological prowess. Known for unique slots like 'Deadwood' and 'Punk Rocker,' the company goes beyond the norm to offer riveting themes and game mechanics. Their dedication to innovation is evident, providing a refreshing and unpredictable gaming experience. By continually pushing the boundaries of what’s possible, No Limit City Gaming has carved a niche for itself as an avant-garde game provider in a highly competitive market.":
           "Emerging as a force to be reckoned with in the iGaming industry, No Limit City Gaming is synonymous with creative freedom and technological prowess. Known for unique slots like 'Deadwood' and 'Punk Rocker,' the company goes beyond the norm to offer riveting themes and game mechanics. Their dedication to innovation is evident, providing a refreshing and unpredictable gaming experience. By continually pushing the boundaries of what’s possible, No Limit City Gaming has carved a niche for itself as an avant-garde game provider in a highly competitive market.",
         "Play'n GO Gaming: A Vanguard of Versatility and Innovation in iGaming":
-          "Play'n GO Gaming: A Vanguard of Versatility and Innovation in iGaming",
+          "Play'n GO Gamin: A Vanguard of Versatility and Innovation in iGaming",
         "Cementing its status as a trendsetter in the iGaming community, Play'n GO Gaming is celebrated for its wide-ranging and inventive game portfolio. From iconic slots like 'Book of Dead' to inventive table games, the company provides an all-encompassing gaming experience. Employing cutting-edge technology and captivating narratives, Play'n GO has mastered the art of creating games that are not just visually appealing but also rich in features. Their unyielding commitment to quality and innovation makes them a preferred choice for both casual gamers and ardent casino enthusiasts, continually setting new standards in the ever-evolving gaming landscape.":
           "Cementing its status as a trendsetter in the iGaming community, Play'n GO Gaming is celebrated for its wide-ranging and inventive game portfolio. From iconic slots like 'Book of Dead' to inventive table games, the company provides an all-encompassing gaming experience. Employing cutting-edge technology and captivating narratives, Play'n GO has mastered the art of creating games that are not just visually appealing but also rich in features. Their unyielding commitment to quality and innovation makes them a preferred choice for both casual gamers and ardent casino enthusiasts, continually setting new standards in the ever-evolving gaming landscape.",
         "Pragmatic Play: Fusing Quality and Creativity for an Unmatched iGaming Experience":
@@ -320,9 +320,8 @@ async function initializeI18n() {
           "In the ever-competitive realm of iGaming, Push Gaming stands out for groundbreaking slots like 'Jammin' Jars' and 'Wild Swarm,' the company excels in delivering games with exceptional visuals and intricate gameplay features. Push Gaming's focus on mobile-optimized, HTML5-based games ensures a seamless experience across devices. Their capacity to marry traditional gaming elements with novel twists makes them a sought-after provider, continually pushing the envelope in terms of what is possible in the iGaming world.",
         "Spinomenal: A New Age Innovator in the iGaming Ecosystem":
           "Spinomenal: A New Age Innovator in the iGaming Ecosystem",
-        "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II,' the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
-          "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II,' the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.",
-
+        "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
+          "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.",
         Sum: "Sum",
         Method: "Method",
         Amount: "Amount",
@@ -334,21 +333,25 @@ async function initializeI18n() {
         "Cards Shop": "Cards Shop",
         Amount: "Amount",
         Email: "Email",
-
         "Card availability varies by region.":
           "Card availability varies by region.",
-        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.": "Withdrawal rejected: Minimum withdrawal amount is 4 USD.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Withdrawal rejected: Minimum withdrawal amount is 4 USD.",
         "Not enough funds in the account.": "Not enough funds in the account.",
         "Something wrong, try again!": "Something wrong, try again!",
-        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET": "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET",
-        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.": "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.",
-        "Address": "Address",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.",
+        Address: "Address",
         "Final Step": "Final Step",
         "Failed to load data": "Failed to load data",
-        "Error occurred while loading. Try again.": "Error occurred while loading. Try again.",
-        "Reload page": "Reload page"
+        "Error occurred while loading. Try again.":
+          "Error occurred while loading. Try again.",
+        "Reload page": "Reload page",
       },
     },
+  
     pl: {
       translation: {
         "Casinos ▼": "Kasyna ▼",
@@ -430,9 +433,9 @@ async function initializeI18n() {
         "Your balance:": "Twój bilans:",
         "Fortune wheel": "Koło fortuny",
         "My wallet": "Mój portfel",
-        "Cards Shop": "Sklep z kartami podarunkowymi",
+        "Cards Shop": "Sklep",
         "Account menu": "Menu konta",
-
+  
         "Fee:": "Opłata:",
         "You will receive on balance:": "Otrzymasz na saldo:",
         "Payment Method": "Metoda płatności",
@@ -447,7 +450,7 @@ async function initializeI18n() {
           "Aby utworzyć transfer, musimy zweryfikować Twój numer telefonu",
         "Withdrawal Request": "Prośba o wypłatę",
         "Withdrawal History": "Historia wypłat",
-        "Cards Shop": "Sklep z kartami podarunkowymi",
+        "Cards Shop": "Sklep",
         "Next step": "Kolejny krok",
         "Prev step": "Poprzedni krok",
         Finish: "Zakończ",
@@ -637,6 +640,33 @@ async function initializeI18n() {
           "Spinomenal: Nowy Innowator w Ekosystemie iGamingu",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Zdobywając swoje miejsce jako zwinny i myślący przyszłościowo gracz na scenie iGamingu, Spinomenal jest rozpoznawany za innowacyjne podejście do rozwoju gier. Specjalizując się w bardzo angażujących automatach takich jak 'Book of Guardians' i 'Demi Gods II', firma łączy żywe grafiki z kuszącymi mechanikami rozgrywki. Zaangażowanie Spinomenal w doświadczenie użytkownika jest oczywiste, oferując gry zoptymalizowane zarówno do gry na komputerze, jak i na urządzeniach mobilnych. Ich innowacyjne funkcje, takie jak gry bonusowe i progresywne jackpoty, sprawiają, że są wyróżniającym się dostawcą na coraz bardziej rosnącym rynku, przyciągającym szeroki zakres graczy poszukujących świeżych i ekscytujących doświadczeń z grami.",
+        Sum: "Suma",
+        Method: "Metoda",
+        Amount: "Kwota",
+        "Wallet address": "Adres portfela",
+        "Time of request": "Czas żądania",
+        Status: "Status",
+        "My Wallet": "Mój portfel",
+        "Fortune Wheel": "Koło Fortuny",
+        "Cards Shop": "Sklep",
+        Amount: "Kwota",
+        Email: "Email",
+        "Card availability varies by region.":
+          "Dostępność kart różni się w zależności od regionu.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Odrzucono wypłatę: Minimalna kwota wypłaty to 4 USD.",
+        "Not enough funds in the account.": "Niewystarczające środki na koncie.",
+        "Something wrong, try again!": "Coś poszło nie tak, spróbuj ponownie!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Proszę zauważyć: Wypłaty z PayPal są przetwarzane codziennie od 7:00 do 20:00 czasu środkowoeuropejskiego",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Twoje żądanie karty przedpłaconej zostało odebrane. Nasz zespół wsparcia skontaktuje się z Tobą wkrótce, aby ustalić szczegóły. Sprawdź swoją skrzynkę odbiorczą. Sprawdź swoją skrzynkę odbiorczą.",
+        Address: "Adres",
+        "Final Step": "Ostatni krok",
+        "Failed to load data": "Nie udało się załadować danych",
+        "Error occurred while loading. Try again.":
+          "Wystąpił błąd podczas ładowania. Spróbuj ponownie.",
+        "Reload page": "Odśwież stronę",
       },
     },
     de: {
@@ -721,7 +751,7 @@ async function initializeI18n() {
         "My wallet": "Meine Brieftasche",
         "Cards Shop": "Kaufen",
         "Account menu": "Kontomenü",
-
+  
         "Fee:": "Gebühr:",
         "You will receive on balance:": "Sie werden auf Balance erhalten:",
         "Payment Method": "Zahlungsmethode",
@@ -926,6 +956,34 @@ async function initializeI18n() {
           "Spinomenal: Ein Innovator der neuen Generation im iGaming-Ökosystem",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Spinomenal hat sich als agiler und zukunftsorientierter Akteur in der iGaming-Szene etabliert und wird für seinen innovativen Ansatz in der Spielentwicklung anerkannt. Spezialisiert auf hochgradig fesselnde Slots wie 'Book of Guardians' und 'Demi Gods II' kombiniert das Unternehmen lebendige Grafiken mit verlockenden Gameplay-Mechaniken. Spinomenals Engagement für die Benutzererfahrung ist offensichtlich, da Spiele angeboten werden, die sowohl für Desktop- als auch für mobile Geräte optimiert sind. Ihre innovativen Funktionen wie Bonus-Spiele und progressive Jackpots machen sie zu einem herausragenden Anbieter in einem stetig wachsenden Markt, der eine breite Palette von Spielern anspricht, die frische und aufregende Spielerlebnisse suchen.",
+        Sum: "Summe",
+        Method: "Zahlungsmethode",
+        Amount: "Menge",
+        "Wallet address": "Brieftaschenadresse",
+        "Time of request": "Zeit der Anfrage",
+        Status: "Status",
+        "My Wallet": "Mein Geldbeutel",
+        "Fortune Wheel": "Glücksrad",
+        "Cards Shop": "Geschäft",
+        Amount: "Menge",
+        Email: "Email",
+        "Card availability varies by region.":
+          "Die Verfügbarkeit von Karten variiert je nach Region.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Auszahlung abgelehnt: Mindestauszahlungsbetrag beträgt 4 USD.",
+        "Not enough funds in the account.":
+          "Nicht genügend Geldmittel auf dem Konto.",
+        "Something wrong, try again!": "Etwas stimmt nicht, versuche es erneut!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Bitte beachten Sie: PayPal-Auszahlungen werden täglich von 7 bis 20 Uhr MEZ bearbeitet.",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Ihre Anfrage für die Prepaid-Karte wurde erhalten. Unser Support-Team wird sich bald mit Ihnen in Verbindung setzen, um Details zu finalisieren. Überprüfen Sie Ihr Postfach.",
+        Address: "Adresse",
+        "Final Step": "Letzter Schritt",
+        "Failed to load data": "Fehler beim Laden der Daten",
+        "Error occurred while loading. Try again.":
+          "Fehler beim Laden aufgetreten. Versuchen Sie es erneut.",
+        "Reload page": "Seite neu laden",
       },
     },
     bg: {
@@ -1010,7 +1068,7 @@ async function initializeI18n() {
         "My wallet": "Портфейла ми",
         "Cards Shop": "Магазин",
         "Account menu": "Меню на акаунта",
-
+  
         "Fee:": "Такса:",
         "You will receive on balance:": "Ще получите на баланса",
         "Payment Method": "Метод на плащане",
@@ -1215,6 +1273,33 @@ async function initializeI18n() {
           "Spinomenal: Новатор в iGaming Екосистемата на Новата Епоха",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Заемайки място като гъвкав и напредничав участник в iGaming сцената, Spinomenal е признат за своя изобретателен подход към разработката на игри. Специализирана във високо ангажиращи слотове като 'Book of Guardians' и 'Demi Gods II', компанията комбинира ярки графики с примамливи механики на играта. Предаността на Spinomenal към потребителското изживяване е очевидна, като предлага игри, оптимизирани както за десктоп, така и за мобилно игра. Иновативните им функции, като бонус игри и прогресивни джакпоти, ги правят изключителен доставчик в постоянно нарастващ пазар, привличайки широк кръг от играчи, които търсят свежи и вълнуващи игрови преживявания.",
+        Sum: "Сума",
+        Method: "Метод на плащане",
+        Amount: "Количество",
+        "Wallet address": "Адрес на портфейла",
+        "Time of request": "Време на заявката",
+        Status: "Статус",
+        "My Wallet": "Портфейлът ми",
+        "Fortune Wheel": "Колело на фортуната",
+        "Cards Shop": "Магазин",
+        Amount: "Количество",
+        Email: "Имейл",
+        "Card availability varies by region.":
+          "Наличността на картите варира в зависимост от региона.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Изтеглянето е отхвърлено: Минималната сума за изтегляне е 4 щатски долара.",
+        "Not enough funds in the account.": "Недостатъчно средства в сметката.",
+        "Something wrong, try again!": "Нещо е грешно, опитайте отново!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Моля, обърнете внимание: Изтеглянията чрез PayPal се обработват всеки ден от 7:00 до 20:00 часа Централноевропейско време",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Вашата заявка за предплатена карта е получена. Нашите служители за поддръжка ще се свържат скоро с вас, за да уточним детайлите. Проверете вашия пощенски кутия.",
+        Address: "Адрес",
+        "Final Step": "Последна стъпка",
+        "Failed to load data": "Неуспешно зареждане на данните",
+        "Error occurred while loading. Try again.":
+          "Възникна грешка при зареждането. Опитайте отново.",
+        "Reload page": "Презареди страницата",
       },
     },
     cz: {
@@ -1299,7 +1384,7 @@ async function initializeI18n() {
         "My wallet": "Můj peněženka",
         "Cards Shop": "Obchod",
         "Account menu": "Menu účtu",
-
+  
         "Fee:": "Poplatek:",
         "You will receive on balance:": "Dostanete na účet",
         "Payment Method": "Způsob platby",
@@ -1503,6 +1588,34 @@ async function initializeI18n() {
           "Spinomenal: Nový inovátor v ekosystému iGamingu",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Získáním svého místa jako agilní a představivý hráč na scéně iGamingu je Spinomenal uznáván pro svůj inovativní přístup k vývoji her. Specializuje se na velmi zábavné automaty jako jsou 'Book of Guardians' a 'Demi Gods II', společnost kombinuje živé grafiky s lákavými herními mechanismy. Závazek Spinomenalu k uživatelskému zážitku je zřejmý, nabízí hry optimalizované pro hraní na počítači i mobilu. Jejich inovativní funkce, jako jsou bonusové hry a progresivní jackpoty, je dělají významným poskytovatelem na stále rostoucím trhu, oslovujícím širokou škálu hráčů hledajících čerstvé a vzrušující herní zážitky.",
+        Sum: "Součet",
+        Method: "Způsob platby",
+        Amount: "Částka",
+        "Wallet address": "Adresa peněženky",
+        "Time of request": "Čas žádosti",
+        Status: "Postavení",
+        "My Wallet": "Můj peněženka",
+        "Fortune Wheel": "Kolo štěstí",
+        "Cards Shop": "Obchod",
+        Amount: "Částka",
+        Email: "Email",
+        "Card availability varies by region.":
+          "Dostupnost karet se liší podle regionu.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Výběr zamítnut: Minimální částka výběru je 4 USD.",
+        "Not enough funds in the account.":
+          "Nedostatečné finanční prostředky na účtu.",
+        "Something wrong, try again!": "Něco je špatně, zkuste to znovu!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Upozornění: Výběry z PayPalu jsou zpracovávány každý den od 7:00 do 20:00 hodin středoevropského času",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Váš požadavek na předplacenou kartu byl přijat. Naše podpůrný tým vás brzy kontaktuje, abychom dokončili detaily. Zkontrolujte svou doručenou poštu. Zkontrolujte svou doručenou poštu.",
+        Address: "Adresa",
+        "Final Step": "Poslední krok",
+        "Failed to load data": "Nepodařilo se načíst data",
+        "Error occurred while loading. Try again.":
+          "Chyba se objevila při načítání. Zkuste to znovu.",
+        "Reload page": "Obnovit stránku",
       },
     },
     dk: {
@@ -1587,7 +1700,7 @@ async function initializeI18n() {
         "My wallet": "Min tegnebog",
         "Cards Shop": "Butik",
         "Account menu": "Konto menu",
-
+  
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil modtage på balance:",
         "Payment Method": "Betalingsmetode",
@@ -1791,6 +1904,33 @@ async function initializeI18n() {
           "Spinomenal: En ny tidsalder innovator i iGaming-økosystemet",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Med sin plads som en agil og fremsynet spiller på iGaming-scenen er Spinomenal anerkendt for sin opfindsomme tilgang til spiludvikling. Specialiseret i meget engagerende slots som 'Book of Guardians' og 'Demi Gods II', kombinerer virksomheden livlige grafikker med lokkende gameplay-mekanik. Spinomenals engagement i brugeroplevelsen er tydelig, idet de tilbyder spil, der er optimeret til både desktop og mobilspil. Deres innovative funktioner, såsom bonus spil og progressive jackpots, gør dem til en markant udbyder på et stadigt voksende marked, der appellerer til en bred vifte af spillere, der søger friske og spændende spiloplevelser.",
+        Sum: "Sum",
+        Method: "Betalingsmetode",
+        Amount: "Beløb",
+        "Wallet address": "Wallet adresse",
+        "Time of request": "Tidspunkt for anmodning",
+        Status: "Status",
+        "My Wallet": "Min pung",
+        "Fortune Wheel": "Lykkehjul",
+        "Cards Shop": "Butik",
+        Amount: "Beløb",
+        Email: "E-mail",
+        "Card availability varies by region.":
+          "Korttilgængelighed varierer afhængigt af regionen.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Afvisning af tilbagetrækning: Minimumsudtrækningsbeløbet er 4 USD.",
+        "Not enough funds in the account.": "Ikke nok midler på kontoen.",
+        "Something wrong, try again!": "Noget galt, prøv igen!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Bemærk venligst: PayPal-udbetalinger behandles hver dag fra kl. 7 til kl. 20 CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Din anmodning om et forudbetalt kort er modtaget. Vores supportteam vil snart kontakte dig for at afslutte detaljerne. Tjek din indbakke. Tjek din indbakke.",
+        Address: "Adresse",
+        "Final Step": "Endelig trin",
+        "Failed to load data": "Kunne ikke indlæse data",
+        "Error occurred while loading. Try again.":
+          "Der opstod en fejl under indlæsningen. Prøv igen.",
+        "Reload page": "Genindlæs side",
       },
     },
     nl: {
@@ -1875,7 +2015,7 @@ async function initializeI18n() {
         "My wallet": "Mijn portemonnee",
         "Cards Shop": "Winkel",
         "Account menu": "Account menu",
-
+  
         "Fee:": "Betaling:",
         "You will receive on balance:": "Je zult ontvangen op saldo:",
         "Payment Method": "Betalingsmethode",
@@ -2080,6 +2220,33 @@ async function initializeI18n() {
           "Spinomenal: Een nieuwe tijd innovator in het iGaming ecosysteem",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Spinomenal heeft zijn plaats verdiend als een wendbare en vooruitstrevende speler in de iGaming scene, en staat bekend om zijn inventieve benadering van spelontwikkeling. Gespecialiseerd in zeer boeiende slots zoals 'Book of Guardians' en 'Demi Gods II', combineert het bedrijf levendige graphics met verleidelijke gameplaymechanica. Spinomenal's toewijding aan gebruikerservaring is duidelijk, met spellen die geoptimaliseerd zijn voor zowel desktop- als mobiel spelen. Hun innovatieve functies, zoals bonusspellen en progressieve jackpots, maken hen tot een opvallende aanbieder in een steeds groeiende markt, die een breed scala aan spelers aanspreekt die op zoek zijn naar frisse en spannende game-ervaringen.",
+        Sum: "Som",
+        Method: "Betaalmethode",
+        Amount: "Hoeveelheid",
+        "Wallet address": "Portemonnee adres",
+        "Time of request": "Tijd van verzoek",
+        Status: "Status",
+        "My Wallet": "Mijn portemonnee",
+        "Fortune Wheel": "Fortune Wheel",
+        "Cards Shop": "Winkel",
+        Amount: "Hoeveelheid",
+        Email: "Email",
+        "Card availability varies by region.":
+          "Kaartbeschikbaarheid varieert per regio.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Opname geweigerd: Minimale opnamebedrag is 4 USD.",
+        "Not enough funds in the account.": "Niet genoeg geld op de rekening.",
+        "Something wrong, try again!": "Iets mis, probeer opnieuw!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Let op: PayPal opnames worden elke dag verwerkt van 7.00 tot 20.00 uur CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Uw aanvraag voor een prepaid kaart is ontvangen. Ons ondersteuningsteam zal binnenkort contact met u opnemen om de details af te ronden. Controleer uw inbox. Controleer uw inbox.",
+        Address: "Adres",
+        "Final Step": "Laatste Stap",
+        "Failed to load data": "Mislukt om gegevens te laden",
+        "Error occurred while loading. Try again.":
+          "Fout opgetreden tijdens het laden. Probeer opnieuw.",
+        "Reload page": "Vernieuw pagina",
       },
     },
     es: {
@@ -2164,7 +2331,7 @@ async function initializeI18n() {
         "My wallet": "Mi cartera",
         "Cards Shop": "Tienda",
         "Account menu": "Menú de cuenta",
-
+  
         "Fee:": "Tarifa:",
         "You will receive on balance:": "Recibirás en saldo:",
         "Payment Method": "Método de pago",
@@ -2368,6 +2535,34 @@ async function initializeI18n() {
           "Spinomenal: Un innovador de la nueva era en el ecosistema de iGaming",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Ganándose su lugar como un jugador ágil y visionario en la escena del iGaming, Spinomenal es reconocido por su enfoque innovador en el desarrollo de juegos. Especializado en tragamonedas altamente atractivas como 'Book of Guardians' y 'Demi Gods II', la compañía combina gráficos vibrantes con mecánicas de juego tentadoras. El compromiso de Spinomenal con la experiencia del usuario es evidente, ofreciendo juegos optimizados tanto para jugar en computadoras de escritorio como en dispositivos móviles. Sus características innovadoras, como juegos de bonificación y jackpots progresivos, los convierten en un proveedor destacado en un mercado en constante crecimiento, atrayendo a una amplia gama de jugadores que buscan experiencias de juego frescas y emocionantes.",
+        Sum: "Suma",
+        Method: "Método de pago",
+        Amount: "Cantidad",
+        "Wallet address": "Dirección de monedero",
+        "Time of request": "Tiempo de solicitud",
+        Status: "Estado",
+        "My Wallet": "Mi cartera",
+        "Fortune Wheel": "Rueda de la Fortuna",
+        "Cards Shop": "Tienda",
+        Amount: "Cantidad",
+        Email: "Correo electrónico",
+        "Card availability varies by region.":
+          "La disponibilidad de tarjetas varía según la región.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Retiro rechazado: El monto mínimo de retiro es de 4 USD.",
+        "Not enough funds in the account.":
+          "No hay suficientes fondos en la cuenta.",
+        "Something wrong, try again!": "¡Algo salió mal, inténtalo de nuevo!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Por favor, ten en cuenta: Las retiradas de PayPal se procesan todos los días de 7 AM a 8 PM CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Tu solicitud de tarjeta prepaga ha sido recibida. Nuestro equipo de soporte se pondrá en contacto contigo pronto para finalizar los detalles. Revisa tu bandeja de entrada. Revisa tu bandeja de entrada.",
+        Address: "Dirección",
+        "Final Step": "Paso final",
+        "Failed to load data": "No se pudo cargar los datos",
+        "Error occurred while loading. Try again.":
+          "Se produjo un error al cargar. Inténtalo de nuevo.",
+        "Reload page": "Recargar página",
       },
     },
     fi: {
@@ -2415,8 +2610,7 @@ async function initializeI18n() {
         Spinomenal: "Spinomenal",
         "Play Now": "Pelaa nyt",
         "How to get bonus?": "Kuinka saada bonus?",
-        "Activate bonus in your casino account":
-          "Aktivoi bonus kasinotililläsi",
+        "Activate bonus in your casino account": "Aktivoi bonus kasinotililläsi",
         "Load More Brands": "Lataa lisää kasinoita",
         "Withdrawal Limits:": "Nosto rajoitukset:",
         Advantages: "Edut",
@@ -2452,7 +2646,7 @@ async function initializeI18n() {
         "My wallet": "Minun lompakkoni",
         "Cards Shop": "Kauppa",
         "Account menu": "Tilivalikko",
-
+  
         "Fee:": "Maksu:",
         "You will receive on balance:": "Sinä saat saldona:",
         "Payment Method": "Maksutapa",
@@ -2657,6 +2851,33 @@ async function initializeI18n() {
           "Spinomenal: Uuden ajan innovaattori iGaming-ekosysteemissä",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Ansaiten paikkansa ketteränä ja tulevaisuuteen suuntautuvana toimijana iGaming-alalla, Spinomenal tunnetaan kekseliäästä lähestymistavastaan pelien kehittämiseen. Erikoistuen erittäin koukuttaviin kolikkopeleihin kuten 'Book of Guardians' ja 'Demi Gods II', yritys yhdistää värikkäät grafiikat houkutteleviin pelimekaniikkoihin. Spinomenalin sitoutuminen käyttäjäkokemukseen on ilmeistä, tarjoten pelejä jotka on optimoitu sekä työpöytä- että mobiilipelaamiseen. Heidän innovatiiviset ominaisuutensa, kuten bonuspelit ja progressiiviset jättipotit, tekevät heistä erottuvan tarjoajan jatkuvasti kasvavalla markkinalla, houkutellen laajan valikoiman pelaajia jotka etsivät tuoreita ja jännittäviä pelikokemuksia.",
+        Sum: "Summa",
+        Method: "Maksutapa",
+        Amount: "Määrä",
+        "Wallet address": "Lompakon osoite",
+        "Time of request": "Pyyntöaika",
+        Status: "Tila",
+        "My Wallet": "Minun lompakkoni",
+        "Fortune Wheel": "Onnenpyörä",
+        "Cards Shop": "Kauppa",
+        Amount: "Määrä",
+        Email: "Sähköposti",
+        "Card availability varies by region.":
+          "Korttien saatavuus vaihtelee alueittain.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Nosto hylätty: Miniminosto on 4 USD.",
+        "Not enough funds in the account.": "Tilillä ei ole tarpeeksi varoja.",
+        "Something wrong, try again!": "Jotain vikaa, yritä uudelleen!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Huomioithan: PayPal-nostot käsitellään joka päivä klo 7–20 CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Prepaid-korttisi pyyntö on vastaanotettu. Tukitiimimme ottaa sinuun pian yhteyttä yksityiskohtien viimeistelyä varten. Tarkista sähköpostisi.",
+        Address: "Osoite",
+        "Final Step": "Viimeinen askel",
+        "Failed to load data": "Tietojen lataaminen epäonnistui",
+        "Error occurred while loading. Try again.":
+          "Virhe tapahtui latauksen aikana. Yritä uudelleen.",
+        "Reload page": "Lataa sivu uudelleen",
       },
     },
     fr: {
@@ -2742,7 +2963,7 @@ async function initializeI18n() {
         "My wallet": "Mon portefeuille",
         "Cards Shop": "Magasin",
         "Account menu": "Menu du compte",
-
+  
         "Fee:": "Frais:",
         "You will receive on balance:": "Vous recevrez au solde:",
         "Payment Method": "Méthode de paiement",
@@ -2945,6 +3166,33 @@ async function initializeI18n() {
           "Spinomenal : Un innovateur de la nouvelle ère dans l'écosystème du iGaming",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Gagnant sa place en tant qu'acteur agile et visionnaire sur la scène du iGaming, Spinomenal est reconnu pour son approche inventive du développement de jeux. Spécialisé dans des machines à sous très engageantes comme 'Book of Guardians' et 'Demi Gods II', l'entreprise combine des graphismes vibrants avec des mécaniques de jeu attrayantes. L'engagement de Spinomenal envers l'expérience utilisateur est évident, offrant des jeux optimisés pour le jeu sur ordinateur de bureau et mobile. Leurs fonctionnalités innovantes, telles que les jeux bonus et les jackpots progressifs, en font un fournisseur de premier plan sur un marché en constante croissance, attirant un large éventail de joueurs à la recherche d'expériences de jeu fraîches et excitantes.",
+        Sum: "Somme",
+        Method: "Méthode de paiement",
+        Amount: "Montant",
+        "Wallet address": "Adresse de portefeuille",
+        "Time of request": "Heure de la demande",
+        Status: "Statut",
+        "My Wallet": "Mon portefeuille",
+        "Fortune Wheel": "Roue de la Fortune",
+        "Cards Shop": "Magasin",
+        Amount: "Montant",
+        Email: "Courriel",
+        "Card availability varies by region.":
+          "La disponibilité des cartes varie selon la région.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Retrait refusé : Le montant minimum de retrait est de 4 USD.",
+        "Not enough funds in the account.": "Pas assez de fonds dans le compte.",
+        "Something wrong, try again!": "Quelque chose ne va pas, réessayez !",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Veuillez noter : les retraits PayPal sont traités tous les jours de 7h à 20h CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Votre demande de carte prépayée a été reçue. Notre équipe de support vous contactera bientôt pour finaliser les détails. Vérifiez votre boîte de réception.",
+        Address: "Adresse",
+        "Final Step": "Étape finale",
+        "Failed to load data": "Échec du chargement des données",
+        "Error occurred while loading. Try again.":
+          "Une erreur s'est produite lors du chargement. Réessayez.",
+        "Reload page": "Recharger la page",
       },
     },
     gr: {
@@ -3029,7 +3277,7 @@ async function initializeI18n() {
         "My wallet": "Ο πορτοφόλι μου",
         "Cards Shop": "Κατάστημα",
         "Account menu": "Μενού λογαριασμού",
-
+  
         "Fee:": "Κόστος:",
         "You will receive on balance:": "Θα λάβετε στο υπόλοιπό σας:",
         "Payment Method": "Μέθοδος Πληρωμής",
@@ -3233,6 +3481,34 @@ async function initializeI18n() {
           "Spinomenal: Ένας Καινοτόμος Στην Νέα Εποχή του iGaming Οικοσυστήματος",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Καθιερώνοντας τον εαυτό του ως ευέλικτος και προορατικός παίκτης στο σκηνικό του iGaming, η Spinomenal αναγνωρίζεται για την εφευρετική της προσέγγιση στην ανάπτυξη παιχνιδιών. Εξειδικευμένη σε παιχνίδια όπως το 'Book of Guardians' και το 'Demi Gods II', η εταιρεία συνδυάζει ζωηρά γραφικά με δελεαστικά μηχανικά παιχνιδιού. Η δέσμευση της Spinomenal στην εμπειρία του χρήστη είναι εμφανής, προσφέροντας παιχνίδια που είναι βελτιστοποιημένα τόσο για παιχνίδι σε επιφάνεια εργασίας όσο και για κινητές συσκευές. Οι καινοτόμες λειτουργίες τους, όπως τα παιχνίδια μπόνους και οι προοδευτικοί τζάκποτ, τους καθιστούν έναν εξέχοντα παροχέα σε ένα αναπτυσσόμενο αγορά, προσελκύοντας ένα ευρύ φάσμα παικτών που αναζητούν φρέσκες και συναρπαστικές εμπειρίες παιχνιδιού.",
+        Sum: "Άθροισμα",
+        Method: "Μέθοδος πληρωμής",
+        Amount: "Ποσό",
+        "Wallet address": "Διεύθυνση πορτοφολιού",
+        "Time of request": "Ώρα αίτησης",
+        Status: "Κατάσταση",
+        "My Wallet": "Ο πορτοφόλι μου",
+        "Fortune Wheel": "Ρόδα της Τύχης",
+        "Cards Shop": "Κατάστημα",
+        Amount: "Ποσό",
+        Email: "Ηλεκτρονικό ταχυδρομείο",
+        "Card availability varies by region.":
+          "Η διαθεσιμότητα των καρτών διαφέρει ανά περιοχή.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Απόρριψη ανάληψης: Το ελάχιστο ποσό ανάληψης είναι 4 δολάρια.",
+        "Not enough funds in the account.":
+          "Δεν υπάρχουν αρκετά χρήματα στον λογαριασμό.",
+        "Something wrong, try again!": "Κάτι πήγε στραβά, δοκιμάστε ξανά!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Παρακαλώ σημειώστε: Οι αναλήψεις PayPal επεξεργάζονται κάθε μέρα από τις 7 π.μ. έως τις 8 μ.μ. ώρα Κεντρικής Ευρώπης",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Το αίτημα για την προπληρωμένη κάρτα σας έχει ληφθεί. Η ομάδα υποστήριξής μας θα επικοινωνήσει σύντομα μαζί σας για την ολοκλήρωση των λεπτομερειών. Ελέγξτε τα εισερχόμενα σας. Ελέγξτε τα εισερχόμενα σας.",
+        Address: "Διεύθυνση",
+        "Final Step": "Τελικό Βήμα",
+        "Failed to load data": "Αποτυχία φόρτωσης δεδομένων",
+        "Error occurred while loading. Try again.":
+          "Προέκυψε σφάλμα κατά τη φόρτωση. Δοκιμάστε ξανά.",
+        "Reload page": "Επαναφόρτωση σελίδας",
       },
     },
     hu: {
@@ -3315,9 +3591,9 @@ async function initializeI18n() {
         "Your balance:": "Az egyenleged:",
         "Fortune wheel": "Szerencsekereke",
         "My wallet": "A pénztárcám",
-        "Cards Shop": "Bolt",
+        "Cards Shop": "Üzlet",
         "Account menu": "Fiók menü",
-
+  
         "Fee:": "Díj:",
         "You will receive on balance:": "Az egyenlegedre kapod:",
         "Payment Method": "Fizetési mód",
@@ -3332,7 +3608,7 @@ async function initializeI18n() {
           "Az átutalás létrehozásához ellenőriznünk kell a telefonszámát.",
         "Withdrawal Request": "Kivonási kérelem",
         "Withdrawal History": "Visszavonási előzmények",
-        "Cards Shop": "Bolt",
+        "Cards Shop": "Üzlet",
         "Next step": "Következő lépés",
         "Prev step": "Előző lépés",
         Finish: "Végezd el",
@@ -3522,6 +3798,33 @@ async function initializeI18n() {
           "Spinomenal: Egy új korszak innovátora az iGaming ökoszisztémában",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Az agilis és előretekintő szereplőként a iGaming színtéren, a Spinomenal elismert az újító játékfejlesztési megközelítéséért. A 'Book of Guardians' és a 'Demi Gods II' című rendkívül vonzó nyerőgépek specializálódtak, a cég élénk grafikákat kombinál az elbűvölő játékmenet mechanizmusokkal. A Spinomenal elkötelezettsége a felhasználói élmény iránt nyilvánvaló, olyan játékokat kínál, amelyeket optimalizáltak mind a számítógépes, mind a mobiljátékhoz. Az innovatív funkcióik, mint például a bónuszjátékok és a progresszív jackpotok, kiemelik őket a folyamatosan növekvő piacon, vonzva a széles játékoskört, akik friss és izgalmas játékélményeket keresnek.",
+        Sum: "Összeg",
+        Method: "Fizetési mód",
+        Amount: "Mennyiség",
+        "Wallet address": "Pénztárcacím",
+        "Time of request": "Kérelem időpontja",
+        Status: "Állapot",
+        "My Wallet": "Pénztárcám",
+        "Fortune Wheel": "Szerencsekerék",
+        "Cards Shop": "Üzlet",
+        Amount: "Mennyiség",
+        Email: "E-mail",
+        "Card availability varies by region.":
+          "A kártya elérhetősége régióról régióra változik.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "A kivonás elutasítva: A minimális kivonási összeg 4 USD.",
+        "Not enough funds in the account.": "Nincs elég pénz a számlán.",
+        "Something wrong, try again!": "Valami hiba történt, próbáld újra!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Kérjük, vegye figyelembe: A PayPal kifizetéseket minden nap 7 és 20 óra között, közép-európai idő szerint dolgozzuk fel.",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Az előre fizetett kártya kérelme megérkezett. Támogatási csapatunk hamarosan fel fogja venni Önnel a kapcsolatot a részletek véglegesítése érdekében. Ellenőrizze a beérkező üzeneteket.",
+        Address: "Cím",
+        "Final Step": "Utolsó lépés",
+        "Failed to load data": "Nem sikerült betölteni az adatokat",
+        "Error occurred while loading. Try again.":
+          "Hiba történt a betöltés közben. Próbáld újra.",
+        "Reload page": "Oldal frissítése",
       },
     },
     it: {
@@ -3606,7 +3909,7 @@ async function initializeI18n() {
         "My wallet": "Il mio portafoglio",
         "Cards Shop": "Negozio",
         "Account menu": "Menu account",
-
+  
         "Fee:": "Tassa:",
         "You will receive on balance:": "Riceverai sul saldo:",
         "Payment Method": "Metodo di pagamento",
@@ -3811,6 +4114,33 @@ async function initializeI18n() {
           "Spinomenal: Un innovatore dell'era moderna nell'ecosistema del gioco d'azzardo online",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Guadagnandosi un posto come un attore agile e lungimirante nella scena del gioco d'azzardo online, Spinomenal è riconosciuto per il suo approccio inventivo allo sviluppo dei giochi. Specializzata in slot altamente coinvolgenti come 'Book of Guardians' e 'Demi Gods II', l'azienda combina grafica vivace con meccaniche di gioco accattivanti. L'impegno di Spinomenal per l'esperienza dell'utente è evidente, offrendo giochi ottimizzati sia per il gioco su desktop che su mobile. Le loro caratteristiche innovative, come i giochi bonus e i jackpot progressivi, li rendono un fornitore di spicco in un mercato in continua crescita, attraendo una vasta gamma di giocatori alla ricerca di esperienze di gioco fresche ed emozionanti.",
+        Sum: "Somma",
+        Method: "Metodo di pagamento",
+        Amount: "Quantità",
+        "Wallet address": "Indirizzo del portafoglio",
+        "Time of request": "Tempo della richiesta",
+        Status: "Stato",
+        "My Wallet": "Il mio portafoglio",
+        "Fortune Wheel": "Ruota della Fortuna",
+        "Cards Shop": "Negozio",
+        Amount: "Quantità",
+        Email: "Email",
+        "Card availability varies by region.":
+          "La disponibilità delle carte varia a seconda della regione.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Prelievo respinto: l'importo minimo di prelievo è di 4 USD.",
+        "Not enough funds in the account.": "Fondi insufficienti sul conto.",
+        "Something wrong, try again!": "Qualcosa non va, riprova!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Si prega di notare: i prelievi PayPal vengono elaborati tutti i giorni dalle 7:00 alle 20:00 CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "La tua richiesta di carta prepagata è stata ricevuta. Il nostro team di supporto ti contatterà presto per finalizzare i dettagli. Controlla la tua casella di posta.",
+        Address: "Indirizzo",
+        "Final Step": "Ultimo Passo",
+        "Failed to load data": "Impossibile caricare i dati",
+        "Error occurred while loading. Try again.":
+          "Si è verificato un errore durante il caricamento. Riprova.",
+        "Reload page": "Ricarica pagina",
       },
     },
     no: {
@@ -3895,7 +4225,7 @@ async function initializeI18n() {
         "My wallet": "Min lommebok",
         "Cards Shop": "Butikk",
         "Account menu": "Kontomeny",
-
+  
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil motta på balanse:",
         "Payment Method": "Betalingsmetode",
@@ -4100,6 +4430,33 @@ async function initializeI18n() {
           "Spinomenal: En ny tids innovatør i iGaming-økosystemet",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Spinomenal har tjent sin plass som en smidig og fremtidsrettet aktør i iGaming-scenen, og er anerkjent for sin oppfinnsomme tilnærming til spillutvikling. Spesialisert på svært engasjerende spilleautomater som 'Book of Guardians' og 'Demi Gods II', kombinerer selskapet levende grafikk med fristende spillmekanikk. Spinomenals forpliktelse til brukeropplevelsen er tydelig, og de tilbyr spill som er optimalisert for både desktop og mobilspill. Deres innovative funksjoner, som bonusspill og progressive jackpotter, gjør dem til en fremtredende leverandør i et stadig voksende marked, og appellerer til et bredt spekter av spillere som søker friske og spennende spillopplevelser.",
+        Sum: "Sum",
+        Method: "Betalingsmetode",
+        Amount: "Beløp",
+        "Wallet address": "Lommebokadresse",
+        "Time of request": "Tidspunkt for forespørsel",
+        Status: "Status",
+        "My Wallet": "Min lommebok",
+        "Fortune Wheel": "Lykkehjul",
+        "Cards Shop": "Butikk",
+        Amount: "Beløp",
+        Email: "E-post",
+        "Card availability varies by region.":
+          "Korttilgjengelighet varierer etter region.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Uttak avvist: Minimumsuttaksbeløpet er 4 USD.",
+        "Not enough funds in the account.": "Ikke nok midler på kontoen.",
+        "Something wrong, try again!": "Noe galt, prøv igjen!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Vær oppmerksom på: PayPal-uttak behandles hver dag fra kl. 07.00 til kl. 20.00 CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Din forespørsel om forhåndsbetalt kort er mottatt. Vårt supportteam vil kontakte deg snart for å avklare detaljer. Sjekk innboksen din. Sjekk innboksen din.",
+        Address: "Adresse",
+        "Final Step": "Siste steg",
+        "Failed to load data": "Klarte ikke å laste inn data",
+        "Error occurred while loading. Try again.":
+          "Feil oppstod under lasting. Prøv igjen.",
+        "Reload page": "Last inn siden",
       },
     },
     pt: {
@@ -4184,7 +4541,7 @@ async function initializeI18n() {
         "My wallet": "Minha carteira",
         "Cards Shop": "Loja",
         "Account menu": "Menu da conta",
-
+  
         "Fee:": "Taxa:",
         "You will receive on balance:": "Você receberá no saldo:",
         "Payment Method": "Método de Pagamento",
@@ -4388,6 +4745,33 @@ async function initializeI18n() {
           "Spinomenal: Um Inovador da Nova Era no Ecossistema de iGaming",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Ganhando seu lugar como um jogador ágil e visionário na cena de iGaming, a Spinomenal é reconhecida por sua abordagem inventiva no desenvolvimento de jogos. Especializada em slots altamente envolventes como 'Book of Guardians' e 'Demi Gods II', a empresa combina gráficos vibrantes com mecânicas de jogabilidade tentadoras. O compromisso da Spinomenal com a experiência do usuário é evidente, oferecendo jogos otimizados tanto para desktop quanto para dispositivos móveis. Suas características inovadoras, como jogos de bônus e jackpots progressivos, os tornam um fornecedor de destaque em um mercado em constante crescimento, atraindo uma ampla gama de jogadores em busca de experiências de jogo frescas e emocionantes.",
+        Sum: "Soma",
+        Method: "Método de pagamento",
+        Amount: "Quantidade",
+        "Wallet address": "Endereço da carteira",
+        "Time of request": "Tempo da solicitação",
+        Status: "Estado",
+        "My Wallet": "Minha Carteira",
+        "Fortune Wheel": "Roda da Fortuna",
+        "Cards Shop": "Loja",
+        Amount: "Quantidade",
+        Email: "Email",
+        "Card availability varies by region.":
+          "A disponibilidade do cartão varia de acordo com a região.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Retirada rejeitada: O valor mínimo de retirada é de 4 USD.",
+        "Not enough funds in the account.": "Não há fundos suficientes na conta.",
+        "Something wrong, try again!": "Algo errado, tente novamente!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Por favor, note: Os saques do PayPal são processados todos os dias das 7h às 20h CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Sua solicitação de cartão pré-pago foi recebida. Nossa equipe de suporte entrará em contato em breve para finalizar os detalhes. Verifique sua caixa de entrada. Verifique sua caixa de entrada.",
+        Address: "Endereço",
+        "Final Step": "Último Passo",
+        "Failed to load data": "Não foi possível carregar os dados",
+        "Error occurred while loading. Try again.":
+          "Ocorreu um erro ao carregar. Tente novamente.",
+        "Reload page": "Recarregar página",
       },
     },
     se: {
@@ -4472,7 +4856,7 @@ async function initializeI18n() {
         "My wallet": "Min plånbok",
         "Cards Shop": "Butik",
         "Account menu": "Kontomeny",
-
+  
         "Fee:": "Avgift",
         "You will receive on balance:": "Du kommer att få på balans:",
         "Payment Method": "Betalningsmetod",
@@ -4677,6 +5061,34 @@ async function initializeI18n() {
           "Spinomenal: En ny tids innovatör inom iGaming-ekosystemet",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Genom att tjäna sin plats som en smidig och framåttänkande aktör inom iGaming-scenen, erkänns Spinomenal för sitt uppfinningsrika tillvägagångssätt till spelutveckling. Specialiserat på mycket engagerande slots som 'Book of Guardians' och 'Demi Gods II', kombinerar företaget levande grafik med lockande spelmekanik. Spinomenals engagemang för användarupplevelsen är tydligt, och de erbjuder spel som är optimerade för både desktop och mobilspel. Deras innovativa funktioner, såsom bonusspel och progressiva jackpottar, gör dem till en framstående leverantör på en ständigt växande marknad, vilket tilltalar en bred målgrupp av spelare som söker nya och spännande spelupplevelser.",
+        Sum: "Summa",
+        Method: "Betalningsmetod",
+        Amount: "Belopp",
+        "Wallet address": "Plånboksadress",
+        "Time of request": "Tid för begäran",
+        Status: "Status",
+        "My Wallet": "Min plånbok",
+        "Fortune Wheel": "Lyckohjul",
+        "Cards Shop": "Affär",
+        Amount: "Belopp",
+        Email: "E-post",
+        "Card availability varies by region.":
+          "Korttillgänglighet varierar beroende på region.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Uttag avvisat: Minsta uttagsbelopp är 4 USD.",
+        "Not enough funds in the account.":
+          "Icke tillräckligt med medel på kontot.",
+        "Something wrong, try again!": "Något fel, försök igen!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Observera: PayPal-uttag behandlas varje dag från kl. 7 till kl. 20 CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Din förfrågan om förbetald kort har mottagits. Vårt supportteam kommer att kontakta dig snart för att slutföra detaljerna. Kolla din inkorg. Kolla din inkorg.",
+        Address: "Adress",
+        "Final Step": "Sista steget",
+        "Failed to load data": "Misslyckades med att ladda data",
+        "Error occurred while loading. Try again.":
+          "Fel uppstod vid inläsning. Försök igen.",
+        "Reload page": "Uppdatera sidan",
       },
     },
     sk: {
@@ -4761,7 +5173,7 @@ async function initializeI18n() {
         "My wallet": "Moja peňaženka",
         "Cards Shop": "Obchod",
         "Account menu": "Účetové menu",
-
+  
         "Fee:": "Poplatok:",
         "You will receive on balance:": "Na účet dostanete:",
         "Payment Method": "Spôsob platby",
@@ -4965,6 +5377,34 @@ async function initializeI18n() {
           "Spinomenal: Nový inovátor v ekosystéme iGamingu",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Zaradením sa ako agilný a inovatívny hráč na scéne iGamingu je Spinomenal uznávaný pre svoj vynaliezavý prístup k vývoju hier. Špecializuje sa na veľmi zaujímavé automaty ako 'Book of Guardians' a 'Demi Gods II', pričom spoločnosť kombinuje živé grafiky s lákavými hernými mechanikami. Záväzok Spinomenal k užívateľskej skúsenosti je zjavný, ponúka hry optimalizované pre hranie na stolnom počítači aj mobilnom zariadení. Ich inovatívne funkcie, ako sú bonusové hry a progresívne jackpoty, ich robia významným poskytovateľom na neustále sa rozrastajúcom trhu, oslovujúc širokú škálu hráčov hľadajúcich čerstvé a vzrušujúce herné zážitky.",
+        Sum: "Sum",
+        Method: "Spôsob platby",
+        Amount: "Množstvo",
+        "Wallet address": "Peňaženka adresa",
+        "Time of request": "Čas požiadavky",
+        Status: "Stav",
+        "My Wallet": "Moja peňaženka",
+        "Fortune Wheel": "Koleso šťastia",
+        "Cards Shop": "Obchod",
+        Amount: "Množstvo",
+        Email: "E-mail",
+        "Card availability varies by region.":
+          "Dostupnosť kariet sa líši podľa regiónu.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Výber bol zamietnutý: Minimálna výberová suma je 4 USD.",
+        "Not enough funds in the account.":
+          "Nedostatok finančných prostriedkov na účte.",
+        "Something wrong, try again!": "Niečo je zle, skúste to znova!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Upozorňujeme: Výbery prostredníctvom PayPal sú spracovávané každý deň od 7:00 do 20:00 hod. stredoeurópskeho času (CET).",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Vaša žiadosť o predplatenú kartu bola prijatá. Náš podporný tím vás čoskoro skontaktuje, aby sme dokončili detaily. Skontrolujte si doručenú poštu. Skontrolujte si doručenú poštu.",
+        Address: "Adresa",
+        "Final Step": "Posledný krok",
+        "Failed to load data": "Nepodarilo sa načítať údaje",
+        "Error occurred while loading. Try again.":
+          "Chyba sa vyskytla počas načítavania. Skúste to znova.",
+        "Reload page": "Obnoviť stránku",
       },
     },
     tr: {
@@ -5049,7 +5489,7 @@ async function initializeI18n() {
         "My wallet": "Cüzdanım",
         "Cards Shop": "Mağaza",
         "Account menu": "Hesap menüsü",
-
+  
         "Fee:": "Ücret:",
         "You will receive on balance:": "Bakiyenize alacaksınız:",
         "Payment Method": "Ödeme Yöntemi",
@@ -5252,6 +5692,33 @@ async function initializeI18n() {
           "Spinomenal: iGaming Ekosisteminde Yeni Bir Çağın İnovatörü",
         "Earning its place as an agile and forward-thinking player in the iGaming scene, Spinomenal is recognized for its inventive approach to game development. Specializing in highly engaging slots like 'Book of Guardians' and 'Demi Gods II', the company combines vibrant graphics with enticing gameplay mechanics. Spinomenal's commitment to user experience is evident, offering games that are optimized for both desktop and mobile play. Their innovative features, such as bonus games and progressive jackpots, make them a standout provider in an ever-growing market, appealing to a wide range of players seeking fresh and exciting gaming experiences.":
           "Spinomenal, iGaming sahnesinde çevik ve ileri düşünen bir oyuncu olarak yerini kazanmıştır ve oyun geliştirme konusundaki yaratıcı yaklaşımıyla tanınmaktadır. 'Book of Guardians' ve 'Demi Gods II' gibi son derece etkileyici slot oyunlarına uzmanlaşan şirket, canlı grafikleri cazip oyun mekaniğiyle birleştiriyor. Spinomenal'ın kullanıcı deneyimine verdiği önem açıktır, hem masaüstü hem de mobil oyunlar için optimize edilmiş oyunlar sunmaktadır. Bonus oyunları ve ilerici jackpotlar gibi yenilikçi özellikleri, onları sürekli büyüyen bir pazarda öne çıkan bir sağlayıcı yapmaktadır ve taze ve heyecan verici oyun deneyimi arayan geniş bir oyuncu kitlesine hitap etmektedir.",
+        Sum: "Toplam",
+        Method: "Ödeme yöntemi",
+        Amount: "Miktar",
+        "Wallet address": "Cüzdan adresi",
+        "Time of request": "İstek zamanı",
+        Status: "Durum",
+        "My Wallet": "Cüzdanım",
+        "Fortune Wheel": "Şans Tekerleği",
+        "Cards Shop": "Mağaza",
+        Amount: "Miktar",
+        Email: "E-posta",
+        "Card availability varies by region.":
+          "Kartın bulunabilirliği bölgeye göre değişir.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
+          "Çekilme reddedildi: Minimum çekilme miktarı 4 USD'dir.",
+        "Not enough funds in the account.": "Hesapta yeterli fon yok.",
+        "Something wrong, try again!": "Bir şeyler yanlış, tekrar dene!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
+          "Lütfen dikkat: PayPal çekim işlemleri her gün 7:00 ile 20:00 arasında CET saat diliminde gerçekleştirilir.",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.":
+          "Ön ödemeli kart talebiniz alındı. Destek ekibimiz yakında sizinle iletişime geçecek ve detayları sonlandıracak. Gelen kutunuzu kontrol edin. Gelen kutunuzu kontrol edin.",
+        Address: "Adres",
+        "Final Step": "Son Adım",
+        "Failed to load data": "Veri yüklenemedi",
+        "Error occurred while loading. Try again.":
+          "Yükleme sırasında hata oluştu. Tekrar deneyin.",
+        "Reload page": "Sayfayı yeniden yükle",
       },
     },
   };

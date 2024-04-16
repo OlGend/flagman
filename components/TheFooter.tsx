@@ -21,9 +21,9 @@ const TheFooter = () => {
                 <p className="mb-1">{t("Our Contacts:")}</p>
                 <a
                   className="underline flex items-center"
-                  href="mailto:manager@reg2dep.business"
+                  href="mailto:support@myawardwallet.com"
                 >
-                  manager@reg2dep.business
+                  support@myawardwallet.com
                 </a>
               </div>
               <div className="flex flex-col">

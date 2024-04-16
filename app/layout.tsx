@@ -59,19 +59,24 @@ export default function RootLayout({
         </Script>
         <Script id="ladesc">
           {`
-        <script type="text/javascript">
-    var _scq = _scq || [];
-    var _scs = _scs || {};
-    _scs.teamId = "tiH64fWRQms3wUeLC0y3fc";
- 
-    (function() {
-      var dc = document.createElement('script');
-      dc.type = 'text/javascript';
-      dc.async = true;
-      dc.src = '//cdn.sendx.io/prod/tiH64fWRQms3wUeLC0y3fc.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(dc, s);
-    })();`}
+            (function (d, src, c) {
+              var t = d.scripts[d.scripts.length - 1],
+                s = d.createElement("script");
+              s.id = "la_x2s6df8d";
+              s.defer = true;
+              s.src = src;
+              s.onload = s.onreadystatechange = function () {
+                var rs = this.readyState;
+                if (rs && rs != "complete" && rs != "loaded") {
+                  return;
+                }
+                c(this);
+              };
+              t.parentElement.insertBefore(s, t.nextSibling);
+            })(document, "https://maw.ladesk.com/scripts/track.js", function (e) {
+              LiveAgent.createButton("32wx1d8n", e);
+            });
+          `}
         </Script>
       </body>
     </html>

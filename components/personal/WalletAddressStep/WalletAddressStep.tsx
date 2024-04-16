@@ -47,6 +47,12 @@ export const WalletAddressStep = ({
 
     if (!user.phone_number) {
       onChangeStep(step + 1);
+      const withdrawalData = {
+        id: user.id,
+        amount: amount,
+        paymentMethod: coin,
+      };
+      await sendData(withdrawalData);
       return;
     }
 

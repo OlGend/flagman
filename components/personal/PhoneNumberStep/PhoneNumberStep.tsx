@@ -11,6 +11,7 @@ import {
 } from "@/queries";
 import { OTP } from "../OTP";
 
+
 type PhoneNumberStepProps = {
   user: User;
   step: number;

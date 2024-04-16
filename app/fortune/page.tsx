@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Fortunes from "@/components/fortune";
 import { getUserData } from "@/components/getUser/getUser";
-
+import { useTranslation } from "react-i18next";
 interface UserData {
   winbalance?: string; // "?" указывает, что свойство необязательное
   // Добавьте другие свойства здесь по необходимости
@@ -12,6 +12,7 @@ export default function Fortune() {
   const [iframeWidth, setIframeWidth] = useState("1170px");
   const [iframeHeight, setIframeHeight] = useState("658px");
   const [userData, setUserData] = useState(null);
+  const { t } = useTranslation();
 
   // Получение ID пользователя
   if (typeof window !== "undefined") {
@@ -108,6 +109,7 @@ export default function Fortune() {
           height={iframeHeight}
         />
       </div>
+      <p className="text-center">{t("To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.")}</p>
       <Fortunes />
     </div>
   );

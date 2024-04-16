@@ -349,6 +349,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Error occurred while loading. Try again.",
         "Reload page": "Reload page",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.",
       },
     },
   
@@ -667,6 +669,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Wystąpił błąd podczas ładowania. Spróbuj ponownie.",
         "Reload page": "Odśwież stronę",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Aby zakwalifikować się do wypłaty, upewnij się, że pierwsza wpłata wynosi co najmniej 25 € lub równowartość w innych walutach i została dokonana po złożeniu wniosku o wypłatę.",
       },
     },
     de: {
@@ -984,6 +988,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Fehler beim Laden aufgetreten. Versuchen Sie es erneut.",
         "Reload page": "Seite neu laden",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Um sich für Auszahlungen zu qualifizieren, stellen Sie sicher, dass Ihre erste Einzahlung mindestens €25 oder den entsprechenden Betrag in anderen Währungen beträgt und nach der Beantragung einer Auszahlung erfolgt ist.",
       },
     },
     bg: {
@@ -1300,6 +1306,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Възникна грешка при зареждането. Опитайте отново.",
         "Reload page": "Презареди страницата",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "За да квалифицирате за изтегляне, уверете се, че първият ви депозит е поне 25 евро или еквивалентът му в други валути и е направен след като сте поискали изтегляне.",
       },
     },
     cz: {
@@ -1616,6 +1624,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Chyba se objevila při načítání. Zkuste to znovu.",
         "Reload page": "Obnovit stránku",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Abyste se kvalifikovali pro výběry, ujistěte se, že váš první vklad je minimálně 25 € nebo ekvivalent v jiných měnách a byl proveden požadováním výběru.",
       },
     },
     dk: {
@@ -1931,6 +1941,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Der opstod en fejl under indlæsningen. Prøv igen.",
         "Reload page": "Genindlæs side",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "For at kvalificere dig til udbetalinger, skal du sikre dig, at dit første indskud er på mindst €25 eller tilsvarende i andre valutaer og blev foretaget efter anmodning om en udbetaling.",
       },
     },
     nl: {
@@ -2247,6 +2259,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Fout opgetreden tijdens het laden. Probeer opnieuw.",
         "Reload page": "Vernieuw pagina",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Om in aanmerking te komen voor opnames, zorg ervoor dat uw eerste storting minimaal €25 is of het equivalent in andere valuta en is gedaan nadat u een opname heeft aangevraagd.",
       },
     },
     es: {
@@ -2563,6 +2577,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Se produjo un error al cargar. Inténtalo de nuevo.",
         "Reload page": "Recargar página",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Para calificar para retiros, asegúrate de que tu primer depósito sea de al menos €25 o su equivalente en otras monedas y se haya realizado después de solicitar un retiro.",
       },
     },
     fi: {
@@ -2878,6 +2894,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Virhe tapahtui latauksen aikana. Yritä uudelleen.",
         "Reload page": "Lataa sivu uudelleen",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Jotta voit saada nosto-oikeuden, varmista, että ensimmäinen talletuksesi on vähintään 25 € tai vastaava summa muissa valuutoissa ja se on tehty nostopyynnön jälkeen.",
       },
     },
     fr: {
@@ -3193,6 +3211,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Une erreur s'est produite lors du chargement. Réessayez.",
         "Reload page": "Recharger la page",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Pour être admissible aux retraits, assurez-vous que votre premier dépôt est d'au moins 25 € ou l'équivalent dans d'autres devises et a été effectué après avoir demandé un retrait.",
       },
     },
     gr: {
@@ -3509,6 +3529,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Προέκυψε σφάλμα κατά τη φόρτωση. Δοκιμάστε ξανά.",
         "Reload page": "Επαναφόρτωση σελίδας",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Για να προκριθείτε για αναλήψεις, βεβαιωθείτε ότι η πρώτη σας κατάθεση είναι τουλάχιστον €25 ή το αντίστοιχο σε άλλα νομίσματα και έγινε μετά το αίτημα ανάληψης.",
       },
     },
     hu: {
@@ -3825,6 +3847,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Hiba történt a betöltés közben. Próbáld újra.",
         "Reload page": "Oldal frissítése",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "A kifizetésekhez való jogosultsághoz biztosítsa, hogy az első befizetés legalább 25 euró vagy annak megfelelő más devizában legyen, és azt a kifizetés kérése után végezte el.",
       },
     },
     it: {
@@ -4141,6 +4165,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Si è verificato un errore durante il caricamento. Riprova.",
         "Reload page": "Ricarica pagina",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Per poter effettuare prelievi, assicurati che il tuo primo deposito sia di almeno €25 o l'equivalente in altre valute e sia stato effettuato dopo aver richiesto un prelievo.",
       },
     },
     no: {
@@ -4457,6 +4483,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Feil oppstod under lasting. Prøv igjen.",
         "Reload page": "Last inn siden",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "For å kvalifisere for uttak, sørg for at ditt første innskudd er på minst €25 eller tilsvarende i andre valutaer og ble gjort etter at du ba om et uttak.",
       },
     },
     pt: {
@@ -4772,6 +4800,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Ocorreu um erro ao carregar. Tente novamente.",
         "Reload page": "Recarregar página",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Para se qualificar para saques, certifique-se de que seu primeiro depósito seja de pelo menos €25 ou o equivalente em outras moedas e tenha sido feito após solicitar um saque.",
       },
     },
     se: {
@@ -5089,6 +5119,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Fel uppstod vid inläsning. Försök igen.",
         "Reload page": "Uppdatera sidan",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "För att kvalificera dig för uttag, se till att din första insättning är minst €25 eller motsvarande i andra valutor och gjordes efter att du begärt ett uttag.",
       },
     },
     sk: {
@@ -5405,6 +5437,8 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Chyba sa vyskytla počas načítavania. Skúste to znova.",
         "Reload page": "Obnoviť stránku",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Pre kvalifikáciu pre výbery sa uistite, že váš prvý vklad je aspoň 25 € alebo ekvivalent v iných menách a bol vykonaný požiadavkou na výber.",
       },
     },
     tr: {
@@ -5719,9 +5753,12 @@ async function initializeI18n() {
         "Error occurred while loading. Try again.":
           "Yükleme sırasında hata oluştu. Tekrar deneyin.",
         "Reload page": "Sayfayı yeniden yükle",
+        "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
+          "Çekilmeler için uygun olabilmek için, ilk yatırımınızın en az 25 € veya diğer para birimlerindeki karşılığı olması ve çekim talebinde bulunulduktan sonra yapılması gerekmektedir.",
       },
     },
   };
+  
 
   let source;
   if (typeof window !== "undefined") {

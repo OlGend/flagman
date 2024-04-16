@@ -207,6 +207,7 @@ export const PhoneNumberStep = ({
               >
                 {t("Confirm")}
               </Button>
+              
             </>
           ) : (
             <>

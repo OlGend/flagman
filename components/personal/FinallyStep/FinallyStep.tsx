@@ -13,9 +13,18 @@ type FinallyStepProps = {
   t: Function; 
 };
 
+interface Brand {
+  id_brand: string;
+  CasinoBrand: string;
+  GoBig: string;
+  OurOfferContent: string;
+}
+
+
 export const FinallyStep = ({ text, onClick, t }: FinallyStepProps) => {
 
-  const [brands, setBrands] = useState([]);
+  const [brands, setBrands] = useState<Brand[]>([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const categoryBrands = { key1: "Segment2", key2: "Premium" };
   const { language } = useLanguage();
@@ -23,7 +32,9 @@ export const FinallyStep = ({ text, onClick, t }: FinallyStepProps) => {
   useEffect(() => {
     const fetchBrands = async () => {
       setIsLoading(true);
-      const brandsData = await getBrands(categoryBrands, language);
+      const brandsData = await getBrands(categoryBrands, language) as Brand[];
+      setBrands(brandsData);
+      
       setBrands(brandsData);
       setIsLoading(false);
     };

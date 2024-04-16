@@ -37,22 +37,27 @@ export default function RootLayout({
           </main>
           <TheFooter />
         </LanguageProvider>
-        {/* <Script id="sendx">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB" strategy="afterInteractive" />
+        <Script id="google-analytics">
           {`
-            var _scq = _scq || [];
-            var _scs = _scs || {};
-            _scs.teamId = "xJsMCWbZMv32X90WBkQnTx";
-
-            (function() {
-              var dc = document.createElement('script');
-              dc.type = 'text/javascript';
-              dc.async = true;
-              dc.src = '//cdn.sendx.io/prod/xJsMCWbZMv32X90WBkQnTx.js';
-              var s = document.getElementsByTagName('script')[0];
-              s.parentNode.insertBefore(dc, s);
-            })();
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R5MZ7TVJRB');
           `}
-        </Script> */}
+        </Script>
+        <Script id="hotjar">
+          {`
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:3873571,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+          `}
+        </Script>
       </body>
     </html>
   );

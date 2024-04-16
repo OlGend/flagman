@@ -12,14 +12,14 @@ const FilteredBonuses = () => {
 
   const [currentTab, setCurrentTab] = useState(2);
   const navigateBrands = [
-    {
-      currentTab: 1,
-      currentCategories: 36,
-      currentText: "No Deposit Bonuses",
-      currentText2: t("No Deposit Bonuses"),
-      icon: <Gift className="mr-2 pb-1" size={32} />,
-      slug: "no-deposit-bonuses",
-    },
+    // {
+    //   currentTab: 1,
+    //   currentCategories: 36,
+    //   currentText: "No Deposit Bonuses",
+    //   currentText2: t("No Deposit Bonuses"),
+    //   icon: <Gift className="mr-2 pb-1" size={32} />,
+    //   slug: "no-deposit-bonuses",
+    // },
     {
       currentTab: 2,
       currentCategories: 39,
@@ -44,14 +44,14 @@ const FilteredBonuses = () => {
       icon: <Handshake className="mr-2 pb-1" size={32} />,
       slug: "welcome-bonuses",
     },
-    {
-      currentTab: 5,
-      currentCategories: 37,
-      currentText: "No Wagering Bonuses",
-      currentText2: t("No Wagering Bonuses"),
-      icon: <RadioButton className="mr-2 pb-1" size={32} />,
-      slug: "no-wagering-bonuses",
-    },
+    // {
+    //   currentTab: 5,
+    //   currentCategories: 37,
+    //   currentText: "No Wagering Bonuses",
+    //   currentText2: t("No Wagering Bonuses"),
+    //   icon: <RadioButton className="mr-2 pb-1" size={32} />,
+    //   slug: "no-wagering-bonuses",
+    // },
   ];
 
 

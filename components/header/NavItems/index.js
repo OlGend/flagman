@@ -20,11 +20,11 @@ export const navItems = (t) => [
     label: t("Bonuses ▼"),
     href: "/bonuses",
     subMenu: [
-      { label: t("No Deposit Bonuses"), href: "/no-deposit-bonuses" },
+      // { label: t("No Deposit Bonuses"), href: "/no-deposit-bonuses" },
       { label: t("Exclusive Bonuses"), href: "/exclusive-bonuses" },
       { label: t("Deposit Bonuses"), href: "/deposit-bonuses" },
       { label: t("Welcome Bonuses"), href: "/welcome-bonuses" },
-      { label: t("No Wagering Bonuses"), href: "/no-wagering-bonuses" },
+      // { label: t("No Wagering Bonuses"), href: "/no-wagering-bonuses" },
     ],
   },
   {

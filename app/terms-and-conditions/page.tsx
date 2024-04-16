@@ -10,123 +10,105 @@ export default async function Privacy() {
   return (
     <div className="page-gaming pt-10 pb-10">
       <div className="main__container">
-        <h1 className="mb-3">Terms & Conditions</h1>
-        <p>
-          Welcome to Bonus.XXXCasinoGuru.com. These Terms & Conditions govern
-          your access to and use of the Website. By accessing and using the
-          Website, you agree to comply with these Terms & Conditions. If you do
-          not agree with these terms, please refrain from using the Website.
+        <h1 className="mb-3">Welcome to XXXcasinoguru</h1>
+
+        <p className="mb-3">
+          Where you have the opportunity to get spins in the Fortune Wheel that
+          can be easily converted into real money and withdrawn to your crypto
+          wallet. Our platform offers a transparent and straightforward process
+          for accumulating and utilising these points. Earning points is a
+          seamless experience. Engage in various activities across our casino
+          brands and participate in promotions to accumulate free spins. Simply
+          visit the Fortune Wheel page and select a site where you haven&#39;t
+          registered yet. Upon making a deposit and playing on the chosen brand,
+          you will automatically receive free spins within 24 hours.
         </p>
-        <h2 className="mb-3">No Responsibility for Promotional Offers</h2>
-        <p>
-          Bonus.XXXCasinoGuru.com holds no responsibility for the accuracy,
-          validity, or reliability of any promotional offers, deals, or content
-          featured on the Website or in the promotional emails sent to users.
-          Users acknowledge that any interactions with third-party websites,
-          services, or offers are at their own risk.
+
+        <p className="mb-3">
+          With every new first deposit, delight in 50 spins on the Fortune
+          Wheel. Each spin carries the promise of yielding between 0.2 USD to
+          0.4 USD in the Fortune Wheel. Minimum withdrawal limits depend on the
+          withdrawal method you choose. Effortlessly initiate withdrawals by
+          visiting the &#39;Withdrawal Request&#39; page and placing your order.
+          Withdrawals are available after your next deposit of 30 USD, 25 EUR,
+          45 AUD, 40 CAD, or the equivalent, to any of the ‘Fortune Wheel
+          brands’ casinos. Stay updated on payment status through our live chat
+          support. Embrace our community today and unlock a world of benefits!
         </p>
-        <h2 className="mb-3">Consent to Receive Promotional Emails</h2>
-        <p>
-          By providing your email address on Bonus XXXCasinoGuru.com, you
-          consent to receive occasional promotional emails containing
-          promotional offers and information provided by third-party websites.
-          Users understand that the Website is not responsible for the content
-          of these third-party offers or the actions of the third-party
-          websites.
+
+        <h2 className="mb-3">Terms and Conditions</h2>
+
+        <p className="mb-3">
+          These terms and conditions (&#39;Terms&#39;) govern your participation
+          in the rewards and cashback program (&#39;Program&#39;) offered by
+          XXXcasinoguru.com (&#39;we,&#39; &#39;us,&#39; or &#39;our&#39;). By
+          participating in the Program, you agree to abide by these Terms.
+          Please read them carefully.
         </p>
-        <h2 className="mb-3">Unsubscribe Option</h2>
-        <p>
-          Users have the option to unsubscribe from receiving promotional emails
-          by clicking the &#34;unsubscribe&#34; link provided at the bottom of
-          every promotional email sent by Bonus XXXCasinoGuru.com. It may take
-          up to 10 business days for your unsubscribe request to be processed.
+        <h2 className="mb-3">Deposit Requirements:</h2>
+        <p className="mb-3">
+          1.1. In order for your deposit to be considered qualified, it must be
+          equal to or greater than 30 USD, 25 EUR, 45 AUD, 40 CAD, or the
+          equivalent amount in other currencies.
         </p>
-        <h2 className="mb-3">User Eligibility and Responsibility</h2>
-        <p>
-          By submitting your email address, you confirm that you are 18 years of
-          age or older and are located in a jurisdiction where online gambling
-          is not forbidden. Users understand and accept that they bear full
-          responsibility for the consequences of their actions related to using
-          the Website&#39;s content and engaging with third-party offers.
+        <p className="mb-3">
+          1.2. We credit spins only upon receiving deposit-related information.
+          However, this may not occur due to reasons such as cookie issues,
+          which could affect spin crediting across certain platforms or brands.
+          Therefore, it&#39;s always advisable, before navigating from our
+          &#39;Fortune Wheel&#39; page to register on any brand, to clear your
+          cookie files to avoid any situations related to non-accreditation of
+          free spins
         </p>
-        <h2 className="mb-3">Intellectual Property</h2>
-        <p>
-          The content, design, graphics, and other materials on the Website are
-          protected by intellectual property laws and are the property of Bonus
-          XXXCasinoGuru.com. Users are prohibited from reproducing,
-          distributing, modifying, or creating derivative works without explicit
-          permission.
+        <h2 className="mb-3">Withdrawal Process:</h2>
+        <p className="mb-3">
+          2.1 Please note that all blockchain commissions for your withdrawals
+          are on your shoulders. You will eventually receive the amount left
+          after deducting the actual commissions at the moment of the
+          transaction.
         </p>
-        <h2 className="mb-3">Limitation of Liability</h2>
-        <p>
-          Bonus.XXXCasinoGuru.com shall not be liable for any direct, indirect,
-          incidental, consequential, or special damages arising out of or in
-          connection with the use of the Website or the information contained
-          therein. This includes damages for loss of profits, data, or other
-          intangible losses.
+        <h2 className="mb-3">Limitations on Winnings:</h2>
+        <p className="mb-3">
+          3.1. Please note that a player cannot withdraw more than the amount
+          they have deposited on the brands associated with XXXcasinoguru.com.
+          Our project serves as a cashback tool and not a source of income.
         </p>
-        <h2 className="mb-3">Privacy Policy</h2>
-        <p>
-          Your privacy is important to us. Our Privacy Policy outlines how we
-          collect, use, and protect your personal information. By using the
-          Website, you consent to our Privacy Policy.
+        <p className="mb-3">
+          3.2. Confirmation of spin allocation solely relies on our email
+          notification. We reserve the right to credit or withhold any amount of
+          spins at our discretion for any user activity.
         </p>
-        <h2 className="mb-3">Modifications and Termination</h2>
-        <p>
-          Bonus.XXXCasinoGuru.com reserves the right to modify, suspend, or
-          terminate the Website or any part thereof at any time without prior
-          notice. We also reserve the right to update or modify these Terms &
-          Conditions without notice. Users are encouraged to review this page
-          periodically for any changes.
+        <h2 className="mb-3">Abuse and Violation of Terms:</h2>
+        <p className="mb-3">
+          4.1. Any attempt to abuse or violate our terms and conditions will
+          result in the immediate blocking of the player&#39;s account and
+          deduction of their funds. Eligible Brands:
         </p>
-        <h2 className="mb-3">Governing Law</h2>
-        <p>
-          These Terms & Conditions are governed by and construed in accordance
-          with the laws of your jurisdiction, without regard to its conflict of
-          law principles.
+        <p className="mb-3">
+          5.1. All rewards for a player&#39;s activity are available only if
+          that activity takes place on one of the brands listed in the
+          &#39;Fortune Wheel&#39; section on our platform.
         </p>
-        <p>
-          By accessing and using Bonus.XXXCasinoGuru.com, you agree to abide by
-          these Terms & Conditions. If you do not agree with any of the terms
-          stated herein, please refrain from using the Website. If you have any
-          questions or concerns about these Terms & Conditions, please contact
-          us at{" "}
-          <a href="mailto:info@Bonus XXXCasinoGuru.com">
-            info@Bonus XXXCasinoGuru.com
-          </a>
-          .
+        <h2 className="mb-3">Support Chat Information:</h2>
+        <p className="mb-3">
+          6.1. All information received through the support chat is provided for
+          informational purposes only and should not be considered a public
+          offering.
         </p>
-        <h2 className="mb-3">Subscription and domains</h2>
-        <p>
-          By subscribing to our newsletters, you agree to receive occasional
-          promotional emails from both{" "}
-          <a target="_blank" href="https://Bonus XXXCasinoGuru.com/">
-            Bonus.XXXCasinoGuru.com
-          </a>{" "}
-          and its affiliated domains:{" "}
-          <a target="_blank" href="https://casinogams.site">
-            casinogams.site
-          </a>
-          ,{" "}
-          <a target="_blank" href="https://casinogams.store">
-            casinogams.store
-          </a>
-          ,{" "}
-          <a target="_blank" href="https://spinwn.online">
-            spinwn.online
-          </a>
-          ,{" "}
-          <a target="_blank" href="https://spinwn.site">
-            spinwn.site
-          </a>
-          ,{" "}
-          <a target="_blank" href="https://spinwn.store">
-            spinwn.store
-          </a>
-          ,{" "}
-          <a target="_blank" href="https://Bonus XXXCasinoGuru.com">
-            Bonus.XXXCasinoGuru.com
-          </a>
+        <h2 className="mb-3">Contact Information:</h2>
+        <p className="mb-3">
+          7.1. For further inquiries regarding your account balance,
+          withdrawals, or any other related information, please contact us via
+          email at support@myawardwallet.com.
+        </p>
+        <p className="mb-3">
+          By participating in the Program, you acknowledge that you have read,
+          understood, and agreed to these Terms. We reserve the right to modify
+          or terminate the Program or these Terms at any time without prior
+          notice. It is your responsibility to review these Terms regularly to
+          stay informed of any updates or changes. Your continued participation
+          in the Program after any modifications indicates your acceptance of
+          the revised Terms.
         </p>
       </div>
     </div>

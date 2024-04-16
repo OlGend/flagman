@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getBrands } from "@/components/getBrands/getBrands";
-import i18n from "@/components/i18n";
+import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/switcher/LanguageContext";
@@ -9,8 +9,8 @@ const Fortunes = () => {
   const [brands, setBrands] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { language } = useLanguage();
-  const categoryBrands = { key1: "Segment2", key2: "Premium" };
-
+  const categoryBrands = { key1: "FirstPriority", key2: "1" };
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchBrands = async () => {
       setIsLoading(true);
@@ -59,7 +59,7 @@ const Fortunes = () => {
                   className="btn btn-primary"
                   href={`${brand.GoBig}/${newUrl}`}
                 >
-                  Play Now
+                  {t("Play Now")}
                 </Link>
               </div>
             </div>

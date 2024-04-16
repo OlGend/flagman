@@ -254,7 +254,7 @@ export default function Personal() {
         ),
       },
       {
-        label: t("Wallet Address"),
+        label: t("Address"),
         description: getWalletAddressStepDescription(),
         content: (
           <WalletAddressStep
@@ -271,7 +271,7 @@ export default function Personal() {
       },
 
       {
-        label: t("Finally Step"),
+        label: t("Final Step"),
         description: t(
           "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"
         ),

@@ -8977,7 +8977,7 @@ input.error {
   margin-left: 25px;
 }
 .tab-label span {
-  text-transform: capitalize !important; 
+  text-transform: capitalize !important;
   width: 100%;
   text-align: left;
 }
@@ -9000,6 +9000,12 @@ input.error {
 }
 .USDTTRC20 {
   background-image: url(/USDTTRC20.png) !important;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+.PayPal {
+  background-image: url(/PayPal.png) !important;
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: left 10px center;
@@ -9138,7 +9144,6 @@ input.error {
 }
 
 @media (min-width: 320px) and (max-width: 1259px) {
-  
   .page-fortune {
     padding-top: 50px;
   }
@@ -9193,7 +9198,7 @@ input.error {
   .page-personal img {
     margin-right: 10px;
   }
-  .modal-mui>.MuiBox-root {
+  .modal-mui > .MuiBox-root {
     width: 95%;
   }
 }
@@ -9234,11 +9239,10 @@ input.error {
   }
 }
 
-.modal-mui>.MuiBox-root {
- 
- padding: 16px;
- border-radius: 8px;
- border: none;
+.modal-mui > .MuiBox-root {
+  padding: 16px;
+  border-radius: 8px;
+  border: none;
 }
 .title-balance {
   min-width: 210px;
@@ -9251,7 +9255,6 @@ input.error {
   font-size: 18px;
 }
 .account-items {
-
 }
 .account-items .balance {
   color: #fff;
@@ -9264,9 +9267,10 @@ input.error {
   font-weight: 700;
   font-size: 16px;
   display: flex !important;
-
 }
-.account-items .balance:hover, .account-items .spins:hover, .account-items .cards-shop:hover {
+.account-items .balance:hover,
+.account-items .spins:hover,
+.account-items .cards-shop:hover {
   background: initial !important;
   color: #07b963;
 }
@@ -9285,14 +9289,12 @@ input.error {
   font-weight: 700 !important;
   font-size: 16px !important;
   display: flex !important;
-
 }
 .tabsstep svg {
   min-width: 20px;
 }
 
-
-@media(min-width: 320px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 767px) {
   .basis-8\/12 {
     flex-basis: initial !important;
   }
@@ -9318,4 +9320,19 @@ input.error {
   margin-left: auto;
   border: 1px solid rgba(123, 140, 152, 0.2);
   background: #fff;
+}
+
+.paypalnote {
+  font-size: 13px !important;
+  color: rgb(123, 140, 152) !important;
+}
+
+#modal-modal-title {
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+.modal-email {
+
 }

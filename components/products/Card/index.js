@@ -65,8 +65,8 @@ export default function MediaCard(props) {
 
     try {
       const response = await updateUserStatusPayment(body);
-      onFinish();
-      window.location.reload();
+
+      // window.location.reload();
       console.log("response", response);
     } catch (e) {
       console.error("ERROR - onConfirm:", e);
@@ -113,7 +113,7 @@ export default function MediaCard(props) {
       </div>
 
       <Modal
-        className="modal-mui"
+        className="modal-mui modal-email"
         keepMounted
         open={open}
         onClose={handleClose}

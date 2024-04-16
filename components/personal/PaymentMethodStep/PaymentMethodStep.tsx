@@ -11,7 +11,7 @@ import { ChangeEvent, useState } from "react";
 
 import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
-
+import { t } from "i18next";
 
 type PaymentMethodStepProps = {
   user: User;
@@ -37,12 +37,13 @@ const getHelperText = (
   isError: boolean
 ) => {
   if (!!amount && isLessThanFour)
-    return "Withdrawal rejected: Minimum withdrawal amount is 4 USD.";
+    return t("Withdrawal rejected: Minimum withdrawal amount is 4 USD.");
   if (!!amount && isMoreThanUserBalance)
-    return "Not enough funds in the account.";
-  if (isError) return "Something wrong, try again!";
+    return t("Not enough funds in the account.");
+  if (isError) return t("Something wrong, try again!");
   return undefined;
 };
+
 
 export const PaymentMethodStep = ({
   user,
@@ -56,8 +57,6 @@ export const PaymentMethodStep = ({
   getFeeAndEstimatedAmount,
   t,
 }: PaymentMethodStepProps) => {
- 
-
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -88,8 +87,6 @@ export const PaymentMethodStep = ({
     }
   };
 
-
-
   return (
     <StyledDiv>
       <Select
@@ -98,10 +95,15 @@ export const PaymentMethodStep = ({
         onChange={onChangeCoin}
       >
         {coins.map((coin) => (
-          <MenuItem className={`${coin}`} key={coin} value={coin}>
-            {coin}
-          </MenuItem>
+   
+            <MenuItem className={`${coin}`} key={coin} value={coin}>
+              {coin}
+            </MenuItem>
+       
         ))}
+            <MenuItem className="PayPal" key="paypal" value="PayPal">
+              PayPal
+            </MenuItem>
       </Select>
       <TextField
         className="input_number"
@@ -114,7 +116,6 @@ export const PaymentMethodStep = ({
         type="number"
         error={error}
         helperText={helperText}
-     
       />
       <Box>
         <Button

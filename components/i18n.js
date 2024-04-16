@@ -332,9 +332,21 @@ async function initializeI18n() {
         "My Wallet": "My Wallet",
         "Fortune Wheel": "Fortune Wheel",
         "Cards Shop": "Cards Shop",
-        "Amount": "Amount",
-        "Email": "Email",
-        "Card availability varies by region.": "Card availability varies by region."
+        Amount: "Amount",
+        Email: "Email",
+
+        "Card availability varies by region.":
+          "Card availability varies by region.",
+        "Withdrawal rejected: Minimum withdrawal amount is 4 USD.": "Withdrawal rejected: Minimum withdrawal amount is 4 USD.",
+        "Not enough funds in the account.": "Not enough funds in the account.",
+        "Something wrong, try again!": "Something wrong, try again!",
+        "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET": "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET",
+        "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.": "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.",
+        "Address": "Address",
+        "Final Step": "Final Step",
+        "Failed to load data": "Failed to load data",
+        "Error occurred while loading. Try again.": "Error occurred while loading. Try again.",
+        "Reload page": "Reload page"
       },
     },
     pl: {

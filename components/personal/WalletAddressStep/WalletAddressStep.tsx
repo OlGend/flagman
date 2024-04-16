@@ -26,7 +26,7 @@ export const WalletAddressStep = ({
   onChangeStep,
   onChangeWalletAddress,
   onConfirm,
-  t
+  t,
 }: WalletAddressStepProps) => {
   const [
     walletAddressValidate,
@@ -49,41 +49,85 @@ export const WalletAddressStep = ({
 
     await onConfirm(user.id);
   };
+  const setNextStepNotValidate = async () => {
+    if (!user.phone_number) {
+      onChangeStep(step + 1);
+      return;
+    }
+
+    await onConfirm(user.id);
+  };
 
   const isButtonNextStepDisabled = !walletAddress;
   const isError =
     (isWalletAddressValid !== null && !isWalletAddressValid) ||
     isWalletAddressValidateError;
 
+  console.log("COIN", coin);
+
   return (
     <StyledDiv>
-      <TextField
-        className="input_address"
-        value={walletAddress}
-        onChange={onChangeWalletAddress}
-        error={isError}
-        helperText={walletAddressValidateMessage}
-        fullWidth
-      />
-      <Box>
-        <Button
-          className="btn-primary mr-2"
-          variant="contained"
-          onClick={() => {
-            onChangeStep(step - 1);
-          }}
-        >
-          {t("Prev step")}
-        </Button>
-        <Button
-          className="btn-primary"
-          variant="contained"
-          onClick={setNextStep}
-          disabled={isButtonNextStepDisabled}
-        >
-          {t("Next step")}
-        </Button>
-      </Box>
+      {coin !== "PayPal" ? (
+        <>
+          <TextField
+            className="input_address"
+            value={walletAddress}
+            onChange={onChangeWalletAddress}
+            error={isError}
+            helperText={walletAddressValidateMessage}
+            fullWidth
+          />
+          <Box>
+            <Button
+              className="btn-primary mr-2"
+              variant="contained"
+              onClick={() => {
+                onChangeStep(step - 1);
+              }}
+            >
+              {t("Prev step")}
+            </Button>
+            <Button
+              className="btn-primary"
+              variant="contained"
+              onClick={setNextStep}
+              disabled={isButtonNextStepDisabled}
+            >
+              {t("Next step")}
+            </Button>
+          </Box>
+        </>
+      ) : (
+        <>
+          {" "}
+          <TextField
+            className="input_address"
+            value={walletAddress}
+            onChange={onChangeWalletAddress}
+            fullWidth
+          />
+          <span className="paypalnote">{t("Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET")}</span>
+          <Box>
+            <Button
+              className="btn-primary mr-2"
+              variant="contained"
+              onClick={() => {
+                onChangeStep(step - 1);
+              }}
+            >
+              {t("Prev step")}
+            </Button>
+            <Button
+              className="btn-primary"
+              variant="contained"
+              onClick={setNextStepNotValidate}
+              disabled={isButtonNextStepDisabled}
+            >
+              {t("Next step")}
+            </Button>
+          </Box>
+        </>
+      )}
 
       {isWalletAddressValidateLoading && <Loader />}
     </StyledDiv>

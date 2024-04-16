@@ -36,7 +36,7 @@ export const PhoneNumberStep = ({
   user,
   product,
   setEmail,
-  t
+  t,
 }: PhoneNumberStepProps) => {
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
@@ -101,14 +101,19 @@ export const PhoneNumberStep = ({
   const [showOtp, setShowOtp] = useState(true);
   const [showProduct, setShowProduct] = useState(false);
   const [showPhone, setShowPhone] = useState(false);
-
+  const [otherContent, setOtherContent] = useState(false);
+  const onReload = async () => {
+    window.location.reload();
+  };
   return (
     <StyledDiv>
       {!user?.phone_number && (
         <div>
           {showOtp && (
             <>
-              <h2 className="text-center mb-2">{t("Enter your phone number")}</h2>
+              <h2 className="text-center mb-2">
+                {t("Enter your phone number")}
+              </h2>
               <StyledBoxTel className="relative">
                 <MuiTelInput
                   value={phoneNumber}
@@ -170,62 +175,115 @@ export const PhoneNumberStep = ({
         </div>
       )}
       {showProduct && (
-        <Box className="flex flex-col items-center">
-          <Typography
-            className="text-center mb-2"
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-          >
-            {t("Indicate the email address to which to send the card")}
-          </Typography>
-    
-          <OutlinedInput placeholder={t("Email")} onChange={(e) => setEmail(e.target.value)} />
+        <Box className="flex flex-col items-center modal-final">
+          {!otherContent ? (
+            <>
+              <Typography
+                className="text-center mb-2"
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                {t("Indicate the email address to which to send the card")}
+              </Typography>
 
-          <Button
-            className="btn btn-primary mt-4"
-            onClick={async () => {
-              if (user !== null) {
-                await onConfirm();
-              } else {
-                // Обработай ситуацию, когда user === null
-                console.error("User is null");
-              }
-            }}
-            variant="contained"
-          >
-            {t("Confirm")}
-          </Button>
+              <OutlinedInput
+                placeholder={t("Email")}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <Button
+                className="btn btn-primary mt-4"
+                onClick={async () => {
+                  if (user !== null) {
+                    await onConfirm();
+                    setOtherContent(true);
+                  } else {
+                    // Обработай ситуацию, когда user === null
+                    console.error("User is null");
+                  }
+                }}
+                variant="contained"
+              >
+                {t("Confirm")}
+              </Button>
+            </>
+          ) : (
+            <>
+              <Typography
+                className="text-center mb-2"
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                {t("Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.")}
+              </Typography>
+              <Button
+                className="btn btn-primary mt-4"
+                onClick={async () => {
+                  onReload();
+                }}
+                variant="contained"
+              >
+                {t("Confirm")}
+              </Button>
+            </>
+          )}
         </Box>
       )}
       {user?.phone_number && (
-        <Box className="flex flex-col items-center">
-          <Typography
-            className="text-center mb-2"
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-          >
-            {t("Indicate the email address to which to send the card")}
-          </Typography>
-      
-          <OutlinedInput placeholder={t("Email")} onChange={(e) => setEmail(e.target.value)} />
+        <Box className="flex flex-col items-center modal-final">
+          {!otherContent ? (
+            <>
+              <Typography
+                className="text-center mb-2"
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                {t("Indicate the email address to which to send the card")}
+              </Typography>
+              <OutlinedInput
+                placeholder={t("Email")}
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-          <Button
-            className="btn btn-primary mt-4"
-            onClick={async () => {
-              if (user !== null) {
-                await onConfirm();
-              } else {
-                // Обработай ситуацию, когда user === null
-                console.error("User is null");
-              }
-            }}
-            
-            variant="contained"
-          >
-            {t("Confirm")}
-          </Button>
+              <Button
+                className="btn btn-primary mt-4"
+                onClick={async () => {
+                  if (user !== null) {
+                    await onConfirm();
+                    setOtherContent(true);
+                  } else {
+                    console.error("User is null");
+                  }
+                }}
+                variant="contained"
+              >
+                {t("Confirm")}
+              </Button>
+            </>
+          ) : (
+            <>
+              <Typography
+                className="text-center mb-2"
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                {t("Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox. Check your inbox.")}
+              </Typography>
+              <Button
+                className="btn btn-primary mt-4"
+                onClick={async () => {
+                  onReload();
+                }}
+                variant="contained"
+              >
+                {t("Confirm")}
+              </Button>
+            </>
+          )}
         </Box>
       )}
     </StyledDiv>

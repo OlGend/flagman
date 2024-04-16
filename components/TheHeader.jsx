@@ -89,7 +89,7 @@ const TheHeader = () => {
   useEffect(() => {
     const handleMessage = (event) => {
 
-      if (event.origin !== "http://localhost:3000") {
+      if (event.origin !== "https://bonus.xxxcasinoguru.com") {
         console.error("Received message from an unauthorized origin:", event.origin);
         return;
       }

@@ -33,7 +33,6 @@ export default function MediaCard(props) {
   }
   const { lang, item, onFinish } = props;
   const [open, setOpen] = useState(false);
-  console.log("pppp", item.product_description);
   const descriptions = JSON.parse(cleanJson(item.product_description));
   const { t } = useTranslation();
   const descriptionForLang =

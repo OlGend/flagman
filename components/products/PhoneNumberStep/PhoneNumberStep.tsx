@@ -65,7 +65,11 @@ export const PhoneNumberStep = ({
       error: sendUserPhoneNumberError,
     },
   ] = useMutationSendUserPhoneNumber();
-
+  const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
+  const [showOtp, setShowOtp] = useState(true);
+  const [showProduct, setShowProduct] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
+  const [otherContent, setOtherContent] = useState(false);
   const onConfirmOtp = async () => {
     if (!sendUserPhoneNumberData) return;
     try {
@@ -90,7 +94,12 @@ export const PhoneNumberStep = ({
 
         if (response.ok && data.status === "APPROVED") {
           await saveUserPhoneNumber({ userId: id, phoneNumber });
+          setShowProduct(true);
+          setShowPhone(false);
           // другой код
+        } else {
+     
+          console.log("!!!!!!!!!!!!!!!!!!!!!!!", showProduct);
         }
       }
     } catch (e) {
@@ -98,11 +107,7 @@ export const PhoneNumberStep = ({
     }
   };
 
-  const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
-  const [showOtp, setShowOtp] = useState(true);
-  const [showProduct, setShowProduct] = useState(false);
-  const [showPhone, setShowPhone] = useState(false);
-  const [otherContent, setOtherContent] = useState(false);
+
   const onReload = async () => {
     window.location.reload();
   };
@@ -163,8 +168,8 @@ export const PhoneNumberStep = ({
                   variant="contained"
                   onClick={async () => {
                     await onConfirmOtp();
-                    setShowProduct(true);
-                    setShowPhone(false);
+                  
+                    
                   }}
                   disabled={isButtonContinueDisabled}
                 >
@@ -321,3 +326,5 @@ const StyledBox = styled(Box)(
     justify-content: center;
   `
 );
+
+

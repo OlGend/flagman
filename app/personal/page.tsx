@@ -31,7 +31,7 @@ import { ChangeEvent, useState, useEffect } from "react";
 
 import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 // import Withdrawal from "@/components/Withdrawal/Withdrawal";
 
@@ -62,32 +62,29 @@ export default function Personal() {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const tab = searchParams.get("tab");
-  
+
     // const tabMap: { [key: string]: number } = { wallet: 0, cards: 2 };
 
     const tabMap: { [key: string]: number } = {
       wallet: 0,
       historia: 1,
-      cards: 2
+      cards: 2,
     };
-    
 
-    
-    
-  
     if (tab !== null && tab in tabMap) {
       setTab(tabMap[tab]);
-  
+
       // Создаём новый объект URLSearchParams на основе текущего
       // чтобы можно было изменить параметры
       const newSearchParams = new URLSearchParams(window.location.search);
-      newSearchParams.delete('tab'); // Удаляем параметр 'tab'
-  
+      newSearchParams.delete("tab"); // Удаляем параметр 'tab'
+
       // Обновляем URL без перезагрузки страницы
-      const newUrl = `${window.location.pathname}?${newSearchParams.toString()}`;
-      window.history.pushState({}, '', newUrl);
+      const newUrl = `${
+        window.location.pathname
+      }?${newSearchParams.toString()}`;
+      window.history.pushState({}, "", newUrl);
     }
-    
   }, [searchParams]);
   // const getInitialTab = () => {
   //   const searchParams = new URLSearchParams(window.location.search);
@@ -112,31 +109,29 @@ export default function Personal() {
   //   };
   // }, []);
 
-  
-
   const [step, setStep] = useState(DEFAULT_STEP);
   const [coin, setCoin] = useState(DEFAULT_COIN);
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
- 
   // const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
   //   setTab(newTabIndex);
   // };
   const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
-
     // Сначала определим объект сопоставления вне лямбда-функции
     const tabMap = { wallet: 0, historia: 1, cards: 2 };
-    const tabName = Object.keys(tabMap).find(key => tabMap[key as keyof typeof tabMap] === newTabIndex);
-  
+    const tabName = Object.keys(tabMap).find(
+      (key) => tabMap[key as keyof typeof tabMap] === newTabIndex
+    );
+
     if (tabName) {
       const newUrl = `${window.location.pathname}?tab=${tabName}`;
-      window.history.pushState({}, '', newUrl);
+      window.history.pushState({}, "", newUrl);
       setTab(newTabIndex);
     }
   };
-  
+
   const onChangeStep = (nextStep: number) => {
     setStep(nextStep);
   };
@@ -253,23 +248,44 @@ export default function Personal() {
           />
         ),
       },
-      {
-        label: t("Address"),
-        description: getWalletAddressStepDescription(),
-        content: (
-          <WalletAddressStep
-            user={user}
-            step={step}
-            coin={coin}
-            walletAddress={walletAddress}
-            onChangeStep={onChangeStep}
-            onChangeWalletAddress={onChangeWalletAddress}
-            onConfirm={onConfirm}
-            t={t}
-            amount={amount}
-          />
-        ),
-      },
+
+      ...(coin !== "PayPal"
+        ? [
+            {
+              label: t("Wallet address"),
+              description: getWalletAddressStepDescription(),
+              content: (
+                <WalletAddressStep
+                  user={user}
+                  step={step}
+                  coin={coin}
+                  walletAddress={walletAddress}
+                  onChangeStep={onChangeStep}
+                  onChangeWalletAddress={onChangeWalletAddress}
+                  onConfirm={onConfirm}
+                  t={t}
+                  amount={amount}
+                />
+              ),
+            },
+          ]
+        : [{
+          label: t("Email") + " " + t("Address"),
+          description: getWalletAddressStepDescription(),
+          content: (
+            <WalletAddressStep
+              user={user}
+              step={step}
+              coin={coin}
+              walletAddress={walletAddress}
+              onChangeStep={onChangeStep}
+              onChangeWalletAddress={onChangeWalletAddress}
+              onConfirm={onConfirm}
+              t={t}
+              amount={amount}
+            />
+          ),
+        },]),
 
       {
         label: t("Final Step"),

@@ -9023,9 +9023,9 @@ input.error {
   border-radius: 8px !important;
   font-size: 16px !important;
 }
-.MuiStepper-vertical.stepper {
+/* .MuiStepper-vertical.stepper {
   max-width: 500px;
-}
+} */
 .MuiStepper-vertical.stepper p {
   font-size: 12px;
   margin-left: 10px;
@@ -9335,4 +9335,7 @@ input.error {
 }
 .modal-email {
 
+}
+body { 
+  overflow: initial;
 }

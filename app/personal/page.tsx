@@ -266,6 +266,7 @@ export default function Personal() {
             onChangeWalletAddress={onChangeWalletAddress}
             onConfirm={onConfirm}
             t={t}
+            amount={amount}
           />
         ),
       },

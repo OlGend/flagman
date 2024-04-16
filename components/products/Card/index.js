@@ -13,6 +13,7 @@ import { TextMobileStepper } from "@/components/products/Stepper";
 import { useQueryUser } from "@/queries";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { sendData } from "@/components/sendDataToSlack/sendData";
 
 const style = {
   position: "absolute",
@@ -62,6 +63,12 @@ export default function MediaCard(props) {
       status_payment,
       sumMinus: item.products_amount,
     });
+    const withdrawalData = {
+      id: user.id,
+      amount: item.products_amount,
+      paymentMethod: item.product_name,
+    };
+    await sendData(withdrawalData);
 
     try {
       const response = await updateUserStatusPayment(body);

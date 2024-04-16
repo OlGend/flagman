@@ -13,6 +13,7 @@ import {
 } from "@/queries";
 import Image from "next/image";
 
+
 type PhoneNumberStepProps = {
   step: number;
   onChangeStep: (nextStep: number) => void;

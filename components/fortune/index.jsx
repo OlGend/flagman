@@ -51,6 +51,11 @@ const Fortunes = ({ banner }) => {
           </Link>
         )}
       </div>
+      <p className="text-center mt-3">
+        {t(
+          "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal."
+        )}
+      </p>
       <div className="flex flex-wrap px-0 py-6">
         {isLoading ? (
           <Loader />

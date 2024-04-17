@@ -110,7 +110,7 @@ export default function Fortune() {
           height={iframeHeight}
         />
       </div>
-      <p className="text-center">{t("To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.")}</p>
+    
       <Fortunes banner={banner} />
     </div>
   );

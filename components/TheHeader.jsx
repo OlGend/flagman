@@ -42,14 +42,19 @@ const TheHeader = () => {
   const [load, setLoad] = useState(false);
   const [keywordValue, setKeywordValue] = useState(null);
   const idUserParam = urlParams.get("keyword");
+  const ad_campaign = urlParams.get("ad_campaign_id");
   const userData = keywordValue !== null ? keywordValue : idUserParam;
   const [dataUser, setDataUser] = useState();
   const [d, setD] = useState(null)
-
   useEffect(() => {
-
+    if (ad_campaign !== null) {
+      localStorage.setItem("ad_campaign_id", ad_campaign);
+    }
     async function updateUserData(data) {
       localStorage.setItem("user_id", data);
+
+    
+
       setUser(data);
       const dataUser = await getUserData(data);
       if (dataUser) {

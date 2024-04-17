@@ -85,6 +85,7 @@ export default function TopBrands() {
       setNewUrl(savedUrl);
     }
 
+    
     // Подготовка данных о брендах
     const fetchBrands = async () => {
       const brandsData = await getBrands(

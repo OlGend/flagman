@@ -31,6 +31,8 @@ function Card({ imagen, link, bonus }) {
     }
   }, []);
 
+  console.log("savedurl", newUrl);
+
   return (
     <animated.div
       className={Styles.card}

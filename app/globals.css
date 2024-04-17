@@ -9334,9 +9334,8 @@ input.error {
   margin-bottom: 20px !important;
 }
 .modal-email {
-
 }
-body { 
+body {
   overflow: initial;
 }
 
@@ -9345,4 +9344,46 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.banner-wheel {
+  background: url(/fwb.png) no-repeat top center;
+  min-height: 200px;
+  padding: 20px 140px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid rgba(123, 140, 152, 0.801);
+}
+.banner-wheel h3,
+.banner-wheel p {
+  color: #fff;
+}
+.container-fortune .card-brand {
+  margin-left: 14px !important;
+}
+.container-fortune .card-brand:nth-child(5n + 1) {
+  margin-left: 0 !important;
+}
+.btn-thirdy {
+  background: #d65626;
+  font-size: 22px;
+  max-width: 250px;
+}
+.btn-thirdy:hover {
+  background: #b97246;
+}
+@media(min-width: 320px) and (max-width: 1259px) {
+  .banner-wheel {
+    padding: 20px;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .banner-wheel h3 {
+    font-size: 22px;
+  }
+  .banner-wheel p {
+    font-size: 16px;
+    text-align: center;
+  }
 }

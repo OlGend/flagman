@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import TopBrands from "@/components/TopBrands";
 
 import FilteredHome from "@/components/FilteredHome";
+import Fortunes from "@/components/fortune";
 
 export const metadata: Metadata = {
   title:
@@ -12,11 +13,17 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+
+  const banner = true;
   return (
     <>
       {/* <PreviewHome /> */}
 
       <TopBrands />
+
+      <div className="main__container">
+        <Fortunes banner={banner} />
+      </div>
 
       <div className="background-block">
         <FilteredHome />

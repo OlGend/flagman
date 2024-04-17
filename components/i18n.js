@@ -351,6 +351,10 @@ async function initializeI18n() {
         "Reload page": "Reload page",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.",
+        "FORTUNE WHEEL BRANDS": "FORTUNE WHEEL BRANDS",
+        "Pick a brand below, make first deposit and win real cash":
+          "Pick a brand below, make first deposit and win real cash",
+        "Spin the Roulette": "Spin the Roulette",
       },
     },
   
@@ -671,6 +675,10 @@ async function initializeI18n() {
         "Reload page": "Odśwież stronę",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Aby zakwalifikować się do wypłaty, upewnij się, że pierwsza wpłata wynosi co najmniej 25 € lub równowartość w innych walutach i została dokonana po złożeniu wniosku o wypłatę.",
+        "FORTUNE WHEEL BRANDS": "MARKI KOŁA FORTUNY",
+        "Pick a brand below, make first deposit and win real cash":
+          "Wybierz poniższą markę, dokonaj pierwszej wpłaty i wygraj prawdziwe pieniądze",
+        "Spin the Roulette": "Kręć ruletką",
       },
     },
     de: {
@@ -990,6 +998,10 @@ async function initializeI18n() {
         "Reload page": "Seite neu laden",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Um sich für Auszahlungen zu qualifizieren, stellen Sie sicher, dass Ihre erste Einzahlung mindestens €25 oder den entsprechenden Betrag in anderen Währungen beträgt und nach der Beantragung einer Auszahlung erfolgt ist.",
+        "FORTUNE WHEEL BRANDS": "GLÜCKSRADMARKEN",
+        "Pick a brand below, make first deposit and win real cash":
+          "Wählen Sie eine Marke unten aus, tätigen Sie die erste Einzahlung und gewinnen Sie echtes Geld",
+        "Spin the Roulette": "Drehe das Roulette",
       },
     },
     bg: {
@@ -1308,6 +1320,10 @@ async function initializeI18n() {
         "Reload page": "Презареди страницата",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "За да квалифицирате за изтегляне, уверете се, че първият ви депозит е поне 25 евро или еквивалентът му в други валути и е направен след като сте поискали изтегляне.",
+        "FORTUNE WHEEL BRANDS": "МАРКИ ОТ КОЛЕЛОТО НА ФОРТУНАТА",
+        "Pick a brand below, make first deposit and win real cash":
+          "Изберете марка по-долу, направете първи депозит и спечелете реални пари",
+        "Spin the Roulette": "Завъртете рулетката",
       },
     },
     cz: {
@@ -1626,6 +1642,10 @@ async function initializeI18n() {
         "Reload page": "Obnovit stránku",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Abyste se kvalifikovali pro výběry, ujistěte se, že váš první vklad je minimálně 25 € nebo ekvivalent v jiných měnách a byl proveden požadováním výběru.",
+        "FORTUNE WHEEL BRANDS": "ZNAČKY FORTUNE WHEEL",
+        "Pick a brand below, make first deposit and win real cash":
+          "Vyberte značku níže, proveďte první vklad a vyhrajte skutečné peníze",
+        "Spin the Roulette": "Otočit ruletu",
       },
     },
     dk: {
@@ -1943,6 +1963,10 @@ async function initializeI18n() {
         "Reload page": "Genindlæs side",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "For at kvalificere dig til udbetalinger, skal du sikre dig, at dit første indskud er på mindst €25 eller tilsvarende i andre valutaer og blev foretaget efter anmodning om en udbetaling.",
+        "FORTUNE WHEEL BRANDS": "LYKKEHJULSMÆRKER",
+        "Pick a brand below, make first deposit and win real cash":
+          "Vælg et mærke nedenfor, foretag første indbetaling og vind rigtige penge",
+        "Spin the Roulette": "Spil roulette",
       },
     },
     nl: {
@@ -2261,6 +2285,10 @@ async function initializeI18n() {
         "Reload page": "Vernieuw pagina",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Om in aanmerking te komen voor opnames, zorg ervoor dat uw eerste storting minimaal €25 is of het equivalent in andere valuta en is gedaan nadat u een opname heeft aangevraagd.",
+        "FORTUNE WHEEL BRANDS": "MERKEN VAN HET FORTUINRAD",
+        "Pick a brand below, make first deposit and win real cash":
+          "Kies hieronder een merk, maak een eerste storting en win echt geld",
+        "Spin the Roulette": "Draai aan de roulette",
       },
     },
     es: {
@@ -2579,6 +2607,10 @@ async function initializeI18n() {
         "Reload page": "Recargar página",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Para calificar para retiros, asegúrate de que tu primer depósito sea de al menos €25 o su equivalente en otras monedas y se haya realizado después de solicitar un retiro.",
+        "FORTUNE WHEEL BRANDS": "MARCA DE LA RUEDA DE LA FORTUNA",
+        "Pick a brand below, make first deposit and win real cash":
+          "Elige una marca a continuación, realiza tu primer depósito y gana dinero real",
+        "Spin the Roulette": "Girar la ruleta",
       },
     },
     fi: {
@@ -2896,6 +2928,10 @@ async function initializeI18n() {
         "Reload page": "Lataa sivu uudelleen",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Jotta voit saada nosto-oikeuden, varmista, että ensimmäinen talletuksesi on vähintään 25 € tai vastaava summa muissa valuutoissa ja se on tehty nostopyynnön jälkeen.",
+        "FORTUNE WHEEL BRANDS": "ONNENPYÖRÄ BRÄNDIT",
+        "Pick a brand below, make first deposit and win real cash":
+          "Valitse alla oleva brändi, tee ensimmäinen talletus ja voita oikeaa rahaa",
+        "Spin the Roulette": "Pyöräytä rulettia",
       },
     },
     fr: {
@@ -3213,6 +3249,10 @@ async function initializeI18n() {
         "Reload page": "Recharger la page",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Pour être admissible aux retraits, assurez-vous que votre premier dépôt est d'au moins 25 € ou l'équivalent dans d'autres devises et a été effectué après avoir demandé un retrait.",
+        "FORTUNE WHEEL BRANDS": "MARQUES DE LA ROUE DE LA FORTUNE",
+        "Pick a brand below, make first deposit and win real cash":
+          "Choisissez une marque ci-dessous, effectuez un premier dépôt et gagnez de l'argent réel",
+        "Spin the Roulette": "Faites tourner la roulette",
       },
     },
     gr: {
@@ -3531,6 +3571,10 @@ async function initializeI18n() {
         "Reload page": "Επαναφόρτωση σελίδας",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Για να προκριθείτε για αναλήψεις, βεβαιωθείτε ότι η πρώτη σας κατάθεση είναι τουλάχιστον €25 ή το αντίστοιχο σε άλλα νομίσματα και έγινε μετά το αίτημα ανάληψης.",
+        "FORTUNE WHEEL BRANDS": "ΜΆΡΚΕΣ ΤΡΟΧΟΎ ΤΥΧΗΣ",
+        "Pick a brand below, make first deposit and win real cash":
+          "Επιλέξτε ένα brand παρακάτω, κάντε την πρώτη κατάθεση και κερδίστε πραγματικά χρήματα",
+        "Spin the Roulette": "Περιστρέψτε τη ρουλέτα",
       },
     },
     hu: {
@@ -3849,6 +3893,10 @@ async function initializeI18n() {
         "Reload page": "Oldal frissítése",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "A kifizetésekhez való jogosultsághoz biztosítsa, hogy az első befizetés legalább 25 euró vagy annak megfelelő más devizában legyen, és azt a kifizetés kérése után végezte el.",
+        "FORTUNE WHEEL BRANDS": "SZERENCSÉ KEREK MÁRKÁK",
+        "Pick a brand below, make first deposit and win real cash":
+          "Válasszon egy márkát lent, tegyen be első befizetést, és nyerjen valódi pénzt",
+        "Spin the Roulette": "Pörgetd meg a rulettet",
       },
     },
     it: {
@@ -4167,6 +4215,10 @@ async function initializeI18n() {
         "Reload page": "Ricarica pagina",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Per poter effettuare prelievi, assicurati che il tuo primo deposito sia di almeno €25 o l'equivalente in altre valute e sia stato effettuato dopo aver richiesto un prelievo.",
+        "FORTUNE WHEEL BRANDS": "MARCHI RUOTA DELLA FORTUNA",
+        "Pick a brand below, make first deposit and win real cash":
+          "Scegli un marchio qui sotto, effettua il primo deposito e vinci denaro reale",
+        "Spin the Roulette": "Gira la roulette",
       },
     },
     no: {
@@ -4485,6 +4537,10 @@ async function initializeI18n() {
         "Reload page": "Last inn siden",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "For å kvalifisere for uttak, sørg for at ditt første innskudd er på minst €25 eller tilsvarende i andre valutaer og ble gjort etter at du ba om et uttak.",
+        "FORTUNE WHEEL BRANDS": "LYKKEHJULMERKER",
+        "Pick a brand below, make first deposit and win real cash":
+          "Velg et merke nedenfor, gjør første innskudd og vinn ekte penger",
+        "Spin the Roulette": "Spinn ruletten",
       },
     },
     pt: {
@@ -4802,6 +4858,10 @@ async function initializeI18n() {
         "Reload page": "Recarregar página",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Para se qualificar para saques, certifique-se de que seu primeiro depósito seja de pelo menos €25 ou o equivalente em outras moedas e tenha sido feito após solicitar um saque.",
+        "FORTUNE WHEEL BRANDS": "MARCA DA RODA DA FORTUNA",
+        "Pick a brand below, make first deposit and win real cash":
+          "Escolha uma marca abaixo, faça o primeiro depósito e ganhe dinheiro real",
+        "Spin the Roulette": "Girar a Roleta",
       },
     },
     se: {
@@ -5121,6 +5181,10 @@ async function initializeI18n() {
         "Reload page": "Uppdatera sidan",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "För att kvalificera dig för uttag, se till att din första insättning är minst €25 eller motsvarande i andra valutor och gjordes efter att du begärt ett uttag.",
+        "FORTUNE WHEEL BRANDS": "LYCKOHJULETS VARUMÄRKEN",
+        "Pick a brand below, make first deposit and win real cash":
+          "Välj ett varumärke nedan, gör första insättning och vinn riktiga pengar",
+        "Spin the Roulette": "Snurra på Rouletten",
       },
     },
     sk: {
@@ -5439,6 +5503,10 @@ async function initializeI18n() {
         "Reload page": "Obnoviť stránku",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Pre kvalifikáciu pre výbery sa uistite, že váš prvý vklad je aspoň 25 € alebo ekvivalent v iných menách a bol vykonaný požiadavkou na výber.",
+        "FORTUNE WHEEL BRANDS": "ZNAČKY FORTUNE WHEEL",
+        "Pick a brand below, make first deposit and win real cash":
+          "Vyberte značku nižšie, urobte prvý vklad a vyhrajte skutočné peniaze",
+        "Spin the Roulette": "Otočte ruletu",
       },
     },
     tr: {
@@ -5755,6 +5823,10 @@ async function initializeI18n() {
         "Reload page": "Sayfayı yeniden yükle",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Çekilmeler için uygun olabilmek için, ilk yatırımınızın en az 25 € veya diğer para birimlerindeki karşılığı olması ve çekim talebinde bulunulduktan sonra yapılması gerekmektedir.",
+        "FORTUNE WHEEL BRANDS": "ŞANSLI TEKERLEK MARKALARI",
+        "Pick a brand below, make first deposit and win real cash":
+          "Aşağıdaki bir markayı seçin, ilk depozitoyu yapın ve gerçek para kazanın",
+        "Spin the Roulette": "Rulet çevir",
       },
     },
   };

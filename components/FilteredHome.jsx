@@ -9,6 +9,7 @@ import {
   DribbbleLogo,
   CurrencyBtc,
   SquareLogo,
+  Fire
 } from "phosphor-react";
 import i18n from "@/components/i18n";
 
@@ -23,37 +24,45 @@ const FilteredHome = () => {
       currentTab: 1,
       currentCategories: 25,
       currentText: "All Brands",
+      segment: "Segment2",
+      value: "",
       currentText2: t("All Brands"),
       icon: <SquareLogo className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 2,
       currentCategories: 26,
-      currentText: "Recommended Brands",
+      currentText: "All Brands",
+      segment: "Segment2",
+      value: "Premium",
       currentText2: t("Recommended Brands"),
       icon: <Medal className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 3,
       currentCategories: 24,
-      currentText: "Newly Brands",
-      currentText2: t("Newly Brands"),
+      currentText: "All Brands",
+      segment: "QuickSignUp",
+      value: "1",
+      currentText2: t("Quick Sign-Up"),
       icon: <Crown className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 4,
       currentCategories: 19,
-      currentText: "Crypto Brands",
-      currentText2: t("Crypto Brands"),
-      icon: <CurrencyBtc className="mr-2 pb-1" size={32} />,
+      currentText: "All Brands",
+      segment: "Hottest",
+      value: "1",
+      currentText2: t("Hottest Deals"),
+      icon: <Fire className="mr-2 pb-1" size={32} />,
     },
-    {
-      currentTab: 5,
-      currentCategories: 187,
-      currentText: "Top Sports Brands",
-      currentText2: t("Top Sports Brands"),
-      icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
-    },
+    // {
+    //   currentTab: 5,
+    //   currentCategories: 187,
+    //   currentText: "Top Sports Brands",
+    //   currentText2: t("Top Sports Brands"),
+    //   icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
+    // },
   ];
 
   const handleTabChange = (tabNumber) => {
@@ -81,7 +90,7 @@ const FilteredHome = () => {
           {navigateBrands.map((item) => (
             <button
               key={item.currentTab}
-              className={`flex justify-center flex-col basis-[20%] items-center p-2 border text-lg button-tab ${
+              className={`flex justify-center flex-col basis-[25%] items-center p-2 border text-lg button-tab ${
                 currentTab === item.currentTab ? "active" : ""
               }`}
               onClick={() => handleTabChange(item.currentTab)}
@@ -100,6 +109,8 @@ const FilteredHome = () => {
                   key={`${item.currentTab}-${i18n.language}`}
                   filtered={item.currentText}
                   isLoader={isLoader}
+                  segment={item.segment}
+                  value={item.value}
                 />
               )
             );

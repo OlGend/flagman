@@ -12,6 +12,7 @@ export const navItems = (t) => [
       { label: t('Live Casinos'), href: "/live-casinos" },
       { label: t('Newest Casinos'), href: "/newest-casinos" },
       { label: t('Top Certified Casinos'), href: "/top-certified-casinos" },
+      { label: t('Top Sports Casinos'), href: "/top-sports-casinos" },
     ],
   },
   {

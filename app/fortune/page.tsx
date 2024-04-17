@@ -13,6 +13,7 @@ export default function Fortune() {
   const [iframeHeight, setIframeHeight] = useState("658px");
   const [userData, setUserData] = useState(null);
   const { t } = useTranslation();
+  const banner = false;
 
   // Получение ID пользователя
   if (typeof window !== "undefined") {
@@ -110,7 +111,7 @@ export default function Fortune() {
         />
       </div>
       <p className="text-center">{t("To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.")}</p>
-      <Fortunes />
+      <Fortunes banner={banner} />
     </div>
   );
 }

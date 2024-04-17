@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
 import { getBrands } from "@/components/getBrands/getBrands";
+import { getBrandsAll } from "@/components/getBrands/getBrandsAll";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -25,7 +26,7 @@ import {
 } from "phosphor-react";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 
-export default function AllBrands({ filtered, isLoader }) {
+export default function AllBrands({ filtered, isLoader, segment, value }) {
 
   const { t } = useTranslation();
 
@@ -54,12 +55,14 @@ export default function AllBrands({ filtered, isLoader }) {
   const [topBrands, setTopBrands] = useState([]);
 
   const { language } = useLanguage();
-  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
+  const categoryBrandsAll = { key1: segment, key2: value };
+  console.log("object", categoryBrandsAll)
+  const categoryBrands = { key1: "Video", key2: "1" };
   useEffect(() => {
     const fetchData = async () => {
-      const brands = await getBrandsFiltered(filtered, language);
       const brands2 = await getBrands(categoryBrands, language);
-
+      const brands = await getBrands(categoryBrandsAll, language);
+      console.log("BRANDS", brands)
       setFilteredBrands(brands);
       setTopBrands(brands2);
 

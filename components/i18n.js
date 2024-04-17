@@ -355,6 +355,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Pick a brand below, make first deposit and win real cash",
         "Spin the Roulette": "Spin the Roulette",
+        "Quick Sign-Up": "Quick Sign-Up",
+        "Hottest Deals": "Hottest Deals",
+        "Top Sports Casinos": "Top Sports Casinos",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Top Sports Betting Sites & Platforms in 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.",
       },
     },
   
@@ -679,6 +686,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Wybierz poniższą markę, dokonaj pierwszej wpłaty i wygraj prawdziwe pieniądze",
         "Spin the Roulette": "Kręć ruletką",
+        "Quick Sign-Up": "Szybka rejestracja",
+        "Hottest Deals": "Najlepsze Oferty",
+        "Top Sports Casinos": "Najlepsze kasyna sportowe",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Najlepsze strony i platformy zakładów sportowych w 2024 roku",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Odkryj naszą kompilację najlepszych stron zakładów sportowych, oferujących platformy zapewniające kompleksowe pokrycie wydarzeń sportowych i konkurencyjne kursy. Zagłęb się w bezstronne oceny i wybierz ostateczny cel zakładów sportowych dostosowany do Twoich preferencji.",
       },
     },
     de: {
@@ -1002,6 +1016,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Wählen Sie eine Marke unten aus, tätigen Sie die erste Einzahlung und gewinnen Sie echtes Geld",
         "Spin the Roulette": "Drehe das Roulette",
+        "Quick Sign-Up": "Schnelle Anmeldung",
+        "Hottest Deals": "Heißeste Angebote",
+        "Top Sports Casinos": "Top Sportwetten Casinos",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Top Sportwetten-Seiten & Plattformen im Jahr 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Erkunden Sie unsere Zusammenstellung erstklassiger Sportwetten-Websites, die Plattformen mit umfassender Berichterstattung über Sportveranstaltungen und wettbewerbsfähigen Quoten bieten. Tauchen Sie ein in unparteiische Bewertungen und finden Sie das ultimative Sportwetten-Ziel, das auf Ihre Vorlieben zugeschnitten ist.",
       },
     },
     bg: {
@@ -1324,6 +1345,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Изберете марка по-долу, направете първи депозит и спечелете реални пари",
         "Spin the Roulette": "Завъртете рулетката",
+        "Quick Sign-Up": "Бърза регистрация",
+        "Hottest Deals": "Най-горещите оферти",
+        "Top Sports Casinos": "Топ спортни казина",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Най-добрите сайтове и платформи за залагания в спорта през 2024 г.",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Разгледайте нашата компилация от водещи сайтове за спортни залагания, предлагащи платформи, които предлагат обширно покритие на спортни събития и конкурентни коефициенти. Загледайте се в безпристрастни оценки и открийте най-добрата дестинация за спортни залагания, персонализирана според вашите предпочитания.",
       },
     },
     cz: {
@@ -1646,6 +1674,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Vyberte značku níže, proveďte první vklad a vyhrajte skutečné peníze",
         "Spin the Roulette": "Otočit ruletu",
+        "Quick Sign-Up": "Rychlá registrace",
+        "Hottest Deals": "Nejžhavější nabídky",
+        "Top Sports Casinos": "Nejlepší sportovní kasina",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Nejlepší sázkové stránky a platformy v roce 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Prozkoumejte naši kompilaci předních sázkových stránek, které nabízejí platformy s komplexním pokrytím sportovních událostí a konkurenčními kurzy. Ponořte se do nezávislých hodnocení a najděte konečnou destinaci pro sázení na sport, která bude přizpůsobena vašim preferencím.",
       },
     },
     dk: {
@@ -1967,6 +2002,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Vælg et mærke nedenfor, foretag første indbetaling og vind rigtige penge",
         "Spin the Roulette": "Spil roulette",
+        "Quick Sign-Up": "Hurtig tilmelding",
+        "Hottest Deals": "Bedste tilbud",
+        "Top Sports Casinos": "Top Sports Casinos",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Top Sports Betting Sites & Platformer i 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Udforsk vores samling af førende sportsbettingsider, der tilbyder platforme med omfattende dækning af sportsbegivenheder og konkurrencedygtige odds. Dyk ned i upartiske vurderinger og find den ultimative sportsbettingsdestination skræddersyet til dine præferencer.",
       },
     },
     nl: {
@@ -2289,6 +2331,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Kies hieronder een merk, maak een eerste storting en win echt geld",
         "Spin the Roulette": "Draai aan de roulette",
+        "Quick Sign-Up": "Snel Inschrijven",
+        "Hottest Deals": "Heetste Deals",
+        "Top Sports Casinos": "Top Sportcasino's",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Top Sportweddenschappen Websites & Platforms in 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Verken onze compilatie van toonaangevende sportweddenschapssites, met platforms die uitgebreide dekking bieden van sportevenementen en competitieve kansen. Duik in onpartijdige beoordelingen en vind de ultieme sportweddenschapsbestemming die is afgestemd op uw voorkeuren.",
       },
     },
     es: {
@@ -2611,6 +2660,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Elige una marca a continuación, realiza tu primer depósito y gana dinero real",
         "Spin the Roulette": "Girar la ruleta",
+        "Quick Sign-Up": "Inscripción rápida",
+        "Hottest Deals": "Ofertas más calientes",
+        "Top Sports Casinos": "Los mejores casinos deportivos",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Principales sitios y plataformas de apuestas deportivas en 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Explora nuestra recopilación de los mejores sitios de apuestas deportivas, que cuentan con plataformas que ofrecen una cobertura completa de eventos deportivos y cuotas competitivas. Sumérgete en evaluaciones imparciales y encuentra el destino definitivo de apuestas deportivas adaptado a tus preferencias.",
       },
     },
     fi: {
@@ -2932,6 +2988,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Valitse alla oleva brändi, tee ensimmäinen talletus ja voita oikeaa rahaa",
         "Spin the Roulette": "Pyöräytä rulettia",
+        "Quick Sign-Up": "Nopea rekisteröityminen",
+        "Hottest Deals": "Parhaat tarjoukset",
+        "Top Sports Casinos": "Parhaat urheilukasinot",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Parhaat urheiluvedonlyöntisivustot ja -alustat vuonna 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Tutustu kokoelmaamme johtavista urheiluvedonlyöntisivustoista, joissa on kattava valikoima urheilutapahtumia ja kilpailukykyisiä kertoimia. Syvenny puolueettomiin arvioihin ja löydä juuri sinun mieltymyksiisi sopiva lopullinen urheiluvedonlyöntikohde.",
       },
     },
     fr: {
@@ -3253,6 +3316,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Choisissez une marque ci-dessous, effectuez un premier dépôt et gagnez de l'argent réel",
         "Spin the Roulette": "Faites tourner la roulette",
+        "Quick Sign-Up": "Inscription rapide",
+        "Hottest Deals": "Offres les plus chaudes",
+        "Top Sports Casinos": "Les meilleurs casinos sportifs",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Meilleurs sites et plateformes de paris sportifs en 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Explorez notre compilation des meilleurs sites de paris sportifs, proposant des plateformes offrant une couverture complète des événements sportifs et des cotes compétitives. Plongez dans des évaluations impartiales et trouvez la destination ultime des paris sportifs adaptée à vos préférences.",
       },
     },
     gr: {
@@ -3575,6 +3645,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Επιλέξτε ένα brand παρακάτω, κάντε την πρώτη κατάθεση και κερδίστε πραγματικά χρήματα",
         "Spin the Roulette": "Περιστρέψτε τη ρουλέτα",
+        "Quick Sign-Up": "Γρήγορη Εγγραφή",
+        "Hottest Deals": "Καυτότερες Προσφορές",
+        "Top Sports Casinos": "Κορυφαία Αθλητικά Καζίνο",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Κορυφαίες ιστοσελίδες και πλατφόρμες στοιχημάτων στον αθλητισμό το 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Εξερευνήστε τη συλλογή μας από κορυφαίες ιστοσελίδες στοιχημάτων, που προσφέρουν πλατφόρμες με πλήρη κάλυψη των αθλητικών γεγονότων και ανταγωνιστικές αποδόσεις. Εξετάστε αντικειμενικές αξιολογήσεις και εντοπίστε τον απόλυτο προορισμό στοιχημάτων που ταιριάζει στις προτιμήσεις σας.",
       },
     },
     hu: {
@@ -3897,6 +3974,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Válasszon egy márkát lent, tegyen be első befizetést, és nyerjen valódi pénzt",
         "Spin the Roulette": "Pörgetd meg a rulettet",
+        "Quick Sign-Up": "Gyors regisztráció",
+        "Hottest Deals": "Legforróbb ajánlatok",
+        "Top Sports Casinos": "Legjobb Sportfogadás Kaszinók",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "A legjobb sportfogadási oldalak és platformok 2024-ben",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Ismerje meg összeállításunkat a legjobb sportfogadási oldalakról, amelyek teljes körű sportesemény-áttekintést és versenyképes oddsokat kínálnak. Mélyedjen el pártatlan értékelésekben, és találja meg az Ön preferenciáinak megfelelő végső sportfogadási célpontot.",
       },
     },
     it: {
@@ -4219,6 +4303,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Scegli un marchio qui sotto, effettua il primo deposito e vinci denaro reale",
         "Spin the Roulette": "Gira la roulette",
+        "Quick Sign-Up": "Iscrizione Veloce",
+        "Hottest Deals": "Offerte più calde",
+        "Top Sports Casinos": "Top Casino Sportivi",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "I migliori siti e piattaforme di scommesse sportive nel 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Esplora la nostra raccolta dei migliori siti di scommesse sportive, che offrono piattaforme con una copertura completa degli eventi sportivi e quote competitive. Approfondisci le valutazioni imparziali e individua la destinazione finale delle scommesse sportive su misura per le tue preferenze.",
       },
     },
     no: {
@@ -4541,6 +4632,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Velg et merke nedenfor, gjør første innskudd og vinn ekte penger",
         "Spin the Roulette": "Spinn ruletten",
+        "Quick Sign-Up": "Hurtig registrering",
+        "Hottest Deals": "Beste tilbud",
+        "Top Sports Casinos": "Topp sportskasinoer",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Toppsider og plattformer for sportsbetting i 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Utforsk vår samling av førsteklasses sportsbettingsider, med plattformer som tilbyr omfattende dekning av sportsarrangementer og konkurransedyktige odds. Dykk ned i upartiske vurderinger, og finn den ultimate sportsbettingsdestinasjonen skreddersydd etter dine preferanser.",
       },
     },
     pt: {
@@ -4862,6 +4960,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Escolha uma marca abaixo, faça o primeiro depósito e ganhe dinheiro real",
         "Spin the Roulette": "Girar a Roleta",
+        "Quick Sign-Up": "Inscrição Rápida",
+        "Hottest Deals": "Ofertas Imperdíveis",
+        "Top Sports Casinos": "Principais Cassinos de Esportes",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Principais Sites e Plataformas de Apostas Esportivas em 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Explore nossa compilação de sites de apostas esportivas de primeira linha, apresentando plataformas que oferecem cobertura abrangente de eventos esportivos e odds competitivas. Aprofunde-se em avaliações imparciais e identifique o destino final de apostas esportivas adaptado às suas preferências.",
       },
     },
     se: {
@@ -5185,6 +5290,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Välj ett varumärke nedan, gör första insättning och vinn riktiga pengar",
         "Spin the Roulette": "Snurra på Rouletten",
+        "Quick Sign-Up": "Snabb registrering",
+        "Hottest Deals": "Varma erbjudanden",
+        "Top Sports Casinos": "Toppsportscasinon",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Toppspelwebbplatser och plattformar för sportspel år 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Utforska vår samling av främsta sportspelssajter, med plattformar som erbjuder omfattande täckning av sportevenemang och konkurrenskraftiga odds. Dyk ner i opartiska bedömningar och hitta den ultimata sportspeldestinationen skräddarsydd efter dina preferenser.",
       },
     },
     sk: {
@@ -5507,6 +5619,13 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Vyberte značku nižšie, urobte prvý vklad a vyhrajte skutočné peniaze",
         "Spin the Roulette": "Otočte ruletu",
+        "Quick Sign-Up": "Rýchla registrácia",
+        "Hottest Deals": "Najhorúcejšie ponuky",
+        "Top Sports Casinos": "Top športové kasína",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "Top stávkové stránky a platformy v roku 2024",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Preskúmajte našu kompiláciu najlepších stávkových stránok, ktoré ponúkajú platformy s komplexným pokrytím športových udalostí a konkurenčné kurzy. Ponorte sa do nezávislých hodnotení a určte konečnú destináciu pre športové stávky prispôsobenú vašim preferenciám.",
       },
     },
     tr: {
@@ -5827,9 +5946,17 @@ async function initializeI18n() {
         "Pick a brand below, make first deposit and win real cash":
           "Aşağıdaki bir markayı seçin, ilk depozitoyu yapın ve gerçek para kazanın",
         "Spin the Roulette": "Rulet çevir",
+        "Quick Sign-Up": "Hızlı Kayıt",
+        "Hottest Deals": "En İyi Fırsatlar",
+        "Top Sports Casinos": "En İyi Spor Kumarhaneleri",
+        "Top Sports Betting Sites & Platforms in 2024":
+          "2024'te En İyi Spor Bahis Siteleri ve Platformları",
+        "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
+          "Öncü spor bahis sitelerimizin derlemesini keşfedin, spor etkinliklerinin kapsamlı kapsamını ve rekabetçi oranları sunan platformları içeren. Tarafsız değerlendirmelere dalın ve tercihlerinize uygun en iyi spor bahisleri hedefini belirleyin.",
       },
     },
   };
+  
   
 
   let source;

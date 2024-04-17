@@ -9339,3 +9339,10 @@ input.error {
 body { 
   overflow: initial;
 }
+
+.unsubscribed {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

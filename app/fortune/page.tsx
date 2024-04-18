@@ -15,6 +15,7 @@ export default function Fortune() {
   const { t } = useTranslation();
   const banner = false;
 
+
   // Получение ID пользователя
   if (typeof window !== "undefined") {
     const userId = localStorage.getItem("user_id");
@@ -98,7 +99,7 @@ export default function Fortune() {
 
   
   
-
+  const target = "target-fw-brands-wheel-page";
   return (
     <div className="page-fortune main__container">
       {/* <button onClick={() => updateUserDataIfNeeded(userData)}>On</button> */}
@@ -111,7 +112,7 @@ export default function Fortune() {
         />
       </div>
     
-      <Fortunes banner={banner} />
+      <Fortunes banner={banner} target={target} />
     </div>
   );
 }

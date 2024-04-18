@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 export default async function Home() {
 
   const banner = true;
+  const target = "target-fw-brands-main-page";
   return (
     <>
       {/* <PreviewHome /> */}
@@ -25,7 +26,7 @@ export default async function Home() {
       <NewArrivals />
 
       <div className="main__container">
-        <Fortunes banner={banner} />
+        <Fortunes banner={banner} target={target} />
       </div>
 
       <div className="background-block">

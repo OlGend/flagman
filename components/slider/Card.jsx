@@ -40,14 +40,26 @@ function Card({ imagen, link, bonus }) {
       onMouseEnter={() => setShown(true)}
       onMouseLeave={() => setShown(false)}
     >
-      <Image width={300} height={150} loading="lazy" src={imagen} alt={bonus} />
+      <Link
+        className="target-top-brand"
+        href={`${link}/${newUrl}`}
+        target="_blank"
+      >
+        <Image
+          width={300}
+          height={150}
+          loading="lazy"
+          src={imagen}
+          alt={bonus}
+        />
+      </Link>
 
       {/* <h2>Title</h2> */}
 
       <div className="review-bonus">{bonus}</div>
       <div className={Styles.btnn}>
         <Link
-          className="btn btn-primary"
+          className="btn btn-primary target-top-brand"
           href={`${link}/${newUrl}`}
           target="_blank"
         >

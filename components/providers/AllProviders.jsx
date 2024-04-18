@@ -345,6 +345,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                   <div className="basis-[36%]">
                     <div className="brandImage p-3">
                       <Link
+                      className="target-brand-exit"
                         key={brand.id_brand}
                         href={`${brand.GoBig}/${newUrl}`}
                       >
@@ -378,7 +379,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                         </p>
                       </div>
                       <Link
-                        className="btn btn-primary mt-0 text-center flex justify-center items-center"
+                        className="btn btn-primary mt-0 text-center flex justify-center items-center target-brand-exit"
                         href={`${brand.GoBig}/${newUrl}`}
                         target="_blank"
                       >
@@ -412,7 +413,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                   >
                     <div className="brandImage p-3">
                       <Link
-                        className="flex justify-center flex-col items-center"
+                        className="flex justify-center flex-col items-center target-listing-brands"
                         key={item.id_brand}
                         href={`${item.GoBig}/${newUrl}`}
                         target="_blank"
@@ -430,7 +431,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                       </Link>
                     </div>
                     <Link
-                      className="btn btn-primary btn-new"
+                      className="btn btn-primary btn-new target-listing-brands"
                       key={item.id_brand}
                       href={`${item.GoBig}/${newUrl}`}
                       target="_blank"
@@ -450,7 +451,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                     >
                       <div className="brandImage p-3">
                         <Link
-                          className="flex justify-center flex-col items-center"
+                          className="flex justify-center flex-col items-center target-listing-brands"
                           key={item.id_brand}
                           href={`${item.GoBig}/${newUrl}`}
                           target="_blank"
@@ -468,7 +469,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                         </Link>
                       </div>
                       <Link
-                        className="btn btn-primary btn-new"
+                        className="btn btn-primary btn-new target-listing-brands"
                         key={item.id_brand}
                         href={`${item.GoBig}/${newUrl}`}
                         target="_blank"

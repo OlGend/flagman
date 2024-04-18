@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 import Loader from "../Loader";
 
-const Fortunes = ({ banner }) => {
+const Fortunes = ({ banner, target }) => {
   const [brands, setBrands] = useState([]);
   const [visibleBrands, setVisibleBrands] = useState(5); // Состояние для отслеживания количества видимых брендов
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +46,7 @@ const Fortunes = ({ banner }) => {
         <h3>{t("FORTUNE WHEEL BRANDS")}</h3>
         <p>{t("Pick a brand below, make first deposit and win real cash")}</p>
         {banner && (
-          <Link className="btn btn-thirdy" href={`/fortune`}>
+          <Link className="btn btn-thirdy target-spin-the-roulette" href={`/fortune`}>
             {t("Spin the Roulette")}
           </Link>
         )}
@@ -63,7 +63,7 @@ const Fortunes = ({ banner }) => {
           brands.slice(0, visibleBrands).map((brand) => (
             <div key={brand.id_brand} className="card-brand mb-3 basis-[19%]">
               <div className="brandImage p-3">
-                <Link href={`${brand.GoBig}/${newUrl}`}>
+                <Link className={target} href={`${brand.GoBig}/${newUrl}`}>
                   <Image
                     src={`/brands/${brand.CasinoBrand}.png`}
                     alt={brand.CasinoBrand}
@@ -76,7 +76,7 @@ const Fortunes = ({ banner }) => {
                 <div className="review-bonus">{brand.OurOfferContent}</div>
                 <div className="buttons">
                   <Link
-                    className="btn btn-primary"
+                    className={`btn btn-primary ${target}`}
                     href={`${brand.GoBig}/${newUrl}`}
                   >
                     {t("Play Now")}

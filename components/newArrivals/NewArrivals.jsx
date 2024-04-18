@@ -65,7 +65,7 @@ const NewArrivals = () => {
               >
                 <div className="brandImage p-3">
                   <Link
-                    className="flex justify-center flex-col items-center"
+                    className="flex justify-center flex-col items-center target-top-new-releases"
                     key={item.id_brand}
                     href={`${item.GoBig}/${newUrl}`}
                     target="_blank"
@@ -83,7 +83,7 @@ const NewArrivals = () => {
                   </Link>
                 </div>
                 <Link
-                  className="btn btn-primary btn-new"
+                  className="btn btn-primary btn-new target-top-new-releases"
                   key={item.id_brand}
                   href={`${item.GoBig}/${newUrl}`}
                   target="_blank"

@@ -26,7 +26,7 @@ import {
 } from "phosphor-react";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 
-export default function AllBrands({ filtered, isLoader, segment, value }) {
+export default function AllBrands({ filtered, isLoader, segment, value, target }) {
 
   const { t } = useTranslation();
 
@@ -351,6 +351,7 @@ export default function AllBrands({ filtered, isLoader, segment, value }) {
                       <Link
                         key={brand.id_brand}
                         href={`${brand.GoBig}/${newUrl}`}
+                        className={`${target}`}
                       >
                         <Image
                           src={`/brands/${brand.CasinoBrand}.png`}
@@ -382,7 +383,7 @@ export default function AllBrands({ filtered, isLoader, segment, value }) {
                         </p>
                       </div>
                       <Link
-                        className="btn btn-primary mt-0 text-center flex justify-center items-center"
+                        className={`btn btn-primary mt-0 text-center flex justify-center items-center ${target}`}
                         href={`${brand.GoBig}/${newUrl}`}
                         target="_blank"
                       >
@@ -416,7 +417,7 @@ export default function AllBrands({ filtered, isLoader, segment, value }) {
                   >
                     <div className="brandImage p-3">
                       <Link
-                        className="flex justify-center flex-col items-center"
+                        className="flex justify-center flex-col items-center target-listing-brands"
                         key={item.id_brand}
                         href={`${item.GoBig}/${newUrl}`}
                         target="_blank"
@@ -434,7 +435,7 @@ export default function AllBrands({ filtered, isLoader, segment, value }) {
                       </Link>
                     </div>
                     <Link
-                      className="btn btn-primary btn-new"
+                      className="btn btn-primary btn-new target-listing-brands"
                       key={item.id_brand}
                       href={`${item.GoBig}/${newUrl}`}
                       target="_blank"
@@ -454,7 +455,7 @@ export default function AllBrands({ filtered, isLoader, segment, value }) {
                     >
                       <div className="brandImage p-3">
                         <Link
-                          className="flex justify-center flex-col items-center"
+                          className="flex justify-center flex-col items-center target-listing-brands"
                           key={item.id_brand}
                           href={`${item.GoBig}/${newUrl}`}
                           target="_blank"
@@ -472,7 +473,7 @@ export default function AllBrands({ filtered, isLoader, segment, value }) {
                         </Link>
                       </div>
                       <Link
-                        className="btn btn-primary btn-new"
+                        className="btn btn-primary btn-new target-listing-brands"
                         key={item.id_brand}
                         href={`${item.GoBig}/${newUrl}`}
                         target="_blank"

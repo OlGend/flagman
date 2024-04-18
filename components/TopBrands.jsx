@@ -148,7 +148,7 @@ export default function TopBrands() {
               <Link
                 target="_blank"
                 key={item}
-                className="btn btn-primary big-btn mt-3"
+                className="btn btn-primary big-btn mt-3 target-try-your-luck"
                 href={`${item.GoBig}/${newUrl}`}
               >
                 {t("Try Your Luck")}

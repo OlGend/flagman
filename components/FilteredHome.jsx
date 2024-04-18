@@ -26,8 +26,19 @@ const FilteredHome = () => {
       currentText: "All Brands",
       segment: "Segment2",
       value: "",
+      target: "target-all-brands",
       currentText2: t("All Brands"),
       icon: <SquareLogo className="mr-2 pb-1" size={32} />,
+    },
+    {
+      currentTab: 5,
+      currentCategories: 187,
+      currentText: "New Arrivals",
+      segment: "Segment2",
+      value: "Sandbox",
+      target: "target-new-arrivals",
+      currentText2: t("New Arrivals"),
+      icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
     },
     {
       currentTab: 2,
@@ -35,6 +46,7 @@ const FilteredHome = () => {
       currentText: "All Brands",
       segment: "Segment2",
       value: "Premium",
+      target: "target-ecommended-brands",
       currentText2: t("Recommended Brands"),
       icon: <Medal className="mr-2 pb-1" size={32} />,
     },
@@ -44,6 +56,7 @@ const FilteredHome = () => {
       currentText: "All Brands",
       segment: "QuickSignUp",
       value: "1",
+      target: "target-quick-sign-up-brands",
       currentText2: t("Quick Sign-Up"),
       icon: <Crown className="mr-2 pb-1" size={32} />,
     },
@@ -53,18 +66,11 @@ const FilteredHome = () => {
       currentText: "All Brands",
       segment: "Hottest",
       value: "1",
+      target: "target-hottest-deals",
       currentText2: t("Hottest Deals"),
       icon: <Fire className="mr-2 pb-1" size={32} />,
     },
-    {
-      currentTab: 5,
-      currentCategories: 187,
-      currentText: "New Arrivals",
-      segment: "Segment2",
-      value: "Sandbox",
-      currentText2: t("New Arrivals"),
-      icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
-    },
+
   ];
 
   const handleTabChange = (tabNumber) => {
@@ -113,6 +119,7 @@ const FilteredHome = () => {
                   isLoader={isLoader}
                   segment={item.segment}
                   value={item.value}
+                  target={item.target}
                 />
               )
             );

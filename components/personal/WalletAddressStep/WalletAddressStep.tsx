@@ -69,6 +69,7 @@ export const WalletAddressStep = ({
     //   return;
     // }
     
+    
     await onConfirm(user.id);
     onChangeStep(step + 1);
     const withdrawalData = {

@@ -45,18 +45,18 @@ export const WalletAddressStep = ({
     const response = await walletAddressValidate();
     if (!response) return;
 
-    if (!user.phone_number) {
-      onChangeStep(step + 1);
-      const withdrawalData = {
-        id: user.id,
-        amount: amount,
-        paymentMethod: coin,
-      };
-      // await sendData(withdrawalData);
-      return;
-    }
-
+    //   const withdrawalData = {
+    //     id: user.id,
+    //     amount: amount,
+    //     paymentMethod: coin,
+    //   };
+    //   // await sendData(withdrawalData);
+    // if (!user.phone_number) {
+    //   return;
+    // }
+    
     await onConfirm(user.id);
+    onChangeStep(step + 1);
     const withdrawalData = {
       id: user.id,
       amount: amount,
@@ -65,12 +65,12 @@ export const WalletAddressStep = ({
     // await sendData(withdrawalData);
   };
   const setNextStepNotValidate = async () => {
-    if (!user.phone_number) {
-      onChangeStep(step + 1);
-      return;
-    }
-
+    // if (!user.phone_number) {
+    //   return;
+    // }
+    
     await onConfirm(user.id);
+    onChangeStep(step + 1);
     const withdrawalData = {
       id: user.id,
       amount: amount,

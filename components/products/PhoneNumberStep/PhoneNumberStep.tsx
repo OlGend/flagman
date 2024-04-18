@@ -67,7 +67,7 @@ export const PhoneNumberStep = ({
   ] = useMutationSendUserPhoneNumber();
   const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
   const [showOtp, setShowOtp] = useState(true);
-  const [showProduct, setShowProduct] = useState(false);
+  const [showProduct, setShowProduct] = useState(true);
   const [showPhone, setShowPhone] = useState(false);
   const [otherContent, setOtherContent] = useState(false);
   const onConfirmOtp = async () => {
@@ -113,7 +113,7 @@ export const PhoneNumberStep = ({
   };
   return (
     <StyledDiv>
-      {!user?.phone_number && (
+      {/* {!user?.phone_number && (
         <div>
           {showOtp && (
             <>
@@ -179,7 +179,7 @@ export const PhoneNumberStep = ({
             </Box>
           )}
         </div>
-      )}
+      )} */}
       {showProduct && (
         <Box className="flex flex-col items-center modal-final">
           {!otherContent ? (
@@ -238,7 +238,7 @@ export const PhoneNumberStep = ({
           )}
         </Box>
       )}
-      {user?.phone_number && (
+      {/* {user?.phone_number && (
         <Box className="flex flex-col items-center modal-final">
           {!otherContent ? (
             <>
@@ -292,7 +292,7 @@ export const PhoneNumberStep = ({
             </>
           )}
         </Box>
-      )}
+      )} */}
     </StyledDiv>
   );
 };

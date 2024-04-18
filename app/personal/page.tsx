@@ -296,25 +296,25 @@ export default function Personal() {
       },
     ];
 
-    if (!user.phone_number) {
-      initialSteps.splice(2, 0, {
-        label: t("Phone Number"),
-        description: t(
-          "To create a transfer, we need to verify your phone number"
-        ),
-        content: (
-          <PhoneNumberStep
-            user={user}
-            step={step}
-            phoneNumber={phoneNumber}
-            onChangeStep={onChangeStep}
-            onChangePhoneNumber={onChangePhoneNumber}
-            onConfirm={onConfirm}
-            t={t}
-          />
-        ),
-      });
-    }
+    // if (!user.phone_number) {
+    //   initialSteps.splice(2, 0, {
+    //     label: t("Phone Number"),
+    //     description: t(
+    //       "To create a transfer, we need to verify your phone number"
+    //     ),
+    //     content: (
+    //       <PhoneNumberStep
+    //         user={user}
+    //         step={step}
+    //         phoneNumber={phoneNumber}
+    //         onChangeStep={onChangeStep}
+    //         onChangePhoneNumber={onChangePhoneNumber}
+    //         onConfirm={onConfirm}
+    //         t={t}
+    //       />
+    //     ),
+    //   });
+    // }
 
     return initialSteps;
   };

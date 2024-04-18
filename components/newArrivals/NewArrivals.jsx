@@ -55,7 +55,7 @@ const NewArrivals = () => {
   return (
     <div className="bl-sand">
       <div className="main__container block-sandbox">
-        <h2>Top New Releases</h2>
+        <h2>{t("Top New Releases")}</h2>
         <Slider {...settings}>
           {brands.map((item) => {
             return (

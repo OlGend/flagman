@@ -34,6 +34,7 @@ async function initializeI18n() {
   const matchedLanguage = matchedLanguages.find(
     (language) => language !== null
   );
+  
 
   const resources = {
     all: {
@@ -362,6 +363,8 @@ async function initializeI18n() {
           "Top Sports Betting Sites & Platforms in 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.",
+        "Top New Releases": "Top New Releases",
+        "New Arrivals": "New Arrivals",
       },
     },
   
@@ -693,6 +696,8 @@ async function initializeI18n() {
           "Najlepsze strony i platformy zakładów sportowych w 2024 roku",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Odkryj naszą kompilację najlepszych stron zakładów sportowych, oferujących platformy zapewniające kompleksowe pokrycie wydarzeń sportowych i konkurencyjne kursy. Zagłęb się w bezstronne oceny i wybierz ostateczny cel zakładów sportowych dostosowany do Twoich preferencji.",
+        "Top New Releases": "Najlepsze nowe kasyna",
+        "New Arrivals": "Nowe przybycia",
       },
     },
     de: {
@@ -1023,6 +1028,8 @@ async function initializeI18n() {
           "Top Sportwetten-Seiten & Plattformen im Jahr 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Erkunden Sie unsere Zusammenstellung erstklassiger Sportwetten-Websites, die Plattformen mit umfassender Berichterstattung über Sportveranstaltungen und wettbewerbsfähigen Quoten bieten. Tauchen Sie ein in unparteiische Bewertungen und finden Sie das ultimative Sportwetten-Ziel, das auf Ihre Vorlieben zugeschnitten ist.",
+        "Top New Releases": "Top Neue Casino-Veröffentlichungen",
+        "New Arrivals": "Neue Ankünfte",
       },
     },
     bg: {
@@ -1352,6 +1359,8 @@ async function initializeI18n() {
           "Най-добрите сайтове и платформи за залагания в спорта през 2024 г.",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Разгледайте нашата компилация от водещи сайтове за спортни залагания, предлагащи платформи, които предлагат обширно покритие на спортни събития и конкурентни коефициенти. Загледайте се в безпристрастни оценки и открийте най-добрата дестинация за спортни залагания, персонализирана според вашите предпочитания.",
+        "Top New Releases": "Най-нови издания на казино",
+        "New Arrivals": "Нови пристигания",
       },
     },
     cz: {
@@ -1681,6 +1690,8 @@ async function initializeI18n() {
           "Nejlepší sázkové stránky a platformy v roce 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Prozkoumejte naši kompilaci předních sázkových stránek, které nabízejí platformy s komplexním pokrytím sportovních událostí a konkurenčními kurzy. Ponořte se do nezávislých hodnocení a najděte konečnou destinaci pro sázení na sport, která bude přizpůsobena vašim preferencím.",
+        "Top New Releases": "Nejnovější nové kasinové hry",
+        "New Arrivals": "Nově příchozí",
       },
     },
     dk: {
@@ -2009,6 +2020,8 @@ async function initializeI18n() {
           "Top Sports Betting Sites & Platformer i 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Udforsk vores samling af førende sportsbettingsider, der tilbyder platforme med omfattende dækning af sportsbegivenheder og konkurrencedygtige odds. Dyk ned i upartiske vurderinger og find den ultimative sportsbettingsdestination skræddersyet til dine præferencer.",
+        "Top New Releases": "Top nye casinoudgivelser",
+        "New Arrivals": "Nye ankomster",
       },
     },
     nl: {
@@ -2338,6 +2351,8 @@ async function initializeI18n() {
           "Top Sportweddenschappen Websites & Platforms in 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Verken onze compilatie van toonaangevende sportweddenschapssites, met platforms die uitgebreide dekking bieden van sportevenementen en competitieve kansen. Duik in onpartijdige beoordelingen en vind de ultieme sportweddenschapsbestemming die is afgestemd op uw voorkeuren.",
+        "Top New Releases": "Top Nieuwe Casinoreleases",
+        "New Arrivals": "Nieuwe Aankomsten",
       },
     },
     es: {
@@ -2667,6 +2682,8 @@ async function initializeI18n() {
           "Principales sitios y plataformas de apuestas deportivas en 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Explora nuestra recopilación de los mejores sitios de apuestas deportivas, que cuentan con plataformas que ofrecen una cobertura completa de eventos deportivos y cuotas competitivas. Sumérgete en evaluaciones imparciales y encuentra el destino definitivo de apuestas deportivas adaptado a tus preferencias.",
+        "Top New Releases": "Mejores Nuevos Lanzamientos",
+        "New Arrivals": "Nuevas llegadas",
       },
     },
     fi: {
@@ -2995,6 +3012,8 @@ async function initializeI18n() {
           "Parhaat urheiluvedonlyöntisivustot ja -alustat vuonna 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Tutustu kokoelmaamme johtavista urheiluvedonlyöntisivustoista, joissa on kattava valikoima urheilutapahtumia ja kilpailukykyisiä kertoimia. Syvenny puolueettomiin arvioihin ja löydä juuri sinun mieltymyksiisi sopiva lopullinen urheiluvedonlyöntikohde.",
+        "Top New Releases": "Parhaat Uudet Julkaisut",
+        "New Arrivals": "Uudet Saapumiset",
       },
     },
     fr: {
@@ -3323,6 +3342,8 @@ async function initializeI18n() {
           "Meilleurs sites et plateformes de paris sportifs en 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Explorez notre compilation des meilleurs sites de paris sportifs, proposant des plateformes offrant une couverture complète des événements sportifs et des cotes compétitives. Plongez dans des évaluations impartiales et trouvez la destination ultime des paris sportifs adaptée à vos préférences.",
+        "Top New Releases": "Meilleures Nouvelles Sorties",
+        "New Arrivals": "Nouvelles Arrivées",
       },
     },
     gr: {
@@ -3652,6 +3673,8 @@ async function initializeI18n() {
           "Κορυφαίες ιστοσελίδες και πλατφόρμες στοιχημάτων στον αθλητισμό το 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Εξερευνήστε τη συλλογή μας από κορυφαίες ιστοσελίδες στοιχημάτων, που προσφέρουν πλατφόρμες με πλήρη κάλυψη των αθλητικών γεγονότων και ανταγωνιστικές αποδόσεις. Εξετάστε αντικειμενικές αξιολογήσεις και εντοπίστε τον απόλυτο προορισμό στοιχημάτων που ταιριάζει στις προτιμήσεις σας.",
+        "Top New Releases": "Κορυφαίες νέες κυκλοφορίες καζίνο",
+        "New Arrivals": "Νέες Αφίξεις",
       },
     },
     hu: {
@@ -3981,6 +4004,8 @@ async function initializeI18n() {
           "A legjobb sportfogadási oldalak és platformok 2024-ben",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Ismerje meg összeállításunkat a legjobb sportfogadási oldalakról, amelyek teljes körű sportesemény-áttekintést és versenyképes oddsokat kínálnak. Mélyedjen el pártatlan értékelésekben, és találja meg az Ön preferenciáinak megfelelő végső sportfogadási célpontot.",
+        "Top New Releases": "Legújabb kaszinók megjelenése",
+        "New Arrivals": "Új érkezések",
       },
     },
     it: {
@@ -4310,6 +4335,8 @@ async function initializeI18n() {
           "I migliori siti e piattaforme di scommesse sportive nel 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Esplora la nostra raccolta dei migliori siti di scommesse sportive, che offrono piattaforme con una copertura completa degli eventi sportivi e quote competitive. Approfondisci le valutazioni imparziali e individua la destinazione finale delle scommesse sportive su misura per le tue preferenze.",
+        "Top New Releases": "Top Nuove Uscite",
+        "New Arrivals": "Nuovi arrivi",
       },
     },
     no: {
@@ -4639,6 +4666,8 @@ async function initializeI18n() {
           "Toppsider og plattformer for sportsbetting i 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Utforsk vår samling av førsteklasses sportsbettingsider, med plattformer som tilbyr omfattende dekning av sportsarrangementer og konkurransedyktige odds. Dykk ned i upartiske vurderinger, og finn den ultimate sportsbettingsdestinasjonen skreddersydd etter dine preferanser.",
+        "Top New Releases": "Topp Nye Utgivelser",
+        "New Arrivals": "Nye ankomster",
       },
     },
     pt: {
@@ -4967,6 +4996,8 @@ async function initializeI18n() {
           "Principais Sites e Plataformas de Apostas Esportivas em 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Explore nossa compilação de sites de apostas esportivas de primeira linha, apresentando plataformas que oferecem cobertura abrangente de eventos esportivos e odds competitivas. Aprofunde-se em avaliações imparciais e identifique o destino final de apostas esportivas adaptado às suas preferências.",
+        "Top New Releases": "Melhores novos lançamentos de cassino",
+        "New Arrivals": "Novas chegadas",
       },
     },
     se: {
@@ -5297,6 +5328,8 @@ async function initializeI18n() {
           "Toppspelwebbplatser och plattformar för sportspel år 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Utforska vår samling av främsta sportspelssajter, med plattformar som erbjuder omfattande täckning av sportevenemang och konkurrenskraftiga odds. Dyk ner i opartiska bedömningar och hitta den ultimata sportspeldestinationen skräddarsydd efter dina preferenser.",
+        "Top New Releases": "Topp Nya Släpp",
+        "New Arrivals": "Nya ankomster",
       },
     },
     sk: {
@@ -5626,6 +5659,8 @@ async function initializeI18n() {
           "Top stávkové stránky a platformy v roku 2024",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Preskúmajte našu kompiláciu najlepších stávkových stránok, ktoré ponúkajú platformy s komplexným pokrytím športových udalostí a konkurenčné kurzy. Ponorte sa do nezávislých hodnotení a určte konečnú destináciu pre športové stávky prispôsobenú vašim preferenciám.",
+        "Top New Releases": "Top nové vydania",
+        "New Arrivals": "Nové príchody kasína",
       },
     },
     tr: {
@@ -5953,9 +5988,12 @@ async function initializeI18n() {
           "2024'te En İyi Spor Bahis Siteleri ve Platformları",
         "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.":
           "Öncü spor bahis sitelerimizin derlemesini keşfedin, spor etkinliklerinin kapsamlı kapsamını ve rekabetçi oranları sunan platformları içeren. Tarafsız değerlendirmelere dalın ve tercihlerinize uygun en iyi spor bahisleri hedefini belirleyin.",
+        "Top New Releases": "En İyi Yeni Çıkışlar",
+        "New Arrivals": "Yeni Gelenler",
       },
     },
   };
+  
   
   
 

@@ -61,7 +61,7 @@ const FilteredCasinos = () => {
     {
       currentTab: 6,
       currentCategories: 187,
-      currentText: "Top Sports Casinos",
+      currentText: "Top Sports Brands",
       currentText2: t("Top Sports Casinos"),
       icon: <Scroll className="mr-2 pb-1" size={32} />,
       slug: "top-certified-casinos",

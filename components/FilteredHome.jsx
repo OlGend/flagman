@@ -56,13 +56,15 @@ const FilteredHome = () => {
       currentText2: t("Hottest Deals"),
       icon: <Fire className="mr-2 pb-1" size={32} />,
     },
-    // {
-    //   currentTab: 5,
-    //   currentCategories: 187,
-    //   currentText: "Top Sports Brands",
-    //   currentText2: t("Top Sports Brands"),
-    //   icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
-    // },
+    {
+      currentTab: 5,
+      currentCategories: 187,
+      currentText: "New Arrivals",
+      segment: "Segment2",
+      value: "Sandbox",
+      currentText2: t("New Arrivals"),
+      icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
+    },
   ];
 
   const handleTabChange = (tabNumber) => {
@@ -90,7 +92,7 @@ const FilteredHome = () => {
           {navigateBrands.map((item) => (
             <button
               key={item.currentTab}
-              className={`flex justify-center flex-col basis-[25%] items-center p-2 border text-lg button-tab ${
+              className={`flex justify-center flex-col basis-[20%] items-center p-2 border text-lg button-tab ${
                 currentTab === item.currentTab ? "active" : ""
               }`}
               onClick={() => handleTabChange(item.currentTab)}

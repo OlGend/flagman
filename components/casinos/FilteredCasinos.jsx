@@ -9,6 +9,7 @@ import {
   Cardholder,
   CalendarCheck,
   Scroll,
+  DribbbleLogo
 } from "phosphor-react";
 import i18n from "@/components/i18n";
 
@@ -63,8 +64,8 @@ const FilteredCasinos = () => {
       currentCategories: 187,
       currentText: "Top Sports Brands",
       currentText2: t("Top Sports Casinos"),
-      icon: <Scroll className="mr-2 pb-1" size={32} />,
-      slug: "top-certified-casinos",
+      icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
+      slug: "top-sports-casinos",
     },
   ];
 

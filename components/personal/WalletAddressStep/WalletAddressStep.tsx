@@ -4,7 +4,7 @@ import { useMutationWalletAddressValidate } from "@/queries";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/system";
 import { ChangeEvent } from "react";
-import { sendData } from "@/components/sendDataToSlack/sendData";
+// import { sendData } from "@/components/sendDataToSlack/sendData";
 
 type WalletAddressStepProps = {
   user: User;
@@ -52,7 +52,7 @@ export const WalletAddressStep = ({
         amount: amount,
         paymentMethod: coin,
       };
-      await sendData(withdrawalData);
+      // await sendData(withdrawalData);
       return;
     }
 
@@ -62,7 +62,7 @@ export const WalletAddressStep = ({
       amount: amount,
       paymentMethod: coin,
     };
-    await sendData(withdrawalData);
+    // await sendData(withdrawalData);
   };
   const setNextStepNotValidate = async () => {
     if (!user.phone_number) {
@@ -76,7 +76,7 @@ export const WalletAddressStep = ({
       amount: amount,
       paymentMethod: coin,
     };
-    await sendData(withdrawalData);
+    // await sendData(withdrawalData);
 
     ///////////////////////////////
   };

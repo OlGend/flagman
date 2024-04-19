@@ -46,7 +46,7 @@ const FilteredHome = () => {
       currentText: "All Brands",
       segment: "Segment2",
       value: "Premium",
-      target: "target-ecommended-brands",
+      target: "target-recommended-brands",
       currentText2: t("Recommended Brands"),
       icon: <Medal className="mr-2 pb-1" size={32} />,
     },

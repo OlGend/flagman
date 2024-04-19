@@ -69,6 +69,7 @@ const Fortunes = ({ banner, target }) => {
                     alt={brand.CasinoBrand}
                     width={150}
                     height={75}
+                    className={target}
                   />
                 </Link>
               </div>

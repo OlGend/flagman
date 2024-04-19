@@ -51,6 +51,7 @@ function Card({ imagen, link, bonus }) {
           loading="lazy"
           src={imagen}
           alt={bonus}
+          className="target-top-brand"
         />
       </Link>
 

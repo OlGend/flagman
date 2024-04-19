@@ -354,6 +354,7 @@ export default function AllPayments({ filtered, isLoader, t }) {
                         width={250}
                         height={125}
                         loading="lazy"
+                        className="target-brand-exit"
                       />
                     </Link>
                   </div>
@@ -423,6 +424,7 @@ export default function AllPayments({ filtered, isLoader, t }) {
                         width={200}
                         height={80}
                         loading="lazy"
+                        className="target-listing-brands"
                       />
                       <div className="p-3 text-center flex items-center review-bonus">
                         {item.OurOfferContent}
@@ -461,6 +463,7 @@ export default function AllPayments({ filtered, isLoader, t }) {
                           width={200}
                           height={80}
                           loading="lazy"
+                          className="target-listing-brands"
                         />
                         <div className="p-3 text-center flex items-center review-bonus">
                           {item.OurOfferContent}

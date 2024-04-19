@@ -76,6 +76,7 @@ const NewArrivals = () => {
                       width={200}
                       height={80}
                       loading="lazy"
+                      className="target-top-new-releases"
                     />
                     <div className="p-3 text-center flex items-center review-bonus">
                       {item.OurOfferContent}

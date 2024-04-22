@@ -111,7 +111,11 @@ const LanguageSwitcher = () => {
   const availableLanguages1044 = [
     { code: "fi", label: "Finland", flag: "🇫🇮" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
+    { code: "cz", label: "Czech", flag: "🇨🇿" },
+    { code: "fr", label: "France", flag: "🇫🇷" },
+    { code: "pl", label: "Poland", flag: "🇵🇱" },
     { code: "en", label: "English", flag: "🌍" },
+
   ];
   let item;
   if (typeof window !== "undefined") {

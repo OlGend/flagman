@@ -70,7 +70,6 @@ const FilteredHome = () => {
       currentText2: t("Hottest Deals"),
       icon: <Fire className="mr-2 pb-1" size={32} />,
     },
-
   ];
 
   const handleTabChange = (tabNumber) => {
@@ -131,3 +130,6 @@ const FilteredHome = () => {
 };
 
 export default FilteredHome;
+
+
+

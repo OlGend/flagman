@@ -17,6 +17,7 @@ export default async function Home() {
 
   const banner = true;
   const target = "target-fw-brands-main-page";
+  const creative = "FW_Brands_Main_Page";
   return (
     <>
       {/* <PreviewHome /> */}
@@ -26,7 +27,7 @@ export default async function Home() {
       <NewArrivals />
 
       <div className="main__container">
-        <Fortunes banner={banner} target={target} />
+        <Fortunes banner={banner} target={target} creative={creative} />
       </div>
 
       <div className="background-block">

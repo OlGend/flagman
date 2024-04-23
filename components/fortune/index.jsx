@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 import Loader from "../Loader";
 
-const Fortunes = ({ banner, target }) => {
+const Fortunes = ({ banner, target, creative }) => {
   const [brands, setBrands] = useState([]);
   const [visibleBrands, setVisibleBrands] = useState(5); // Состояние для отслеживания количества видимых брендов
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +63,7 @@ const Fortunes = ({ banner, target }) => {
           brands.slice(0, visibleBrands).map((brand) => (
             <div key={brand.id_brand} className="card-brand mb-3 basis-[19%]">
               <div className="brandImage p-3">
-                <Link className={target} href={`${brand.GoBig}/${newUrl}`}>
+                <Link className={target} href={`${brand.GoBig}/${newUrl}&creative_id=${target}`}>
                   <Image
                     src={`/brands/${brand.CasinoBrand}.png`}
                     alt={brand.CasinoBrand}
@@ -78,7 +78,7 @@ const Fortunes = ({ banner, target }) => {
                 <div className="buttons">
                   <Link
                     className={`btn btn-primary ${target}`}
-                    href={`${brand.GoBig}/${newUrl}`}
+                    href={`${brand.GoBig}/${newUrl}&creative_id=${target}`}
                   >
                     {t("Play Now")}
                   </Link>

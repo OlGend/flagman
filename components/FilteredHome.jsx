@@ -23,7 +23,7 @@ const FilteredHome = () => {
     {
       currentTab: 1,
       currentCategories: 25,
-      currentText: "All Brands",
+      currentText: "All_Brands",
       segment: "Segment2",
       value: "",
       target: "target-all-brands",
@@ -33,7 +33,7 @@ const FilteredHome = () => {
     {
       currentTab: 5,
       currentCategories: 187,
-      currentText: "New Arrivals",
+      currentText: "New_Arrivals",
       segment: "Segment2",
       value: "Sandbox",
       target: "target-new-arrivals",
@@ -43,7 +43,7 @@ const FilteredHome = () => {
     {
       currentTab: 2,
       currentCategories: 26,
-      currentText: "All Brands",
+      currentText: "Recommended_Brands",
       segment: "Segment2",
       value: "Premium",
       target: "target-recommended-brands",
@@ -53,7 +53,7 @@ const FilteredHome = () => {
     {
       currentTab: 3,
       currentCategories: 24,
-      currentText: "All Brands",
+      currentText: "Quick_Sign-Up_Brands",
       segment: "QuickSignUp",
       value: "1",
       target: "target-quick-sign-up-brands",
@@ -63,7 +63,7 @@ const FilteredHome = () => {
     {
       currentTab: 4,
       currentCategories: 19,
-      currentText: "All Brands",
+      currentText: "Hottest_Deals",
       segment: "Hottest",
       value: "1",
       target: "target-hottest-deals",
@@ -114,7 +114,7 @@ const FilteredHome = () => {
               currentTab === item.currentTab && (
                 <AllBrands
                   key={`${item.currentTab}-${i18n.language}`}
-                  filtered={item.currentText}
+                  creative={item.currentText}
                   isLoader={isLoader}
                   segment={item.segment}
                   value={item.value}

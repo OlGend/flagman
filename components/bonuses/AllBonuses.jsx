@@ -345,7 +345,7 @@ export default function AllBonuses({ filtered, isLoader, t }) {
                       <Link
                       className="target-brand-exit"
                         key={brand.id_brand}
-                        href={`${brand.GoBig}/${newUrl}`}
+                        href={`${brand.GoBig}/${newUrl}&creative_id=XXL_Brand_Exit`}
                       >
                         <Image
                           src={`/brands/${brand.CasinoBrand}.png`}
@@ -379,7 +379,7 @@ export default function AllBonuses({ filtered, isLoader, t }) {
                       </div>
                       <Link
                         className="btn btn-primary mt-0 text-center flex justify-center items-center target-brand-exit"
-                        href={`${brand.GoBig}/${newUrl}`}
+                        href={`${brand.GoBig}/${newUrl}&creative_id=XXL_Brand_Exit`}
                         target="_blank"
                       >
                         <Play className="mr-2" size={24} /> {t("Play Now")}
@@ -414,7 +414,7 @@ export default function AllBonuses({ filtered, isLoader, t }) {
                       <Link
                         className="flex justify-center flex-col items-center target-listing-brands"
                         key={item.id_brand}
-                        href={`${item.GoBig}/${newUrl}`}
+                        href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                         target="_blank"
                       >
                         <Image
@@ -433,7 +433,7 @@ export default function AllBonuses({ filtered, isLoader, t }) {
                     <Link
                       className="btn btn-primary btn-new target-listing-brands"
                       key={item.id_brand}
-                      href={`${item.GoBig}/${newUrl}`}
+                      href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                       target="_blank"
                     >
                      {t("Play Now")}
@@ -453,7 +453,7 @@ export default function AllBonuses({ filtered, isLoader, t }) {
                         <Link
                           className="flex justify-center flex-col items-center target-listing-brands"
                           key={item.id_brand}
-                          href={`${item.GoBig}/${newUrl}`}
+                          href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                           target="_blank"
                         >
                           <Image
@@ -472,7 +472,7 @@ export default function AllBonuses({ filtered, isLoader, t }) {
                       <Link
                         className="btn btn-primary btn-new target-listing-brands"
                         key={item.id_brand}
-                        href={`${item.GoBig}/${newUrl}`}
+                        href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                         target="_blank"
                       >
                        {t("Play Now")}

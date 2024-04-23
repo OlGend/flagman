@@ -42,7 +42,7 @@ function Card({ imagen, link, bonus }) {
     >
       <Link
         className="target-top-brand"
-        href={`${link}/${newUrl}`}
+        href={`${link}/${newUrl}&creative_id=XXL_TOP_Brand`}
         target="_blank"
       >
         <Image
@@ -61,7 +61,7 @@ function Card({ imagen, link, bonus }) {
       <div className={Styles.btnn}>
         <Link
           className="btn btn-primary target-top-brand"
-          href={`${link}/${newUrl}`}
+          href={`${link}/${newUrl}&creative_id=XXL_TOP_Brand`}
           target="_blank"
         >
           {t("Play Now")}

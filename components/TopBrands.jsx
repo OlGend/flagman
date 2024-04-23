@@ -68,10 +68,13 @@ export default function TopBrands() {
    const ad_campaign = localStorage.getItem("ad_campaign_id");
     const newUrlWithSource =
       "?" +
+      // (searchParams.toString()
+      //   ? searchParams.toString() + "&"
+      //   : `keyword=${localStorage.getItem("user_id")}&`) + `source=${localStorage.getItem("source")}` + `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}` +
+      // `&creative_id=XXL`;
       (searchParams.toString()
-        ? searchParams.toString() + "&"
-        : `keyword=${localStorage.getItem("user_id")}&`) + `source=${localStorage.getItem("source")}` + `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}` +
-      `&creative_id=XXL`;
+      ? searchParams.toString() + "&"
+      : `keyword=${localStorage.getItem("user_id")}&`) + `source=${localStorage.getItem("source")}` + `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}`;
     if (newUrlWithSource.includes("keyword")) {
       localStorage.setItem("savedUrl", newUrlWithSource);
       localStorage.setItem("token", "give");
@@ -149,7 +152,7 @@ export default function TopBrands() {
                 target="_blank"
                 key={item}
                 className="btn btn-primary big-btn mt-3 target-try-your-luck"
-                href={`${item.GoBig}/${newUrl}`}
+                href={`${item.GoBig}/${newUrl}&creative_id=XXL_Try_Your_Luck`}
               >
                 {t("Try Your Luck")}
               </Link>

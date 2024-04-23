@@ -127,6 +127,7 @@ export default function Fortune() {
   // }, [messageData]);
 
   const target = "target-fw-brands-wheel-page";
+  const creative = "FW_Brands_Wheel_Page";
   return (
     <div className="page-fortune main__container">
       {/* <button onClick={() => updateUserDataIfNeeded(userData)}>On</button> */}
@@ -139,7 +140,7 @@ export default function Fortune() {
         />
       </div>
 
-      <Fortunes banner={banner} target={target} />
+      <Fortunes banner={banner} target={target} creative={creative} />
     </div>
   );
 }

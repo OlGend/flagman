@@ -67,7 +67,7 @@ const NewArrivals = () => {
                   <Link
                     className="flex justify-center flex-col items-center target-top-new-releases"
                     key={item.id_brand}
-                    href={`${item.GoBig}/${newUrl}`}
+                    href={`${item.GoBig}/${newUrl}&creative_id=XXL_Top_New_Releases`}
                     target="_blank"
                   >
                     <Image
@@ -86,7 +86,7 @@ const NewArrivals = () => {
                 <Link
                   className="btn btn-primary btn-new target-top-new-releases"
                   key={item.id_brand}
-                  href={`${item.GoBig}/${newUrl}`}
+                  href={`${item.GoBig}/${newUrl}&creative_id=XXL_Top_New_Releases`}
                   target="_blank"
                 >
                   {t("Play Now")}

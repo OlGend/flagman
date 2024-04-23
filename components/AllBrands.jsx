@@ -27,7 +27,7 @@ import {
 import { useLanguage } from "@/components/switcher/LanguageContext";
 
 export default function AllBrands({
-  filtered,
+  creative,
   isLoader,
   segment,
   value,
@@ -99,9 +99,9 @@ export default function AllBrands({
   const [randomBrands2, setRandomBrands2] = useState([]);
   const [brandsGenerated, setBrandsGenerated] = useState(false);
 
-  useEffect(() => {
-    setBrandsGenerated(false);
-  }, [filtered.topBrand]);
+  // useEffect(() => {
+  //   setBrandsGenerated(false);
+  // }, [filtered.topBrand]);
 
   useEffect(() => {
     const generateRandomBrands = () => {
@@ -358,7 +358,7 @@ export default function AllBrands({
                     <div className="brandImage p-3">
                       <Link
                         key={brand.id_brand}
-                        href={`${brand.GoBig}/${newUrl}`}
+                        href={`${brand.GoBig}/${newUrl}&creative_id=XXL_${creative}`}
                         className={`${target}`}
                       >
                         <Image
@@ -395,7 +395,7 @@ export default function AllBrands({
                       </div>
                       <Link
                         className={`btn btn-primary mt-0 text-center flex justify-center items-center ${target}`}
-                        href={`${brand.GoBig}/${newUrl}`}
+                        href={`${brand.GoBig}/${newUrl}&creative_id=XXL_${creative}`}
                         target="_blank"
                       >
                         <Play className="mr-2" size={24} /> {t("Play Now")}
@@ -430,7 +430,7 @@ export default function AllBrands({
                       <Link
                         className="flex justify-center flex-col items-center target-listing-brands"
                         key={item.id_brand}
-                        href={`${item.GoBig}/${newUrl}`}
+                        href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                         target="_blank"
                         
                       >
@@ -450,7 +450,7 @@ export default function AllBrands({
                     <Link
                       className="btn btn-primary btn-new target-listing-brands"
                       key={item.id_brand}
-                      href={`${item.GoBig}/${newUrl}`}
+                      href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                       target="_blank"
                     >
                       {t("Play Now")}

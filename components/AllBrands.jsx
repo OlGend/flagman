@@ -84,6 +84,7 @@ export default function AllBrands({
     setVisibleBrands2((prevVisibleBrands) => prevVisibleBrands + itemsPerPage2);
   };
 
+  
   const [newUrl, setNewUrl] = useState("");
   // Чтение сохраненной ссылки из локального хранилища
   useEffect(() => {

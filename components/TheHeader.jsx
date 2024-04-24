@@ -45,15 +45,22 @@ const TheHeader = () => {
   const ad_campaign = urlParams.get("ad_campaign_id");
   const userData = keywordValue !== null ? keywordValue : idUserParam;
   const [dataUser, setDataUser] = useState();
-  const [d, setD] = useState(null)
+  const [d, setD] = useState(null);
+
   useEffect(() => {
     if (ad_campaign !== null) {
       localStorage.setItem("ad_campaign_id", ad_campaign);
     }
     async function updateUserData(data) {
       localStorage.setItem("user_id", data);
+      const partners = ["partner1039", "partner1043", "partner1044"];
 
-    
+      // Перебор каждого идентификатора
+      partners.forEach((partner) => {
+        if (data.includes(partner)) {
+          localStorage.setItem("source", partner);
+        }
+      });
 
       setUser(data);
       const dataUser = await getUserData(data);
@@ -61,7 +68,7 @@ const TheHeader = () => {
         setDataUser(dataUser);
         setLoad(true);
       }
-      if (d && typeof d === 'string' && d.includes("Json")) {
+      if (d && typeof d === "string" && d.includes("Json")) {
         console.log("--------------------- Data in `d` contains 'Json':", d);
         const dataUser = await getUserData(data);
         if (dataUser) {
@@ -87,20 +94,55 @@ const TheHeader = () => {
         }
       }
     }
-  }, [d]); 
+  }, [d]);
+
+  /////////////////////////////////////
+
+  
+  useEffect(() => {
+    const currentUrl = window.location.href;
+    const urlObj = new URL(currentUrl);
+    const searchParams = new URLSearchParams(urlObj.search);
+
+    const indexOfQuestionMark = currentUrl.indexOf("?");
+    const newUrl2 =
+      indexOfQuestionMark !== -1
+        ? currentUrl.substring(0, indexOfQuestionMark)
+        : currentUrl;
+    window.history.replaceState({}, document.title, newUrl2);
 
 
+    const newUrlWithSource =
+      "?" +
+      (searchParams.toString()
+        ? searchParams.toString() + "&"
+        : `keyword=${localStorage.getItem("user_id")}&`) +
+      `source=${localStorage.getItem("source")}` +
+      `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}`;
+    if (newUrlWithSource.includes("keyword")) {
+      localStorage.setItem("savedUrl", newUrlWithSource);
+      localStorage.setItem("token", "give");
+    }
+    const tokenGive = localStorage.getItem("token");
+    if (tokenGive !== "give") {
+      localStorage.setItem("savedUrl", newUrlWithSource);
+    }
+  });
+
+  //////////////////////////////////////////////////
 
   useEffect(() => {
     const handleMessage = (event) => {
-
       if (event.origin !== "https://bonus.xxxcasinoguru.com") {
-        console.error("Received message from an unauthorized origin:", event.origin);
+        console.error(
+          "Received message from an unauthorized origin:",
+          event.origin
+        );
         return;
       }
       // console.log("Raw data from iframe:", event.data);
       const jsonData = event.data;
-      setD(typeof jsonData === 'string' ? jsonData : "");
+      setD(typeof jsonData === "string" ? jsonData : "");
     };
 
     window.addEventListener("message", handleMessage);
@@ -109,7 +151,6 @@ const TheHeader = () => {
       window.removeEventListener("message", handleMessage);
     };
   }, []);
-  
 
   return (
     <header className="header">
@@ -121,7 +162,6 @@ const TheHeader = () => {
             </Link>
           </div>
 
-      
           <div className="account-items ml-auto flex items-center">
             <div className="flex flex-col">
               {load ? (

@@ -65,30 +65,27 @@ export default function TopBrands() {
       console.log("Keyword is missing");
     }
 
-   const ad_campaign = localStorage.getItem("ad_campaign_id");
-    const newUrlWithSource =
-      "?" +
-      // (searchParams.toString()
-      //   ? searchParams.toString() + "&"
-      //   : `keyword=${localStorage.getItem("user_id")}&`) + `source=${localStorage.getItem("source")}` + `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}` +
-      // `&creative_id=XXL`;
-      (searchParams.toString()
-      ? searchParams.toString() + "&"
-      : `keyword=${localStorage.getItem("user_id")}&`) + `source=${localStorage.getItem("source")}` + `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}`;
-    if (newUrlWithSource.includes("keyword")) {
-      localStorage.setItem("savedUrl", newUrlWithSource);
-      localStorage.setItem("token", "give");
-    }
-    const tokenGive = localStorage.getItem("token");
-    if (tokenGive !== "give") {
-      localStorage.setItem("savedUrl", newUrlWithSource);
-    }
+    const ad_campaign = localStorage.getItem("ad_campaign_id");
+    // const newUrlWithSource =
+    //   "?" +
+    //   (searchParams.toString()
+    //     ? searchParams.toString() + "&"
+    //     : `keyword=${localStorage.getItem("user_id")}&`) +
+    //   `source=${localStorage.getItem("source")}` +
+    //   `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}`;
+    // if (newUrlWithSource.includes("keyword")) {
+    //   localStorage.setItem("savedUrl", newUrlWithSource);
+    //   localStorage.setItem("token", "give");
+    // }
+    // const tokenGive = localStorage.getItem("token");
+    // if (tokenGive !== "give") {
+    //   localStorage.setItem("savedUrl", newUrlWithSource);
+    // }
     const savedUrl = localStorage.getItem("savedUrl");
     if (savedUrl) {
       setNewUrl(savedUrl);
     }
 
-    
     // Подготовка данных о брендах
     const fetchBrands = async () => {
       const brandsData = await getBrands(

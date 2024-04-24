@@ -20,6 +20,7 @@ import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOu
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Badge from "@mui/material/Badge";
+import { updateGeo } from "@/components/getUser/updateGeo";
 
 const TheHeader = () => {
   const { t } = useTranslation();
@@ -68,6 +69,12 @@ const TheHeader = () => {
         setDataUser(dataUser);
         setLoad(true);
       }
+      if (dataUser && dataUser.country === "N/A") {
+        updateGeo(
+          localStorage.getItem("user_id"),
+          localStorage.getItem("country_data")
+        );
+      }
       if (d && typeof d === "string" && d.includes("Json")) {
         console.log("--------------------- Data in `d` contains 'Json':", d);
         const dataUser = await getUserData(data);
@@ -98,7 +105,6 @@ const TheHeader = () => {
 
   /////////////////////////////////////
 
-  
   useEffect(() => {
     const currentUrl = window.location.href;
     const urlObj = new URL(currentUrl);
@@ -110,7 +116,6 @@ const TheHeader = () => {
         ? currentUrl.substring(0, indexOfQuestionMark)
         : currentUrl;
     window.history.replaceState({}, document.title, newUrl2);
-
 
     const newUrlWithSource =
       "?" +
@@ -151,6 +156,14 @@ const TheHeader = () => {
       window.removeEventListener("message", handleMessage);
     };
   }, []);
+
+  // useEffect(() => {
+
+  //   updateGeo(
+  //     localStorage.getItem("user_id"),
+  //     localStorage.getItem("country_data")
+  //   );
+  // }, []);
 
   return (
     <header className="header">

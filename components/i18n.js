@@ -13,6 +13,7 @@ async function initializeI18n() {
     const data = await response.json();
     if (typeof window !== "undefined") {
       localStorage.setItem("country", data.country);
+      localStorage.setItem("country_data", data.country);
     }
     defLng = data.country.toLowerCase();
   } catch (error) {

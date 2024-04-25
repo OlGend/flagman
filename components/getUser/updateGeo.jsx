@@ -14,6 +14,7 @@ export const updateGeo = async (userId, country) => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+        
 
         const responseData = await response.json();
         console.log('ГЕО успешно обновлено:', responseData);

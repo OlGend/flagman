@@ -76,11 +76,15 @@ export const PaymentMethodStep = ({
     t
   );
 
+  const isPayPal = coin === "PayPal";
+
   const getFeeAndEstimatedAmountAndThanGoToWalletAddressStep = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
-      await getFeeAndEstimatedAmount();
+      if (!isPayPal) {
+        await getFeeAndEstimatedAmount();
+      }
       onChangeStep(step + 1);
       setIsLoading(false);
     } catch (e) {

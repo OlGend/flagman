@@ -21,6 +21,7 @@ type PhoneNumberStepProps = {
 };
 
 const DEFAULT_OTP_LENGTH = 5;
+const DEFAULT_PHONE_NUMBER_LENGTH = 6;
 
 type Status = {
   status: "EXPIRED" | "APPROVED";
@@ -134,6 +135,8 @@ export const PhoneNumberStep = ({
   const isButtonContinueDisabled = otp.length < DEFAULT_OTP_LENGTH;
   const isLoaderShown =
     isSendUserPhoneNumberLoading || isLoading || isSaveUserPhoneNumberLoading;
+  const isButtonSendCodeDisabled =
+    phoneNumber.length < DEFAULT_PHONE_NUMBER_LENGTH;
 
   return (
     <StyledDiv>
@@ -148,6 +151,7 @@ export const PhoneNumberStep = ({
           error={isSendUserPhoneNumberError}
         />
         <StyledButton
+          disabled={isButtonSendCodeDisabled}
           className="btn-primary absolute right-2 btn-radius"
           variant="contained"
           onClick={() => {
@@ -197,7 +201,7 @@ export const PhoneNumberStep = ({
             onChangeStep(step + 1);
           }}
         >
-          {t("Skep")}
+          {t("Skip")}
         </Button>
       </Box>
       {isLoaderShown && <Loader />}

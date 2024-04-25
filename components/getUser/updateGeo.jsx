@@ -18,6 +18,7 @@ export const updateGeo = async (userId, country) => {
 
         const responseData = await response.json();
         console.log('ГЕО успешно обновлено:', responseData);
+        
     } catch (error) {
         console.error('Ошибка при обновлении ГЕО:', error);
     }

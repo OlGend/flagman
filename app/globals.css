@@ -9457,10 +9457,13 @@ body {
 .RRR div {
   z-index: 99999;
 }
-.tab_panel .MuiPaper-root.MuiPaper-elevation {
+.MuiPaper-root.MuiPaper-elevation {
   overflow: initial !important;
   padding-bottom: 16px;
   max-width: 350px;
+}
+.tab_panel .MuiPaper-root.MuiPaper-elevation {
+  max-width: initial !important;
 }
 @media(min-width: 320px) and (max-width: 1259px) {
   .MuiPaper-root.MuiPaper-elevation {

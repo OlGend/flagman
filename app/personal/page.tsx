@@ -29,13 +29,25 @@ import {
 import { ChangeEvent, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
+import { useLanguage } from "@/components/switcher/LanguageContext";
+import { getBrands } from "@/components/getBrands/getBrands";
+
+export type Brand = {
+  id_brand: string;
+  CasinoBrand: string;
+  GoBig: string;
+  OurOfferContent: string;
+};
 
 const DEFAULT_COIN = "USDTTRC20";
 const DEFAULT_STEP = 0;
+const BRAND_CATEGORIES = { key1: "Segment2", key2: "Premium" };
 
 export default function Personal() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const { language } = useLanguage();
+
   const {
     data: user,
     loading: userLoading,
@@ -109,6 +121,12 @@ export default function Personal() {
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [brands, setBrands] = useState<Brand[]>([]);
+
+  const fetchBrands = async () => {
+    const brandsData: Brand[] = await getBrands(BRAND_CATEGORIES, language);
+    setBrands(brandsData);
+  };
 
   // const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
   //   setTab(newTabIndex);
@@ -233,6 +251,7 @@ export default function Personal() {
             estimatedAmount={estimatedAmount}
             onChangeStep={onChangeStep}
             onChangeWalletAddress={onChangeWalletAddress}
+            fetchBrands={fetchBrands}
             onFinish={onFinish}
           />
         ),
@@ -242,7 +261,7 @@ export default function Personal() {
         description: t(
           "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"
         ),
-        content: <FinallyStep />,
+        content: <FinallyStep brands={brands} />,
       },
     ];
 

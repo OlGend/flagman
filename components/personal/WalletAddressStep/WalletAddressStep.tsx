@@ -20,6 +20,7 @@ type WalletAddressStepProps = {
   onChangeWalletAddress: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  fetchBrands: () => Promise<void>;
   onFinish: () => Promise<void>;
 };
 
@@ -32,6 +33,7 @@ export const WalletAddressStep = ({
   estimatedAmount,
   onChangeStep,
   onChangeWalletAddress,
+  fetchBrands,
   onFinish,
 }: WalletAddressStepProps) => {
   const { t } = useTranslation();
@@ -67,6 +69,7 @@ export const WalletAddressStep = ({
     const isUpdated = await updatePayment();
     if (!isUpdated) return;
     await onFinish();
+    await fetchBrands();
     onChangeStep(step + 1);
   };
 
@@ -74,6 +77,7 @@ export const WalletAddressStep = ({
     const isUpdated = await updatePayment();
     if (!isUpdated) return;
     await onFinish();
+    await fetchBrands();
     onChangeStep(step + 1);
   };
 

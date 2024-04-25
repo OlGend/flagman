@@ -8,3 +8,4 @@ export * from "./useQueryUser";
 export * from "./useMutationWalletAddressValidate";
 export * from "./useMutationSaveUserPhoneNumber";
 export * from "./useMutationSendUserPhoneNumber";
+export * from "./useMutationUpdatePayment";

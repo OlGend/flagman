@@ -10,7 +10,7 @@ import {
   useMutationSendUserPhoneNumber,
 } from "@/queries";
 import { OTP } from "../OTP";
-
+import { useTranslation } from "react-i18next";
 
 type PhoneNumberStepProps = {
   user: User;
@@ -18,8 +18,6 @@ type PhoneNumberStepProps = {
   phoneNumber: string;
   onChangeStep: (nextStep: number) => void;
   onChangePhoneNumber: (nextPhoneNumber: string) => void;
-  onConfirm: (userId: User["id"]) => Promise<void>;
-  t: Function;
 };
 
 const DEFAULT_OTP_LENGTH = 5;
@@ -44,9 +42,9 @@ export const PhoneNumberStep = ({
   phoneNumber,
   onChangeStep,
   onChangePhoneNumber,
-  onConfirm,
-  t
 }: PhoneNumberStepProps) => {
+  const { t } = useTranslation();
+
   const defaultCountry = (localStorage.getItem("country") ?? undefined) as
     | MuiTelInputCountry
     | undefined;
@@ -105,9 +103,9 @@ export const PhoneNumberStep = ({
 
       if (hasConfirmOtpResponseStatus(data) && data.status === "APPROVED") {
         await saveUserPhoneNumber({ userId: user.id, phoneNumber });
-        await onConfirm(user.id);
         onCloseDialog();
         setIsLoading(false);
+        onChangeStep(step + 1);
         return;
       }
 
@@ -146,6 +144,8 @@ export const PhoneNumberStep = ({
           onChange={onChangePhoneNumber}
           defaultCountry={defaultCountry}
           fullWidth
+          helperText={sendUserPhoneNumberMessage}
+          error={isSendUserPhoneNumberError}
         />
         <StyledButton
           className="btn-primary absolute right-2 btn-radius"
@@ -159,7 +159,6 @@ export const PhoneNumberStep = ({
       </StyledBoxTel>
 
       <Dialog
-   
         open={isDialogOpen && !isSendUserPhoneNumberError}
         onClose={onCloseDialog}
       >
@@ -181,10 +180,9 @@ export const PhoneNumberStep = ({
           {t("Continue")}
         </Button>
       </Dialog>
-      {sendUserPhoneNumberMessage && <div>{sendUserPhoneNumberMessage}</div>}
       <Box>
         <Button
-          className="btn-primary"
+          className="btn-primary w-48 !mr-2"
           variant="contained"
           onClick={() => {
             onChangeStep(step - 1);
@@ -192,10 +190,18 @@ export const PhoneNumberStep = ({
         >
           {t("Prev step")}
         </Button>
+        <Button
+          className="btn-primary w-48"
+          variant="contained"
+          onClick={() => {
+            onChangeStep(step + 1);
+          }}
+        >
+          {t("Skep")}
+        </Button>
       </Box>
       {isLoaderShown && <Loader />}
     </StyledDiv>
-    
   );
 };
 
@@ -229,5 +235,3 @@ const StyledBox = styled(Box)(
     padding: 16px;
   `
 );
-
-

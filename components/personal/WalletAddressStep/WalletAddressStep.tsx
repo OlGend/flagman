@@ -1,23 +1,26 @@
 import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
-import { useMutationWalletAddressValidate } from "@/queries";
+import {
+  useMutationUpdatePayment,
+  useMutationWalletAddressValidate,
+} from "@/queries";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/system";
 import { ChangeEvent } from "react";
-// import { sendData } from "@/components/sendDataToSlack/sendData";
+import { useTranslation } from "react-i18next";
 
 type WalletAddressStepProps = {
   user: User;
   step: number;
   coin: string;
   walletAddress: string;
+  amount: string;
+  estimatedAmount: string | null;
   onChangeStep: (nextStep: number) => void;
   onChangeWalletAddress: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onConfirm: (userId: User["id"]) => Promise<void>;
-  t: Function;
-  amount: string;
+  onFinish: () => Promise<void>;
 };
 
 export const WalletAddressStep = ({
@@ -25,12 +28,14 @@ export const WalletAddressStep = ({
   step,
   coin,
   walletAddress,
+  amount,
+  estimatedAmount,
   onChangeStep,
   onChangeWalletAddress,
-  onConfirm,
-  t,
-  amount
+  onFinish,
 }: WalletAddressStepProps) => {
+  const { t } = useTranslation();
+
   const [
     walletAddressValidate,
     {
@@ -41,119 +46,86 @@ export const WalletAddressStep = ({
     },
   ] = useMutationWalletAddressValidate(coin, walletAddress);
 
-  const setNextStep = async () => {
+  const [
+    updatePayment,
+    {
+      loading: isUpdatePaymentLoading,
+      error: isUpdatePaymentError,
+      message: updatePaymentMessage,
+    },
+  ] = useMutationUpdatePayment(
+    user.id,
+    coin,
+    estimatedAmount,
+    walletAddress,
+    amount
+  );
+
+  const updatePaymentWithValidate = async () => {
     const response = await walletAddressValidate();
     if (!response) return;
-
-    //   const withdrawalData = {
-    //     id: user.id,
-    //     amount: amount,
-    //     paymentMethod: coin,
-    //   };
-    //   // await sendData(withdrawalData);
-    // if (!user.phone_number) {
-    //   return;
-    // }
-    
-    await onConfirm(user.id);
+    const isUpdated = await updatePayment();
+    if (!isUpdated) return;
+    await onFinish();
     onChangeStep(step + 1);
-    const withdrawalData = {
-      id: user.id,
-      amount: amount,
-      paymentMethod: coin,
-    };
-    // await sendData(withdrawalData);
   };
-  const setNextStepNotValidate = async () => {
-    // if (!user.phone_number) {
-    //   return;
-    // }
-    
-    
-    await onConfirm(user.id);
-    onChangeStep(step + 1);
-    const withdrawalData = {
-      id: user.id,
-      amount: amount,
-      paymentMethod: coin,
-    };
-    // await sendData(withdrawalData);
 
-    ///////////////////////////////
+  const updatePaymentWithoutValidate = async () => {
+    const isUpdated = await updatePayment();
+    if (!isUpdated) return;
+    await onFinish();
+    onChangeStep(step + 1);
   };
 
   const isButtonNextStepDisabled = !walletAddress;
   const isError =
     (isWalletAddressValid !== null && !isWalletAddressValid) ||
-    isWalletAddressValidateError;
-
-  console.log("COIN", coin);
+    isWalletAddressValidateError ||
+    isUpdatePaymentError;
+  const isLoaderShown =
+    isWalletAddressValidateLoading || isUpdatePaymentLoading;
+  const isPayPal = coin === "PayPal";
 
   return (
     <StyledDiv>
-      {coin !== "PayPal" ? (
-        <>
-          <TextField
-            className="input_address"
-            value={walletAddress}
-            onChange={onChangeWalletAddress}
-            error={isError}
-            helperText={walletAddressValidateMessage}
-            fullWidth
-          />
-          <Box>
-            <Button
-              className="btn-primary mr-2"
-              variant="contained"
-              onClick={() => {
-                onChangeStep(step - 1);
-              }}
-            >
-              {t("Prev step")}
-            </Button>
-            <Button
-              className="btn-primary"
-              variant="contained"
-              onClick={setNextStep}
-              disabled={isButtonNextStepDisabled}
-            >
-              {t("Next step")}
-            </Button>
-          </Box>
-        </>
-      ) : (
-        <>
-          {" "}
-          <TextField
-            className="input_address"
-            value={walletAddress}
-            onChange={onChangeWalletAddress}
-            fullWidth
-          />
-          <span className="paypalnote">{t("Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET")}</span>
-          <Box>
-            <Button
-              className="btn-primary mr-2"
-              variant="contained"
-              onClick={() => {
-                onChangeStep(step - 1);
-              }}
-            >
-              {t("Prev step")}
-            </Button>
-            <Button
-              className="btn-primary"
-              variant="contained"
-              onClick={setNextStepNotValidate}
-              disabled={isButtonNextStepDisabled}
-            >
-              {t("Next step")}
-            </Button>
-          </Box>
-        </>
+      <TextField
+        className="input_address"
+        value={walletAddress}
+        onChange={onChangeWalletAddress}
+        error={isError}
+        helperText={walletAddressValidateMessage ?? updatePaymentMessage}
+        fullWidth
+      />
+      {isPayPal && (
+        <span className="paypalnote">
+          {t(
+            "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET"
+          )}
+        </span>
       )}
+      <Box>
+        <Button
+          className="btn-primary w-48 !mr-2"
+          variant="contained"
+          onClick={() => {
+            onChangeStep(step - 1);
+          }}
+        >
+          {t("Prev step")}
+        </Button>
+        <Button
+          className="btn-primary w-48"
+          variant="contained"
+          onClick={
+            isPayPal ? updatePaymentWithoutValidate : updatePaymentWithValidate
+          }
+          disabled={isButtonNextStepDisabled}
+        >
+          {t("Next step")}
+        </Button>
+      </Box>
 
-      {isWalletAddressValidateLoading && <Loader />}
+      {isLoaderShown && <Loader />}
     </StyledDiv>
   );
 };

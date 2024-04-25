@@ -10,6 +10,27 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
 import { updateGeo } from "@/components/getUser/updateGeo";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+import ReactCountryFlag from "react-country-flag";
+
+function getCountryOptions() {
+  return countryList()
+    .getData()
+    .map((option) => ({
+      ...option,
+      label: (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <ReactCountryFlag
+            countryCode={option.value}
+            svg
+            style={{ marginRight: 8, width: "2em", height: "1em" }}
+          />
+          {option.label} ({option.value})
+        </div>
+      ),
+    }));
+}
 
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);
@@ -21,6 +42,14 @@ export default function ResponsiveDialog() {
   }, []);
 
   const [userData, setUserData] = React.useState(null);
+
+  const [value, setValue] = React.useState("");
+  const options = React.useMemo(() => getCountryOptions(), []);
+
+  const changeHandler = (value) => {
+    setValue(value);
+    console.log(value); // Обработка выбранного значения
+  };
 
   //   const updateG = () => {
   //     if (userData && (userData.country === "N/A" || userData.country === "")) {
@@ -64,22 +93,33 @@ export default function ResponsiveDialog() {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {`Are you from ${userData}`}
+          <strong>{`Are you from ${localStorage.getItem(
+            "country_name"
+          )}?`}</strong>
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            Not right? Pick your actual country of residence from the list below
+            to see the relevant offers!
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Disagree
+            No, choose another
           </Button>
+
           <Button onClick={handleYes} autoFocus>
-            Agree
+            Yes
           </Button>
         </DialogActions>
+          <Select
+          className="RRR"
+            options={options}
+            value={value}
+            onChange={changeHandler}
+            getOptionLabel={(option) => option.label}
+            getOptionValue={(option) => option.value}
+          />
       </Dialog>
     </React.Fragment>
   );

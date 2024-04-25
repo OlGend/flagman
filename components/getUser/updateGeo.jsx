@@ -1,5 +1,5 @@
 export const updateGeo = async (userId, country) => {
-    const url = 'https://pickbonus.myawardwallet.com/api/user/update_geo.php'; // Замените URL на ваш реальный эндпоинт
+    const url = 'https://pickbonus.myawardwallet.com/api/user/update_geo_testing.php'; // Замените URL на ваш реальный эндпоинт
     const data = { id: userId, country: country };
 
     try {

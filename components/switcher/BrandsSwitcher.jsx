@@ -112,7 +112,8 @@ const BrandsSwitcher = () => {
     // { code: "pl", label: "Poland", flag: "🇵🇱" },
     { code: "za", label: "South Africa", flag: "🇿🇦" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
-    { code: "us", label: "USA", flag: "🇺🇸" }
+    { code: "us", label: "USA", flag: "🇺🇸" },
+    { code: "all", label: "World", flag: "🌍" },
   ];
 
 //   const availableLanguages1044 = [

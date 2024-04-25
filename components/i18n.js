@@ -15,12 +15,11 @@ async function initializeI18n() {
       localStorage.setItem("country", data.country);
       localStorage.setItem("country_data", data.country);
       localStorage.setItem("country_name", data.country_name);
-
     }
     defLng = data.country.toLowerCase();
   } catch (error) {
     console.error("Ошибка при запросе к API:", error);
-    defLng = "all"; // Установка значения по умолчанию в случае ошибки
+    defLng = "all"; 
   }
 
   const languages = ["au", "ca", "nz", "pl", "us", "se", "fi", "all"];
@@ -29,7 +28,7 @@ async function initializeI18n() {
   const matchedLanguages = languages.map((language) => {
     if (language === defLng) {
       return language;
-    }
+    } 
     return null;
   });
 
@@ -370,7 +369,6 @@ async function initializeI18n() {
         "New Arrivals": "New Arrivals",
       },
     },
-  
     pl: {
       translation: {
         "Casinos ▼": "Kasyna ▼",

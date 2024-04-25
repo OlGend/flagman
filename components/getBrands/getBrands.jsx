@@ -28,6 +28,7 @@ export const getBrands = async (categoryBrands, lng) => {
       let filteredData = [];
 
       if (lng) {
+      
         const geoLng = lng.toUpperCase();
 
         filteredData = responseData.brandsNew.filter(

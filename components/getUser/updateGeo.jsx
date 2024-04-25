@@ -1,5 +1,5 @@
 export const updateGeo = async (userId, country) => {
-    const url = 'https://pickbonus.myawardwallet.com/api/user/update_geo_testing.php'; // Замените URL на ваш реальный эндпоинт
+    const url = 'https://pickbonus.myawardwallet.com/api/user/update_geo.php'; // Замените URL на ваш реальный эндпоинт
     const data = { id: userId, country: country };
 
     try {
@@ -14,7 +14,7 @@ export const updateGeo = async (userId, country) => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        
+
 
         const responseData = await response.json();
         console.log('ГЕО успешно обновлено:', responseData);

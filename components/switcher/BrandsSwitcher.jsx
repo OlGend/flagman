@@ -100,24 +100,39 @@ const BrandsSwitcher = () => {
   ];
   const availableLanguages1044 = [
     { code: "au", label: "Australia", flag: "🇦🇺" },
-    { code: "at", label: "Austria", flag: "🇦🇹" },
     { code: "be", label: "Belgium", flag: "🇧🇪" },
     { code: "ca", label: "Canada", flag: "🇨🇦" },
-    { code: "nl", label: "Netherlands", flag: "🇳🇱" },
-    { code: "de", label: "Germany", flag: "🇩🇪" },
-    { code: "fr", label: "France", flag: "🇫🇷" },
     { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
     { code: "fi", label: "Finland", flag: "🇫🇮" },
     { code: "gb", label: "Great Britain", flag: "🇬🇧" },
     { code: "ie", label: "Ireland", flag: "🇮🇪" },
     { code: "nz", label: "New Zealand", flag: "🇳🇿" },
-    { code: "ch", label: "Switzerland", flag: "🇨🇭" },
-    { code: "no", label: "Norway", flag: "🇳🇴" },
     // { code: "pl", label: "Poland", flag: "🇵🇱" },
     { code: "za", label: "South Africa", flag: "🇿🇦" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
     { code: "us", label: "USA", flag: "🇺🇸" }
-];
+  ];
+
+//   const availableLanguages1044 = [
+//     { code: "au", label: "Australia", flag: "🇦🇺" },
+//     { code: "at", label: "Austria", flag: "🇦🇹" },
+//     { code: "be", label: "Belgium", flag: "🇧🇪" },
+//     { code: "ca", label: "Canada", flag: "🇨🇦" },
+//     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
+//     { code: "de", label: "Germany", flag: "🇩🇪" },
+//     { code: "fr", label: "France", flag: "🇫🇷" },
+//     { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
+//     { code: "fi", label: "Finland", flag: "🇫🇮" },
+//     { code: "gb", label: "Great Britain", flag: "🇬🇧" },
+//     { code: "ie", label: "Ireland", flag: "🇮🇪" },
+//     { code: "nz", label: "New Zealand", flag: "🇳🇿" },
+//     { code: "ch", label: "Switzerland", flag: "🇨🇭" },
+//     { code: "no", label: "Norway", flag: "🇳🇴" },
+//     // { code: "pl", label: "Poland", flag: "🇵🇱" },
+//     { code: "za", label: "South Africa", flag: "🇿🇦" },
+//     { code: "se", label: "Sweden", flag: "🇸🇪" },
+//     { code: "us", label: "USA", flag: "🇺🇸" }
+// ];
   
   
   let item;

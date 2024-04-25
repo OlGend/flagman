@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { TheFooter } from "@/components/TheFooter";
 import { LanguageProvider } from "@/components/switcher/LanguageContext";
 import RandomWindow from "@/components/random/RandomWindow";
+
 // import BannerWindow from "@/components/banner/BannerWindow";
 import Script from "next/script";
 
@@ -44,25 +45,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <LanguageProvider>
           <TheHeader />
-
+  
           <main>
             {children}
             <Analytics />
           </main>
           <TheFooter />
         </LanguageProvider>
-        {/* <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-R5MZ7TVJRB');
-            `}
-        </Script> */}
-        {/* <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-R5MZ7TVJRB"
-          strategy="afterInteractive"
-        /> */}
 
         <Script id="hotjar">
           {`

@@ -21,6 +21,7 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Badge from "@mui/material/Badge";
 import { updateGeo } from "@/components/getUser/updateGeo";
+import ResponsiveDialog from "@/components/geo-identifier";
 
 const TheHeader = () => {
   const { t } = useTranslation();
@@ -66,15 +67,16 @@ const TheHeader = () => {
       setUser(data);
       const dataUser = await getUserData(data);
       if (dataUser) {
+        localStorage.setItem("userData", JSON.stringify(dataUser));
         setDataUser(dataUser);
         setLoad(true);
       }
-      if (dataUser && dataUser.country === "N/A") {
-        updateGeo(
-          localStorage.getItem("user_id"),
-          localStorage.getItem("country_data")
-        );
-      }
+      // if (dataUser && dataUser.country === "N/A") {
+      //   updateGeo(
+      //     localStorage.getItem("user_id"),
+      //     localStorage.getItem("country_data")
+      //   );
+      // }
       if (d && typeof d === "string" && d.includes("Json")) {
         console.log("--------------------- Data in `d` contains 'Json':", d);
         const dataUser = await getUserData(data);
@@ -167,6 +169,16 @@ const TheHeader = () => {
 
   return (
     <header className="header">
+      {/* {load ? (
+        dataUser.geo_approve === null || dataUser.geo_approve === "" ? (
+          <ResponsiveDialog />
+        ) : (
+          <div></div>
+        )
+      ) : (
+        "..."
+      )} */}
+
       <div className="header__bg">
         <div className="header__container ">
           <div className="logo">

@@ -98,6 +98,21 @@ const BrandsSwitcher = () => {
     { code: "ca", label: "Canada", flag: "🇨🇦" },
     { code: "us", label: "United States", flag: "🇺🇸" },
   ];
+  // const availableLanguages1044 = [
+  //   { code: "au", label: "Australia", flag: "🇦🇺" },
+  //   { code: "be", label: "Belgium", flag: "🇧🇪" },
+  //   { code: "ca", label: "Canada", flag: "🇨🇦" },
+  //   { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
+  //   { code: "fi", label: "Finland", flag: "🇫🇮" },
+  //   { code: "gb", label: "Great Britain", flag: "🇬🇧" },
+  //   { code: "ie", label: "Ireland", flag: "🇮🇪" },
+  //   { code: "nz", label: "New Zealand", flag: "🇳🇿" },
+  //   // { code: "pl", label: "Poland", flag: "🇵🇱" },
+  //   { code: "za", label: "South Africa", flag: "🇿🇦" },
+  //   { code: "se", label: "Sweden", flag: "🇸🇪" },
+  //   { code: "us", label: "USA", flag: "🇺🇸" }
+  // ];
+
   const availableLanguages1044 = [
     { code: "au", label: "Australia", flag: "🇦🇺" },
     { code: "at", label: "Austria", flag: "🇦🇹" },

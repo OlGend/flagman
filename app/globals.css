@@ -9446,3 +9446,11 @@ color: #fff !important;
 .bl-sand .review-bonus {
   font-size: 18px !important;
 }
+
+.RRR {
+  position: absolute !important; 
+}
+.MuiPaper-root.MuiPaper-elevation {
+  overflow: hidden !important;
+  padding-bottom: 50px;
+}

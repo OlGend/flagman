@@ -14,6 +14,8 @@ async function initializeI18n() {
     if (typeof window !== "undefined") {
       localStorage.setItem("country", data.country);
       localStorage.setItem("country_data", data.country);
+      localStorage.setItem("country_name", data.country_name);
+
     }
     defLng = data.country.toLowerCase();
   } catch (error) {

@@ -169,7 +169,7 @@ const TheHeader = () => {
 
   return (
     <header className="header">
-      {/* {load ? (
+      {load ? (
         dataUser.geo_approve === null || dataUser.geo_approve === "" ? (
           <ResponsiveDialog />
         ) : (
@@ -177,7 +177,7 @@ const TheHeader = () => {
         )
       ) : (
         "..."
-      )} */}
+      )}
 
       <div className="header__bg">
         <div className="header__container ">

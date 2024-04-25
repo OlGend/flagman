@@ -8,6 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+
 import { updateGeo } from "@/components/getUser/updateGeo";
 import Select from "react-select";
 import countryList from "react-select-country-list";
@@ -34,7 +35,10 @@ function getCountryOptions() {
 
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);
+  const [show, setShow] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
+
+
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -54,7 +58,7 @@ export default function ResponsiveDialog() {
 
   const changeHandler = (value) => {
     setValue(value);
-    console.log(value); 
+    console.log(value); // Обработка выбранного значения
   };
 
   React.useEffect(() => {
@@ -63,31 +67,30 @@ export default function ResponsiveDialog() {
       setUserData(JSON.parse(storedData));
     }
   }, []);
-  
-  
+
+  console.log("USER", userData);
   const handleClose = () => {
     setOpen(false);
   };
   const handleYes = () => {
-    const an = (value && value !== "N/A" && value !== "") ? value : localStorage.getItem("country_data");
     setOpen(false);
     setLoading(true);
     if (userData.geo_approve === null || userData.geo_approve === "") {
       updateGeo(
         localStorage.getItem("user_id"),
-        an.value
+        localStorage.getItem("country_data")
       );
-      console.log("====", an)
     }
-    setLoading(false);
-
+    setLoading(false)
   };
 
 
-  const [show, setShow] = React.useState(true);
+
   const handleNo = () => {
     setShow(!show);
   };
+
+
 
   return (
     <React.Fragment>
@@ -108,30 +111,24 @@ export default function ResponsiveDialog() {
             to see the relevant offers!
           </DialogContentText>
         </DialogContent>
-        {show && (
-          <DialogActions>
-            <Button onClick={handleNo}>Choose my Country</Button>
+        
+        <DialogActions>
+          <Button onClick={handleNo}>
+            Choose my Country
+          </Button>
 
-            <Button onClick={handleYes} autoFocus>
-              Yes
-            </Button>
-          </DialogActions>
-        )}
-        {!show && (
-          <DialogActions className="flex items-center">
-            <Select
-              className="RRR"
-              options={options}
-              value={value}
-              onChange={changeHandler}
-              getOptionLabel={(option) => option.label}
-              getOptionValue={(option) => option.value}
-            />
-            <Button onClick={handleYes} autoFocus>
-              Confirm
-            </Button>
-          </DialogActions>
-        )}
+          <Button onClick={handleYes} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+        <Select
+          className="RRR"
+          options={options}
+          value={value}
+          onChange={changeHandler}
+          getOptionLabel={(option) => option.label}
+          getOptionValue={(option) => option.value}
+        />
       </Dialog>
     </React.Fragment>
   );

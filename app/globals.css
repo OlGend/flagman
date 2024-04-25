@@ -9395,16 +9395,13 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
 .slick-track .slick-slide:nth-child(3n + 0) .card-second-banner {
-
   background: linear-gradient(to right, #4b79ce 0%, #2346a6 100%);
 }
 .slick-track .slick-slide:nth-child(3n + 1) .card-second-banner {
-
-  background: linear-gradient(to right, #E88B4F 0%, #DC652C 100%);
+  background: linear-gradient(to right, #e88b4f 0%, #dc652c 100%);
 }
 .slick-track .slick-slide:nth-child(3n + 2) .card-second-banner {
-
-  background: linear-gradient(to right, #BCDA6C 0%, #8AAD52 100%);
+  background: linear-gradient(to right, #bcda6c 0%, #8aad52 100%);
 }
 .slick-track .slick-slide .card-second-banner .brandImage {
   max-height: initial !important;
@@ -9432,7 +9429,7 @@ body {
   border: 1px solid #fff;
 }
 .slick-track .slick-slide .card-second-banner {
-  display: flex !important; 
+  display: flex !important;
   flex-direction: column;
   align-items: center;
 }
@@ -9440,17 +9437,27 @@ body {
   color: #fff;
   padding-bottom: 15px;
 }
-.bl-sand .slick-next::before, .bl-sand .slick-prev::before {
-color: #fff !important;
+.bl-sand .slick-next::before,
+.bl-sand .slick-prev::before {
+  color: #fff !important;
 }
 .bl-sand .review-bonus {
   font-size: 18px !important;
 }
 
 .RRR {
-  position: absolute !important; 
+  /* position: absolute !important;
+  bottom: 0 !important; */
+  min-width: 200px;
+  margin-left: 16px;
+  margin-right: auto;
+  cursor: pointer;
+}
+.RRR div {
+  z-index: 99999;
 }
 .MuiPaper-root.MuiPaper-elevation {
-  overflow: hidden !important;
-  padding-bottom: 50px;
+  overflow: initial !important;
+  padding-bottom: 16px;
+  max-width: 350px;
 }

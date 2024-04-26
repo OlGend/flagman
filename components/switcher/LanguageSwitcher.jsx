@@ -50,6 +50,7 @@ const LanguageSwitcher = () => {
   let source;
   if (typeof window !== "undefined") {
     source = localStorage.getItem("source");
+    
   }
   let newLng;
   switch (source) {

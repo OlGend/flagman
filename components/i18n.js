@@ -120,19 +120,13 @@ async function initializeI18n() {
   console.log("NLN", newLng)
 
   // Используем метод map для сопоставления значений массива languages с defLng
-  const matchedLanguages = languages.map((language) => {
-    if (language === defLng) {
-      return language;
-    } else {
-      return "all";
-    }
-    return null;
-  });
+  const matchedLanguage = newLng.includes(defLng) ? defLng : "all";
 
-  // Фильтруем совпадающие значения
-  const matchedLanguage = matchedLanguages.find(
-    (language) => language !== null
-  );
+  console.log("LLLL", matchedLanguage)
+  // // Фильтруем совпадающие значения
+  // const matchedLanguage = matchedLanguages.find(
+  //   (language) => language !== null
+  // );
 
   const resources = {
     all: {
@@ -6230,7 +6224,7 @@ async function initializeI18n() {
     .use(initReactI18next)
     .init({
       resources,
-      lng: source !== "partner1043" ? matchedLanguage : "all",
+      lng: matchedLanguage,
       interpolation: {
         escapeValue: false,
       },
@@ -6240,3 +6234,4 @@ async function initializeI18n() {
 initializeI18n();
 
 export default i18n;
+

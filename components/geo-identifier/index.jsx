@@ -13,6 +13,7 @@ import Select from "react-select";
 import countryList from "react-select-country-list";
 import ReactCountryFlag from "react-country-flag";
 import Loader from "@/components/Loader";
+import { useTranslation } from "react-i18next";
 
 function getCountryOptions() {
   return countryList()
@@ -37,6 +38,8 @@ export default function ResponsiveDialog() {
   const [loading, setLoading] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     setOpen(true);
@@ -98,22 +101,21 @@ export default function ResponsiveDialog() {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          <strong>{`Are you from ${localStorage.getItem(
+          <strong>{`${t("Are you from")} ${localStorage.getItem(
             "country_name"
           )}?`}</strong>
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Not right? Pick your actual country of residence from the list below
-            to see the relevant offers!
+            {t("Not right? Pick your actual country of residence from the list below to see the relevant offers!")}
           </DialogContentText>
         </DialogContent>
         {show && (
           <DialogActions>
-            <Button onClick={handleNo}>Choose my Country</Button>
+            <Button onClick={handleNo}>{t("Choose my Country")}</Button>
 
             <Button onClick={handleYes} autoFocus>
-              Yes
+              {t("Yes")}
             </Button>
           </DialogActions>
         )}
@@ -128,7 +130,7 @@ export default function ResponsiveDialog() {
               getOptionValue={(option) => option.value}
             />
             <Button onClick={handleYes} autoFocus>
-              Confirm
+              {t("Confirm")}
             </Button>
           </DialogActions>
         )}

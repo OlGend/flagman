@@ -19,16 +19,113 @@ async function initializeI18n() {
     defLng = data.country.toLowerCase();
   } catch (error) {
     console.error("Ошибка при запросе к API:", error);
-    defLng = "all"; 
+    defLng = "all";
   }
 
-  const languages = ["au", "ca", "nz", "pl", "us", "se", "fi", "all"];
+  const availableLanguages = [
+    "au",
+    "at",
+    "be",
+    "bg",
+    "ca",
+    "cz",
+    "dk",
+    "fi",
+    "fr",
+    "de",
+    "gr",
+    "hu",
+    "ie",
+    "it",
+    "nl",
+    "nz",
+    "no",
+    "pl",
+    "pt",
+    "sk",
+    "es",
+    "se",
+    "ch",
+    "tr",
+    "gb",
+    "all",
+  ];
+  const availableLanguages1039 = [
+    "au",
+    "at",
+    "be",
+    "bg",
+    "ca",
+    "cz",
+    "dk",
+    "fi",
+    "fr",
+    "de",
+    "gr",
+    "hu",
+    "ie",
+    "it",
+    "nl",
+    "nz",
+    "no",
+    "pl",
+    "pt",
+    "sk",
+    "es",
+    "se",
+    "ch",
+    "tr",
+    "gb",
+    "all",
+  ];
+  const availableLanguages1043 = ["ca", "us"];
+  const availableLanguages1044 = [
+    "au",
+    "at",
+    "be",
+    "ca",
+    "ch",
+    "nl",
+    "de",
+    "cz",
+    "fi",
+    "gb",
+    "ie",
+    "it",
+    "nz",
+    "no",
+    "pl",
+    "za",
+    "se",
+    "us",
+    "all",
+  ];
+
+  let item;
+  if (typeof window !== "undefined") {
+    item = localStorage.getItem("source");
+  }
+  let newLng;
+  if (item === "partner1039") {
+    newLng = availableLanguages1039;
+  } else if (item === "partner1043") {
+    newLng = availableLanguages1043;
+  } else if (item === "partner1044") {
+    newLng = availableLanguages1044;
+  } else {
+    newLng = availableLanguages;
+  }
+
+  const languages = newLng;
+  console.log("NLN", newLng)
 
   // Используем метод map для сопоставления значений массива languages с defLng
   const matchedLanguages = languages.map((language) => {
     if (language === defLng) {
       return language;
-    } 
+    } else {
+      return "all";
+    }
     return null;
   });
 
@@ -36,7 +133,6 @@ async function initializeI18n() {
   const matchedLanguage = matchedLanguages.find(
     (language) => language !== null
   );
-  
 
   const resources = {
     all: {
@@ -121,7 +217,7 @@ async function initializeI18n() {
         "My wallet": "My wallet",
         "Cards Shop": "Cards Shop",
         "Account menu": "Account menu",
-  
+
         "Fee:": "Fee:",
         "You will receive on balance:": "You will receive on balance:",
         "Payment Method": "Payment Method",
@@ -367,6 +463,14 @@ async function initializeI18n() {
           "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.",
         "Top New Releases": "Top New Releases",
         "New Arrivals": "New Arrivals",
+
+        "Website language": "Website language",
+        "Your country of residence": "Your country of residence",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Not right? Pick your actual country of residence from the list below to see the relevant offers!",
+        "Are you from": "Are you from",
+        "Choose my Country": "Choose my Country",
+        Yes: "Yes",
       },
     },
     pl: {
@@ -452,7 +556,7 @@ async function initializeI18n() {
         "My wallet": "Mój portfel",
         "Cards Shop": "Sklep",
         "Account menu": "Menu konta",
-  
+
         "Fee:": "Opłata:",
         "You will receive on balance:": "Otrzymasz na saldo:",
         "Payment Method": "Metoda płatności",
@@ -672,7 +776,8 @@ async function initializeI18n() {
           "Dostępność kart różni się w zależności od regionu.",
         "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
           "Odrzucono wypłatę: Minimalna kwota wypłaty to 4 USD.",
-        "Not enough funds in the account.": "Niewystarczające środki na koncie.",
+        "Not enough funds in the account.":
+          "Niewystarczające środki na koncie.",
         "Something wrong, try again!": "Coś poszło nie tak, spróbuj ponownie!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Proszę zauważyć: Wypłaty z PayPal są przetwarzane codziennie od 7:00 do 20:00 czasu środkowoeuropejskiego",
@@ -783,7 +888,7 @@ async function initializeI18n() {
         "My wallet": "Meine Brieftasche",
         "Cards Shop": "Kaufen",
         "Account menu": "Kontomenü",
-  
+
         "Fee:": "Gebühr:",
         "You will receive on balance:": "Sie werden auf Balance erhalten:",
         "Payment Method": "Zahlungsmethode",
@@ -1005,7 +1110,8 @@ async function initializeI18n() {
           "Auszahlung abgelehnt: Mindestauszahlungsbetrag beträgt 4 USD.",
         "Not enough funds in the account.":
           "Nicht genügend Geldmittel auf dem Konto.",
-        "Something wrong, try again!": "Etwas stimmt nicht, versuche es erneut!",
+        "Something wrong, try again!":
+          "Etwas stimmt nicht, versuche es erneut!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Bitte beachten Sie: PayPal-Auszahlungen werden täglich von 7 bis 20 Uhr MEZ bearbeitet.",
         "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
@@ -1115,7 +1221,7 @@ async function initializeI18n() {
         "My wallet": "Портфейла ми",
         "Cards Shop": "Магазин",
         "Account menu": "Меню на акаунта",
-  
+
         "Fee:": "Такса:",
         "You will receive on balance:": "Ще получите на баланса",
         "Payment Method": "Метод на плащане",
@@ -1446,7 +1552,7 @@ async function initializeI18n() {
         "My wallet": "Můj peněženka",
         "Cards Shop": "Obchod",
         "Account menu": "Menu účtu",
-  
+
         "Fee:": "Poplatek:",
         "You will receive on balance:": "Dostanete na účet",
         "Payment Method": "Způsob platby",
@@ -1777,7 +1883,7 @@ async function initializeI18n() {
         "My wallet": "Min tegnebog",
         "Cards Shop": "Butik",
         "Account menu": "Konto menu",
-  
+
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil modtage på balance:",
         "Payment Method": "Betalingsmetode",
@@ -2107,7 +2213,7 @@ async function initializeI18n() {
         "My wallet": "Mijn portemonnee",
         "Cards Shop": "Winkel",
         "Account menu": "Account menu",
-  
+
         "Fee:": "Betaling:",
         "You will receive on balance:": "Je zult ontvangen op saldo:",
         "Payment Method": "Betalingsmethode",
@@ -2438,7 +2544,7 @@ async function initializeI18n() {
         "My wallet": "Mi cartera",
         "Cards Shop": "Tienda",
         "Account menu": "Menú de cuenta",
-  
+
         "Fee:": "Tarifa:",
         "You will receive on balance:": "Recibirás en saldo:",
         "Payment Method": "Método de pago",
@@ -2732,7 +2838,8 @@ async function initializeI18n() {
         Spinomenal: "Spinomenal",
         "Play Now": "Pelaa nyt",
         "How to get bonus?": "Kuinka saada bonus?",
-        "Activate bonus in your casino account": "Aktivoi bonus kasinotililläsi",
+        "Activate bonus in your casino account":
+          "Aktivoi bonus kasinotililläsi",
         "Load More Brands": "Lataa lisää kasinoita",
         "Withdrawal Limits:": "Nosto rajoitukset:",
         Advantages: "Edut",
@@ -2768,7 +2875,7 @@ async function initializeI18n() {
         "My wallet": "Minun lompakkoni",
         "Cards Shop": "Kauppa",
         "Account menu": "Tilivalikko",
-  
+
         "Fee:": "Maksu:",
         "You will receive on balance:": "Sinä saat saldona:",
         "Payment Method": "Maksutapa",
@@ -3100,7 +3207,7 @@ async function initializeI18n() {
         "My wallet": "Mon portefeuille",
         "Cards Shop": "Magasin",
         "Account menu": "Menu du compte",
-  
+
         "Fee:": "Frais:",
         "You will receive on balance:": "Vous recevrez au solde:",
         "Payment Method": "Méthode de paiement",
@@ -3318,7 +3425,8 @@ async function initializeI18n() {
           "La disponibilité des cartes varie selon la région.",
         "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
           "Retrait refusé : Le montant minimum de retrait est de 4 USD.",
-        "Not enough funds in the account.": "Pas assez de fonds dans le compte.",
+        "Not enough funds in the account.":
+          "Pas assez de fonds dans le compte.",
         "Something wrong, try again!": "Quelque chose ne va pas, réessayez !",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Veuillez noter : les retraits PayPal sont traités tous les jours de 7h à 20h CET",
@@ -3429,7 +3537,7 @@ async function initializeI18n() {
         "My wallet": "Ο πορτοφόλι μου",
         "Cards Shop": "Κατάστημα",
         "Account menu": "Μενού λογαριασμού",
-  
+
         "Fee:": "Κόστος:",
         "You will receive on balance:": "Θα λάβετε στο υπόλοιπό σας:",
         "Payment Method": "Μέθοδος Πληρωμής",
@@ -3760,7 +3868,7 @@ async function initializeI18n() {
         "My wallet": "A pénztárcám",
         "Cards Shop": "Üzlet",
         "Account menu": "Fiók menü",
-  
+
         "Fee:": "Díj:",
         "You will receive on balance:": "Az egyenlegedre kapod:",
         "Payment Method": "Fizetési mód",
@@ -4091,7 +4199,7 @@ async function initializeI18n() {
         "My wallet": "Il mio portafoglio",
         "Cards Shop": "Negozio",
         "Account menu": "Menu account",
-  
+
         "Fee:": "Tassa:",
         "You will receive on balance:": "Riceverai sul saldo:",
         "Payment Method": "Metodo di pagamento",
@@ -4422,7 +4530,7 @@ async function initializeI18n() {
         "My wallet": "Min lommebok",
         "Cards Shop": "Butikk",
         "Account menu": "Kontomeny",
-  
+
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil motta på balanse:",
         "Payment Method": "Betalingsmetode",
@@ -4753,7 +4861,7 @@ async function initializeI18n() {
         "My wallet": "Minha carteira",
         "Cards Shop": "Loja",
         "Account menu": "Menu da conta",
-  
+
         "Fee:": "Taxa:",
         "You will receive on balance:": "Você receberá no saldo:",
         "Payment Method": "Método de Pagamento",
@@ -4972,7 +5080,8 @@ async function initializeI18n() {
           "A disponibilidade do cartão varia de acordo com a região.",
         "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
           "Retirada rejeitada: O valor mínimo de retirada é de 4 USD.",
-        "Not enough funds in the account.": "Não há fundos suficientes na conta.",
+        "Not enough funds in the account.":
+          "Não há fundos suficientes na conta.",
         "Something wrong, try again!": "Algo errado, tente novamente!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Por favor, note: Os saques do PayPal são processados todos os dias das 7h às 20h CET",
@@ -5083,7 +5192,7 @@ async function initializeI18n() {
         "My wallet": "Min plånbok",
         "Cards Shop": "Butik",
         "Account menu": "Kontomeny",
-  
+
         "Fee:": "Avgift",
         "You will receive on balance:": "Du kommer att få på balans:",
         "Payment Method": "Betalningsmetod",
@@ -5415,7 +5524,7 @@ async function initializeI18n() {
         "My wallet": "Moja peňaženka",
         "Cards Shop": "Obchod",
         "Account menu": "Účetové menu",
-  
+
         "Fee:": "Poplatok:",
         "You will receive on balance:": "Na účet dostanete:",
         "Payment Method": "Spôsob platby",
@@ -5746,7 +5855,7 @@ async function initializeI18n() {
         "My wallet": "Cüzdanım",
         "Cards Shop": "Mağaza",
         "Account menu": "Hesap menüsü",
-  
+
         "Fee:": "Ücret:",
         "You will receive on balance:": "Bakiyenize alacaksınız:",
         "Payment Method": "Ödeme Yöntemi",
@@ -5994,9 +6103,6 @@ async function initializeI18n() {
       },
     },
   };
-  
-  
-  
 
   let source;
   if (typeof window !== "undefined") {

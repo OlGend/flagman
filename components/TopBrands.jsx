@@ -66,21 +66,7 @@ export default function TopBrands() {
     }
 
     const ad_campaign = localStorage.getItem("ad_campaign_id");
-    // const newUrlWithSource =
-    //   "?" +
-    //   (searchParams.toString()
-    //     ? searchParams.toString() + "&"
-    //     : `keyword=${localStorage.getItem("user_id")}&`) +
-    //   `source=${localStorage.getItem("source")}` +
-    //   `&ad_campaign_id=${localStorage.getItem("ad_campaign_id")}`;
-    // if (newUrlWithSource.includes("keyword")) {
-    //   localStorage.setItem("savedUrl", newUrlWithSource);
-    //   localStorage.setItem("token", "give");
-    // }
-    // const tokenGive = localStorage.getItem("token");
-    // if (tokenGive !== "give") {
-    //   localStorage.setItem("savedUrl", newUrlWithSource);
-    // }
+
     const savedUrl = localStorage.getItem("savedUrl");
     if (savedUrl) {
       setNewUrl(savedUrl);
@@ -98,9 +84,9 @@ export default function TopBrands() {
     fetchBrands();
   }, [language]);
 
-  // useEffect(() => {
-  //   setLoading(brands.length === 0);
-  // }, [brands]);
+  useEffect(() => {
+    setLoading(brands.length === 0);
+  }, [brands]);
 
   const shuffledBrands = shuffle(brands);
   const cards2 = shuffledBrands.slice(0, 6).map((brand) => ({

@@ -9470,3 +9470,7 @@ body {
     max-height: 230px;
   }
 }
+
+body {
+  overflow: initial !important;
+}

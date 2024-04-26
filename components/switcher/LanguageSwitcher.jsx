@@ -40,6 +40,7 @@ const LanguageSwitcher = () => {
     { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
     { code: "fr", label: "France", flag: "🇫🇷" },
     { code: "pl", label: "Poland", flag: "🇵🇱" },
+    { code: "it", label: "Italy", flag: "🇮🇹" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
     { code: "no", label: "Norway", flag: "🇳🇴" },
     { code: "all", label: "English", flag: "🌍" },

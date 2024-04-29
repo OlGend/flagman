@@ -207,8 +207,12 @@ export default function Personal() {
   };
 
   const getWalletAddressStepDescription = () => {
-    if (!fee || !estimatedAmount) return;
+    const isPayPal = coin === "PayPal";
+
+    if (!fee || !estimatedAmount || isPayPal) return;
+
     const receive = Number(estimatedAmount) - fee;
+
     return `${t("Fee:")} ${fee} ${coin}, ${t(
       "You will receive on balance:"
     )} ${receive} ${coin}`;

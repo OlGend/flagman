@@ -198,7 +198,7 @@ export const PaymentHistory = ({ statusPayment }: PaymentHistoryProps) => {
                 return (
                   <CustomTableRow hover key={idx}>
                     <TableCell>{row.paymentMethod}</TableCell>
-                    <TableCell>{row.paymentSumIn}</TableCell>
+                    <TableCell>{row.USD}$</TableCell>
                     <TableCell>{row.paymentAddress}</TableCell>
                     <TableCell>
                       {dayjs(row.timestamp).format(

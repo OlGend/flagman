@@ -11,7 +11,8 @@ import { ChangeEvent, useState } from "react";
 
 import Loader from "@/components/Loader";
 import type { User } from "@/interfaces/user";
-import { t } from "i18next";
+import { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
 
 type PaymentMethodStepProps = {
   user: User;
@@ -25,7 +26,6 @@ type PaymentMethodStepProps = {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   getFeeAndEstimatedAmount: () => Promise<void>;
-  t: Function;
 };
 
 const MIN_AMOUNT = 4;
@@ -34,7 +34,8 @@ const getHelperText = (
   amount: PaymentMethodStepProps["amount"],
   isLessThanFour: boolean,
   isMoreThanUserBalance: boolean,
-  isError: boolean
+  isError: boolean,
+  t: TFunction
 ) => {
   if (!!amount && isLessThanFour)
     return t("Withdrawal rejected: Minimum withdrawal amount is 4 USD.");
@@ -43,7 +44,6 @@ const getHelperText = (
   if (isError) return t("Something wrong, try again!");
   return undefined;
 };
-
 
 export const PaymentMethodStep = ({
   user,
@@ -55,8 +55,9 @@ export const PaymentMethodStep = ({
   onChangeCoin,
   onChangeAmount,
   getFeeAndEstimatedAmount,
-  t,
 }: PaymentMethodStepProps) => {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -71,14 +72,19 @@ export const PaymentMethodStep = ({
     amount,
     isLessThanFour,
     isMoreThanUserBalance,
-    isError
+    isError,
+    t
   );
+
+  const isPayPal = coin === "PayPal";
 
   const getFeeAndEstimatedAmountAndThanGoToWalletAddressStep = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
-      await getFeeAndEstimatedAmount();
+      if (!isPayPal) {
+        await getFeeAndEstimatedAmount();
+      }
       onChangeStep(step + 1);
       setIsLoading(false);
     } catch (e) {
@@ -95,15 +101,13 @@ export const PaymentMethodStep = ({
         onChange={onChangeCoin}
       >
         {coins.map((coin) => (
-   
-            <MenuItem className={`${coin}`} key={coin} value={coin}>
-              {coin}
-            </MenuItem>
-       
+          <MenuItem className={`${coin}`} key={coin} value={coin}>
+            {coin}
+          </MenuItem>
         ))}
-            <MenuItem className="PayPal" key="paypal" value="PayPal">
-              PayPal
-            </MenuItem>
+        <MenuItem className="PayPal" key="paypal" value="PayPal">
+          PayPal
+        </MenuItem>
       </Select>
       <TextField
         className="input_number"
@@ -119,7 +123,7 @@ export const PaymentMethodStep = ({
       />
       <Box>
         <Button
-          className="btn-primary"
+          className="btn-primary w-48"
           variant="contained"
           onClick={getFeeAndEstimatedAmountAndThanGoToWalletAddressStep}
           disabled={isButtonNextStepDisabled}

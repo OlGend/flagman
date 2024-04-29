@@ -2,7 +2,6 @@
 
 import { Fetcher } from "@/components/Fetcher";
 import Loader from "@/components/Loader";
-import { updateUserStatusPayment } from "@/components/getUser/pushPayment";
 import { FinallyStep } from "@/components/personal/FinallyStep";
 import { PaymentHistory } from "@/components/personal/PaymentHistory";
 import { PaymentMethodStep } from "@/components/personal/PaymentMethodStep";
@@ -28,19 +27,27 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, useState, useEffect } from "react";
-
-import { Bank, ClockCounterClockwise, ShoppingCart } from "phosphor-react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
+import { useLanguage } from "@/components/switcher/LanguageContext";
+import { getBrands } from "@/components/getBrands/getBrands";
 
-// import Withdrawal from "@/components/Withdrawal/Withdrawal";
+export type Brand = {
+  id_brand: string;
+  CasinoBrand: string;
+  GoBig: string;
+  OurOfferContent: string;
+};
 
 const DEFAULT_COIN = "USDTTRC20";
 const DEFAULT_STEP = 0;
+const BRAND_CATEGORIES = { key1: "Segment2", key2: "Premium" };
 
 export default function Personal() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const { language } = useLanguage();
+
   const {
     data: user,
     loading: userLoading,
@@ -114,6 +121,12 @@ export default function Personal() {
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [brands, setBrands] = useState<Brand[]>([]);
+
+  const fetchBrands = async () => {
+    const brandsData: Brand[] = await getBrands(BRAND_CATEGORIES, language);
+    setBrands(brandsData);
+  };
 
   // const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
   //   setTab(newTabIndex);
@@ -193,34 +206,13 @@ export default function Personal() {
     resetEstimatedAmount();
   };
 
-  // TODO: check and make better
-  const onConfirm = async (userId: User["id"]) => {
-    const body = JSON.stringify({
-      id: userId,
-      status_payment: JSON.stringify({
-        status: "Waiting",
-        timestamp: new Date().toISOString(),
-        paymentMethod: coin,
-        paymentSumIn: estimatedAmount,
-        paymentAddress: walletAddress,
-        USD: amount,
-      }),
-      sumMinus: amount,
-    });
-
-    try {
-      const response = await updateUserStatusPayment(body);
-      console.log("--- response ---", response);
-
-      onChangeStep(step + 1);
-    } catch (e) {
-      console.error("ERROR - onConfirm:", e);
-    }
-  };
-
   const getWalletAddressStepDescription = () => {
-    if (!fee || !estimatedAmount) return;
+    const isPayPal = coin === "PayPal";
+
+    if (!fee || !estimatedAmount || isPayPal) return;
+
     const receive = Number(estimatedAmount) - fee;
+
     return `${t("Fee:")} ${fee} ${coin}, ${t(
       "You will receive on balance:"
     )} ${receive} ${coin}`;
@@ -244,77 +236,56 @@ export default function Personal() {
             onChangeCoin={onChangeCoin}
             onChangeAmount={onChangeAmount}
             getFeeAndEstimatedAmount={getFeeAndEstimatedAmount}
-            t={t}
           />
         ),
       },
-
-      ...(coin !== "PayPal"
-        ? [
-            {
-              label: t("Wallet address"),
-              description: getWalletAddressStepDescription(),
-              content: (
-                <WalletAddressStep
-                  user={user}
-                  step={step}
-                  coin={coin}
-                  walletAddress={walletAddress}
-                  onChangeStep={onChangeStep}
-                  onChangeWalletAddress={onChangeWalletAddress}
-                  onConfirm={onConfirm}
-                  t={t}
-                  amount={amount}
-                />
-              ),
-            },
-          ]
-        : [{
-          label: t("Email") + " " + t("Address"),
-          description: getWalletAddressStepDescription(),
-          content: (
-            <WalletAddressStep
-              user={user}
-              step={step}
-              coin={coin}
-              walletAddress={walletAddress}
-              onChangeStep={onChangeStep}
-              onChangeWalletAddress={onChangeWalletAddress}
-              onConfirm={onConfirm}
-              t={t}
-              amount={amount}
-            />
-          ),
-        },]),
-
+      {
+        label:
+          coin === "PayPal"
+            ? `${t("Email")} ${t("Address")}`
+            : t("Wallet address"),
+        description: getWalletAddressStepDescription(),
+        content: (
+          <WalletAddressStep
+            user={user}
+            step={step}
+            coin={coin}
+            walletAddress={walletAddress}
+            amount={amount}
+            estimatedAmount={estimatedAmount}
+            onChangeStep={onChangeStep}
+            onChangeWalletAddress={onChangeWalletAddress}
+            fetchBrands={fetchBrands}
+            onFinish={onFinish}
+          />
+        ),
+      },
       {
         label: t("Final Step"),
         description: t(
           "Congratulations, you have successfully requested a withdrawal, in order for them to be credited to your wallet you will need to make a deposit with one of our brands"
         ),
-        content: <FinallyStep text="" onClick={onFinish} t={t} />,
+        content: <FinallyStep brands={brands} />,
       },
     ];
 
-    // if (!user.phone_number) {
-    //   initialSteps.splice(2, 0, {
-    //     label: t("Phone Number"),
-    //     description: t(
-    //       "To create a transfer, we need to verify your phone number"
-    //     ),
-    //     content: (
-    //       <PhoneNumberStep
-    //         user={user}
-    //         step={step}
-    //         phoneNumber={phoneNumber}
-    //         onChangeStep={onChangeStep}
-    //         onChangePhoneNumber={onChangePhoneNumber}
-    //         onConfirm={onConfirm}
-    //         t={t}
-    //       />
-    //     ),
-    //   });
-    // }
+    if (!user.phone_number) {
+      initialSteps.splice(1, 0, {
+        label: t("Phone Number"),
+        description: t(
+          "To create a transfer, we need to verify your phone number"
+        ),
+        content: (
+          <PhoneNumberStep
+            user={user}
+            step={step}
+            phoneNumber={phoneNumber}
+            onChangeStep={onChangeStep}
+            onChangePhoneNumber={onChangePhoneNumber}
+          />
+        ),
+      });
+    }
 
     return initialSteps;
   };
@@ -352,39 +323,9 @@ export default function Personal() {
                   onChange={onChangeTab}
                   tabs={{
                     labels: [
-                      <Box
-                        key={1}
-                        component="span"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <Bank size={20} />
-                        <Typography component="span" marginLeft={1}>
-                          {t("Withdrawal Request")}
-                        </Typography>
-                      </Box>,
-                      <Box
-                        key={2}
-                        component="span"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <ClockCounterClockwise size={20} />
-                        <Typography component="span" marginLeft={1}>
-                          {t("Withdrawal History")}
-                        </Typography>
-                      </Box>,
-                      <Box
-                        key={3}
-                        component="span"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <ShoppingCart size={20} />
-                        <Typography component="span" marginLeft={1}>
-                          {t("Cards Shop")}
-                        </Typography>
-                      </Box>,
+                      t("Withdrawal Request"),
+                      t("Withdrawal History"),
+                      t("Cards Shop"),
                     ],
                     content: [
                       <Stepper

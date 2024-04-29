@@ -105,10 +105,12 @@ const BrandsSwitcher = () => {
     { code: "be", label: "Belgium", flag: "🇧🇪" },
     { code: "ca", label: "Canada", flag: "🇨🇦" },
     // { code: "ch", label: "Switzerland", flag: "🇨🇭" },
+    { code: "dk", label: "Denmark", flag: "🇩🇰" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
     { code: "de", label: "Germany", flag: "🇩🇪" },
     { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
     { code: "fi", label: "Finland", flag: "🇫🇮" },
+    { code: "fr", label: "France", flag: "🇫🇷" },
     { code: "gb", label: "Great Britain", flag: "🇬🇧" },
     { code: "ie", label: "Ireland", flag: "🇮🇪" },
     { code: "it", label: "Italy", flag: "🇮🇹" },
@@ -117,7 +119,9 @@ const BrandsSwitcher = () => {
     { code: "pl", label: "Poland", flag: "🇵🇱" },
     { code: "za", label: "South Africa", flag: "🇿🇦" },
     { code: "se", label: "Sweden", flag: "🇸🇪" },
+    { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "us", label: "USA", flag: "🇺🇸" },
+
     { code: "all", label: "World", flag: "🌍" },
   ];
 

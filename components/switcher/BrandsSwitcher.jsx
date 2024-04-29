@@ -125,6 +125,7 @@ const BrandsSwitcher = () => {
     { code: "all", label: "World", flag: "🌍" },
   ];
 
+  
   let item;
   if (typeof window !== "undefined") {
     item = localStorage.getItem("source");

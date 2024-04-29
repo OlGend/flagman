@@ -46,9 +46,12 @@ export const PhoneNumberStep = ({
 }: PhoneNumberStepProps) => {
   const { t } = useTranslation();
 
-  const defaultCountry = (localStorage.getItem("country") ?? undefined) as
+
+  const defaultCountry = (localStorage.getItem("country_phone") ?? undefined) as
     | MuiTelInputCountry
     | undefined;
+
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [otp, setOtp] = useState("");
@@ -137,6 +140,8 @@ export const PhoneNumberStep = ({
     isSendUserPhoneNumberLoading || isLoading || isSaveUserPhoneNumberLoading;
   const isButtonSendCodeDisabled =
     phoneNumber.length < DEFAULT_PHONE_NUMBER_LENGTH;
+
+    
 
   return (
     <StyledDiv>

@@ -34,7 +34,7 @@ const getLabel = (label: string) => {
 
   return (
     <Box key={1} component="span" display="flex" alignItems="center">
-      <Icon size={20} />
+      {/* <Icon size={20} /> */}
       <Typography component="span" marginLeft={1}>
         {label}
       </Typography>

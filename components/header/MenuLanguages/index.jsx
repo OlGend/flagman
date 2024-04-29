@@ -96,6 +96,7 @@ export default function MultipleSelectPlaceholder() {
   const flags1043 = [
     { code: "ca", label: "Canada", flag: "🇨🇦" },
     { code: "us", label: "United States", flag: "🇺🇸" },
+    { code: "all", label: "World", flag: "🌍" },
   ];
   const flags1044 = [
     { code: "au", label: "Australia", flag: "🇦🇺" },
@@ -164,11 +165,11 @@ export default function MultipleSelectPlaceholder() {
               return (
                 <div className="flex items-center">
                   <em className="flagflag">{languageFlag}</em>
-                  {source !== "partner1043" && (
                     <em className="flagflag2">
                       {lng ? lng.toUpperCase() : ""}
                     </em>
-                  )}
+                  {/* {source !== "partner1043" && (
+                  )} */}
                 </div>
               );
             }

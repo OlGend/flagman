@@ -19,24 +19,114 @@ async function initializeI18n() {
     defLng = data.country.toLowerCase();
   } catch (error) {
     console.error("Ошибка при запросе к API:", error);
-    defLng = "all"; 
+    defLng = "all";
   }
 
-  const languages = ["au", "ca", "nz", "pl", "us", "se", "fi", "all"];
+  const availableLanguages = [
+    "au",
+    "at",
+    "be",
+    "bg",
+    "ca",
+    "cz",
+    "dk",
+    "fi",
+    "fr",
+    "de",
+    "gr",
+    "hu",
+    "ie",
+    "it",
+    "nl",
+    "nz",
+    "no",
+    "pl",
+    "pt",
+    "sk",
+    "es",
+    "se",
+    "ch",
+    "tr",
+    "gb",
+    "all",
+  ];
+  const availableLanguages1039 = [
+    "au",
+    "at",
+    "be",
+    "bg",
+    "ca",
+    "cz",
+    "dk",
+    "fi",
+    "fr",
+    "de",
+    "gr",
+    "hu",
+    "ie",
+    "it",
+    "nl",
+    "nz",
+    "no",
+    "pl",
+    "pt",
+    "sk",
+    "es",
+    "se",
+    "ch",
+    "tr",
+    "gb",
+    "all",
+  ];
+  const availableLanguages1043 = ["ca", "us"];
+  const availableLanguages1044 = [
+    "au",
+    "at",
+    "be",
+    "ca",
+    "ch",
+    "nl",
+    "de",
+    "cz",
+    "fi",
+    "gb",
+    "ie",
+    "it",
+    "nz",
+    "no",
+    "pl",
+    "za",
+    "se",
+    "us",
+    "all",
+  ];
+
+  let item;
+  if (typeof window !== "undefined") {
+    item = localStorage.getItem("source");
+  }
+  let newLng;
+  if (item === "partner1039") {
+    newLng = availableLanguages1039;
+  } else if (item === "partner1043") {
+    newLng = availableLanguages1043;
+  } else if (item === "partner1044") {
+    newLng = availableLanguages1044;
+  } else {
+    newLng = availableLanguages;
+  }
+
+  const languages = newLng;
+  console.log("NLN", newLng)
 
   // Используем метод map для сопоставления значений массива languages с defLng
-  const matchedLanguages = languages.map((language) => {
-    if (language === defLng) {
-      return language;
-    } 
-    return null;
-  });
+  const matchedLanguage = newLng.includes(defLng) ? defLng : "all";
 
-  // Фильтруем совпадающие значения
-  const matchedLanguage = matchedLanguages.find(
-    (language) => language !== null
-  );
-  
+  console.log("LLLL", matchedLanguage)
+  // // Фильтруем совпадающие значения
+  // const matchedLanguage = matchedLanguages.find(
+  //   (language) => language !== null
+  // );
 
   const resources = {
     all: {
@@ -367,8 +457,16 @@ async function initializeI18n() {
           "Explore our compilation of premier sports betting sites, featuring platforms that offer comprehensive coverage of sporting events and competitive odds. Delve into impartial assessments, and pinpoint the ultimate sports betting destination tailored to your preferences.",
         "Top New Releases": "Top New Releases",
         "New Arrivals": "New Arrivals",
+        "Website language": "Website language",
+        "Your country of residence": "Your country of residence",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Not right? Pick your actual country of residence from the list below to see the relevant offers!",
+        "Are you from": "Are you from",
+        "Choose my Country": "Choose my Country",
+        Yes: "Yes",
       },
     },
+  
     pl: {
       translation: {
         "Casinos ▼": "Kasyna ▼",
@@ -699,6 +797,13 @@ async function initializeI18n() {
           "Odkryj naszą kompilację najlepszych stron zakładów sportowych, oferujących platformy zapewniające kompleksowe pokrycie wydarzeń sportowych i konkurencyjne kursy. Zagłęb się w bezstronne oceny i wybierz ostateczny cel zakładów sportowych dostosowany do Twoich preferencji.",
         "Top New Releases": "Najlepsze nowe kasyna",
         "New Arrivals": "Nowe przybycia",
+        "Website language": "Język strony internetowej",
+        "Your country of residence": "Twój kraj zamieszkania",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Nieprawidłowo? Wybierz swoje rzeczywiste miejsce zamieszkania z poniższej listy, aby zobaczyć odpowiednie oferty!",
+        "Are you from": "Skąd jesteś?",
+        "Choose my Country": "Wybierz mój kraj",
+        Yes: "Tak",
       },
     },
     de: {
@@ -1031,6 +1136,13 @@ async function initializeI18n() {
           "Erkunden Sie unsere Zusammenstellung erstklassiger Sportwetten-Websites, die Plattformen mit umfassender Berichterstattung über Sportveranstaltungen und wettbewerbsfähigen Quoten bieten. Tauchen Sie ein in unparteiische Bewertungen und finden Sie das ultimative Sportwetten-Ziel, das auf Ihre Vorlieben zugeschnitten ist.",
         "Top New Releases": "Top Neue Casino-Veröffentlichungen",
         "New Arrivals": "Neue Ankünfte",
+        "Website language": "Websprache",
+        "Your country of residence": "Ihr Wohnsitzland",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Nicht richtig? Wählen Sie Ihr tatsächliches Land des Wohnsitzes aus der Liste unten, um die relevanten Angebote zu sehen!",
+        "Are you from": "Bist du von",
+        "Choose my Country": "Wähle mein Land",
+        Yes: "Ja",
       },
     },
     bg: {
@@ -1362,6 +1474,13 @@ async function initializeI18n() {
           "Разгледайте нашата компилация от водещи сайтове за спортни залагания, предлагащи платформи, които предлагат обширно покритие на спортни събития и конкурентни коефициенти. Загледайте се в безпристрастни оценки и открийте най-добрата дестинация за спортни залагания, персонализирана според вашите предпочитания.",
         "Top New Releases": "Най-нови издания на казино",
         "New Arrivals": "Нови пристигания",
+        "Website language": "Език на уебсайта",
+        "Your country of residence": "Вашата държава на пребиваване",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Не е правилно? Изберете вашата актуална държава на пребиваване от списъка по-долу, за да видите съответните оферти!",
+        "Are you from": "От къде си?",
+        "Choose my Country": "Избери моята страна",
+        Yes: "Да",
       },
     },
     cz: {
@@ -1693,6 +1812,13 @@ async function initializeI18n() {
           "Prozkoumejte naši kompilaci předních sázkových stránek, které nabízejí platformy s komplexním pokrytím sportovních událostí a konkurenčními kurzy. Ponořte se do nezávislých hodnocení a najděte konečnou destinaci pro sázení na sport, která bude přizpůsobena vašim preferencím.",
         "Top New Releases": "Nejnovější nové kasinové hry",
         "New Arrivals": "Nově příchozí",
+        "Website language": "Jazyk webové stránky",
+        "Your country of residence": "Vaše země trvalého pobytu",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Není to správné? Vyberte svou skutečnou zemi pobytu ze seznamu níže, abyste viděli relevantní nabídky!",
+        "Are you from": "Jste odtud?",
+        "Choose my Country": "Vyberte moji zemi",
+        Yes: "Ano",
       },
     },
     dk: {
@@ -2023,6 +2149,13 @@ async function initializeI18n() {
           "Udforsk vores samling af førende sportsbettingsider, der tilbyder platforme med omfattende dækning af sportsbegivenheder og konkurrencedygtige odds. Dyk ned i upartiske vurderinger og find den ultimative sportsbettingsdestination skræddersyet til dine præferencer.",
         "Top New Releases": "Top nye casinoudgivelser",
         "New Arrivals": "Nye ankomster",
+        "Website language": "Hjemmeside sprog",
+        "Your country of residence": "Dit bopælsland",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Ikke korrekt? Vælg dit faktiske bopælsland fra listen nedenfor for at se de relevante tilbud!",
+        "Are you from": "Er du fra",
+        "Choose my Country": "Vælg mit land",
+        Yes: "Ja",
       },
     },
     nl: {
@@ -2354,6 +2487,13 @@ async function initializeI18n() {
           "Verken onze compilatie van toonaangevende sportweddenschapssites, met platforms die uitgebreide dekking bieden van sportevenementen en competitieve kansen. Duik in onpartijdige beoordelingen en vind de ultieme sportweddenschapsbestemming die is afgestemd op uw voorkeuren.",
         "Top New Releases": "Top Nieuwe Casinoreleases",
         "New Arrivals": "Nieuwe Aankomsten",
+        "Website language": "Websitetaal",
+        "Your country of residence": "Uw land van verblijf",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Niet juist? Kies uw daadwerkelijke land van verblijf uit de onderstaande lijst om de relevante aanbiedingen te zien!",
+        "Are you from": "Ben je van",
+        "Choose my Country": "Kies mijn land",
+        Yes: "Ja",
       },
     },
     es: {
@@ -2685,6 +2825,13 @@ async function initializeI18n() {
           "Explora nuestra recopilación de los mejores sitios de apuestas deportivas, que cuentan con plataformas que ofrecen una cobertura completa de eventos deportivos y cuotas competitivas. Sumérgete en evaluaciones imparciales y encuentra el destino definitivo de apuestas deportivas adaptado a tus preferencias.",
         "Top New Releases": "Mejores Nuevos Lanzamientos",
         "New Arrivals": "Nuevas llegadas",
+        "Website language": "Idioma del sitio web",
+        "Your country of residence": "Tu país de residencia",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "¿No es correcto? ¡Elige tu país de residencia actual de la lista a continuación para ver las ofertas relevantes!",
+        "Are you from": "¿Eres de?",
+        "Choose my Country": "Elige mi país",
+        Yes: "Sí",
       },
     },
     fi: {
@@ -3015,6 +3162,13 @@ async function initializeI18n() {
           "Tutustu kokoelmaamme johtavista urheiluvedonlyöntisivustoista, joissa on kattava valikoima urheilutapahtumia ja kilpailukykyisiä kertoimia. Syvenny puolueettomiin arvioihin ja löydä juuri sinun mieltymyksiisi sopiva lopullinen urheiluvedonlyöntikohde.",
         "Top New Releases": "Parhaat Uudet Julkaisut",
         "New Arrivals": "Uudet Saapumiset",
+        "Website language": "Verkkosivun kieli",
+        "Your country of residence": "Kotimaasi",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Ei oikein? Valitse todellinen asuinmaasi alla olevasta luettelosta nähdäksesi asiaankuuluvat tarjoukset!",
+        "Are you from": "Oletko sinä kotoisin",
+        "Choose my Country": "Valitse maani",
+        Yes: "Kyllä",
       },
     },
     fr: {
@@ -3345,6 +3499,13 @@ async function initializeI18n() {
           "Explorez notre compilation des meilleurs sites de paris sportifs, proposant des plateformes offrant une couverture complète des événements sportifs et des cotes compétitives. Plongez dans des évaluations impartiales et trouvez la destination ultime des paris sportifs adaptée à vos préférences.",
         "Top New Releases": "Meilleures Nouvelles Sorties",
         "New Arrivals": "Nouvelles Arrivées",
+        "Website language": "Langue du site web",
+        "Your country of residence": "Votre pays de résidence",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Ce n'est pas correct ? Choisissez votre pays de résidence actuel dans la liste ci-dessous pour voir les offres pertinentes !",
+        "Are you from": "Es-tu de",
+        "Choose my Country": "Choisissez mon pays",
+        Yes: "Oui",
       },
     },
     gr: {
@@ -3676,6 +3837,13 @@ async function initializeI18n() {
           "Εξερευνήστε τη συλλογή μας από κορυφαίες ιστοσελίδες στοιχημάτων, που προσφέρουν πλατφόρμες με πλήρη κάλυψη των αθλητικών γεγονότων και ανταγωνιστικές αποδόσεις. Εξετάστε αντικειμενικές αξιολογήσεις και εντοπίστε τον απόλυτο προορισμό στοιχημάτων που ταιριάζει στις προτιμήσεις σας.",
         "Top New Releases": "Κορυφαίες νέες κυκλοφορίες καζίνο",
         "New Arrivals": "Νέες Αφίξεις",
+        "Website language": "Γλώσσα ιστότοπου",
+        "Your country of residence": "Η χώρα διαμονής σας",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Δεν είναι σωστό; Επιλέξτε την πραγματική χώρα διαμονής σας από τη λίστα παρακάτω για να δείτε τις σχετικές προσφορές!",
+        "Are you from": "Είσαι από",
+        "Choose my Country": "Επιλέξτε τη χώρα μου",
+        Yes: "Ναι",
       },
     },
     hu: {
@@ -4007,6 +4175,13 @@ async function initializeI18n() {
           "Ismerje meg összeállításunkat a legjobb sportfogadási oldalakról, amelyek teljes körű sportesemény-áttekintést és versenyképes oddsokat kínálnak. Mélyedjen el pártatlan értékelésekben, és találja meg az Ön preferenciáinak megfelelő végső sportfogadási célpontot.",
         "Top New Releases": "Legújabb kaszinók megjelenése",
         "New Arrivals": "Új érkezések",
+        "Website language": "Weboldal nyelve",
+        "Your country of residence": "A lakhelyed országa",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Nem jó? Válassza ki valódi lakóhelyét az alábbi listáról, hogy láthassa a releváns ajánlatokat!",
+        "Are you from": "Te honnan vagy?",
+        "Choose my Country": "Válassza ki az országomat",
+        Yes: "Igen",
       },
     },
     it: {
@@ -4338,6 +4513,13 @@ async function initializeI18n() {
           "Esplora la nostra raccolta dei migliori siti di scommesse sportive, che offrono piattaforme con una copertura completa degli eventi sportivi e quote competitive. Approfondisci le valutazioni imparziali e individua la destinazione finale delle scommesse sportive su misura per le tue preferenze.",
         "Top New Releases": "Top Nuove Uscite",
         "New Arrivals": "Nuovi arrivi",
+        "Website language": "Lingua del sito web",
+        "Your country of residence": "Il tuo paese di residenza",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Non corretto? Scegli il tuo paese di residenza effettivo dalla lista sottostante per vedere le offerte pertinenti!",
+        "Are you from": "Sei tu da",
+        "Choose my Country": "Scegli il mio Paese",
+        Yes: "Sì",
       },
     },
     no: {
@@ -4669,6 +4851,13 @@ async function initializeI18n() {
           "Utforsk vår samling av førsteklasses sportsbettingsider, med plattformer som tilbyr omfattende dekning av sportsarrangementer og konkurransedyktige odds. Dykk ned i upartiske vurderinger, og finn den ultimate sportsbettingsdestinasjonen skreddersydd etter dine preferanser.",
         "Top New Releases": "Topp Nye Utgivelser",
         "New Arrivals": "Nye ankomster",
+        "Website language": "Nettstedsspråk",
+        "Your country of residence": "Ditt bostedsland",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Ikke riktig? Velg ditt faktiske bostedsland fra listen nedenfor for å se relevante tilbud!",
+        "Are you from": "Er du fra",
+        "Choose my Country": "Velg mitt land",
+        Yes: "Ja",
       },
     },
     pt: {
@@ -4999,6 +5188,13 @@ async function initializeI18n() {
           "Explore nossa compilação de sites de apostas esportivas de primeira linha, apresentando plataformas que oferecem cobertura abrangente de eventos esportivos e odds competitivas. Aprofunde-se em avaliações imparciais e identifique o destino final de apostas esportivas adaptado às suas preferências.",
         "Top New Releases": "Melhores novos lançamentos de cassino",
         "New Arrivals": "Novas chegadas",
+        "Website language": "Idioma do site",
+        "Your country of residence": "Seu país de residência",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Não está correto? Escolha o seu país de residência atual na lista abaixo para ver as ofertas relevantes!",
+        "Are you from": "Você é de",
+        "Choose my Country": "Escolha meu país",
+        Yes: "Sim",
       },
     },
     se: {
@@ -5331,6 +5527,13 @@ async function initializeI18n() {
           "Utforska vår samling av främsta sportspelssajter, med plattformar som erbjuder omfattande täckning av sportevenemang och konkurrenskraftiga odds. Dyk ner i opartiska bedömningar och hitta den ultimata sportspeldestinationen skräddarsydd efter dina preferenser.",
         "Top New Releases": "Topp Nya Släpp",
         "New Arrivals": "Nya ankomster",
+        "Website language": "Webspråk",
+        "Your country of residence": "Ditt land där du bor",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Icke rätt? Välj ditt faktiska land för bostad från listan nedan för att se relevanta erbjudanden!",
+        "Are you from": "Är du från",
+        "Choose my Country": "Välj mitt land",
+        Yes: "Ja",
       },
     },
     sk: {
@@ -5662,6 +5865,13 @@ async function initializeI18n() {
           "Preskúmajte našu kompiláciu najlepších stávkových stránok, ktoré ponúkajú platformy s komplexným pokrytím športových udalostí a konkurenčné kurzy. Ponorte sa do nezávislých hodnotení a určte konečnú destináciu pre športové stávky prispôsobenú vašim preferenciám.",
         "Top New Releases": "Top nové vydania",
         "New Arrivals": "Nové príchody kasína",
+        "Website language": "Jazyk webovej stránky",
+        "Your country of residence": "Vaša krajina trvalého pobytu",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Nenašli ste správnu krajinu? Vyberte si vašu skutočnú krajinu pobytu zo zoznamu nižšie, aby ste videli relevantné ponuky!",
+        "Are you from": "Si z",
+        "Choose my Country": "Vyberte moju krajinu",
+        Yes: "Áno",
       },
     },
     tr: {
@@ -5991,11 +6201,16 @@ async function initializeI18n() {
           "Öncü spor bahis sitelerimizin derlemesini keşfedin, spor etkinliklerinin kapsamlı kapsamını ve rekabetçi oranları sunan platformları içeren. Tarafsız değerlendirmelere dalın ve tercihlerinize uygun en iyi spor bahisleri hedefini belirleyin.",
         "Top New Releases": "En İyi Yeni Çıkışlar",
         "New Arrivals": "Yeni Gelenler",
+        "Website language": "Websitesi dili",
+        "Your country of residence": "Yaşadığınız ülke",
+        "Not right? Pick your actual country of residence from the list below to see the relevant offers!":
+          "Ayıp değil mi? İlgili teklifleri görmek için aşağıdaki listeden gerçek ikamet ülkenizi seçin!",
+        "Are you from": "Sen nereden",
+        "Choose my Country": "Ülkemi Seç",
+        Yes: "Evet",
       },
     },
   };
-  
-  
   
 
   let source;
@@ -6009,7 +6224,7 @@ async function initializeI18n() {
     .use(initReactI18next)
     .init({
       resources,
-      lng: source !== "partner1043" ? matchedLanguage : "all",
+      lng: matchedLanguage,
       interpolation: {
         escapeValue: false,
       },
@@ -6019,3 +6234,4 @@ async function initializeI18n() {
 initializeI18n();
 
 export default i18n;
+

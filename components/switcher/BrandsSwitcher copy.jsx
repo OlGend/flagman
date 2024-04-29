@@ -1,8 +1,42 @@
-export const getBrands = async (categoryBrands, lng) => {
-  const apiAll = "https://pickbonus.myawardwallet.com/api/brandsNew/read.php";
-  const api1039 = "https://pickbonus.myawardwallet.com/api/brandsNew2/read.php";
-  const api1043 = "https://pickbonus.myawardwallet.com/api/brandsNew3/read.php";
-  const api1044 = "https://pickbonus.myawardwallet.com/api/brandsNew4/read.php";
+"use client";
+import { useState, useEffect } from "react";
+import Loader from "@/components/Loader";
+import { useLanguage } from "./LanguageContext";
+
+const BrandsSwitcher = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { language, setLanguage } = useLanguage(); // Используй состояние и функцию из контекста
+
+  const ipData = async () => {
+    try {
+      const response = await fetch(
+        "https://ipapi.co/json/?key=YD0x5VtXrPJkOcFQMjEyQgqjfM6jUcwS4J54b3DI8ztyrFpHzW"
+      );
+      const data = await response.json();
+      if (data.country) {
+        setLanguage(data.country.toLowerCase()); // Используй setLanguage из контекста
+        if (typeof window !== "undefined") {
+          localStorage.setItem("country_brands", data.country.toLowerCase());
+        }
+      }
+    } catch (error) {
+      console.error("Ошибка при запросе к API:", error);
+      setLanguage("all"); 
+    }
+  };
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("country_brands");
+    if (!savedLanguage) {
+      ipData();
+    }
+  }, []);
+
+  const changeLanguage = (lng) => {
+    setIsLoading(true);
+    setLanguage(lng);
+    localStorage.setItem("country_brands", lng);
+    setIsLoading(false);
+  };
 
   const availableLanguages = [
     { code: "au", label: "Australia", flag: "🇦🇺" },
@@ -85,48 +119,53 @@ export const getBrands = async (categoryBrands, lng) => {
     { code: "us", label: "USA", flag: "🇺🇸" },
     { code: "all", label: "World", flag: "🌍" },
   ];
-  const partners = {
-    partner1039: { url: api1039, languages: availableLanguages1039 },
-    partner1043: { url: api1043, languages: availableLanguages1043 },
-    partner1044: { url: api1044, languages: availableLanguages1044 },
-    default: { url: apiAll, languages: availableLanguages },
-  };
 
-  const source = localStorage.getItem("source") || "default";
-  const { url, languages } = partners[source];
 
-  // Проверяем, поддерживается ли переданный язык
-  let supportedLanguage = languages.find(
-    (language) => language.code.toUpperCase() === lng.toUpperCase()
+  
+  
+  let item;
+  if (typeof window !== "undefined") {
+    item = localStorage.getItem("source");
+  }
+  let newLng;
+  if (item === "partner1039") {
+    newLng = availableLanguages1039;
+  } else if (item === "partner1043") {
+    newLng = availableLanguages1043;
+  } else if (item === "partner1044") {
+    newLng = availableLanguages1044;
+  } else {
+    newLng = availableLanguages;
+  }
+
+  return (
+    <div className={`language-switcher ml-3 flex flex-col`}>
+      <select
+        className={`desktop-lang ${language}`}
+        value={language}
+        onChange={(e) => {
+          const selected = newLng.find(
+            (lang) => lang.code === e.target.value
+          );
+          if (selected) {
+            changeLanguage(selected.code);
+          }
+        }}
+      >
+        {newLng.map((language) => (
+          <option
+            key={language.code}
+            value={language.code}
+            style={{ fontSize: "20px" }}
+          >
+            {language.flag} {language.label}
+          </option>
+        ))}
+      </select>
+
+      {isLoading && <Loader />}
+    </div>
   );
-
-  // Если язык не поддерживается, используем "all"
-  if (!supportedLanguage) {
-    supportedLanguage = { code: "all" };
-  }
-
-  try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.error("Failed to fetch data:", res.status);
-      return [];
-    }
-
-    const responseData = await res.json();
-    const filteredData = responseData.brandsNew.filter(
-      (rowData) =>
-        (rowData.GEO === supportedLanguage.code.toUpperCase() ||
-          supportedLanguage.code === "ALL") &&
-        rowData["CurrentStatus"] === "Ongoing" &&
-        !["Mirax (FS)", "Katsubet (FS)", "7Bit (FS)"].includes(
-          rowData["CasinoBrand"]
-        ) &&
-        rowData[categoryBrands.key1] === categoryBrands.key2
-    );
-
-    return filteredData;
-  } catch (error) {
-    console.error("An error occurred:", error);
-    return [];
-  }
 };
+
+export default BrandsSwitcher;

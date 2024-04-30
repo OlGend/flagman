@@ -61,13 +61,13 @@ export default function AllBrands({
 
   const { language } = useLanguage();
   const categoryBrandsAll = { key1: segment, key2: value };
-  console.log("object", categoryBrandsAll);
+
   const categoryBrands = { key1: "Video", key2: "1" };
   useEffect(() => {
     const fetchData = async () => {
       const brands2 = await getBrands(categoryBrands, language);
       const brands = await getBrands(categoryBrandsAll, language);
-      console.log("BRANDS", brands);
+
       setFilteredBrands(brands);
       setTopBrands(brands2);
     };
@@ -84,7 +84,6 @@ export default function AllBrands({
     setVisibleBrands2((prevVisibleBrands) => prevVisibleBrands + itemsPerPage2);
   };
 
-  
   const [newUrl, setNewUrl] = useState("");
   // Чтение сохраненной ссылки из локального хранилища
   useEffect(() => {
@@ -433,7 +432,6 @@ export default function AllBrands({
                         key={item.id_brand}
                         href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                         target="_blank"
-                        
                       >
                         <Image
                           src={`/brands/${item.CasinoBrand}.png`}
@@ -475,7 +473,7 @@ export default function AllBrands({
                           target="_blank"
                         >
                           <Image
-                          className="target-listing-brands"
+                            className="target-listing-brands"
                             src={`/brands/${item.CasinoBrand}.png`}
                             alt={`/brands/${item.CasinoBrand}.png`}
                             width={200}

@@ -14,6 +14,9 @@ export type Brand = {
   KeitaroGoBigID: string;
   KeitaroR2dID: string;
 };
+interface UserData {
+  leads?: string;  // Предполагая, что 'leads' это строка, содержащая JSON-строку.
+}
 
 interface LeadOrSale {
   campaignId: string;
@@ -29,10 +32,10 @@ const BRAND_CATEGORIES = { key1: "Segment2", key2: "Sandbox" };
 
 const UserBrands = () => {
   const [brands, setBrands] = useState<Brand[]>([]);
+  const [otherBrands, setOtherBrands] = useState<Brand[]>([]);
+
   const { language } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
-  const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
-  const [otherBrands, setOtherBrands] = useState<Brand[]>([]);
 
   const savedUrl = localStorage.getItem("savedUrl") || "";
 
@@ -44,9 +47,23 @@ const UserBrands = () => {
   useEffect(() => {
     const fetchBrands = async () => {
       setIsLoading(true);
+      const userDataString = localStorage.getItem("userData") || "{}";
+      let userData: UserData = JSON.parse(userDataString); 
+  
       try {
         const brandsData = await getBrands(BRAND_CATEGORIES, language);
-        setBrands(brandsData);
+        const statusArray: LeadOrSale[] = userData.leads ? JSON.parse(userData.leads) : [];
+        const newFilteredBrands = brandsData.filter((brand: Brand) =>
+          statusArray.some((status: LeadOrSale) =>
+            status.campaignId === brand.KeitaroGoBigID ||
+            status.campaignId === brand.KeitaroR2dID
+          )
+        );
+  
+        setBrands(newFilteredBrands);
+        setOtherBrands(
+          brandsData.filter((brand: Brand) => !newFilteredBrands.includes(brand))
+        );
       } catch (error) {
         console.error("Ошибка при загрузке брендов:", error);
       } finally {
@@ -57,25 +74,34 @@ const UserBrands = () => {
     fetchBrands();
   }, [language]);
   
-  useEffect(() => {
-    const userDataString = localStorage.getItem("userData") || "{}";
-    let userData = {};
-    try {
-      userData = JSON.parse(userDataString);
-      const statusArray = userData.leads ? JSON.parse(userData.leads) : [];
-      const newFilteredBrands = brands.filter(brand =>
-        statusArray.some(status => 
-          status.campaignId === brand.KeitaroGoBigID || status.campaignId === brand.KeitaroR2dID
-        )
-      );
-      setFilteredBrands(newFilteredBrands);
-      setOtherBrands(brands.filter(brand => !newFilteredBrands.includes(brand)));
-    } catch (error) {
-      console.error("Ошибка при обработке данных пользователя:", error);
-    }
-  }, [brands]);
-  
-  const updateUserStatus = async (userId: string, campaignId: string, status: string) => {
+
+  // useEffect(() => {
+  //   const userDataString = localStorage.getItem("userData") || "{}";
+  //   let userData = {};
+  //   try {
+  //     userData = JSON.parse(userDataString);
+  //     const statusArray = userData.leads ? JSON.parse(userData.leads) : [];
+  //     const newFilteredBrands = brands.filter((brand) =>
+  //       statusArray.some(
+  //         (status) =>
+  //           status.campaignId === brand.KeitaroGoBigID ||
+  //           status.campaignId === brand.KeitaroR2dID
+  //       )
+  //     );
+  //     setFilteredBrands(newFilteredBrands);
+  //     setOtherBrands(
+  //       brands.filter((brand) => !newFilteredBrands.includes(brand))
+  //     );
+  //   } catch (error) {
+  //     console.error("Ошибка при обработке данных пользователя:", error);
+  //   }
+  // }, [brands]);
+
+  const updateUserStatus = async (
+    userId: string,
+    campaignId: string,
+    status: string
+  ) => {
     if (!userId || !campaignId) {
       console.error("Error: Missing userId or campaignId");
       return;
@@ -89,7 +115,11 @@ const UserBrands = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id: userId, campaignId: campaignId, status: status }),
+          body: JSON.stringify({
+            id: userId,
+            campaignId: campaignId,
+            status: status,
+          }),
         }
       );
       if (!response.ok) throw new Error("Network response was not ok");
@@ -106,18 +136,24 @@ const UserBrands = () => {
       {isLoading && <Loader />}
       <h3>You are registered</h3>
       <div className="flex flex-wrap px-0 py-6">
-        {filteredBrands.map((brand) => (
+        {brands.map((brand) => (
           <BrandCard brand={brand} savedUrl={savedUrl} key={brand.id_brand} />
         ))}
       </div>
       <h3>More options available</h3>
       <div className="flex flex-wrap px-0 py-6">
         {otherBrands.map((brand) => (
-          <BrandCard 
-            brand={brand} 
-            savedUrl={savedUrl} 
-            key={brand.id_brand} 
-            register={() => updateUserStatus(localStorage.getItem("user_id") || "", brand.KeitaroGoBigID, "lead")}
+          <BrandCard
+            brand={brand}
+            savedUrl={savedUrl}
+            key={brand.id_brand}
+            register={() =>
+              updateUserStatus(
+                localStorage.getItem("user_id") || "",
+                brand.KeitaroGoBigID,
+                "lead"
+              )
+            }
           />
         ))}
       </div>
@@ -125,7 +161,11 @@ const UserBrands = () => {
   );
 };
 
-const BrandCard: React.FC<{ brand: Brand; savedUrl: string; register?: () => void }> = ({ brand, savedUrl, register }) => (
+const BrandCard: React.FC<{
+  brand: Brand;
+  savedUrl: string;
+  register?: () => void;
+}> = ({ brand, savedUrl, register }) => (
   <div className="card-brand mb-3 basis-[19%] glowing-box">
     <div className="brandImage p-3">
       <Link href={`${brand.GoBig}/${savedUrl}`}>

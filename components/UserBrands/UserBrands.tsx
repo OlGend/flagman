@@ -37,12 +37,12 @@ const UserBrands = () => {
   const { language } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
 
-  const savedUrl = localStorage.getItem("savedUrl") || "";
-
+  
   const fetchBrands = async () => {
     const brandsData: Brand[] = await getBrands(BRAND_CATEGORIES, language);
     setBrands(brandsData);
   };
+  // const savedUrl = localStorage.getItem("savedUrl") || "";
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -137,7 +137,7 @@ const UserBrands = () => {
       <h3>You are registered</h3>
       <div className="flex flex-wrap px-0 py-6">
         {brands.map((brand) => (
-          <BrandCard brand={brand} savedUrl={savedUrl} key={brand.id_brand} />
+          <BrandCard brand={brand} savedUrl={""} key={brand.id_brand} />
         ))}
       </div>
       <h3>More options available</h3>
@@ -145,7 +145,7 @@ const UserBrands = () => {
         {otherBrands.map((brand) => (
           <BrandCard
             brand={brand}
-            savedUrl={savedUrl}
+            savedUrl={""}
             key={brand.id_brand}
             register={() =>
               updateUserStatus(

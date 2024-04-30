@@ -36,7 +36,7 @@ export default function TopBrands() {
     searchParams.delete("brand");
     const currentKeyword = searchParams.get("keyword");
 
-    console.log("xxxx", currentKeyword);
+  
 
     const partners = ["partner1039", "partner1043", "partner1044"];
 
@@ -60,10 +60,7 @@ export default function TopBrands() {
     if (currentKeyword) {
       // Только если currentKeyword не null и не undefined, вызываем функцию
       setPartnerSource(currentKeyword);
-    } else {
-      // Обработка случая, когда currentKeyword не задан
-      console.log("Keyword is missing");
-    }
+    } 
 
     const ad_campaign = localStorage.getItem("ad_campaign_id");
 

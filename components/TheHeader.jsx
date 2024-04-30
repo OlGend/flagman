@@ -78,7 +78,6 @@ const TheHeader = () => {
       //   );
       // }
       if (d && typeof d === "string" && d.includes("Json")) {
-        console.log("--------------------- Data in `d` contains 'Json':", d);
         const dataUser = await getUserData(data);
         if (dataUser) {
           setDataUser(dataUser);
@@ -141,11 +140,11 @@ const TheHeader = () => {
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.origin !== "https://bonus.xxxcasinoguru.com") {
-        console.error(
-          "Received message from an unauthorized origin:",
-          event.origin
-        );
-        return;
+        // console.error(
+        //   "Received message from an unauthorized origin:",
+        //   event.origin
+        // );
+        // return;
       }
       // console.log("Raw data from iframe:", event.data);
       const jsonData = event.data;

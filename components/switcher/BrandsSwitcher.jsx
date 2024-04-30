@@ -104,7 +104,6 @@ const BrandsSwitcher = () => {
     { code: "at", label: "Austria", flag: "🇦🇹" },
     { code: "be", label: "Belgium", flag: "🇧🇪" },
     { code: "ca", label: "Canada", flag: "🇨🇦" },
-    // { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "dk", label: "Denmark", flag: "🇩🇰" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
     { code: "de", label: "Germany", flag: "🇩🇪" },
@@ -121,7 +120,6 @@ const BrandsSwitcher = () => {
     { code: "se", label: "Sweden", flag: "🇸🇪" },
     { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "us", label: "USA", flag: "🇺🇸" },
-
     { code: "all", label: "World", flag: "🌍" },
   ];
 
@@ -141,13 +139,12 @@ const BrandsSwitcher = () => {
     newLng = availableLanguages;
   }
 
-  console.log("??", newLng, language);
+
 
   const [lng, setLng] = useState("all");
 
   const fetchBrands = (language, newLng) => {
     const matchedLanguage = newLng.find((lng) => lng.code === language);
-    console.log("???????", matchedLanguage);
     setLng(matchedLanguage ? matchedLanguage.code : "all");
   };
   useEffect(() => {

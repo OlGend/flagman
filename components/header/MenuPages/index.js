@@ -43,19 +43,19 @@ export default function AccountMenu({ userId, t }) {
     };
     fetchData();
     if (d && typeof d === 'string' && d.includes("Json")) {
-      console.log("--------------------- Data in `d` contains 'Json':", d);
+   
       fetchData();
     }
   }, [userId, d]);
 
 
 
-console.log("---------------------", d);
+
   useEffect(() => {
     const handleMessage = (event) => {
 
       if (event.origin !== "https://bonus.xxxcasinoguru.com") {
-        console.error("Received message from an unauthorized origin:", event.origin);
+        // console.error("Received message from an unauthorized origin:", event.origin);
         return;
       }
       // console.log("Raw data from iframe:", event.data);

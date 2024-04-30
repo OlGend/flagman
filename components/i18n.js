@@ -118,16 +118,12 @@ async function initializeI18n() {
   }
 
   const languages = newLng;
-  console.log("NLN", newLng)
+ 
 
   // Используем метод map для сопоставления значений массива languages с defLng
   const matchedLanguage = newLng.includes(defLng) ? defLng : "all";
 
-  console.log("LLLL", matchedLanguage)
-  // // Фильтруем совпадающие значения
-  // const matchedLanguage = matchedLanguages.find(
-  //   (language) => language !== null
-  // );
+
 
   const resources = {
     all: {

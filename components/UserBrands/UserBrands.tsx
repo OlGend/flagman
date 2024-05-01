@@ -41,7 +41,7 @@ const UserBrands = () => {
   // const savedUrl = localStorage.getItem("savedUrl") || "";
   let savedUrl = "";
   if (typeof window !== "undefined") {
-    savedUrl = localStorage.getItem("user_id") || "";
+    savedUrl = localStorage.getItem("savedUrl") || "";
   }
 
   // const userId = localStorage.getItem("user_id");
@@ -52,48 +52,55 @@ const UserBrands = () => {
 
   const fetchBrands = async () => {
     if (userId === "null") {
- 
       console.error("No user ID found, unable to fetch brands.");
       setIsLoading(false);
-
+      return;
+    }
+    if (!userId) {
+      console.error("No user ID found, unable to fetch brands.");
+      setIsLoading(false);
       return;
     }
     setIsLoading(true);
-    const data = await getUserData(localStorage.getItem("user_id"));
+    const data = await getUserData(userId);
     if (!data) {
-      // Проверка на null
       console.error("Received null data from getUserData");
-      setIsLoading(false); // Обязательно остановить индикатор загрузки
-      return; // Выход из функции, если данные нулевые
+      setIsLoading(false);
+      return;
     }
-    const userDataString = data.leads;
-    let userData: LeadOrSale[] = [];
-
+    
+    // Преобразование строк JSON в массивы объектов
+    const userLeads: LeadOrSale[] = JSON.parse(data.leads || '[]');
+    const userSales: LeadOrSale[] = JSON.parse(data.sales || '[]');
+  
+    // Создание массивов идентификаторов кампаний из лидов и продаж
+    const leadsIds = userLeads.map((lead) => lead.campaignId);
+    const salesIds = userSales.map((sale) => sale.campaignId);
+  
     try {
       const brandsData: Brand[] = await getBrands(BRAND_CATEGORIES, language);
-      userData = JSON.parse(userDataString);
-
-      const statusArray = userData.map((item) => item.campaignId);
-
-      const newFilteredBrands = brandsData.filter((brand) =>
-        statusArray.some(
-          (status) =>
-            status === brand.KeitaroGoBigID || status === brand.KeitaroR2dID
-        )
+  
+      // Фильтрация брендов по лидам, которые не пересекаются с продажами
+      const leadsOnlyBrands = brandsData.filter((brand) =>
+        leadsIds.includes(brand.KeitaroGoBigID) &&
+        !salesIds.includes(brand.KeitaroGoBigID)
       );
-
-      setBrands(newFilteredBrands);
-
+  
+      // Обновление состояния с брендами только из лидов
+      setBrands(leadsOnlyBrands);
+  
+      // Остальные бренды, которые могут быть использованы в другом контексте
       setOtherBrands(
-        brandsData.filter((brand) => !newFilteredBrands.includes(brand))
+        brandsData.filter((brand) => !leadsIds.includes(brand.KeitaroGoBigID))
       );
-
+  
     } catch (error) {
-      console.error("Ошибка при загрузке брендов:", error);
+      console.error("Error loading brands:", error);
     } finally {
       setIsLoading(false);
     }
   };
+  
   useEffect(() => {
     if (userId) {
       fetchBrands();
@@ -101,7 +108,7 @@ const UserBrands = () => {
   }, [language, isShow, userId]);
 
 
-  console.log("UserId check:", userId);
+
   if (userId === "null") {
     return null;
   }
@@ -109,13 +116,13 @@ const UserBrands = () => {
   return userId ? (
     <div className="flex flex-col">
       {isLoading && <Loader />}
-      <h3>You are registered from us</h3>
+      <h2>These are casinos where the user registered and did not make the first deposit</h2>
       <div className="flex flex-wrap px-0 py-6">
         {brands.map((brand) => (
           <BrandCard brand={brand} savedUrl={savedUrl} key={brand.id_brand} />
         ))}
       </div>
-      <h3>You can registered from us</h3>
+      <h2>These are casinos where the user did not register and did not make a first deposit</h2>
       <div className="flex flex-wrap px-0 py-6">
         {otherBrands.map((brand) => (
           <BrandCard

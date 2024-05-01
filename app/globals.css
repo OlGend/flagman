@@ -9469,6 +9469,9 @@ body {
   .MuiPaper-root.MuiPaper-elevation {
     max-height: 230px;
   }
+  .main__container .MuiBox-root .flex.flex-wrap.px-0.py-6 .card-brand.mb-3 {
+    flex-basis: 100% !important;
+  }
 }
 body {
   overflow: initial !important;
@@ -9486,74 +9489,8 @@ body {
 .card-brand.glowing-box:nth-child(4n+1) {
   margin-left: 0;
 }
-
-/* @keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 24px rgba(255, 0, 128, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(255, 0, 128, 1);
-  }
+.stepper .glowing-box .btn-primary {
+  font-size: 13px !important;
+  border-radius: 0 !important;
+  border: 1px solid #fff;
 }
-@keyframes glow2 {
-  0%,
-  100% {
-    box-shadow: 0 0 24px rgba(166, 255, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(166, 255, 0, 1);
-  }
-}
-@keyframes glow3 {
-  0%,
-  100% {
-    box-shadow: 0 0 24px rgba(0, 229, 255, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(0, 229, 255, 1);
-  }
-}
-@keyframes glow4 {
-  0%,
-  100% {
-    box-shadow: 0 0 24px rgba(255, 110, 97, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(255, 110, 97, 1);
-  }
-}
-@keyframes glow5 {
-  0%,
-  100% {
-    box-shadow: 0 0 24px rgba(255, 255, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(255, 255, 0, 1);
-  }
-}
-.glowing-box {
-  position: relative;
-  overflow: hidden;
-}
-.glowing-box:nth-child(6n + 1) {
-  animation: glow 2s ease-in-out infinite;
-  box-shadow: 0 0 24px rgba(255, 0, 128, 0.5);
-}
-
-.glowing-box:nth-child(6n + 2) {
-  animation: glow2 2s ease-in-out infinite;
-  box-shadow: 0 0 24px rgba(166, 255, 0, 0.5);
-}
-.glowing-box:nth-child(6n + 3) {
-  animation: glow3 2s ease-in-out infinite;
-  box-shadow: 0 0 24px rgba(0, 229, 255, 0.5);
-}
-.glowing-box:nth-child(6n + 4) {
-  animation: glow4 2s ease-in-out infinite;
-  box-shadow: 0 0 24px rgba(255, 110, 97, 0.5);
-}
-.glowing-box:nth-child(6n + 5) {
-  animation: glow5 2s ease-in-out infinite;
-  box-shadow: 0 0 24px rgba(255, 255, 0, 0.5);
-} */

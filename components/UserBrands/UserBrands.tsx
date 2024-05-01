@@ -38,9 +38,17 @@ const UserBrands = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isShow, setIshow] = useState(false);
 
-  const savedUrl = localStorage.getItem("savedUrl") || "";
+  // const savedUrl = localStorage.getItem("savedUrl") || "";
+  let savedUrl = "";
+  if (typeof window !== "undefined") {
+    savedUrl = localStorage.getItem("user_id") || "";
+  }
 
-  const userId = localStorage.getItem("user_id");
+  // const userId = localStorage.getItem("user_id");
+  let userId = "";
+  if (typeof window !== "undefined") {
+    userId = localStorage.getItem("user_id") || "";
+  }
 
   const fetchBrands = async () => {
     if (userId === "null") {

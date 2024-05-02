@@ -17,8 +17,8 @@ export const FinallyStep = ({ brands }: FinallyStepProps) => {
     <StyledDiv>
       <Box>
         <div className="flex flex-wrap px-0 py-6">
-          <UserBrands />
-          {/* {brands.map((brand) => (
+          {/* <UserBrands /> */}
+          {brands.map((brand) => (
             <div key={brand.id_brand} className="card-brand mb-3 basis-[19%]">
               <div className="brandImage p-3">
                 <Link href={`${brand.GoBig}/${savedUrl}`}>
@@ -44,7 +44,7 @@ export const FinallyStep = ({ brands }: FinallyStepProps) => {
                 </div>
               </div>
             </div>
-          ))} */}
+          ))}
         </div>
       </Box>
     </StyledDiv>

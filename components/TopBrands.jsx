@@ -83,6 +83,9 @@ export default function TopBrands() {
 
   useEffect(() => {
     setLoading(brands.length === 0);
+    if (brands.length < 1) {
+      setLoading(false);
+    }
   }, [brands]);
 
   const shuffledBrands = shuffle(brands);

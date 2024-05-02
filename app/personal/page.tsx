@@ -9,6 +9,7 @@ import { PhoneNumberStep } from "@/components/personal/PhoneNumberStep";
 import { Tabs } from "@/components/personal/Tabs";
 import { WalletAddressStep } from "@/components/personal/WalletAddressStep";
 import Cards from "@/components/products/Cards";
+import UserBrands from "@/components/UserBrands/UserBrands";
 import type { User } from "@/interfaces/user";
 import {
   Coins,
@@ -133,7 +134,7 @@ export default function Personal() {
   // };
   const onChangeTab = (_e: React.SyntheticEvent, newTabIndex: number) => {
     // Сначала определим объект сопоставления вне лямбда-функции
-    const tabMap = { wallet: 0, historia: 1, cards: 2 };
+    const tabMap = { wallet: 0, historia: 1, cards: 2, brands: 3 };
     const tabName = Object.keys(tabMap).find(
       (key) => tabMap[key as keyof typeof tabMap] === newTabIndex
     );
@@ -326,6 +327,8 @@ export default function Personal() {
                       t("Withdrawal Request"),
                       t("Withdrawal History"),
                       t("Cards Shop"),
+                      t("Deposit Casino"),
+
                     ],
                     content: [
                       <Stepper
@@ -350,6 +353,7 @@ export default function Personal() {
                         statusPayment={user.status_payment}
                       />,
                       <Cards key="cardsShop" user={user} onFinish={onFinish} />,
+                      <UserBrands key="brands" />
                     ],
                   }}
                 />

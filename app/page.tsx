@@ -31,9 +31,9 @@ export default async function Home() {
         <Fortunes banner={banner} target={target} creative={creative} />
       </div>
 
-      <div className="main__container">
+      {/* <div className="main__container">
         <UserBrands />
-      </div>
+      </div> */}
 
       <div className="background-block">
         <FilteredHome />

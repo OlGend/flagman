@@ -116,6 +116,7 @@ const UserBrands = () => {
   return userId ? (
     <div className="flex flex-col">
       {isLoading && <Loader />}
+      
       <h2>These are casinos where the user registered and did not make the first deposit</h2>
       <div className="flex flex-wrap px-0 py-6">
         {brands.map((brand) => (

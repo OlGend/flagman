@@ -22,6 +22,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Badge from "@mui/material/Badge";
 import { updateGeo } from "@/components/getUser/updateGeo";
 import ResponsiveDialog from "@/components/geo-identifier";
+import BasicModal from "@/components/modal";
 
 const TheHeader = () => {
   const { t } = useTranslation();
@@ -55,9 +56,8 @@ const TheHeader = () => {
     }
     async function updateUserData(data) {
       localStorage.setItem("user_id", data);
-      const partners = ["partner1039", "partner1043", "partner1044"];
 
-      // Перебор каждого идентификатора
+      const partners = ["partner1039", "partner1043", "partner1044"];
       partners.forEach((partner) => {
         if (data.includes(partner)) {
           localStorage.setItem("source", partner);
@@ -71,12 +71,7 @@ const TheHeader = () => {
         setDataUser(dataUser);
         setLoad(true);
       }
-      // if (dataUser && dataUser.country === "N/A") {
-      //   updateGeo(
-      //     localStorage.getItem("user_id"),
-      //     localStorage.getItem("country_data")
-      //   );
-      // }
+
       if (d && typeof d === "string" && d.includes("Json")) {
         const dataUser = await getUserData(data);
         if (dataUser) {
@@ -166,6 +161,20 @@ const TheHeader = () => {
   //   );
   // }, []);
 
+const [showResponsiveDialog, setShowResponsiveDialog] = useState(false);
+const [showBasicModal, setShowBasicModal] = useState(false);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    if (!showResponsiveDialog) {
+      setShowBasicModal(true);
+    }
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, [showResponsiveDialog]);
+
+
   return (
     <header className="header">
       {load ? (
@@ -175,9 +184,9 @@ const TheHeader = () => {
           <div></div>
         )
       ) : (
-        "..."
+        ""
       )}
-
+    {showBasicModal && !showResponsiveDialog && <BasicModal />}
       <div className="header__bg">
         <div className="header__container ">
           <div className="logo">
@@ -201,7 +210,7 @@ const TheHeader = () => {
                   </Link>
                 </Badge>
               ) : (
-                "..."
+                ""
               )}
             </div>
             <div className="flex flex-col ml-8">
@@ -218,7 +227,7 @@ const TheHeader = () => {
                   </Link>
                 </Badge>
               ) : (
-                "..."
+                ""
               )}
             </div>
             <div className="flex flex-col ml-8">
@@ -262,7 +271,6 @@ const TheHeader = () => {
                   navLinks={items.map((item) => ({
                     ...item,
                     label: item.label,
-                    // label: t(item.label),
                   }))}
                   onLinkClick={closeMobileMenu}
                 />

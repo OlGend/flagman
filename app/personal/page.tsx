@@ -77,6 +77,7 @@ export default function Personal() {
       wallet: 0,
       historia: 1,
       cards: 2,
+      brands: 3,
     };
 
     if (tab !== null && tab in tabMap) {

@@ -27,7 +27,6 @@ interface LeadOrSale {
   USD: string;
 }
 
-
 const BRAND_CATEGORIES = { key1: "Segment2", key2: "Sandbox" };
 
 const UserBrands = () => {
@@ -68,46 +67,44 @@ const UserBrands = () => {
       setIsLoading(false);
       return;
     }
-    
+
     // Преобразование строк JSON в массивы объектов
-    const userLeads: LeadOrSale[] = JSON.parse(data.leads || '[]');
-    const userSales: LeadOrSale[] = JSON.parse(data.sales || '[]');
-  
+    const userLeads: LeadOrSale[] = JSON.parse(data.leads || "[]");
+    const userSales: LeadOrSale[] = JSON.parse(data.sales || "[]");
+
     // Создание массивов идентификаторов кампаний из лидов и продаж
     const leadsIds = userLeads.map((lead) => lead.campaignId);
     const salesIds = userSales.map((sale) => sale.campaignId);
-  
+
     try {
       const brandsData: Brand[] = await getBrands(BRAND_CATEGORIES, language);
-  
+
       // Фильтрация брендов по лидам, которые не пересекаются с продажами
-      const leadsOnlyBrands = brandsData.filter((brand) =>
-        leadsIds.includes(brand.KeitaroGoBigID) &&
-        !salesIds.includes(brand.KeitaroGoBigID)
+      const leadsOnlyBrands = brandsData.filter(
+        (brand) =>
+          leadsIds.includes(brand.KeitaroGoBigID) &&
+          !salesIds.includes(brand.KeitaroGoBigID)
       );
-  
+
       // Обновление состояния с брендами только из лидов
       setBrands(leadsOnlyBrands);
-  
+
       // Остальные бренды, которые могут быть использованы в другом контексте
       setOtherBrands(
         brandsData.filter((brand) => !leadsIds.includes(brand.KeitaroGoBigID))
       );
-  
     } catch (error) {
       console.error("Error loading brands:", error);
     } finally {
       setIsLoading(false);
     }
   };
-  
+
   useEffect(() => {
     if (userId) {
       fetchBrands();
     }
   }, [language, isShow, userId]);
-
-
 
   if (userId === "null") {
     return null;
@@ -116,14 +113,23 @@ const UserBrands = () => {
   return userId ? (
     <div className="flex flex-col">
       {isLoading && <Loader />}
-      
-      <h2>These are casinos where the user registered and did not make the first deposit</h2>
+      {brands.length > 0 && (
+        <h2>
+          These are casinos where the user registered and did not make the first
+          deposit
+        </h2>
+      )}
       <div className="flex flex-wrap px-0 py-6">
         {brands.map((brand) => (
           <BrandCard brand={brand} savedUrl={savedUrl} key={brand.id_brand} />
         ))}
       </div>
-      <h2>These are casinos where the user did not register and did not make a first deposit</h2>
+      {otherBrands.length > 0 && (
+        <h2>
+          These are casinos where the user did not register and did not make a
+          first deposit
+        </h2>
+      )}
       <div className="flex flex-wrap px-0 py-6">
         {otherBrands.map((brand) => (
           <BrandCard
@@ -171,14 +177,17 @@ const BrandCard: React.FC<{
       <div className="buttons flex items-center justify-between">
         {register ? (
           <button className="btn btn-secondary btn-fz" onClick={register}>
-           I&#39;m Registered
+            I&#39;m Registered
           </button>
         ) : (
           ""
         )}
-          <Link className="btn btn-primary btn-fz" href={`${brand.GoBig}/${savedUrl}`}>
-            Deposit Now
-          </Link>
+        <Link
+          className="btn btn-primary btn-fz"
+          href={`${brand.GoBig}/${savedUrl}`}
+        >
+          Deposit Now
+        </Link>
       </div>
     </div>
   </div>

@@ -99,9 +99,10 @@ export default function ResponsiveDialog() {
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
+        className="modal-country"
       >
         <DialogTitle id="responsive-dialog-title">
-          <strong>{`${t("Are you from")} ${localStorage.getItem(
+          <strong className="title-brands">{`${t("Are you from")} ${localStorage.getItem(
             "country_name"
           )}?`}</strong>
         </DialogTitle>
@@ -112,9 +113,9 @@ export default function ResponsiveDialog() {
         </DialogContent>
         {show && (
           <DialogActions>
-            <Button onClick={handleNo}>{t("Choose my Country")}</Button>
+            <Button className="btn btn-secondary" onClick={handleNo}>{t("Choose my Country")}</Button>
 
-            <Button onClick={handleYes} autoFocus>
+            <Button className="btn btn-primary" onClick={handleYes} autoFocus>
               {t("Yes")}
             </Button>
           </DialogActions>
@@ -129,7 +130,7 @@ export default function ResponsiveDialog() {
               getOptionLabel={(option) => option.label}
               getOptionValue={(option) => option.value}
             />
-            <Button onClick={handleYes} autoFocus>
+            <Button className="btn btn-primary" onClick={handleYes} autoFocus>
               {t("Confirm")}
             </Button>
           </DialogActions>

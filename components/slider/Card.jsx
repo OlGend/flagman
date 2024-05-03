@@ -16,6 +16,7 @@ function Card({ imagen, link, bonus }) {
 
   const props3 = useSpring({
     opacity: 1,
+    borderRadius: 2,
     transform: show ? "scale(1.03)" : "scale(1)",
     boxShadow: show
       ? "0 20px 25px rgb(0 0 0 / 25%)"

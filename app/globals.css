@@ -9482,11 +9482,36 @@ body {
 .glowing-box .buttons .btn-primary {
   line-height: 15px;
   margin-top: 0;
+  border: 1px solid #fff;
 }
-.card-brand.glowing-box:nth-child(5n+1) {
+.card-brand.glowing-box .brandImage {
+  max-height: initial;
+  position: relative;
+}
+.card-brand.glowing-box .brandImage .flex {
+  position: relative;
+  z-index: 2;
+}
+.card-brand.glowing-box .brandImage::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to top, rgba(29, 39, 48, 0.123), rgba(29, 39, 48, 0.5));
+}
+.card-brand.glowing-box .review-bonus {
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: center;
+  min-height: 49px;
+}
+.card-brand.glowing-box:nth-child(4n + 1) {
   margin-left: 1%;
 }
-.card-brand.glowing-box:nth-child(4n+1) {
+.card-brand.glowing-box:nth-child(3n + 1) {
   margin-left: 0;
 }
 .stepper .glowing-box .btn-primary {
@@ -9494,3 +9519,61 @@ body {
   border-radius: 0 !important;
   border: 1px solid #fff;
 }
+.p-0.MuiBox-root {
+}
+.p-0 .MuiBox-root, .modal-country .MuiPaper-root {
+  max-width: 384px;
+  box-sizing: border-box;
+  padding: 0 !important;
+  background: #120d2a;
+  box-shadow: 1px 1px 60px rgba(128, 0, 128, 0.486);
+}
+.modal-brands .btn-primary {
+  padding: 10px 15px !important;
+  position: absolute;
+  font-size: 16px !important;
+  min-width: 200px;
+  bottom: -15px;
+  left: calc(50% - 200px / 2);
+  border: 1px solid #fff;
+}
+.p-0 .MuiBox-root {
+  color: #fff !important;
+  text-align: center;
+}
+
+.title-brands {
+  font-size: 27px; /* Размер шрифта */
+  color: white; /* Цвет текста */
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6), 0 0 25px #800080,
+    0 0 5px darkmagenta; /* Тени для создания свечения */
+  font-weight: bold; /* Жирность шрифта */
+  font-family: "Arial", sans-serif; /* Шрифт */
+}
+.modal-brands p, .modal-country p {
+  font-size: 13px;
+  color: #c3c5c7;
+}
+.modal-country .btn {
+  min-height: 36px !important;
+  max-height: 36px !important;
+}
+.MuiDialog-root {
+  z-index: 1400;
+}
+.frstdep, .frstreg {
+  position: relative;
+}
+.frstdep::before, .frstreg::before {
+  content: "50 Free Spins";
+  position: absolute;
+  color: #fff;
+  padding: 2px 5px;
+  background: #07b963;
+  border: 1px solid #fff;
+  left: 1px;
+  top: 1px;
+  font-weight: 700;
+  z-index: 3;
+}
+

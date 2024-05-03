@@ -34,18 +34,20 @@ const LanguageSwitcher = () => {
   const availableLanguages1039 = availableLanguages;
   const availableLanguages1043 = [{ code: "all", label: "English", flag: "🌍" }];
   const availableLanguages1044 = [
+    { code: "cz", label: "Czech Republic", flag: "🇨🇿" },
+    { code: "dk", label: "Denmark", flag: "🇩🇰" },
     { code: "fi", label: "Finland", flag: "🇫🇮" },
-    { code: "se", label: "Sweden", flag: "🇸🇪" },
-    { code: "de", label: "Germany", flag: "🇩🇪" },
-    { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
-     { code: "dk", label: "Denmark", flag: "🇩🇰" },
     { code: "fr", label: "France", flag: "🇫🇷" },
-    { code: "pl", label: "Poland", flag: "🇵🇱" },
+    { code: "de", label: "Germany", flag: "🇩🇪" },
+    { code: "gr", label: "Greece", flag: "🇬🇷" },
     { code: "it", label: "Italy", flag: "🇮🇹" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
     { code: "no", label: "Norway", flag: "🇳🇴" },
-    { code: "all", label: "English", flag: "🌍" },
+    { code: "pl", label: "Poland", flag: "🇵🇱" },
+    { code: "se", label: "Sweden", flag: "🇸🇪" },
+    { code: "all", label: "English", flag: "🌍" }
   ];
+  
 
   // Select the correct language options based on the source
   let source;

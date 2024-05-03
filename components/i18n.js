@@ -91,6 +91,7 @@ async function initializeI18n() {
     "cz",
     "fi",
     "gb",
+    "gr",
     "ie",
     "it",
     "nz",

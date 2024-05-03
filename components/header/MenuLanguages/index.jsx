@@ -103,6 +103,7 @@ export default function MultipleSelectPlaceholder() {
     { code: "at", label: "Austria", flag: "🇦🇹" },
     { code: "be", label: "Belgium", flag: "🇧🇪" },
     { code: "ca", label: "Canada", flag: "🇨🇦" },
+    { code: "gr", label: "Greece", flag: "🇬🇷" },
     { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
     { code: "de", label: "Germany", flag: "🇩🇪" },

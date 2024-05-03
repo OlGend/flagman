@@ -13,7 +13,6 @@ type FinallyStepProps = {
 export const FinallyStep = ({ brands }: FinallyStepProps) => {
   const savedUrl = localStorage.getItem("savedUrl");
 
-  
   return (
     <StyledDiv>
       <Box>

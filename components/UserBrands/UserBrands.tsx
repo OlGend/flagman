@@ -159,22 +159,25 @@ const BrandCard: React.FC<{
   savedUrl: string;
   register?: () => void;
 }> = ({ brand, savedUrl, register }) => (
-  <div className="card-brand mb-3 basis-[24%] glowing-box">
-    <div className="brandImage p-3">
-      <Link href={`${brand.GoBig}/${savedUrl}`}>
+  <div className="card-brand mb-3 basis-[32%] glowing-box">
+    <div className={`brandImage p-3 flex flex-col ${register ? "frstreg" : "frstdep"}`}>
+      <Link
+        className={`flex flex-col items-center`}
+        href={`${brand.GoBig}/${savedUrl}`}
+      >
         <Image
           src={`/brands/${brand.CasinoBrand}.png`}
           alt={`Image of ${brand.CasinoBrand}`}
           width={150}
           height={75}
         />
+        <div>
+          <div className="review-bonus">{brand.OurOfferContent}</div>
+        </div>
       </Link>
       
     </div>
     <div className="brandContent p-3">
-      <div>
-        <div className="review-bonus">{brand.OurOfferContent}</div>
-      </div>
       <div className="buttons flex items-center justify-between">
         {register ? (
           <button className="btn btn-secondary btn-fz" onClick={register}>

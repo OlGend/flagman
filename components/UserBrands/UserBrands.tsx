@@ -169,6 +169,7 @@ const BrandCard: React.FC<{
           height={75}
         />
       </Link>
+      
     </div>
     <div className="brandContent p-3">
       <div>

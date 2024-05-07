@@ -175,6 +175,7 @@ const BrandCard: React.FC<{
           <div className="review-bonus">{brand.OurOfferContent}</div>
         </div>
       </Link>
+      
     </div>
     <div className="brandContent p-3">
       <div className="buttons flex items-center justify-between">

@@ -72,6 +72,7 @@ export const getBrands = async (categoryBrands, lng) => {
     { code: "ch", label: "Switzerland", flag: "🇨🇭" },
     { code: "nl", label: "Netherlands", flag: "🇳🇱" },
     { code: "de", label: "Germany", flag: "🇩🇪" },
+    { code: "gr", label: "Greece", flag: "🇬🇷" },
     { code: "cz", label: "The Czech Republic", flag: "🇨🇿" },
     { code: "fi", label: "Finland", flag: "🇫🇮" },
     { code: "gb", label: "Great Britain", flag: "🇬🇧" },

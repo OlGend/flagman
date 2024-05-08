@@ -159,10 +159,10 @@ const BrandCard: React.FC<{
   savedUrl: string;
   register?: () => void;
 }> = ({ brand, savedUrl, register }) => (
-  <div className="card-brand mb-3 basis-[32%] glowing-box">
-    <div className={`brandImage p-3 flex flex-col ${register ? "frstreg" : "frstdep"}`}>
+  <div className="card-brand mb-3 basis-[49%] glowing-box">
+    <div className={`brandImage p-3 items-start flex flex-col ${register ? "frstreg" : "frstdep"}`}>
       <Link
-        className={`flex flex-col items-center`}
+        className={`flex flex-col items-start`}
         href={`${brand.GoBig}/${savedUrl}`}
       >
         <Image
@@ -175,8 +175,6 @@ const BrandCard: React.FC<{
           <div className="review-bonus">{brand.OurOfferContent}</div>
         </div>
       </Link>
-    </div>
-    <div className="brandContent p-3">
       <div className="buttons flex items-center justify-between">
         {register ? (
           <button className="btn btn-secondary btn-fz" onClick={register}>
@@ -193,6 +191,8 @@ const BrandCard: React.FC<{
         </Link>
       </div>
     </div>
+    {/* <div className="brandContent p-3">
+    </div> */}
   </div>
 );
 

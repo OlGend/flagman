@@ -100,6 +100,8 @@ export default function TopBrands() {
     ),
   }));
 
+  console.log("BRANDS", brands)
+
   return (
     <>
       <div className="topbr">

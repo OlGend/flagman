@@ -6491,7 +6491,7 @@ h1 {
   margin-top: 30px;
 }
 .topbr .review-bonus {
-  width: 50% !important;
+  width: 56% !important;
   margin-bottom: 30px !important;
 }
 .sub-menu {
@@ -9465,14 +9465,7 @@ body {
 .tab_panel .MuiPaper-root.MuiPaper-elevation {
   max-width: initial !important;
 }
-@media (min-width: 320px) and (max-width: 1259px) {
-  .MuiPaper-root.MuiPaper-elevation {
-    max-height: 230px;
-  }
-  .main__container .MuiBox-root .flex.flex-wrap.px-0.py-6 .card-brand.mb-3 {
-    flex-basis: 100% !important;
-  }
-}
+
 body {
   overflow: initial !important;
 }
@@ -9487,31 +9480,64 @@ body {
 .card-brand.glowing-box .brandImage {
   max-height: initial;
   position: relative;
+  /* background: url(/blue.png) !important; */
+  background-repeat: no-repeat !important;
+  background-position: top left !important;
+  align-items: flex-start !important;
+  /* border: 2px solid rgba(255, 255, 255, 0.9) !important; */
+
 }
+.card-brand.glowing-box .brandImage .review-bonus {
+  font-size: 15px;
+  text-align: left !important;
+}
+.card-brand.glowing-box .brandImage .flex.flex-col.items-start {
+  align-items: flex-start;
+  /* min-height: 150px; */
+  /* margin-top: 21px; */
+  max-width: 61%;
+}
+.card-brand.glowing-box:nth-child(6n + 1) .brandImage {
+  background: url(/green_2_2.png);
+  background-size: cover;
+}
+.card-brand.glowing-box:nth-child(6n + 2) .brandImage  {
+  background: url(/lightblue_2.png);
+  background-size: cover;
+}
+.card-brand.glowing-box:nth-child(6n + 3) .brandImage  {
+  background: url(/blue_2.png);
+  background-size: cover;
+}
+.card-brand.glowing-box:nth-child(6n + 4) .brandImage  {
+  background: url(/green_1_2.png);
+  background-size: cover;
+}
+.card-brand.glowing-box:nth-child(6n + 5) .brandImage  {
+  background: url(/orange_2.png);
+  background-size: cover;
+}
+.card-brand.glowing-box:nth-child(6n + 6) .brandImage  {
+  background: url(/yellow_2.jpg);
+  background-size: cover;
+}
+
+
 .card-brand.glowing-box .brandImage .flex {
   position: relative;
   z-index: 2;
 }
-.card-brand.glowing-box .brandImage::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-image: linear-gradient(to top, rgba(29, 39, 48, 0.123), rgba(29, 39, 48, 0.5));
-}
+
 .card-brand.glowing-box .review-bonus {
   font-weight: 700;
   margin-top: 10px;
   text-align: center;
   min-height: 49px;
 }
-.card-brand.glowing-box:nth-child(4n + 1) {
-  margin-left: 1%;
+.card-brand.glowing-box:nth-child(2n + 2) {
+  margin-left: auto;
 }
-.card-brand.glowing-box:nth-child(3n + 1) {
+.card-brand.glowing-box {
   margin-left: 0;
 }
 .stepper .glowing-box .btn-primary {
@@ -9543,7 +9569,7 @@ body {
 }
 
 .title-brands {
-  font-size: 27px; /* Размер шрифта */
+  font-size: 22px; /* Размер шрифта */
   color: white; /* Цвет текста */
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6), 0 0 25px #800080,
     0 0 5px darkmagenta; /* Тени для создания свечения */
@@ -9563,17 +9589,52 @@ body {
 }
 .frstdep, .frstreg {
   position: relative;
+  min-height: 231px;
+  height: 100%;
 }
 .frstdep::before, .frstreg::before {
   content: "50 Free Spins";
   position: absolute;
   color: #fff;
-  padding: 2px 5px;
-  background: #07b963;
+  padding: 3px 8px;
+  background: #E0743A;
   border: 1px solid #fff;
-  left: 1px;
+  left: calc(50% - 124px/2);
   top: 1px;
   font-weight: 700;
   z-index: 3;
-}
+  width: 124px;
 
+  /* width: 100%; */
+}
+.btn-fzl {
+  border-color: #fff !important;
+  color: #fff !important;
+}
+.btn-fzl:hover {
+  background-color: #128722 !important;
+  color: #fff !important;
+}
+@media (min-width: 320px) and (max-width: 1259px) {
+
+  .page-personal.main__container.pb-10 {
+    width: 100%;
+    border-radius: 0;
+    padding: 100px 0 20px;
+  }
+  .card-brand.glowing-box .brandImage {
+    background-position: top right -50px !important;
+  }
+  .MuiPaper-root.MuiPaper-elevation {
+    max-height: 230px;
+  }
+  .main__container .MuiBox-root .flex.flex-wrap.px-0.py-6 .card-brand.mb-3 {
+    flex-basis: 100% !important;
+  }
+  .header {
+    z-index: 4 !important;
+  }
+  .title-balance {
+    margin-left: 20px;
+  }
+}

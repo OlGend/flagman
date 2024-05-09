@@ -7,6 +7,7 @@ import Image from "next/image";
 import Loader from "../Loader";
 import { updateUserStatus } from "./UpdateUserStatus";
 import { getUserData } from "@/components/getUser/getUser";
+import { useTranslation } from "react-i18next";
 
 export type Brand = {
   id_brand: string;
@@ -36,6 +37,7 @@ const UserBrands = () => {
   const { language } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [isShow, setIshow] = useState(false);
+  const { t } = useTranslation();
 
   // const savedUrl = localStorage.getItem("savedUrl") || "";
   let savedUrl = "";
@@ -114,21 +116,15 @@ const UserBrands = () => {
     <div className="flex flex-col">
       {isLoading && <Loader />}
       {brands.length > 0 && (
-        <h2>
-          These are casinos where the user registered and did not make the first
-          deposit
-        </h2>
+        <h2>{t("Your Registration Completed, First Deposit Awaited")}</h2>
       )}
       <div className="flex flex-wrap px-0 py-6">
         {brands.map((brand) => (
-          <BrandCard brand={brand} savedUrl={savedUrl} key={brand.id_brand} />
+          <BrandCard brand={brand} savedUrl={savedUrl} key={brand.id_brand} t={t} />
         ))}
       </div>
       {otherBrands.length > 0 && (
-        <h2>
-          These are casinos where the user did not register and did not make a
-          first deposit
-        </h2>
+        <h2>{t("Registration and First Deposit Not Completed")}</h2>
       )}
       <div className="flex flex-wrap px-0 py-6">
         {otherBrands.map((brand) => (
@@ -136,6 +132,7 @@ const UserBrands = () => {
             brand={brand}
             savedUrl={savedUrl}
             key={brand.id_brand}
+            t={t}
             register={() => {
               updateUserStatus(
                 localStorage.getItem("user_id") || "",
@@ -158,30 +155,35 @@ const BrandCard: React.FC<{
   brand: Brand;
   savedUrl: string;
   register?: () => void;
-}> = ({ brand, savedUrl, register }) => (
-  <div className="card-brand mb-3 basis-[32%] glowing-box">
-    <div className={`brandImage p-3 flex flex-col ${register ? "frstreg" : "frstdep"}`}>
+  t: Function;
+}> = ({ brand, savedUrl, register, t }) => (
+  <div className="card-brand mb-3 basis-[49%] glowing-box">
+    <div
+      className={`brandImage p-3 items-start flex flex-col ${
+        register ? "frstreg" : "frstdep"
+      }`}
+    >
       <Link
-        className={`flex flex-col items-center`}
+        className={`flex flex-col items-start`}
         href={`${brand.GoBig}/${savedUrl}`}
       >
         <Image
           src={`/brands/${brand.CasinoBrand}.png`}
           alt={`Image of ${brand.CasinoBrand}`}
-          width={150}
-          height={75}
+          width={200}
+          height={100}
         />
         <div>
           <div className="review-bonus">{brand.OurOfferContent}</div>
         </div>
       </Link>
-      
-    </div>
-    <div className="brandContent p-3">
       <div className="buttons flex items-center justify-between">
         {register ? (
-          <button className="btn btn-secondary btn-fz" onClick={register}>
-            I&#39;m Registered
+          <button
+            className="btn btn-secondary btn-fz btn-fzl mr-2"
+            onClick={register}
+          >
+            {t("I'm Registered")}
           </button>
         ) : (
           ""
@@ -190,10 +192,12 @@ const BrandCard: React.FC<{
           className="btn btn-primary btn-fz"
           href={`${brand.GoBig}/${savedUrl}`}
         >
-          Deposit Now
+          {t("Deposit Now")}
         </Link>
       </div>
     </div>
+    {/* <div className="brandContent p-3">
+    </div> */}
   </div>
 );
 

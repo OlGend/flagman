@@ -6,6 +6,8 @@ import Modal from "@mui/material/Modal";
 import Link from "next/link";
 import wheel from "@/public/whl2.png";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
 
 const style = {
   position: "absolute",
@@ -23,6 +25,7 @@ export default function BasicModal() {
   const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -37,21 +40,21 @@ export default function BasicModal() {
         <Box sx={style}>
           <div className="p-3 pb-10 relative">
             <Typography className="title-brands" id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
+            {t("Unlock Up To $20: Deposit Now With Your Registered Brands")}
             </Typography>
             <Typography
               id="modal-modal-description"
               className="mb-3"
               sx={{ mt: 2 }}
             >
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              {t("Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!")}
             </Typography>
             <Link
               onClick={handleClose}
               className="btn btn-primary mt-3"
               href={`/personal?tab=brands`}
             >
-              Show Brands
+               {t("Show Brands")}
             </Link>
           </div>
           <Image src={wheel} width={384} height={203} alt="wheel" />

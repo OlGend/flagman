@@ -328,7 +328,7 @@ export default function Personal() {
                       t("Withdrawal Request"),
                       t("Withdrawal History"),
                       t("Cards Shop"),
-                      // t("Deposit Casino"),
+                      t("Premium Casino"),
 
                     ],
                     content: [

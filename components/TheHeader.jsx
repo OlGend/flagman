@@ -169,7 +169,7 @@ useEffect(() => {
     if (!showResponsiveDialog) {
       setShowBasicModal(true);
     }
-  }, 2000);
+  }, 20000);
 
   return () => clearInterval(interval);
 }, [showResponsiveDialog]);
@@ -186,7 +186,7 @@ useEffect(() => {
       ) : (
         ""
       )}
-    {/* {showBasicModal && !showResponsiveDialog && <BasicModal />} */}
+    {showBasicModal && !showResponsiveDialog && <BasicModal />}
       <div className="header__bg">
         <div className="header__container ">
           <div className="logo">

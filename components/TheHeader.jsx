@@ -186,7 +186,7 @@ useEffect(() => {
       ) : (
         ""
       )}
-    {/* {showBasicModal && !showResponsiveDialog && <BasicModal />} */}
+    {showBasicModal && !showResponsiveDialog && <BasicModal />}
       <div className="header__bg">
         <div className="header__container ">
           <div className="logo">

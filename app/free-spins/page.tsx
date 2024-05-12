@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 
-import FilteredHome from "@/components/FilteredHome";
+// import FilteredHome from "@/components/FilteredHome";
 
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default async function FreeSpins() {
       <div className="page-bonuses">
         {/* <PreviewBonuses /> */}
         {/* <TopBrandsOriginal /> */}
-        <FilteredHome />
+        {/* <FilteredHome /> */}
         {/* <GuideSlotsPage /> */}
       </div>
     </>

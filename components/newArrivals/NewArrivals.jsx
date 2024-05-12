@@ -1,27 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import useSWR from "swr";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import Image from "next/image";
-import { getBrands } from "@/components/getBrands/getBrands";
+import { getBrands } from "@/components/getBrands/getBrands2";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 import { useTranslation } from "react-i18next";
+
 
 const NewArrivals = () => {
   const { t } = useTranslation();
   const [newUrl, setNewUrl] = useState("");
 
-  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    // centerMode: true,
-    // variableWidth: true,
     responsive: [
       {
         breakpoint: 768,
@@ -44,14 +43,31 @@ const NewArrivals = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const sandBrands = await getBrands(categoryBrands, language);
-      setBrands(sandBrands);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const sandBrands = await getBrands(categoryBrands, language);
+  //     setBrands(sandBrands);
+  //   };
 
-    fetchData();
-  }, [language]);
+  //   fetchData();
+  // }, [language]);
+
+  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
+
+  const { data, error } = useSWR(
+    ["brands", language],
+    () => getBrands(language),
+    { initialData: brands }
+  );
+  useEffect(() => {
+    if (data) {
+      const filteredData = data.filter(
+        (rowData) => rowData[categoryBrands.key1] === categoryBrands.key2
+      );
+      console.log("FILTER", filteredData);
+      setBrands(filteredData);
+    }
+  }, [data, categoryBrands.key1, categoryBrands.key2]);
   return (
     <div className="bl-sand">
       <div className="main__container block-sandbox">

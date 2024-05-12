@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import useSWR from "swr";
 import Loader from "@/components/Loader";
 import { shuffle } from "lodash";
 import Image from "next/image";
@@ -10,9 +9,8 @@ import Card from "@/components/slider/Card";
 import Carousel from "@/components/slider/Carousel";
 import imgrandom from "@/public/coins_banner2.jpg";
 import { useLanguage } from "@/components/switcher/LanguageContext";
-import { getBrands } from "@/components/getBrands/getBrands2";
+import { getBrands } from "@/components/getBrands/getBrands";
 import { useTranslation } from "react-i18next";
-
 
 export default function TopBrands() {
   const [newUrl, setNewUrl] = useState("");
@@ -72,34 +70,23 @@ export default function TopBrands() {
     }
 
     // Подготовка данных о брендах
-    // const fetchBrands = async () => {
-    //   const brandsData = await getBrands(
-    //     { key1: "Segment2", key2: "Premium" },
-    //     language
-    //   );
-    //   setBrands(brandsData);
-    //   setLoading(false);
-    // };
-    // fetchBrands();
-  }, [language]);
-  
-  const categoryBrands = { key1: "Segment2", key2: "Premium" };
-  const { data, error } = useSWR(
-    ["brands", language],
-    () => getBrands(language),
-    { initialData: brands }
-  );
-  useEffect(() => {
-    if (data) {
-      const filteredData = data.filter(
-        (rowData) => rowData[categoryBrands.key1] === categoryBrands.key2
+    const fetchBrands = async () => {
+      const brandsData = await getBrands(
+        { key1: "Segment2", key2: "Premium" },
+        language
       );
-      console.log("FILTER", filteredData)
-      setBrands(filteredData);
+      setBrands(brandsData);
+      setLoading(false);
+    };
+    fetchBrands();
+  }, [language]);
+
+  useEffect(() => {
+    setLoading(brands.length === 0);
+    if (brands.length < 1) {
       setLoading(false);
     }
-  }, [data, categoryBrands.key1, categoryBrands.key2]);
-
+  }, [brands]);
 
   const shuffledBrands = shuffle(brands);
   const cards2 = shuffledBrands.slice(0, 6).map((brand) => ({

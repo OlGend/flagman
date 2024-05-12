@@ -3,13 +3,8 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
-import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
 import { getBrands } from "@/components/getBrands/getBrands";
-import { getBrandsAll } from "@/components/getBrands/getBrandsAll";
-
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
 import FilterLoader from "@/components/FilterLoader";
 import {
   Gift,
@@ -18,13 +13,21 @@ import {
   GameController,
   CurrencyCircleDollar,
   Play,
-  Eye,
   Prohibit,
   MinusCircle,
   DotsThreeCircle,
   Handshake,
 } from "phosphor-react";
 import { useLanguage } from "@/components/switcher/LanguageContext";
+import dynamic from 'next/dynamic';
+const LazySlider = dynamic(() => import('react-slick'), {
+  ssr: false, // Это будет импортировать 'react-slick' только на клиенте
+  loading: () => <p>Download...</p>
+});
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
 
 export default function AllBrands({
   creative,
@@ -32,6 +35,7 @@ export default function AllBrands({
   segment,
   value,
   target,
+  brands
 }) {
   const { t } = useTranslation();
 
@@ -46,18 +50,12 @@ export default function AllBrands({
   const [openWithdrawalId, setOpenWithdrawalId] = useState(null);
   const [openDepositsId, setOpenDepositsId] = useState(null);
   const [openCountriesId, setOpenCountriesId] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // const handleLinkClick = () => {
-  //   setIsLoading(true);
-
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // };
 
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [topBrands, setTopBrands] = useState([]);
+
+  const [br, setBr] = useState(brands || []); 
+
 
   const { language } = useLanguage();
   const categoryBrandsAll = { key1: segment, key2: value };
@@ -85,11 +83,10 @@ export default function AllBrands({
   };
 
   const [newUrl, setNewUrl] = useState("");
-  // Чтение сохраненной ссылки из локального хранилища
+
   useEffect(() => {
     const savedUrl = localStorage.getItem("savedUrl");
 
-    // Установка новой ссылки в состояние
     if (savedUrl) {
       setNewUrl(savedUrl);
     }
@@ -98,10 +95,6 @@ export default function AllBrands({
   const [randomBrands, setRandomBrands] = useState([]);
   const [randomBrands2, setRandomBrands2] = useState([]);
   const [brandsGenerated, setBrandsGenerated] = useState(false);
-
-  // useEffect(() => {
-  //   setBrandsGenerated(false);
-  // }, [filtered.topBrand]);
 
   useEffect(() => {
     const generateRandomBrands = () => {
@@ -172,6 +165,8 @@ export default function AllBrands({
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
 
+
+
   return (
     <>
       {isLoader ? (
@@ -216,9 +211,7 @@ export default function AllBrands({
                   key={brand.id_brand}
                 >
                   <div className="flex flex-col basis-[63%]">
-                    <div className="flex ml-1 mb-3">
-                      {/* <div className="filter-flag">{filtered.flag}</div> */}
-                    </div>
+                    <div className="flex ml-1 mb-3"></div>
                     <div className="flex mb-1">
                       <Gift className="mr-1" size={24} />
                       <div className=" flex items-center review-bonus">
@@ -337,7 +330,6 @@ export default function AllBrands({
                         </div>
                         {isCountriesOpen && (
                           <div className="withdrawal">
-                            {/* Виводимо обмежені країни */}
                             <div className="countries flex flex-wrap justify-between mt-1">
                               {restricted.map((restrict, index) => (
                                 <div
@@ -373,18 +365,6 @@ export default function AllBrands({
                     </div>
 
                     <div className="buttons ml-auto flex items-center">
-                      {/* <Link
-                        className="btn btn-secondary text-center flex justify-center items-center"
-                      href={`https://link.reg2dep1.com/${playLink}/${newUrl}`}
-                        onClick={handleLinkClick}
-                      >
-                        {isLoading ? (
-                          <Loader />
-                        ) : (
-                          <Eye className="mr-2" size={20} />
-                        )}
-                      Read Review
-                      </Link> */}
                       <div className="flex flex-col items-center w-full p-4 howUse mt-2 mb-2">
                         <span className="text-center">
                           {t("How to get bonus?")}
@@ -419,8 +399,6 @@ export default function AllBrands({
           <div className="flex flex-col basis-[24%] py-6">
             {!isMobile ? (
               topBrands.slice(0, visibleBrands2).map((item) => {
-                // const reviewImgSrc = extractReviewImage(item.content.rendered);
-                // const playLink = extractLink(item.content.rendered);
                 return (
                   <div
                     className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -458,7 +436,7 @@ export default function AllBrands({
                 );
               })
             ) : (
-              <Slider {...settings}>
+              <LazySlider {...settings}>
                 {topBrands.map((item) => {
                   return (
                     <div
@@ -496,11 +474,23 @@ export default function AllBrands({
                     </div>
                   );
                 })}
-              </Slider>
+              </LazySlider>
             )}
           </div>
         </div>
       )}
     </>
   );
+}
+
+
+export async function getServerSideProps(context) {
+  const categoryBrands = { key1: "Segment2", key2: "Premium" }; // Пример категории
+  const lng = context.params.lang; // Получение языка из параметров URL
+
+  // Вызываем функцию получения данных брендов
+  const brands = await getBrands(categoryBrands, lng);
+
+  // Возвращаем полученные данные в props компонента
+  return { props: { brands } };
 }

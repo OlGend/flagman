@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import TopBrands from "@/components/TopBrands";
 
-import FilteredHome from "@/components/FilteredHome";
+import FilteredHome from "@/components/Brands_home/FilteredHome";
 import Fortunes from "@/components/fortune";
 import NewArrivals from "@/components/newArrivals/NewArrivals";
 import UserBrands from "@/components/UserBrands/UserBrands";

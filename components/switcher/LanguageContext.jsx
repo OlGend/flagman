@@ -6,7 +6,7 @@ const LanguageContext = createContext();
 export const useLanguage = () => useContext(LanguageContext);
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('ca'); 
+  const [language, setLanguage] = useState('all'); 
   useEffect(() => {
     // Эта проверка гарантирует, что код внутри useEffect будет выполняться только в браузере
     if (typeof window !== 'undefined') {

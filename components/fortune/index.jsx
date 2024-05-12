@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getBrands } from "@/components/getBrands/getBrands";
+import useSWR from "swr";
+import { getBrands } from "@/components/getBrands/getBrands2";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,18 +14,35 @@ const Fortunes = ({ banner, target, creative }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { language } = useLanguage();
   const categoryBrands = { key1: "FirstPriority", key2: "1" };
+  // const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
+
+  const { data, error } = useSWR(
+    ["brands", language],
+    () => getBrands(language),
+    { initialData: brands }
+  );
+  useEffect(() => {
+    if (data) {
+      const filteredData = data.filter(
+        (rowData) => rowData[categoryBrands.key1] === categoryBrands.key2
+      );
+      console.log("FILTER", filteredData);
+      setBrands(filteredData);
+    }
+  }, [data, categoryBrands.key1, categoryBrands.key2]);
+
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const fetchBrands = async () => {
-      setIsLoading(true);
-      const brandsData = await getBrands(categoryBrands, language);
-      setBrands(brandsData);
-      setIsLoading(false);
-    };
+  // useEffect(() => {
+  //   const fetchBrands = async () => {
+  //     setIsLoading(true);
+  //     const brandsData = await getBrands(categoryBrands, language);
+  //     setBrands(brandsData);
+  //     setIsLoading(false);
+  //   };
 
-    fetchBrands();
-  }, [language]);
+  //   fetchBrands();
+  // }, [language]);
 
   const [newUrl, setNewUrl] = useState("");
   useEffect(() => {

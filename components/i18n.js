@@ -120,7 +120,6 @@ async function initializeI18n() {
 
   const languages = newLng;
 
-  // Используем метод map для сопоставления значений массива languages с defLng
   const matchedLanguage = newLng.includes(defLng) ? defLng : "all";
 
   const resources = {
@@ -206,7 +205,7 @@ async function initializeI18n() {
         "My wallet": "My wallet",
         "Cards Shop": "Cards Shop",
         "Account menu": "Account menu",
-
+  
         "Fee:": "Fee:",
         "You will receive on balance:": "You will receive on balance:",
         "Payment Method": "Payment Method",
@@ -459,18 +458,21 @@ async function initializeI18n() {
         "Are you from": "Are you from",
         "Choose my Country": "Choose my Country",
         Yes: "Yes",
-
-        "Unlock Up To $20: Deposit Now With Your Registered Brands": "Unlock Up To $20: Deposit Now With Your Registered Brands",
-        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!": "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Unlock Up To $20: Deposit Now With Your Registered Brands",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!",
         "Show Brands": "Show Brands",
         "Premium Casino": "Premium Casino",
-        "Your Registration Completed, First Deposit Awaited": "Your Registration Completed, First Deposit Awaited",
-        "Registration and First Deposit Not Completed": "Registration and First Deposit Not Completed",
-        "I'm Registered": "I'm Registered",
-        "Deposit Now": "Deposit Now"
+        "Your Registration Completed, First Deposit Awaited":
+          "Your Registration Completed, First Deposit Awaited",
+        "Registration and First Deposit Not Completed":
+          "Registration and First Deposit Not Completed",
+        "I’m Registered": "I’m Registered",
+        "Deposit Now": "Deposit Now",
       },
     },
-
+  
     pl: {
       translation: {
         "Casinos ▼": "Kasyna ▼",
@@ -554,7 +556,7 @@ async function initializeI18n() {
         "My wallet": "Mój portfel",
         "Cards Shop": "Sklep",
         "Account menu": "Menu konta",
-
+  
         "Fee:": "Opłata:",
         "You will receive on balance:": "Otrzymasz na saldo:",
         "Payment Method": "Metoda płatności",
@@ -774,8 +776,7 @@ async function initializeI18n() {
           "Dostępność kart różni się w zależności od regionu.",
         "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
           "Odrzucono wypłatę: Minimalna kwota wypłaty to 4 USD.",
-        "Not enough funds in the account.":
-          "Niewystarczające środki na koncie.",
+        "Not enough funds in the account.": "Niewystarczające środki na koncie.",
         "Something wrong, try again!": "Coś poszło nie tak, spróbuj ponownie!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Proszę zauważyć: Wypłaty z PayPal są przetwarzane codziennie od 7:00 do 20:00 czasu środkowoeuropejskiego",
@@ -789,7 +790,7 @@ async function initializeI18n() {
         "Reload page": "Odśwież stronę",
         "To qualify for withdrawals, ensure your first deposit is at least €25 or the equivalent in other currencies and was made after requesting a withdrawal.":
           "Aby zakwalifikować się do wypłaty, upewnij się, że pierwsza wpłata wynosi co najmniej 25 € lub równowartość w innych walutach i została dokonana po złożeniu wniosku o wypłatę.",
-        "FORTUNE WHEEL BRANDS": "MARKI KOŁA FORTUNY",
+        "FORTUNE WHEEL BRANDS": "CASYNA KOŁA FORTUNY",
         "Pick a brand below, make first deposit and win real cash":
           "Wybierz poniższą markę, dokonaj pierwszej wpłaty i wygraj prawdziwe pieniądze",
         "Spin the Roulette": "Kręć ruletką",
@@ -809,6 +810,18 @@ async function initializeI18n() {
         "Are you from": "Skąd jesteś?",
         "Choose my Country": "Wybierz mój kraj",
         Yes: "Tak",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Odblokuj do 20 dolarów: Dokonaj teraz wpłaty za pomocą swoich zarejestrowanych marek",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Wybierz z listy zarejestrowanych marek, aby dokonać pierwszej wpłaty i otrzymać nawet do 20 dolarów nagrody. Skorzystaj teraz z tej specjalnej oferty!",
+        "Show Brands": "Pokaż Casyna",
+        "Premium Casino": "Kasyno Premium",
+        "Your Registration Completed, First Deposit Awaited":
+          "Twoja rejestracja została zakończona, oczekuje się pierwszej wpłaty",
+        "Registration and First Deposit Not Completed":
+          "Rejestracja i pierwsza wpłata nie zostały ukończone",
+        "I’m Registered": "Jestem zarejestrowany",
+        "Deposit Now": "Zdeponuj teraz",
       },
     },
     de: {
@@ -893,7 +906,7 @@ async function initializeI18n() {
         "My wallet": "Meine Brieftasche",
         "Cards Shop": "Kaufen",
         "Account menu": "Kontomenü",
-
+  
         "Fee:": "Gebühr:",
         "You will receive on balance:": "Sie werden auf Balance erhalten:",
         "Payment Method": "Zahlungsmethode",
@@ -1115,8 +1128,7 @@ async function initializeI18n() {
           "Auszahlung abgelehnt: Mindestauszahlungsbetrag beträgt 4 USD.",
         "Not enough funds in the account.":
           "Nicht genügend Geldmittel auf dem Konto.",
-        "Something wrong, try again!":
-          "Etwas stimmt nicht, versuche es erneut!",
+        "Something wrong, try again!": "Etwas stimmt nicht, versuche es erneut!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Bitte beachten Sie: PayPal-Auszahlungen werden täglich von 7 bis 20 Uhr MEZ bearbeitet.",
         "Your prepaid card request has been received. Our support team will contact you soon to finalize details. Check your inbox.":
@@ -1149,6 +1161,18 @@ async function initializeI18n() {
         "Are you from": "Bist du von",
         "Choose my Country": "Wähle mein Land",
         Yes: "Ja",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Entsperren Sie bis zu 20 $: Zahlen Sie jetzt mit Ihren registrierten Marken ein",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Wählen Sie aus der Liste der registrierten Marken aus, um Ihre erste Einzahlung abzuschließen und bis zu 20 $ Belohnung zu erhalten. Nutzen Sie dieses spezielle Angebot jetzt!",
+        "Show Brands": "Marken anzeigen",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Ihre Registrierung abgeschlossen, erste Einzahlung erwartet",
+        "Registration and First Deposit Not Completed":
+          "Registrierung und erste Einzahlung nicht abgeschlossen",
+        "I’m Registered": "Ich bin registriert",
+        "Deposit Now": "Einzahlen Sie jetzt",
       },
     },
     bg: {
@@ -1233,7 +1257,7 @@ async function initializeI18n() {
         "My wallet": "Портфейла ми",
         "Cards Shop": "Магазин",
         "Account menu": "Меню на акаунта",
-
+  
         "Fee:": "Такса:",
         "You will receive on balance:": "Ще получите на баланса",
         "Payment Method": "Метод на плащане",
@@ -1487,6 +1511,18 @@ async function initializeI18n() {
         "Are you from": "От къде си?",
         "Choose my Country": "Избери моята страна",
         Yes: "Да",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Отключете до $20: депозирайте сега с вашите регистрирани марки",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Изберете от списъка с регистрирани марки, за да завършите първия си депозит и получете до 20 долара награда. Възползвайте се от тази специална оферта сега!",
+        "Show Brands": "Покажи марки",
+        "Premium Casino": "Премиум Казино",
+        "Your Registration Completed, First Deposit Awaited":
+          "Вашата регистрация е завършена, очаква се първият депозит",
+        "Registration and First Deposit Not Completed":
+          "Регистрация и първо депозиране не са завършени",
+        "I’m Registered": "Аз съм регистриран",
+        "Deposit Now": "Депозирай сега",
       },
     },
     cz: {
@@ -1571,7 +1607,7 @@ async function initializeI18n() {
         "My wallet": "Můj peněženka",
         "Cards Shop": "Obchod",
         "Account menu": "Menu účtu",
-
+  
         "Fee:": "Poplatek:",
         "You will receive on balance:": "Dostanete na účet",
         "Payment Method": "Způsob platby",
@@ -1825,6 +1861,18 @@ async function initializeI18n() {
         "Are you from": "Jste odtud?",
         "Choose my Country": "Vyberte moji zemi",
         Yes: "Ano",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Odemkněte až 20 $: Vložte nyní s vašimi registrovanými značkami",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Vyberte ze seznamu registrovaných značek pro dokončení vašeho prvního vkladu a získejte až 20 $ odměny. Využijte tuto speciální nabídku hned teď!",
+        "Show Brands": "Zobrazit značky",
+        "Premium Casino": "Prémiové kasino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Vaše registrace dokončena, první vklad očekáván",
+        "Registration and First Deposit Not Completed":
+          "Registrace a první vklad nebyly dokončeny",
+        "I’m Registered": "Jsem registrován",
+        "Deposit Now": "Vložit nyní",
       },
     },
     dk: {
@@ -1909,7 +1957,7 @@ async function initializeI18n() {
         "My wallet": "Min tegnebog",
         "Cards Shop": "Butik",
         "Account menu": "Konto menu",
-
+  
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil modtage på balance:",
         "Payment Method": "Betalingsmetode",
@@ -2162,6 +2210,18 @@ async function initializeI18n() {
         "Are you from": "Er du fra",
         "Choose my Country": "Vælg mit land",
         Yes: "Ja",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Lås op for op til $20: Indbetal nu med dine registrerede mærker",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Vælg fra listen over registrerede mærker for at fuldføre din første indbetaling og modtage op til $20 i belønninger. Udnyt dette særlige tilbud nu!",
+        "Show Brands": "Vis mærker",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Din registrering er fuldført, første indbetaling afventes",
+        "Registration and First Deposit Not Completed":
+          "Tilmelding og første indbetaling ikke fuldført",
+        "I’m Registered": "Jeg er registreret",
+        "Deposit Now": "Indsæt nu",
       },
     },
     nl: {
@@ -2246,7 +2306,7 @@ async function initializeI18n() {
         "My wallet": "Mijn portemonnee",
         "Cards Shop": "Winkel",
         "Account menu": "Account menu",
-
+  
         "Fee:": "Betaling:",
         "You will receive on balance:": "Je zult ontvangen op saldo:",
         "Payment Method": "Betalingsmethode",
@@ -2500,6 +2560,18 @@ async function initializeI18n() {
         "Are you from": "Ben je van",
         "Choose my Country": "Kies mijn land",
         Yes: "Ja",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Ontgrendel tot $20: Stort nu met uw geregistreerde merken",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Selecteer uit de lijst met geregistreerde merken om uw eerste storting te voltooien en ontvang tot $20 aan beloningen. Profiteer nu van dit speciale aanbod!",
+        "Show Brands": "Toon Merken",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Uw registratie is voltooid, eerste storting verwacht",
+        "Registration and First Deposit Not Completed":
+          "Registratie en eerste storting niet voltooid",
+        "I’m Registered": "Ik ben geregistreerd",
+        "Deposit Now": "Stort nu",
       },
     },
     es: {
@@ -2584,7 +2656,7 @@ async function initializeI18n() {
         "My wallet": "Mi cartera",
         "Cards Shop": "Tienda",
         "Account menu": "Menú de cuenta",
-
+  
         "Fee:": "Tarifa:",
         "You will receive on balance:": "Recibirás en saldo:",
         "Payment Method": "Método de pago",
@@ -2838,6 +2910,18 @@ async function initializeI18n() {
         "Are you from": "¿Eres de?",
         "Choose my Country": "Elige mi país",
         Yes: "Sí",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Desbloquea hasta $20: Deposita ahora con tus marcas registradas",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Selecciona de la lista de marcas registradas para completar tu primer depósito y recibir hasta $20 en recompensas. ¡Aprovecha esta oferta especial ahora!",
+        "Show Brands": "Mostrar marcas",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Tu registro se ha completado, se espera el primer depósito",
+        "Registration and First Deposit Not Completed":
+          "Inscripción y primer depósito no completados",
+        "I’m Registered": "Estoy registrado",
+        "Deposit Now": "Depositar ahora",
       },
     },
     fi: {
@@ -2885,8 +2969,7 @@ async function initializeI18n() {
         Spinomenal: "Spinomenal",
         "Play Now": "Pelaa nyt",
         "How to get bonus?": "Kuinka saada bonus?",
-        "Activate bonus in your casino account":
-          "Aktivoi bonus kasinotililläsi",
+        "Activate bonus in your casino account": "Aktivoi bonus kasinotililläsi",
         "Load More Brands": "Lataa lisää kasinoita",
         "Withdrawal Limits:": "Nosto rajoitukset:",
         Advantages: "Edut",
@@ -2922,7 +3005,7 @@ async function initializeI18n() {
         "My wallet": "Minun lompakkoni",
         "Cards Shop": "Kauppa",
         "Account menu": "Tilivalikko",
-
+  
         "Fee:": "Maksu:",
         "You will receive on balance:": "Sinä saat saldona:",
         "Payment Method": "Maksutapa",
@@ -3176,6 +3259,18 @@ async function initializeI18n() {
         "Are you from": "Oletko sinä kotoisin",
         "Choose my Country": "Valitse maani",
         Yes: "Kyllä",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Avaa jopa 20 dollaria: Talleta nyt rekisteröityjen brändiesi kanssa",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Valitse rekisteröityjen brändien listalta ensimmäisen talletuksesi tekemiseksi ja saat jopa 20 dollaria palkintoja. Hyödynnä tämä erikoistarjous nyt!",
+        "Show Brands": "Näytä brändit",
+        "Premium Casino": "Ykkösluokan kasino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Rekisteröintisi on valmis, odotetaan ensimmäistä talletusta",
+        "Registration and First Deposit Not Completed":
+          "Rekisteröintiä ja ensimmäistä talletusta ei ole suoritettu",
+        "I’m Registered": "Olen rekisteröity",
+        "Deposit Now": "Talleta nyt",
       },
     },
     fr: {
@@ -3261,7 +3356,7 @@ async function initializeI18n() {
         "My wallet": "Mon portefeuille",
         "Cards Shop": "Magasin",
         "Account menu": "Menu du compte",
-
+  
         "Fee:": "Frais:",
         "You will receive on balance:": "Vous recevrez au solde:",
         "Payment Method": "Méthode de paiement",
@@ -3479,8 +3574,7 @@ async function initializeI18n() {
           "La disponibilité des cartes varie selon la région.",
         "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
           "Retrait refusé : Le montant minimum de retrait est de 4 USD.",
-        "Not enough funds in the account.":
-          "Pas assez de fonds dans le compte.",
+        "Not enough funds in the account.": "Pas assez de fonds dans le compte.",
         "Something wrong, try again!": "Quelque chose ne va pas, réessayez !",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Veuillez noter : les retraits PayPal sont traités tous les jours de 7h à 20h CET",
@@ -3514,6 +3608,18 @@ async function initializeI18n() {
         "Are you from": "Es-tu de",
         "Choose my Country": "Choisissez mon pays",
         Yes: "Oui",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Débloquez jusqu'à 20 $ : Déposez maintenant avec vos marques enregistrées",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Sélectionnez dans la liste des marques enregistrées pour compléter votre premier dépôt et recevoir jusqu'à 20 $ de récompenses. Profitez dès maintenant de cette offre spéciale !",
+        "Show Brands": "Afficher les marques",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Votre inscription est terminée, premier dépôt attendu",
+        "Registration and First Deposit Not Completed":
+          "Inscription et premier dépôt non complétés",
+        "I’m Registered": "Je suis inscrit",
+        "Deposit Now": "Effectuer un dépôt maintenant",
       },
     },
     gr: {
@@ -3598,7 +3704,7 @@ async function initializeI18n() {
         "My wallet": "Ο πορτοφόλι μου",
         "Cards Shop": "Κατάστημα",
         "Account menu": "Μενού λογαριασμού",
-
+  
         "Fee:": "Κόστος:",
         "You will receive on balance:": "Θα λάβετε στο υπόλοιπό σας:",
         "Payment Method": "Μέθοδος Πληρωμής",
@@ -3852,6 +3958,18 @@ async function initializeI18n() {
         "Are you from": "Είσαι από",
         "Choose my Country": "Επιλέξτε τη χώρα μου",
         Yes: "Ναι",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Ξεκλειδώστε μέχρι και $20: Καταθέστε τώρα με τις εγγεγραμμένες μάρκες σας",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Επιλέξτε από τη λίστα των εγγεγραμμένων εταιρικών σήματων για να ολοκληρώσετε την πρώτη σας κατάθεση και να λάβετε έως και 20 δολάρια σε ανταμοιβές. Εκμεταλλευτείτε αυτή την ειδική προσφορά τώρα!",
+        "Show Brands": "Εμφάνιση Μάρκων",
+        "Premium Casino": "Πρεμιέρα Καζίνο",
+        "Your Registration Completed, First Deposit Awaited":
+          "Η εγγραφή σας ολοκληρώθηκε, πρώτη κατάθεση αναμένεται",
+        "Registration and First Deposit Not Completed":
+          "Η εγγραφή και η πρώτη κατάθεση δεν ολοκληρώθηκαν",
+        "I’m Registered": "Είμαι εγγεγραμμένος",
+        "Deposit Now": "Κατάθεση τώρα",
       },
     },
     hu: {
@@ -3936,7 +4054,7 @@ async function initializeI18n() {
         "My wallet": "A pénztárcám",
         "Cards Shop": "Üzlet",
         "Account menu": "Fiók menü",
-
+  
         "Fee:": "Díj:",
         "You will receive on balance:": "Az egyenlegedre kapod:",
         "Payment Method": "Fizetési mód",
@@ -4190,6 +4308,18 @@ async function initializeI18n() {
         "Are you from": "Te honnan vagy?",
         "Choose my Country": "Válassza ki az országomat",
         Yes: "Igen",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Old fel akár $20-ig: Fizesd be most a regisztrált márkáiddal",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Válasszon a regisztrált márkák listájából az első befizetésének teljesítéséhez, és akár 20 dollár jutalmat kap. Vegye igénybe ezt a különleges ajánlatot most!",
+        "Show Brands": "Márkák megjelenítése",
+        "Premium Casino": "Prémium Kaszinó",
+        "Your Registration Completed, First Deposit Awaited":
+          "A regisztrációja befejeződött, az első befizetés várakozik",
+        "Registration and First Deposit Not Completed":
+          "A regisztráció és az első befizetés nem lett befejezve",
+        "I’m Registered": "Regisztrált vagyok",
+        "Deposit Now": "Letét most",
       },
     },
     it: {
@@ -4274,7 +4404,7 @@ async function initializeI18n() {
         "My wallet": "Il mio portafoglio",
         "Cards Shop": "Negozio",
         "Account menu": "Menu account",
-
+  
         "Fee:": "Tassa:",
         "You will receive on balance:": "Riceverai sul saldo:",
         "Payment Method": "Metodo di pagamento",
@@ -4528,6 +4658,18 @@ async function initializeI18n() {
         "Are you from": "Sei tu da",
         "Choose my Country": "Scegli il mio Paese",
         Yes: "Sì",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Sblocca fino a $20: Deposita ora con i tuoi marchi registrati",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Seleziona dalla lista dei marchi registrati per completare il tuo primo deposito e ricevere fino a $20 di ricompense. Approfitta subito di questa offerta speciale!",
+        "Show Brands": "Mostra marchi",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "La tua registrazione è stata completata, primo deposito in attesa",
+        "Registration and First Deposit Not Completed":
+          "Registrazione e primo deposito non completati",
+        "I’m Registered": "Sono registrato",
+        "Deposit Now": "Fai un deposito ora",
       },
     },
     no: {
@@ -4612,7 +4754,7 @@ async function initializeI18n() {
         "My wallet": "Min lommebok",
         "Cards Shop": "Butikk",
         "Account menu": "Kontomeny",
-
+  
         "Fee:": "Gebyr:",
         "You will receive on balance:": "Du vil motta på balanse:",
         "Payment Method": "Betalingsmetode",
@@ -4866,6 +5008,18 @@ async function initializeI18n() {
         "Are you from": "Er du fra",
         "Choose my Country": "Velg mitt land",
         Yes: "Ja",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Åpne opp til $20: Sett inn nå med dine registrerte merker",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Velg fra listen over registrerte merker for å fullføre ditt første innskudd og motta opptil $20 i belønninger. Dra nytte av dette spesialtilbudet nå!",
+        "Show Brands": "Vis merker",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Din registrering er fullført, første innskudd venter",
+        "Registration and First Deposit Not Completed":
+          "Registrering og første innskudd ikke fullført",
+        "I’m Registered": "Jeg er registrert",
+        "Deposit Now": "Innskudd nå",
       },
     },
     pt: {
@@ -4950,7 +5104,7 @@ async function initializeI18n() {
         "My wallet": "Minha carteira",
         "Cards Shop": "Loja",
         "Account menu": "Menu da conta",
-
+  
         "Fee:": "Taxa:",
         "You will receive on balance:": "Você receberá no saldo:",
         "Payment Method": "Método de Pagamento",
@@ -5169,8 +5323,7 @@ async function initializeI18n() {
           "A disponibilidade do cartão varia de acordo com a região.",
         "Withdrawal rejected: Minimum withdrawal amount is 4 USD.":
           "Retirada rejeitada: O valor mínimo de retirada é de 4 USD.",
-        "Not enough funds in the account.":
-          "Não há fundos suficientes na conta.",
+        "Not enough funds in the account.": "Não há fundos suficientes na conta.",
         "Something wrong, try again!": "Algo errado, tente novamente!",
         "Please note: PayPal withdrawals are processed every day from 7 AM to 8 PM CET":
           "Por favor, note: Os saques do PayPal são processados todos os dias das 7h às 20h CET",
@@ -5204,6 +5357,18 @@ async function initializeI18n() {
         "Are you from": "Você é de",
         "Choose my Country": "Escolha meu país",
         Yes: "Sim",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Desbloqueie até $20: Deposite agora com suas marcas registradas",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Selecione da lista de marcas registradas para completar seu primeiro depósito e receber até $20 em recompensas. Aproveite esta oferta especial agora!",
+        "Show Brands": "Mostrar Marcas",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Sua inscrição foi concluída, primeiro depósito aguardado",
+        "Registration and First Deposit Not Completed":
+          "Inscrição e Primeiro Depósito Não Concluídos",
+        "I’m Registered": "Estou registrado",
+        "Deposit Now": "Deposite Agora",
       },
     },
     se: {
@@ -5288,7 +5453,7 @@ async function initializeI18n() {
         "My wallet": "Min plånbok",
         "Cards Shop": "Butik",
         "Account menu": "Kontomeny",
-
+  
         "Fee:": "Avgift",
         "You will receive on balance:": "Du kommer att få på balans:",
         "Payment Method": "Betalningsmetod",
@@ -5543,6 +5708,18 @@ async function initializeI18n() {
         "Are you from": "Är du från",
         "Choose my Country": "Välj mitt land",
         Yes: "Ja",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Lås upp upp till $20: Sätt in nu med dina registrerade varumärken",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Välj från listan över registrerade varumärken för att slutföra din första insättning och få upp till $20 i belöningar. Dra nytta av detta specialerbjudande nu!",
+        "Show Brands": "Visa varumärken",
+        "Premium Casino": "Premium Casino",
+        "Your Registration Completed, First Deposit Awaited":
+          "Din registrering är klar, första insättningen väntar",
+        "Registration and First Deposit Not Completed":
+          "Registrering och första insättning inte slutförd",
+        "I’m Registered": "Jag är registrerad",
+        "Deposit Now": "Insättning nu",
       },
     },
     sk: {
@@ -5627,7 +5804,7 @@ async function initializeI18n() {
         "My wallet": "Moja peňaženka",
         "Cards Shop": "Obchod",
         "Account menu": "Účetové menu",
-
+  
         "Fee:": "Poplatok:",
         "You will receive on balance:": "Na účet dostanete:",
         "Payment Method": "Spôsob platby",
@@ -5881,6 +6058,18 @@ async function initializeI18n() {
         "Are you from": "Si z",
         "Choose my Country": "Vyberte moju krajinu",
         Yes: "Áno",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "Odomknite až do $20: Vložte teraz s vašimi registrovanými značkami",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "Vyberte zo zoznamu registrovaných značiek, aby ste dokončili svoj prvý vklad a získali až 20 dolárov odmien. Využite túto špeciálnu ponuku teraz!",
+        "Show Brands": "Zobraziť značky",
+        "Premium Casino": "Prémiové kasíno",
+        "Your Registration Completed, First Deposit Awaited":
+          "Vaša registrácia bola dokončená, čaká sa prvý vklad",
+        "Registration and First Deposit Not Completed":
+          "Registrácia a prvý vklad neboli dokončené",
+        "I’m Registered": "Som registrovaný",
+        "Deposit Now": "Vložiť teraz",
       },
     },
     tr: {
@@ -5965,7 +6154,7 @@ async function initializeI18n() {
         "My wallet": "Cüzdanım",
         "Cards Shop": "Mağaza",
         "Account menu": "Hesap menüsü",
-
+  
         "Fee:": "Ücret:",
         "You will receive on balance:": "Bakiyenize alacaksınız:",
         "Payment Method": "Ödeme Yöntemi",
@@ -6217,9 +6406,22 @@ async function initializeI18n() {
         "Are you from": "Sen nereden",
         "Choose my Country": "Ülkemi Seç",
         Yes: "Evet",
+        "Unlock Up To $20: Deposit Now With Your Registered Brands":
+          "20 $'a kadar kilidi açın: Şimdi Kayıtlı Markalarınızla Yatırım Yapın",
+        "Select from the list of registered brands to complete your first deposit and receive up to $20 in rewards. Take advantage of this special offer now!":
+          "İlk para yatırmanızı tamamlamak için kayıtlı markalar listesinden seçim yapın ve 20 $'a kadar ödül kazanın. Bu özel tekliften şimdi yararlanın!",
+        "Show Brands": "Markaları Göster",
+        "Premium Casino": "Premium Kumarhane",
+        "Your Registration Completed, First Deposit Awaited":
+          "Kaydınız Tamamlandı, İlk Yatırım Bekleniyor",
+        "Registration and First Deposit Not Completed":
+          "Kayıt ve İlk Yatırım Tamamlanmadı",
+        "I’m Registered": "Kayıtlıyım",
+        "Deposit Now": "Şimdi Yatırım Yap",
       },
     },
   };
+  
 
   let source;
   if (typeof window !== "undefined") {

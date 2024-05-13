@@ -111,7 +111,7 @@ export default function AllBrands({
         const shuffledBrands = [...filteredBrands].sort(
           () => Math.random() - 0.5
         );
-        const shuffledBrands2 = [...filteredBrands].sort(
+        const shuffledBrands2 = [...topBrands].sort(
           () => Math.random() - 0.5
         );
 
@@ -173,6 +173,8 @@ export default function AllBrands({
   const handleCountriesClick = (brandId) => {
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
+
+  console.log("BRANDS", vis, vis2)
 
   return (
     <>
@@ -445,7 +447,7 @@ export default function AllBrands({
               })
             ) : (
               <LazySlider {...settings}>
-                {topBrands.map((item) => {
+                {vis2.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -491,13 +493,3 @@ export default function AllBrands({
   );
 }
 
-export async function getServerSideProps(context) {
-  const categoryBrands = { key1: "Segment2", key2: "Premium" }; // Пример категории
-  const lng = context.params.lang; // Получение языка из параметров URL
-
-  // Вызываем функцию получения данных брендов
-  const brands = await getBrands(categoryBrands, lng);
-
-  // Возвращаем полученные данные в props компонента
-  return { props: { brands } };
-}

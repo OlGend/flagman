@@ -2,58 +2,18 @@
 "use client";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import useNavigateBrands from "./Navigate";
 import AllBonuses from "./AllBonuses";
-import { Gift, Coins, Crown, Handshake, RadioButton } from "phosphor-react";
-import i18n from "@/components/i18n";
+import { useLanguage } from "@/components/switcher/LanguageContext";
 
 const FilteredBonuses = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [isLoader, setIsLoader] = useState(false);
 
   const [currentTab, setCurrentTab] = useState(2);
-  const navigateBrands = [
-    // {
-    //   currentTab: 1,
-    //   currentCategories: 36,
-    //   currentText: "No Deposit Bonuses",
-    //   currentText2: t("No Deposit Bonuses"),
-    //   icon: <Gift className="mr-2 pb-1" size={32} />,
-    //   slug: "no-deposit-bonuses",
-    // },
-    {
-      currentTab: 2,
-      currentCategories: 39,
-      currentText: "Exclusive Bonuses",
-      currentText2: t("Exclusive Bonuses"),
-      icon: <Crown className="mr-2 pb-1" size={32} />,
-      slug: "exclusive-bonuses",
-    },
-    {
-      currentTab: 3,
-      currentCategories: 150,
-      currentText: "Deposit Bonuses",
-      currentText2: t("Deposit Bonuses"),
-      icon: <Coins className="mr-2 pb-1" size={32} />,
-      slug: "deposit-bonuses",
-    },
-    {
-      currentTab: 4,
-      currentCategories: 35,
-      currentText: "Welcome Bonuses",
-      currentText2: t("Welcome Bonuses"),
-      icon: <Handshake className="mr-2 pb-1" size={32} />,
-      slug: "welcome-bonuses",
-    },
-    // {
-    //   currentTab: 5,
-    //   currentCategories: 37,
-    //   currentText: "No Wagering Bonuses",
-    //   currentText2: t("No Wagering Bonuses"),
-    //   icon: <RadioButton className="mr-2 pb-1" size={32} />,
-    //   slug: "no-wagering-bonuses",
-    // },
-  ];
 
+  const navigateBrands = useNavigateBrands();
 
 
   const handleTabChange = (tabNumber) => {
@@ -94,10 +54,13 @@ const FilteredBonuses = () => {
             return (
               currentTab === item.currentTab && (
                 <AllBonuses
-                key={`${item.currentTab}-${i18n.language}`}
-                filtered={item.currentText}
+                key={`${item.currentTab}-${language}`}
+                creative={item.currentText}
                 isLoader={isLoader}
-                t={t}
+                segment={item.segment}
+                value={item.value}
+                target={item.target}
+                currentText={item.currentText}
                 />
               )
             );

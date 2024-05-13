@@ -1,15 +1,10 @@
-// TopBrands.jsx (Клиентский компонент)
 "use client";
 import { useState, useEffect } from "react";
+import useSWR from "swr";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
-import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
-import { getBrands } from "@/components/getBrands/getBrands";
-
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { getBrands } from "@/components/getBrands/getBrands2";
 import FilterLoader from "@/components/FilterLoader";
 import {
   Gift,
@@ -18,19 +13,33 @@ import {
   GameController,
   CurrencyCircleDollar,
   Play,
-  Eye,
   Prohibit,
   MinusCircle,
   DotsThreeCircle,
   Handshake,
 } from "phosphor-react";
 import { useLanguage } from "@/components/switcher/LanguageContext";
+import dynamic from "next/dynamic";
+const LazySlider = dynamic(() => import("react-slick"), {
+  ssr: false,
+  loading: () => <p>Download...</p>,
+});
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-
-export default function AllBonuses({ filtered, isLoader }) {
+export default function AllBonuses({
+  creative,
+  isLoader,
+  segment,
+  value,
+  target,
+  brands,
+  currentText
+}) {
   const { t } = useTranslation();
   const itemsPerPage = 4;
   const itemsPerPage2 = 4;
+
   const [visibleBrands, setVisibleBrands] = useState(itemsPerPage);
   const [visibleBrands2, setVisibleBrands2] = useState(itemsPerPage2);
 
@@ -41,31 +50,43 @@ export default function AllBonuses({ filtered, isLoader }) {
   const [openCountriesId, setOpenCountriesId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLinkClick = () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
-
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [topBrands, setTopBrands] = useState([]);
 
   const { language } = useLanguage();
-  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
+  const categoryBrandsAll = { key1: segment, key2: value };
+
+  const categoryBrands = { key1: "Video", key2: "1" };
+
+  const [visible, setVisible] = useState(false);
+  const { data, error } = useSWR(
+    ["brands", language],
+    () => getBrands(language),
+    { initialData: brands }
+  );
+
   useEffect(() => {
-    const fetchData = async () => {
-      const brands = await getBrandsFiltered(filtered, language);
-      const brands2 = await getBrands(categoryBrands, language);
-
-      setFilteredBrands(brands);
-      setTopBrands(brands2);
-
-    };
-
-    fetchData();
-  }, [language]);
+    if (data) {
+      setVisible(true);
+      const filteredData = data.filter((rowData) => {
+        return rowData[categoryBrandsAll.key1] === categoryBrandsAll.key2 && 
+               rowData.categories && 
+               rowData.categories.includes(currentText);
+    });
+    
+      const topData = data.filter(
+        (rowData) => rowData[categoryBrands.key1] === categoryBrands.key2
+      );
+      setFilteredBrands(filteredData);
+      setTopBrands(topData);
+    }
+  }, [
+    data,
+    categoryBrandsAll.key1,
+    categoryBrandsAll.key2,
+    categoryBrands.key1,
+    categoryBrands.key2, currentText
+  ]);
 
   useEffect(() => {
     setHasMoreBrands(visibleBrands < filteredBrands.length);
@@ -75,9 +96,8 @@ export default function AllBonuses({ filtered, isLoader }) {
     setVisibleBrands((prevVisibleBrands) => prevVisibleBrands + itemsPerPage);
     setVisibleBrands2((prevVisibleBrands) => prevVisibleBrands + itemsPerPage2);
   };
-  
+
   const [newUrl, setNewUrl] = useState("");
-  // Чтение сохраненной ссылки из локального хранилища
   useEffect(() => {
     const savedUrl = localStorage.getItem("savedUrl");
 
@@ -91,9 +111,6 @@ export default function AllBonuses({ filtered, isLoader }) {
   const [randomBrands2, setRandomBrands2] = useState([]);
   const [brandsGenerated, setBrandsGenerated] = useState(false);
 
-  useEffect(() => {
-    setBrandsGenerated(false); // Устанавливаем в false при изменении локали, чтобы пересчитать случайные бренды
-  }, [filtered.topBrand]); // Отслеживаем изменения связанные с локалью
 
   useEffect(() => {
     const generateRandomBrands = () => {
@@ -101,7 +118,7 @@ export default function AllBonuses({ filtered, isLoader }) {
         const shuffledBrands = [...filteredBrands].sort(
           () => Math.random() - 0.5
         );
-        const shuffledBrands2 = [...filteredBrands].sort(
+        const shuffledBrands2 = [...topBrands].sort(
           () => Math.random() - 0.5
         );
 
@@ -111,11 +128,11 @@ export default function AllBonuses({ filtered, isLoader }) {
       }
     };
 
-    generateRandomBrands(); // Вызываем генерацию при первом рендере
-  }, [brandsGenerated, filteredBrands]); // Отслеживаем изменения brandsGenerated и filteredBrands
+    generateRandomBrands();
+  }, [brandsGenerated, filteredBrands]);
 
   const vis = randomBrands.length > 0 ? randomBrands : filteredBrands;
-  const vis2 = randomBrands2.length > 0 ? randomBrands2 : filteredBrands;
+  const vis2 = randomBrands2.length > 0 ? randomBrands2 : topBrands;
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -133,7 +150,6 @@ export default function AllBonuses({ filtered, isLoader }) {
     };
   }, []);
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -164,6 +180,8 @@ export default function AllBonuses({ filtered, isLoader }) {
   const handleCountriesClick = (brandId) => {
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
+
+
   return (
     <>
       {isLoader ? (
@@ -171,7 +189,7 @@ export default function AllBonuses({ filtered, isLoader }) {
       ) : (
         <div className="flex flex-wrap justify-between awesome">
           <div className="flex flex-col px-0 py-6 basis-[75%]">
-            {filteredBrands.slice(0, visibleBrands).map((brand) => {
+            {vis.slice(0, visibleBrands).map((brand) => {
               const advantages =
                 brand.advantages !== null
                   ? brand.advantages
@@ -209,7 +227,6 @@ export default function AllBonuses({ filtered, isLoader }) {
                 >
                   <div className="flex flex-col basis-[63%]">
                     <div className="flex ml-1 mb-3">
-                      {/* <div className="filter-flag">{filtered.flag}</div> */}
                     </div>
                     <div className="flex mb-1">
                       <Gift className="mr-1" size={24} />
@@ -220,7 +237,9 @@ export default function AllBonuses({ filtered, isLoader }) {
                     <div className="mb-2 withdrawal withdrawal-limits flex items-center">
                       <Handshake className="mr-1 mb-1" size={24} />
 
-                      <div className="title mr-2">{t("Withdrawal Limits:")}</div>
+                      <div className="title mr-2">
+                        {t("Withdrawal Limits:")}
+                      </div>
                       <div className="items-center">
                         {brand.WithdrawalLimits}
                       </div>
@@ -256,7 +275,9 @@ export default function AllBonuses({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <CurrencyCircleDollar size={24} />
-                          <span className="mt-1 ml-2">{t("Payment Methods")}</span>
+                          <span className="mt-1 ml-2">
+                            {t("Payment Methods")}
+                          </span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isDepositsOpen && (
@@ -286,7 +307,9 @@ export default function AllBonuses({ filtered, isLoader }) {
                       >
                         <div className="title flex items-center">
                           <GameController size={24} />
-                          <span className="mt-1 ml-2">{t("Game Providers")}</span>
+                          <span className="mt-1 ml-2">
+                            {t("Game Providers")}
+                          </span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isWithdrawalOpen && (
@@ -323,7 +346,6 @@ export default function AllBonuses({ filtered, isLoader }) {
                         </div>
                         {isCountriesOpen && (
                           <div className="withdrawal">
-                            {/* Виводимо обмежені країни */}
                             <div className="countries flex flex-wrap justify-between mt-1">
                               {restricted.map((restrict, index) => (
                                 <div
@@ -343,7 +365,7 @@ export default function AllBonuses({ filtered, isLoader }) {
                   <div className="basis-[36%]">
                     <div className="brandImage p-3">
                       <Link
-                      className="target-brand-exit"
+                        className="target-brand-exit"
                         key={brand.id_brand}
                         href={`${brand.GoBig}/${newUrl}&creative_id=XXL_Brand_Exit`}
                       >
@@ -359,22 +381,12 @@ export default function AllBonuses({ filtered, isLoader }) {
                     </div>
 
                     <div className="buttons ml-auto flex items-center">
-                      {/* <Link
-                        className="btn btn-secondary text-center flex justify-center items-center"
-                      href={`https://link.reg2dep1.com/${playLink}/${newUrl}`}
-                        onClick={handleLinkClick}
-                      >
-                        {isLoading ? (
-                          <Loader />
-                        ) : (
-                          <Eye className="mr-2" size={20} />
-                        )}
-                      Read Review
-                      </Link> */}
                       <div className="flex flex-col items-center w-full p-4 howUse mt-2 mb-2">
-                        <span className="text-center">{t("How to get bonus?")}</span>
+                        <span className="text-center">
+                          {t("How to get bonus?")}
+                        </span>
                         <p className="text-center m-0 text-slate-500">
-                        {t("Activate bonus in your casino account")}
+                          {t("Activate bonus in your casino account")}
                         </p>
                       </div>
                       <Link
@@ -402,9 +414,7 @@ export default function AllBonuses({ filtered, isLoader }) {
           </div>
           <div className="flex flex-col basis-[24%] py-6">
             {!isMobile ? (
-              topBrands.slice(0, visibleBrands2).map((item) => {
-                // const reviewImgSrc = extractReviewImage(item.content.rendered);
-                // const playLink = extractLink(item.content.rendered);
+              vis2.slice(0, visibleBrands2).map((item) => {
                 return (
                   <div
                     className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -436,14 +446,14 @@ export default function AllBonuses({ filtered, isLoader }) {
                       href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                       target="_blank"
                     >
-                     {t("Play Now")}
+                      {t("Play Now")}
                     </Link>
                   </div>
                 );
               })
             ) : (
-              <Slider {...settings}>
-                {topBrands.map((item) => {
+              <LazySlider {...settings}>
+                {vis2.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -475,12 +485,12 @@ export default function AllBonuses({ filtered, isLoader }) {
                         href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                         target="_blank"
                       >
-                       {t("Play Now")}
+                        {t("Play Now")}
                       </Link>
                     </div>
                   );
                 })}
-              </Slider>
+              </LazySlider>
             )}
           </div>
         </div>

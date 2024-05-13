@@ -1,10 +1,7 @@
-// TopBrands.jsx (Клієнтський компонент)
-"use client";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { DotsThreeCircle } from "phosphor-react";
-import AllProviders from "./AllProviders";
+import React from "react";
 import Image from "next/image";
+import { DotsThreeCircle } from "phosphor-react";
+
 // import Bgaming from "@/public/providers/bgaming.png";
 // import Boongo from "@/public/providers/booongo gaming.png";
 // import Amusnet from "@/public/providers/amusnet interactive.png";
@@ -17,16 +14,9 @@ import Image from "next/image";
 // import Nolimitcity from "@/public/providers/nolimit city.png";
 // import Pragmatic from "@/public/providers/pragmatic play.png";
 // import Evolution from "@/public/providers/evolution gaming.png";
-// import AllPaymentsImg from "@/public/providers/allpaymentmethods.png";
-import i18n from "@/components/i18n";
 
-
-const FilteredProviders = () => {
-  const { t } = useTranslation();
-  const [isLoader, setIsLoader] = useState(false);
-
-  const [currentTab, setCurrentTab] = useState(1);
-  const navigateBrands = [
+const useNavigateBrands = () => {
+  return [
     {
       currentTab: 1,
       currentCategories: 137,
@@ -36,6 +26,8 @@ const FilteredProviders = () => {
       //     <DotsThreeCircle className="mr-1" size={24} /> All
       //   </>
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "providers",
     },
     {
@@ -51,6 +43,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "amatic",
     },
     {
@@ -66,6 +60,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "bgaming",
     },
     {
@@ -81,6 +77,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "booongo",
     },
 
@@ -91,6 +89,8 @@ const FilteredProviders = () => {
       // icon: (
       //   <Image src={Amusnet} alt="egt" width={80} height={40} loading="lazy" />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "egt",
     },
     {
@@ -106,6 +106,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "evolution",
     },
     {
@@ -121,6 +123,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "mascot",
     },
     {
@@ -136,6 +140,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "netent",
     },
     {
@@ -151,6 +157,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      // segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "nolimit-city",
     },
     {
@@ -166,6 +174,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "playn-go",
     },
     {
@@ -181,6 +191,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "pragmatic-play",
     },
 
@@ -197,6 +209,8 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "push-gaming",
     },
     {
@@ -212,65 +226,11 @@ const FilteredProviders = () => {
       //     loading="lazy"
       //   />
       // ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "spinomenal",
     },
   ];
-
-  const handleTabChange = (tabNumber) => {
-    setCurrentTab(tabNumber);
-    setIsLoader(true);
-    setTimeout(() => {
-      setIsLoader(false);
-    }, 500);
-  };
-
-  return (
-    <div className="main pt-10 pb-10 custom-bonuses filtered-providers">
-      <div className="main__container filter-brands">
-        <div className="content flex flex-wrap">
-          <div className="left flex flex-col justify-center basis-[60%]">
-            <h2 className="text-white">
-              {t("Comprehensive 2024 Directory for Online Casinos Sorted by Game Providers")}
-            </h2>
-            <p className="text-white mt-5">
-              {t("Interested in locating online casinos featuring games from particular providers? Browse our up-to-date list of diverse casino options to find your perfect match.")}
-            </p>
-          </div>
-        </div>
-        <div className="flex navigate-filter flex-wrap">
-          {navigateBrands.map((item) => (
-            <button
-              key={item.currentTab}
-              className={`flex justify-center flex-col basis-[7.69%] items-center p-2 border text-lg button-tab ${
-                currentTab === item.currentTab ? "active" : ""
-              }`}
-              onClick={() => handleTabChange(item.currentTab)}
-            >
-              <div className="flex items-center">
-                {/* {item.icon} */}
-                {item.currentText}
-              </div>
-            </button>
-          ))}
-        </div>
-
-        <div className="overlay-filter">
-          {navigateBrands.map((item) => {
-            return (
-              currentTab === item.currentTab && (
-                <AllProviders
-                  key={`${item.currentTab}-${i18n.language}`}
-                  filtered={item.currentText}
-                  isLoader={isLoader}
-                  t={t}
-                />
-              )
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
 };
 
-export default FilteredProviders;
+export default useNavigateBrands;

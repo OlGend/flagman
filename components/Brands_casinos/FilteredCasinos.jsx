@@ -2,72 +2,19 @@
 "use client";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import useNavigateBrands from "./Navigate";
 import AllCasinos from "./AllCasinos";
-import {
-  CurrencyBtc,
-  UsersThree,
-  Cardholder,
-  CalendarCheck,
-  Scroll,
-  DribbbleLogo
-} from "phosphor-react";
-import i18n from "@/components/i18n";
+import { useLanguage } from "@/components/switcher/LanguageContext";
 
 const FilteredCasinos = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [isLoader, setIsLoader] = useState(false);
 
   const [currentTab, setCurrentTab] = useState(1);
-  const navigateBrands = [
-    {
-      currentTab: 1,
-      currentCategories: 19,
-      currentText: "Crypto Casinos",
-      currentText2: t("Crypto Casinos"),
-      icon: <CurrencyBtc className="mr-2 pb-1" size={32} />,
-      slug: "crypto-casinos",
-    },
-    {
-      currentTab: 2,
-      currentCategories: 20,
-      currentText: "Fast Withdrawal Casinos",
-      currentText2: t("Fast Withdrawal Casinos"),
-      icon: <Cardholder className="mr-2 pb-1" size={32} />,
-      slug: "fast-withdrawal-casinos",
-    },
-    {
-      currentTab: 3,
-      currentCategories: 22,
-      currentText: "Live Casinos",
-      currentText2: t("Live Casinos"),
-      icon: <UsersThree className="mr-2 pb-1" size={32} />,
-      slug: "live-casinos",
-    },
-    {
-      currentTab: 4,
-      currentCategories: 24,
-      currentText: "Newest Casinos",
-      currentText2: t("Newest Casinos"),
-      icon: <CalendarCheck className="mr-2 pb-1" size={32} />,
-      slug: "newest-casinos",
-    },
-    {
-      currentTab: 5,
-      currentCategories: 26,
-      currentText: "Top Certified Casinos",
-      currentText2: t("Top Certified Casinos"),
-      icon: <Scroll className="mr-2 pb-1" size={32} />,
-      slug: "top-certified-casinos",
-    },
-    {
-      currentTab: 6,
-      currentCategories: 187,
-      currentText: "Top Sports Brands",
-      currentText2: t("Top Sports Casinos"),
-      icon: <DribbbleLogo className="mr-2 pb-1" size={32} />,
-      slug: "top-sports-casinos",
-    },
-  ];
+
+  const navigateBrands = useNavigateBrands();
+
 
   const handleTabChange = (tabNumber) => {
     setCurrentTab(tabNumber);
@@ -110,10 +57,13 @@ const FilteredCasinos = () => {
             return (
               currentTab === item.currentTab && (
                 <AllCasinos
-                key={`${item.currentTab}-${i18n.language}`}
-                filtered={item.currentText}
+                key={`${item.currentTab}-${language}`}
+                creative={item.currentText}
                 isLoader={isLoader}
-                t={t}
+                segment={item.segment}
+                value={item.value}
+                target={item.target}
+                currentText={item.currentText}
                 />
               )
             );

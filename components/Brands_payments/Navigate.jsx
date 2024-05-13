@@ -1,9 +1,6 @@
-
-"use client";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import AllPayments from "./AllPayments";
+import React from "react";
 import Image from "next/image";
+
 import Visa from "@/public/payments/visa.png";
 import Bitcoin from "@/public/payments/bitcoin.png";
 import Ecopayz from "@/public/payments/ecopayz.png";
@@ -18,17 +15,11 @@ import Applepay from "@/public/payments/applepay.png";
 import Maestro from "@/public/payments/maestro.png";
 import Paypal from "@/public/payments/paypal.png";
 import Pix from "@/public/payments/pix.png";
-import Revolut from "@/public/payments/revolut.png";
-// import Mobile from "@/public/payments/mob.png";
+
 import AllPaymentsImg from "@/public/payments/allpaymentmethods.png";
-import i18n from "@/components/i18n";
 
-const FilteredPayments = () => {
-  const { t } = useTranslation();
-  const [isLoader, setIsLoader] = useState(false);
-
-  const [currentTab, setCurrentTab] = useState(1);
-  const navigateBrands = [
+const useNavigateBrands = () => {
+  return [
     {
       currentTab: 1,
       currentCategories: 85,
@@ -43,6 +34,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "payments",
     },
     {
@@ -59,6 +52,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "apple-pay",
     },
     {
@@ -75,6 +70,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "bitcoin-casino",
     },
     {
@@ -91,6 +88,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "ecopayz",
     },
     {
@@ -107,6 +106,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "maestro",
     },
     {
@@ -123,24 +124,10 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "mastercard",
     },
-    // {
-    //   currentTab: 7,
-    //   currentCategories: 209,
-    //   currentText: "Mobile",
-    //   icon: (
-    //     <Image
-    //       className="mr-1"
-    //       src={Mobile}
-    //       alt="mobile"
-    //       width={60}
-    //       height={38}
-    //       loading="lazy"
-    //     />
-    //   ),
-    //   slug: "mobile-payments",
-    // },
     {
       currentTab: 8,
       currentCategories: 181,
@@ -155,6 +142,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "muchbetter",
     },
     {
@@ -171,6 +160,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "neosurf",
     },
     {
@@ -187,6 +178,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "neteller-casino",
     },
     {
@@ -203,6 +196,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "paypal-casino",
     },
     {
@@ -219,6 +214,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "paysafecard-casino",
     },
     {
@@ -235,6 +232,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "pix",
     },
 
@@ -252,6 +251,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "skrill-casino",
     },
     {
@@ -268,6 +269,8 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "trustly",
     },
     {
@@ -284,64 +287,11 @@ const FilteredPayments = () => {
           loading="lazy"
         />
       ),
+      segment: "CurrentStatus",
+      value: "Ongoing",
       slug: "visa",
     },
   ];
-
-  const handleTabChange = (tabNumber) => {
-    setCurrentTab(tabNumber);
-    setIsLoader(true);
-    setTimeout(() => {
-      setIsLoader(false);
-    }, 500);
-  };
-  return (
-    <div className="main pt-10 pb-10 custom-bonuses filtered-payments">
-      <div className="main__container filter-brands">
-        <div className="content flex flex-wrap">
-          <div className="left flex flex-col justify-center basis-[60%]">
-            <h2 className="">
-              {t("Catalog of all offered Online Casinos by Payment Methods in 2024")}
-            </h2>
-            <p className="mt-3 pb-4">
-              {t("Looking for online casinos with specific payment methods? Explore our current database of numerous casino offers for you to choose from.")}
-            </p>
-          </div>
-        </div>
-        <div className="flex navigate-filter flex-wrap">
-          {navigateBrands.map((item) => (
-            <button
-              key={item.currentTab}
-              className={`flex justify-center flex-col basis-[10%] items-center p-2 border text-lg button-tab ${
-                currentTab === item.currentTab ? "active" : ""
-              }`}
-              onClick={() => handleTabChange(item.currentTab)}
-            >
-              <div className="flex items-center">
-                {item.icon}
-                {/* {t(item.currentText)} */}
-              </div>
-            </button>
-          ))}
-        </div>
-
-        <div className="overlay-filter">
-          {navigateBrands.map((item) => {
-            return (
-              currentTab === item.currentTab && (
-                <AllPayments
-                  key={`${item.currentTab}-${i18n.language}`}
-                  filtered={item.currentText}
-                  isLoader={isLoader}
-                  t={t}
-                />
-              )
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
 };
 
-export default FilteredPayments;
+export default useNavigateBrands;

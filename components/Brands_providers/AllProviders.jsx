@@ -1,14 +1,10 @@
-
 "use client";
 import { useState, useEffect } from "react";
-
+import useSWR from "swr";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
-import { getBrandsFiltered } from "@/components/getBrandsFiltered/getBrandsFiltered";
-import { getBrands } from "@/components/getBrands/getBrands";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { getBrands } from "@/components/getBrands/getBrands2";
 import FilterLoader from "@/components/FilterLoader";
 import {
   Gift,
@@ -17,17 +13,30 @@ import {
   GameController,
   CurrencyCircleDollar,
   Play,
-  Eye,
   Prohibit,
   MinusCircle,
   DotsThreeCircle,
   Handshake,
 } from "phosphor-react";
 import { useLanguage } from "@/components/switcher/LanguageContext";
+import dynamic from "next/dynamic";
+const LazySlider = dynamic(() => import("react-slick"), {
+  ssr: false,
+  loading: () => <p>Download...</p>,
+});
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-
-export default function AllProviders({ filtered, isLoader, t }) {
-
+export default function AllProviders({
+  creative,
+  isLoader,
+  segment,
+  value,
+  target,
+  brands,
+  currentText,
+}) {
+  const { t } = useTranslation();
   const itemsPerPage = 4;
   const itemsPerPage2 = 4;
 
@@ -41,32 +50,44 @@ export default function AllProviders({ filtered, isLoader, t }) {
   const [openCountriesId, setOpenCountriesId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLinkClick = () => {
-    setIsLoading(true);
-
-    // Simulate some delay to show the loader (remove this in actual usage)
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
 
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [topBrands, setTopBrands] = useState([]);
 
   const { language } = useLanguage();
-  const categoryBrands = { key1: "Segment2", key2: "Sandbox" };
+  const categoryBrandsAll = { key1: segment, key2: value };
+
+  const categoryBrands = { key1: "Video", key2: "1" };
+
+  const [visible, setVisible] = useState(false);
+  const { data, error } = useSWR(
+    ["brands", language],
+    () => getBrands(language),
+    { initialData: brands }
+  );
+
   useEffect(() => {
-    const fetchData = async () => {
-      const brands = await getBrandsFiltered(filtered, language);
-      const brands2 = await getBrands(categoryBrands, language);
-
-      setFilteredBrands(brands);
-      setTopBrands(brands2);
-
-    };
-
-    fetchData();
-  }, [language]);
+    if (data) {
+      setVisible(true);
+      const filteredData = data.filter((rowData) => {
+        return rowData[categoryBrandsAll.key1] === categoryBrandsAll.key2 && 
+               rowData.categories && 
+               rowData.categories.includes(currentText);
+    });
+    
+      const topData = data.filter(
+        (rowData) => rowData[categoryBrands.key1] === categoryBrands.key2
+      );
+      setFilteredBrands(filteredData);
+      setTopBrands(topData);
+    }
+  }, [
+    data,
+    categoryBrandsAll.key1,
+    categoryBrandsAll.key2,
+    categoryBrands.key1,
+    categoryBrands.key2, currentText
+  ]);
 
   useEffect(() => {
     setHasMoreBrands(visibleBrands < filteredBrands.length);
@@ -92,9 +113,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
   const [randomBrands2, setRandomBrands2] = useState([]);
   const [brandsGenerated, setBrandsGenerated] = useState(false);
 
-  useEffect(() => {
-    setBrandsGenerated(false); // Устанавливаем в false при изменении локали, чтобы пересчитать случайные бренды
-  }, [filtered.topBrand]); // Отслеживаем изменения связанные с локалью
+
 
   useEffect(() => {
     const generateRandomBrands = () => {
@@ -102,7 +121,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
         const shuffledBrands = [...filteredBrands].sort(
           () => Math.random() - 0.5
         );
-        const shuffledBrands2 = [...filteredBrands].sort(
+        const shuffledBrands2 = [...topBrands].sort(
           () => Math.random() - 0.5
         );
 
@@ -116,7 +135,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
   }, [brandsGenerated, filteredBrands]); // Отслеживаем изменения brandsGenerated и filteredBrands
 
   const vis = randomBrands.length > 0 ? randomBrands : filteredBrands;
-  const vis2 = randomBrands2.length > 0 ? randomBrands2 : filteredBrands;
+  const vis2 = randomBrands2.length > 0 ? randomBrands2 : topBrands;
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -166,14 +185,13 @@ export default function AllProviders({ filtered, isLoader, t }) {
     setOpenCountriesId((prevId) => (prevId === brandId ? null : brandId));
   };
   return (
-  
     <>
       {isLoader ? (
         <FilterLoader />
       ) : (
         <div className="flex flex-wrap justify-between awesome">
           <div className="flex flex-col px-0 py-6 basis-[75%]">
-            {filteredBrands.slice(0, visibleBrands).map((brand) => {
+            {vis.slice(0, visibleBrands).map((brand) => {
               const advantages =
                 brand.advantages !== null
                   ? brand.advantages
@@ -222,7 +240,9 @@ export default function AllProviders({ filtered, isLoader, t }) {
                     <div className="mb-2 withdrawal withdrawal-limits flex items-center">
                       <Handshake className="mr-1 mb-1" size={24} />
 
-                      <div className="title mr-2">{t("Withdrawal Limits:")}</div>
+                      <div className="title mr-2">
+                        {t("Withdrawal Limits:")}
+                      </div>
                       <div className="items-center">
                         {brand.WithdrawalLimits}
                       </div>
@@ -258,7 +278,9 @@ export default function AllProviders({ filtered, isLoader, t }) {
                       >
                         <div className="title flex items-center">
                           <CurrencyCircleDollar size={24} />
-                          <span className="mt-1 ml-2">{t("Payment Methods")}</span>
+                          <span className="mt-1 ml-2">
+                            {t("Payment Methods")}
+                          </span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isDepositsOpen && (
@@ -288,7 +310,9 @@ export default function AllProviders({ filtered, isLoader, t }) {
                       >
                         <div className="title flex items-center">
                           <GameController size={24} />
-                          <span className="mt-1 ml-2">{t("Game Providers")}</span>
+                          <span className="mt-1 ml-2">
+                            {t("Game Providers")}
+                          </span>
                           <CaretDown className="ml-auto" size={20} />
                         </div>
                         {isWithdrawalOpen && (
@@ -345,7 +369,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
                   <div className="basis-[36%]">
                     <div className="brandImage p-3">
                       <Link
-                      className="target-brand-exit"
+                        className="target-brand-exit"
                         key={brand.id_brand}
                         href={`${brand.GoBig}/${newUrl}&creative_id=XXL_Brand_Exit`}
                       >
@@ -374,9 +398,11 @@ export default function AllProviders({ filtered, isLoader, t }) {
                       Read Review
                       </Link> */}
                       <div className="flex flex-col items-center w-full p-4 howUse mt-2 mb-2">
-                        <span className="text-center">{t("How to get bonus?")}</span>
+                        <span className="text-center">
+                          {t("How to get bonus?")}
+                        </span>
                         <p className="text-center m-0 text-slate-500">
-                        {t("Activate bonus in your casino account")}
+                          {t("Activate bonus in your casino account")}
                         </p>
                       </div>
                       <Link
@@ -404,7 +430,7 @@ export default function AllProviders({ filtered, isLoader, t }) {
           </div>
           <div className="flex flex-col basis-[24%] py-6">
             {!isMobile ? (
-              topBrands.slice(0, visibleBrands2).map((item) => {
+              vis2.slice(0, visibleBrands2).map((item) => {
                 // const reviewImgSrc = extractReviewImage(item.content.rendered);
                 // const playLink = extractLink(item.content.rendered);
                 return (
@@ -438,14 +464,14 @@ export default function AllProviders({ filtered, isLoader, t }) {
                       href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                       target="_blank"
                     >
-                     {t("Play Now")}
+                      {t("Play Now")}
                     </Link>
                   </div>
                 );
               })
             ) : (
-              <Slider {...settings}>
-                {topBrands.map((item) => {
+              <LazySlider {...settings}>
+                {vis2.map((item) => {
                   return (
                     <div
                       className="card-brand-banner mb-2 flex flex-col items-center pb-3"
@@ -477,12 +503,12 @@ export default function AllProviders({ filtered, isLoader, t }) {
                         href={`${item.GoBig}/${newUrl}&creative_id=XXL_Listing_Brands`}
                         target="_blank"
                       >
-                       {t("Play Now")}
+                        {t("Play Now")}
                       </Link>
                     </div>
                   );
                 })}
-              </Slider>
+              </LazySlider>
             )}
           </div>
         </div>

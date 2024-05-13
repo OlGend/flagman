@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigateBrands from "./Navigate";
-import AllBrands from "./AllBrands";
+import AllPayments from "./AllPayments";
 import { useLanguage } from "@/components/switcher/LanguageContext";
 
-const FilteredHome = () => {
+const FilteredPayments = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
   const [isLoader, setIsLoader] = useState(false);
@@ -22,31 +22,32 @@ const FilteredHome = () => {
       setIsLoader(false);
     }, 500);
   };
-
   return (
-    <div className="main pt-10 pb-10 other-custom-bonuses">
+    <div className="main pt-10 pb-10 custom-bonuses filtered-payments">
       <div className="main__container filter-brands">
         <div className="content flex flex-wrap">
           <div className="left flex flex-col justify-center basis-[60%]">
             <h2 className="">
-              {t("Catalog of all 2024 Online Casino Bonuses Offered")}
+              {t("Catalog of all offered Online Casinos by Payment Methods in 2024")}
             </h2>
             <p className="mt-3 pb-4">
-              {t("Seeking online casino bonuses and promotions? Explore our current database featuring numerous casino bonus offers for your selection.")}
+              {t("Looking for online casinos with specific payment methods? Explore our current database of numerous casino offers for you to choose from.")}
             </p>
           </div>
         </div>
-        <div className="flex navigate-filter">
+        <div className="flex navigate-filter flex-wrap">
           {navigateBrands.map((item) => (
             <button
               key={item.currentTab}
-              className={`flex justify-center flex-col basis-[20%] items-center p-2 border text-lg button-tab ${
+              className={`flex justify-center flex-col basis-[10%] items-center p-2 border text-lg button-tab ${
                 currentTab === item.currentTab ? "active" : ""
               }`}
               onClick={() => handleTabChange(item.currentTab)}
             >
-              {item.icon}
-              {item.currentText2}
+              <div className="flex items-center">
+                {item.icon}
+                {/* {t(item.currentText)} */}
+              </div>
             </button>
           ))}
         </div>
@@ -55,13 +56,14 @@ const FilteredHome = () => {
           {navigateBrands.map((item) => {
             return (
               currentTab === item.currentTab && (
-                <AllBrands
-                  key={`${item.currentTab}-${language}`}
-                  creative={item.currentText}
-                  isLoader={isLoader}
-                  segment={item.segment}
-                  value={item.value}
-                  target={item.target}
+                <AllPayments
+                key={`${item.currentTab}-${language}`}
+                creative={item.currentText}
+                isLoader={isLoader}
+                segment={item.segment}
+                value={item.value}
+                target={item.target}
+                currentText={item.currentText}
                 />
               )
             );
@@ -72,7 +74,4 @@ const FilteredHome = () => {
   );
 };
 
-export default FilteredHome;
-
-
-
+export default FilteredPayments;
